@@ -16,32 +16,32 @@ export function StickyProjectBar() {
         show ? "translate-y-0 opacity-100" : "translate-y-full opacity-0 pointer-events-none"
       }`}
     >
-      <div className="container-luxe py-2.5 md:py-3 flex items-center justify-between gap-3">
-        <div className="flex items-center gap-4 md:gap-8 overflow-x-auto no-scrollbar">
+      <div className="container-luxe py-2 md:py-2.5 flex items-center justify-between gap-2">
+        <div className="flex items-center gap-3 md:gap-6 min-w-0 flex-1">
           <div className="min-w-0">
-            <div className="text-[9px] md:text-[10px] uppercase tracking-wider text-foreground/50 font-medium">
+            <div className="text-[8px] md:text-[10px] uppercase tracking-wider text-foreground/50 font-medium leading-tight">
               Location
             </div>
-            <div className="text-[12px] md:text-sm font-semibold text-foreground whitespace-nowrap">
-              Nehru Nagar, Ahmedabad
+            <div className="text-[10.5px] md:text-sm font-semibold text-foreground leading-tight mt-0.5 truncate">
+              Nehru Nagar
             </div>
           </div>
-          <div className="hidden sm:block w-px h-8 bg-border" />
+          <div className="w-px h-7 md:h-8 bg-border shrink-0" />
           <div className="min-w-0">
-            <div className="text-[9px] md:text-[10px] uppercase tracking-wider text-foreground/50 font-medium">
-              Property Type
+            <div className="text-[8px] md:text-[10px] uppercase tracking-wider text-foreground/50 font-medium leading-tight">
+              Property
             </div>
-            <div className="text-[12px] md:text-sm font-semibold text-foreground whitespace-nowrap">
-              Luxury 4 & 5 BHK
+            <div className="text-[10.5px] md:text-sm font-semibold text-foreground leading-tight mt-0.5 truncate">
+              4 & 5 BHK
             </div>
           </div>
         </div>
         <a
           href="#contact"
-          className="shrink-0 px-3.5 md:px-6 py-2 md:py-2.5 text-[11px] md:text-[13px] font-semibold rounded-md text-white shadow-gold hover:brightness-110 transition whitespace-nowrap"
+          className="shrink-0 px-3 md:px-6 py-1.5 md:py-2.5 text-[10.5px] md:text-[13px] font-semibold rounded-md text-white shadow-gold hover:brightness-110 transition whitespace-nowrap"
           style={{ background: "var(--accent-red)" }}
         >
-          Register Your Interest
+          Register Interest
         </a>
       </div>
     </div>
