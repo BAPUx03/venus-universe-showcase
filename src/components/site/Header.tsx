@@ -5,12 +5,10 @@ const NAV = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
   { label: "Highlights", href: "#highlights" },
-  { label: "Master Plan", href: "#master-plan" },
   { label: "Residences", href: "#residences" },
   { label: "Amenities", href: "#amenities" },
   { label: "Location", href: "#location" },
   { label: "Gallery", href: "#gallery" },
-  { label: "Brochure", href: "#brochure" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -27,17 +25,19 @@ export function Header({ brand }: { brand: string }) {
 
   return (
     <header
-      className={`fixed top-0 inset-x-0 z-40 transition-all duration-500 ${
+      className={`fixed top-0 inset-x-0 z-40 transition-all duration-300 ${
         scrolled
-          ? "bg-charcoal-deep/85 backdrop-blur-xl border-b border-border/60 py-3"
-          : "bg-transparent py-5"
+          ? "bg-white/95 backdrop-blur-md border-b border-border shadow-sm py-3"
+          : "bg-white/80 backdrop-blur-sm py-4"
       }`}
     >
       <div className="container-luxe flex items-center justify-between gap-4">
         <a href="#home" className="flex items-center gap-2 group">
-          <span className="inline-block w-2 h-2 rounded-full bg-gradient-gold shadow-gold" />
-          <span className="font-display text-lg md:text-xl tracking-wide text-ivory">
-            {brand.split(" ")[0]} <span className="text-gradient-gold italic">{brand.split(" ").slice(1).join(" ")}</span>
+          <span
+            className="font-display font-extrabold text-xl md:text-2xl tracking-tight"
+            style={{ color: "var(--accent-red)" }}
+          >
+            {brand.split(" ")[0].toUpperCase()}
           </span>
         </a>
 
@@ -46,7 +46,7 @@ export function Header({ brand }: { brand: string }) {
             <a
               key={n.href}
               href={n.href}
-              className="text-[12.5px] uppercase tracking-[0.18em] text-ivory/75 hover:text-gold transition-colors"
+              className="text-[13px] font-medium text-foreground/70 hover:text-[color:var(--accent-red)] transition-colors"
             >
               {n.label}
             </a>
@@ -55,23 +55,18 @@ export function Header({ brand }: { brand: string }) {
 
         <div className="hidden md:flex items-center gap-3">
           <a
-            href="#brochure"
-            className="text-[12px] uppercase tracking-[0.2em] text-ivory/80 hover:text-gold transition-colors"
-          >
-            Brochure
-          </a>
-          <a
             href="#contact"
-            className="px-5 py-2.5 text-[12px] uppercase tracking-[0.2em] bg-gradient-gold text-charcoal-deep font-semibold shadow-gold hover:brightness-110 transition"
+            className="px-5 py-2.5 text-[13px] font-semibold rounded-md text-white shadow-gold hover:brightness-110 transition"
+            style={{ background: "var(--accent-red)" }}
           >
-            Book Site Visit
+            Inquire Now
           </a>
         </div>
 
         <button
           aria-label="Open menu"
           onClick={() => setOpen((v) => !v)}
-          className="xl:hidden text-ivory p-2"
+          className="xl:hidden text-foreground p-2"
         >
           {open ? <X size={22} /> : <Menu size={22} />}
         </button>
@@ -79,17 +74,17 @@ export function Header({ brand }: { brand: string }) {
 
       {/* Mobile menu */}
       <div
-        className={`xl:hidden overflow-hidden transition-[max-height,opacity] duration-500 ${
+        className={`xl:hidden overflow-hidden transition-[max-height,opacity] duration-400 ${
           open ? "max-h-[80vh] opacity-100" : "max-h-0 opacity-0"
-        } bg-charcoal-deep/95 backdrop-blur-xl border-t border-border/40`}
+        } bg-white border-t border-border`}
       >
-        <div className="container-luxe py-6 grid gap-4">
+        <div className="container-luxe py-6 grid gap-3">
           {NAV.map((n) => (
             <a
               key={n.href}
               href={n.href}
               onClick={() => setOpen(false)}
-              className="text-sm uppercase tracking-[0.2em] text-ivory/80 hover:text-gold"
+              className="text-sm font-medium text-foreground/80 hover:text-[color:var(--accent-red)]"
             >
               {n.label}
             </a>
@@ -97,9 +92,10 @@ export function Header({ brand }: { brand: string }) {
           <a
             href="#contact"
             onClick={() => setOpen(false)}
-            className="mt-2 px-5 py-3 text-center text-[12px] uppercase tracking-[0.2em] bg-gradient-gold text-charcoal-deep font-semibold"
+            className="mt-2 px-5 py-3 text-center text-[13px] font-semibold rounded-md text-white"
+            style={{ background: "var(--accent-red)" }}
           >
-            Book Site Visit
+            Inquire Now
           </a>
         </div>
       </div>
