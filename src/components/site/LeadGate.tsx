@@ -1,0 +1,290 @@
+import { useEffect, useState } from "react";
+import { z } from "zod";
+import { supabase } from "@/integrations/supabase/client";
+import { ChevronDown } from "lucide-react";
+
+const STORAGE_KEY = "venus_lead_submitted_v1";
+
+const REQUIREMENTS = ["4 BHK Residence", "5 BHK Penthouse", "Investor Enquiry", "Just Exploring"];
+const BUDGETS = ["₹ 5 – 8 Cr", "₹ 8 – 12 Cr", "₹ 12 – 18 Cr", "₹ 18 Cr +"];
+
+const schema = z.object({
+  requirement: z.string().min(1, "Required"),
+  budget: z.string().min(1, "Required"),
+  first_name: z.string().trim().min(1, "Required").max(60),
+  last_name: z.string().trim().min(1, "Required").max(60),
+  email: z.string().trim().email("Invalid email").max(120),
+  phone: z
+    .string()
+    .trim()
+    .regex(/^[0-9]{10}$/, "Enter a 10-digit number"),
+});
+
+type FormState = z.infer<typeof schema>;
+
+export function LeadGate() {
+  const [open, setOpen] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>({});
+  const [form, setForm] = useState<FormState>({
+    requirement: "",
+    budget: "",
+    first_name: "",
+    last_name: "",
+    email: "",
+    phone: "",
+  });
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (window.localStorage.getItem(STORAGE_KEY)) return;
+    const t = setTimeout(() => setOpen(true), 2200);
+    return () => clearTimeout(t);
+  }, []);
+
+  // Lock scroll while open
+  useEffect(() => {
+    if (!open) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [open]);
+
+  const set = <K extends keyof FormState>(k: K, v: FormState[K]) => {
+    setForm((f) => ({ ...f, [k]: v }));
+    if (errors[k]) setErrors((e) => ({ ...e, [k]: undefined }));
+  };
+
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const parsed = schema.safeParse(form);
+    if (!parsed.success) {
+      const fieldErrors: Partial<Record<keyof FormState, string>> = {};
+      for (const issue of parsed.error.issues) {
+        const k = issue.path[0] as keyof FormState;
+        if (!fieldErrors[k]) fieldErrors[k] = issue.message;
+      }
+      setErrors(fieldErrors);
+      return;
+    }
+    setSubmitting(true);
+    try {
+      await supabase.from("leads").insert({
+        ...parsed.data,
+        phone: `+91${parsed.data.phone}`,
+        source: "lead_gate",
+      });
+      window.localStorage.setItem(STORAGE_KEY, "1");
+      setOpen(false);
+    } catch {
+      // Even on error, allow user through (don't block experience). Mark submitted to avoid re-show.
+      window.localStorage.setItem(STORAGE_KEY, "1");
+      setOpen(false);
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  if (!open) return null;
+
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label="Get exclusive access"
+      className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 animate-fade-up"
+    >
+      {/* Backdrop — no close handler (mandatory popup) */}
+      <div className="absolute inset-0 bg-charcoal-deep/85 backdrop-blur-xl" />
+
+      <div className="relative w-full max-w-[640px] max-h-[calc(100dvh-2rem)] overflow-y-auto bg-card border border-border luxe-border shadow-luxe">
+        <div className="px-6 py-7 sm:px-9 sm:py-9">
+          <div className="text-center">
+            <span className="eyebrow">By Invitation</span>
+            <h2 className="mt-3 font-display text-2xl sm:text-3xl text-ivory leading-tight">
+              Step inside the <span className="text-gradient-gold italic">Venus Universe</span>
+            </h2>
+            <p className="mt-2 text-[13px] text-muted-foreground">
+              Receive private pricing, floor plans &amp; an invitation to the sales gallery.
+            </p>
+          </div>
+
+          <form onSubmit={submit} className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <Select
+              label="Requirement"
+              value={form.requirement}
+              onChange={(v) => set("requirement", v)}
+              options={REQUIREMENTS}
+              error={errors.requirement}
+            />
+            <Select
+              label="Budget"
+              value={form.budget}
+              onChange={(v) => set("budget", v)}
+              options={BUDGETS}
+              error={errors.budget}
+            />
+            <Field
+              label="First Name"
+              value={form.first_name}
+              onChange={(v) => set("first_name", v)}
+              error={errors.first_name}
+            />
+            <Field
+              label="Last Name"
+              value={form.last_name}
+              onChange={(v) => set("last_name", v)}
+              error={errors.last_name}
+            />
+            <Field
+              label="Email"
+              type="email"
+              value={form.email}
+              onChange={(v) => set("email", v)}
+              error={errors.email}
+            />
+            <PhoneField
+              label="Phone"
+              value={form.phone}
+              onChange={(v) => set("phone", v.replace(/\D/g, "").slice(0, 10))}
+              error={errors.phone}
+            />
+
+            <button
+              type="submit"
+              disabled={submitting}
+              className="sm:col-span-2 mt-2 py-3.5 bg-gradient-gold text-charcoal-deep font-semibold tracking-[0.2em] uppercase text-[12.5px] shadow-gold hover:brightness-110 disabled:opacity-60 transition"
+            >
+              {submitting ? "Submitting…" : "Get Exclusive Access"}
+            </button>
+            <p className="sm:col-span-2 text-[10.5px] text-muted-foreground/80 text-center leading-relaxed">
+              By submitting, you consent to be contacted by Venus Universe and our authorised partners.
+              Your details remain confidential.
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Field({
+  label,
+  value,
+  onChange,
+  type = "text",
+  error,
+}: {
+  label: string;
+  value: string;
+  onChange: (v: string) => void;
+  type?: string;
+  error?: string;
+}) {
+  return (
+    <label className="block">
+      <span className="block text-[10.5px] uppercase tracking-[0.22em] text-ivory/60 mb-1.5">{label}</span>
+      <input
+        type={type}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className={`w-full bg-input/60 border ${
+          error ? "border-destructive" : "border-border"
+        } px-3.5 py-3 text-sm text-ivory placeholder:text-muted-foreground/60 focus:outline-none focus:border-gold transition`}
+      />
+      {error && <span className="block mt-1 text-[10.5px] text-destructive">{error}</span>}
+    </label>
+  );
+}
+
+function PhoneField(props: { label: string; value: string; onChange: (v: string) => void; error?: string }) {
+  return (
+    <label className="block">
+      <span className="block text-[10.5px] uppercase tracking-[0.22em] text-ivory/60 mb-1.5">{props.label}</span>
+      <div
+        className={`flex items-stretch w-full bg-input/60 border ${
+          props.error ? "border-destructive" : "border-border"
+        } focus-within:border-gold transition`}
+      >
+        <span className="px-3 flex items-center text-sm text-ivory/70 border-r border-border bg-charcoal-soft/50">
+          +91
+        </span>
+        <input
+          inputMode="numeric"
+          value={props.value}
+          onChange={(e) => props.onChange(e.target.value)}
+          placeholder="98000 00000"
+          className="flex-1 bg-transparent px-3.5 py-3 text-sm text-ivory placeholder:text-muted-foreground/60 focus:outline-none"
+        />
+      </div>
+      {props.error && <span className="block mt-1 text-[10.5px] text-destructive">{props.error}</span>}
+    </label>
+  );
+}
+
+/**
+ * Custom premium select — same width as input, smooth opening, no clipping.
+ * We deliberately avoid Radix Popover here to guarantee popup-friendly z-index
+ * and full-width matching at every breakpoint.
+ */
+function Select({
+  label,
+  value,
+  onChange,
+  options,
+  error,
+}: {
+  label: string;
+  value: string;
+  onChange: (v: string) => void;
+  options: readonly string[];
+  error?: string;
+}) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="block relative">
+      <span className="block text-[10.5px] uppercase tracking-[0.22em] text-ivory/60 mb-1.5">{label}</span>
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        onBlur={() => setTimeout(() => setOpen(false), 120)}
+        className={`w-full flex items-center justify-between bg-input/60 border ${
+          error ? "border-destructive" : open ? "border-gold" : "border-border"
+        } px-3.5 py-3 text-sm text-left transition ${value ? "text-ivory" : "text-muted-foreground/70"}`}
+      >
+        <span className="truncate">{value || "Select"}</span>
+        <ChevronDown
+          size={16}
+          className={`text-gold transition-transform ${open ? "rotate-180" : ""}`}
+        />
+      </button>
+      <div
+        className={`absolute left-0 right-0 top-full mt-1.5 z-50 origin-top transition-all ${
+          open ? "scale-100 opacity-100" : "scale-95 opacity-0 pointer-events-none"
+        }`}
+      >
+        <div className="bg-popover border border-border shadow-luxe max-h-56 overflow-y-auto">
+          {options.map((o) => (
+            <button
+              key={o}
+              type="button"
+              onMouseDown={(e) => {
+                e.preventDefault();
+                onChange(o);
+                setOpen(false);
+              }}
+              className={`w-full text-left px-3.5 py-2.5 text-sm hover:bg-gold/10 hover:text-gold transition ${
+                value === o ? "text-gold" : "text-ivory/85"
+              }`}
+            >
+              {o}
+            </button>
+          ))}
+        </div>
+      </div>
+      {error && <span className="block mt-1 text-[10.5px] text-destructive">{error}</span>}
+    </div>
+  );
+}
