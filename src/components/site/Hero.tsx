@@ -19,7 +19,7 @@ export function Hero({ hero }: { hero: SiteContent["hero"] }) {
           <img
             src={hero.image}
             alt="Venus Universe — twin towers at dusk"
-            className="w-full h-full object-cover animate-ken-burns"
+            className="w-full h-full object-cover"
           />
         )}
         {/* Gradient overlays */}
