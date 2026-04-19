@@ -52,7 +52,7 @@ export function LeadGate() {
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-    if (window.localStorage.getItem(STORAGE_KEY)) return;
+    if (window.sessionStorage.getItem(STORAGE_KEY)) return;
 
     let timer: ReturnType<typeof setTimeout> | undefined;
     const start = () => {
@@ -104,10 +104,10 @@ export function LeadGate() {
         phone: `+91${parsed.data.phone}`,
         source: "lead_gate",
       });
-      window.localStorage.setItem(STORAGE_KEY, "1");
+      window.sessionStorage.setItem(STORAGE_KEY, "1");
       setOpen(false);
     } catch {
-      window.localStorage.setItem(STORAGE_KEY, "1");
+      window.sessionStorage.setItem(STORAGE_KEY, "1");
       setOpen(false);
     } finally {
       setSubmitting(false);
