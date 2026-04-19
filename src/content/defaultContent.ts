@@ -4,6 +4,10 @@ import g1 from "@/assets/gallery-1.jpg";
 import g2 from "@/assets/gallery-2.jpg";
 import g3 from "@/assets/gallery-3.jpg";
 import g4 from "@/assets/gallery-4.jpg";
+import g5 from "@/assets/gallery-5.jpg";
+import g6 from "@/assets/gallery-6.jpg";
+import g7 from "@/assets/gallery-7.jpg";
+import g8 from "@/assets/gallery-8.jpg";
 
 /**
  * Default site content. The admin panel (/studio) overrides any of these
@@ -110,6 +114,10 @@ export const defaultContent = {
     { src: g2, caption: "Infinity sky pool" },
     { src: g3, caption: "Grand clubhouse lobby" },
     { src: g4, caption: "Master suite" },
+    { src: g5, caption: "Spa & hammam" },
+    { src: g6, caption: "Penthouse terrace" },
+    { src: g7, caption: "Arrival lobby" },
+    { src: g8, caption: "Private cinema" },
     { src: heroTower, caption: "Twin towers at dusk" },
     { src: masterPlan, caption: "Master plan" },
   ],
