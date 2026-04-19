@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
+import logo from "@/assets/venus-logo.png";
 
 const NAV = [
   { label: "Home", href: "#home" },
@@ -27,21 +28,19 @@ export function Header({ brand }: { brand: string }) {
     <header
       className={`fixed top-0 inset-x-0 z-40 transition-all duration-300 ${
         scrolled
-          ? "bg-white/95 backdrop-blur-md border-b border-border shadow-sm py-3"
-          : "bg-white/80 backdrop-blur-sm py-4"
+          ? "bg-white/95 backdrop-blur-md border-b border-border shadow-sm py-2"
+          : "bg-white/80 backdrop-blur-sm py-3"
       }`}
     >
       <div className="container-luxe flex items-center justify-between gap-4">
-        <a href="#home" className="flex items-baseline gap-1.5 group">
-          <span
-            className="font-display font-extrabold text-xl md:text-2xl tracking-tight"
-            style={{ color: "var(--accent-red)" }}
-          >
-            VENUS
-          </span>
-          <span className="font-display font-medium text-sm md:text-base tracking-wide text-foreground/80">
-            Universe
-          </span>
+        <a href="#home" className="flex items-center group">
+          <img
+            src={logo}
+            alt={brand}
+            className={`transition-all duration-300 ${
+              scrolled ? "h-9 md:h-10" : "h-11 md:h-14"
+            } w-auto object-contain`}
+          />
         </a>
 
         <nav className="hidden xl:flex items-center gap-7">
@@ -56,23 +55,22 @@ export function Header({ brand }: { brand: string }) {
           ))}
         </nav>
 
-        <div className="hidden md:flex items-center gap-3">
+        <div className="flex items-center gap-2">
           <a
             href="#contact"
-            className="px-5 py-2.5 text-[13px] font-semibold rounded-md text-white shadow-gold hover:brightness-110 transition"
+            className="px-4 md:px-5 py-2 md:py-2.5 text-[12px] md:text-[13px] font-semibold rounded-md text-white shadow-gold hover:brightness-110 transition"
             style={{ background: "var(--accent-red)" }}
           >
             Inquire Now
           </a>
+          <button
+            aria-label="Open menu"
+            onClick={() => setOpen((v) => !v)}
+            className="xl:hidden text-foreground p-1.5"
+          >
+            {open ? <X size={22} /> : <Menu size={22} />}
+          </button>
         </div>
-
-        <button
-          aria-label="Open menu"
-          onClick={() => setOpen((v) => !v)}
-          className="xl:hidden text-foreground p-2"
-        >
-          {open ? <X size={22} /> : <Menu size={22} />}
-        </button>
       </div>
 
       {/* Mobile menu */}
@@ -92,14 +90,6 @@ export function Header({ brand }: { brand: string }) {
               {n.label}
             </a>
           ))}
-          <a
-            href="#contact"
-            onClick={() => setOpen(false)}
-            className="mt-2 px-5 py-3 text-center text-[13px] font-semibold rounded-md text-white"
-            style={{ background: "var(--accent-red)" }}
-          >
-            Inquire Now
-          </a>
         </div>
       </div>
     </header>
