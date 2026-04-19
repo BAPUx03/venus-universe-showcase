@@ -124,19 +124,22 @@ export function LeadGate() {
       className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-4 animate-fade-up"
     >
       {/* Strong frosted backdrop — no close handler */}
-      <div className="absolute inset-0 bg-charcoal-deep/80 backdrop-blur-2xl" />
+      <div className="absolute inset-0 bg-black/55 backdrop-blur-xl" />
 
-      <div className="relative w-full max-w-[420px] bg-card border border-border luxe-border shadow-luxe">
+      <div className="relative w-full max-w-[420px] bg-white border border-border rounded-lg shadow-luxe">
         <div className="px-4 py-4 sm:px-6 sm:py-5">
           <div className="text-center">
             <span className="eyebrow text-[9px]">Exclusive Access</span>
-            <h2 className="mt-1.5 font-display text-[19px] sm:text-[22px] text-ivory leading-[1.15]">
-              Find Your <span className="text-gradient-gold italic">Dream Property</span>
+            <h2 className="mt-1.5 font-display font-semibold text-[19px] sm:text-[22px] text-foreground leading-[1.15]">
+              Find Your <span style={{ color: "var(--accent-red)" }}>Dream Property</span>
             </h2>
             <p className="mt-1 text-[11px] text-muted-foreground">
               Share your requirements &amp; get exclusive listings.
             </p>
-            <p className="mt-1.5 inline-block text-[9.5px] uppercase tracking-[0.22em] text-gold/90 border border-gold/30 px-2 py-0.5">
+            <p
+              className="mt-1.5 inline-block text-[9.5px] uppercase tracking-[0.22em] border px-2 py-0.5 rounded"
+              style={{ color: "var(--accent-red)", borderColor: "oklch(0.65 0.21 25 / 0.4)" }}
+            >
               Site Visits — By Appointment Only
             </p>
           </div>
@@ -187,16 +190,17 @@ export function LeadGate() {
               error={errors.phone}
             />
 
-            <ul className="sm:col-span-2 mt-1 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[9.5px] uppercase tracking-[0.18em] text-ivory/70">
-              <li className="flex items-center gap-1"><span className="text-gold">✦</span> Instant Call Back</li>
-              <li className="flex items-center gap-1"><span className="text-gold">✦</span> Floor Plans &amp; Pricing</li>
-              <li className="flex items-center gap-1"><span className="text-gold">✦</span> Priority Site Visit</li>
+            <ul className="sm:col-span-2 mt-1 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[9.5px] uppercase tracking-[0.18em] text-muted-foreground">
+              <li className="flex items-center gap-1"><span style={{ color: "var(--accent-red)" }}>✦</span> Instant Call Back</li>
+              <li className="flex items-center gap-1"><span style={{ color: "var(--accent-red)" }}>✦</span> Floor Plans &amp; Pricing</li>
+              <li className="flex items-center gap-1"><span style={{ color: "var(--accent-red)" }}>✦</span> Priority Site Visit</li>
             </ul>
 
             <button
               type="submit"
               disabled={submitting}
-              className="sm:col-span-2 mt-1 py-2.5 bg-gradient-gold text-charcoal-deep font-semibold tracking-[0.2em] uppercase text-[11px] shadow-gold hover:brightness-110 disabled:opacity-60 transition"
+              className="sm:col-span-2 mt-1 py-3 rounded-md text-white font-semibold tracking-[0.12em] uppercase text-[12px] shadow-gold hover:brightness-110 disabled:opacity-60 transition"
+              style={{ background: "var(--accent-red)" }}
             >
               {submitting ? "Submitting…" : "Get Exclusive Access"}
             </button>
@@ -228,15 +232,15 @@ function Field({
 }) {
   return (
     <label className="block">
-      <span className="block text-[10px] uppercase tracking-[0.2em] text-ivory/60 mb-1">{label}</span>
+      <span className="block text-[10px] font-medium uppercase tracking-[0.18em] text-muted-foreground mb-1">{label}</span>
       <input
         type={type}
         value={value}
         placeholder={placeholder}
         onChange={(e) => onChange(e.target.value)}
-        className={`w-full bg-input/60 border ${
+        className={`w-full bg-input border rounded-md ${
           error ? "border-destructive" : "border-border"
-        } px-3 py-2.5 text-[13px] text-ivory placeholder:text-muted-foreground/60 focus:outline-none focus:border-gold transition`}
+        } px-3 py-2.5 text-[13px] text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-[color:var(--accent-red)] focus:ring-1 focus:ring-[color:var(--accent-red)] transition`}
       />
       {error && <span className="block mt-0.5 text-[10px] text-destructive">{error}</span>}
     </label>
@@ -246,13 +250,13 @@ function Field({
 function PhoneField(props: { label: string; value: string; onChange: (v: string) => void; error?: string }) {
   return (
     <label className="block">
-      <span className="block text-[10px] uppercase tracking-[0.2em] text-ivory/60 mb-1">{props.label}</span>
+      <span className="block text-[10px] font-medium uppercase tracking-[0.18em] text-muted-foreground mb-1">{props.label}</span>
       <div
-        className={`flex items-stretch w-full bg-input/60 border ${
+        className={`flex items-stretch w-full bg-input border rounded-md overflow-hidden ${
           props.error ? "border-destructive" : "border-border"
-        } focus-within:border-gold transition`}
+        } focus-within:border-[color:var(--accent-red)] focus-within:ring-1 focus-within:ring-[color:var(--accent-red)] transition`}
       >
-        <span className="px-2.5 flex items-center text-[12.5px] text-ivory/70 border-r border-border bg-charcoal-soft/50">
+        <span className="px-2.5 flex items-center text-[12.5px] text-foreground/70 border-r border-border bg-muted">
           +91
         </span>
         <input
@@ -260,7 +264,7 @@ function PhoneField(props: { label: string; value: string; onChange: (v: string)
           value={props.value}
           onChange={(e) => props.onChange(e.target.value)}
           placeholder="9876543210"
-          className="flex-1 bg-transparent px-3 py-2.5 text-[13px] text-ivory placeholder:text-muted-foreground/60 focus:outline-none"
+          className="flex-1 bg-transparent px-3 py-2.5 text-[13px] text-foreground placeholder:text-muted-foreground/60 focus:outline-none"
         />
       </div>
       {props.error && <span className="block mt-0.5 text-[10px] text-destructive">{props.error}</span>}
@@ -286,19 +290,20 @@ function Select({
   const [open, setOpen] = useState(false);
   return (
     <div className="block relative">
-      <span className="block text-[10px] uppercase tracking-[0.2em] text-ivory/60 mb-1">{label}</span>
+      <span className="block text-[10px] font-medium uppercase tracking-[0.18em] text-muted-foreground mb-1">{label}</span>
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
         onBlur={() => setTimeout(() => setOpen(false), 120)}
-        className={`w-full flex items-center justify-between bg-input/60 border ${
-          error ? "border-destructive" : open ? "border-gold" : "border-border"
-        } px-3 py-2.5 text-[13px] text-left transition ${value ? "text-ivory" : "text-muted-foreground/70"}`}
+        className={`w-full flex items-center justify-between bg-input border rounded-md ${
+          error ? "border-destructive" : open ? "border-[color:var(--accent-red)] ring-1 ring-[color:var(--accent-red)]" : "border-border"
+        } px-3 py-2.5 text-[13px] text-left transition ${value ? "text-foreground" : "text-muted-foreground/70"}`}
       >
         <span className="truncate">{value || placeholder || "Select"}</span>
         <ChevronDown
           size={14}
-          className={`text-gold transition-transform ${open ? "rotate-180" : ""}`}
+          style={{ color: "var(--accent-red)" }}
+          className={`transition-transform ${open ? "rotate-180" : ""}`}
         />
       </button>
       <div
@@ -306,7 +311,7 @@ function Select({
           open ? "scale-100 opacity-100" : "scale-95 opacity-0 pointer-events-none"
         }`}
       >
-        <div className="bg-popover border border-border shadow-luxe max-h-48 overflow-y-auto">
+        <div className="bg-white border border-border rounded-md shadow-luxe max-h-48 overflow-y-auto">
           {options.map((o) => (
             <button
               key={o}
@@ -316,8 +321,8 @@ function Select({
                 onChange(o);
                 setOpen(false);
               }}
-              className={`w-full text-left px-3 py-2 text-[13px] hover:bg-gold/10 hover:text-gold transition ${
-                value === o ? "text-gold" : "text-ivory/85"
+              className={`w-full text-left px-3 py-2 text-[13px] hover:bg-muted hover:text-[color:var(--accent-red)] transition ${
+                value === o ? "text-[color:var(--accent-red)] font-medium" : "text-foreground/85"
               }`}
             >
               {o}
