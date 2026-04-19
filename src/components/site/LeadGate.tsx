@@ -136,6 +136,9 @@ export function LeadGate() {
             <p className="mt-1 text-[11px] text-muted-foreground">
               Share your requirements &amp; get exclusive listings.
             </p>
+            <p className="mt-1.5 inline-block text-[9.5px] uppercase tracking-[0.22em] text-gold/90 border border-gold/30 px-2 py-0.5">
+              Site Visits — By Appointment Only
+            </p>
           </div>
 
           <form onSubmit={submit} className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-2">
