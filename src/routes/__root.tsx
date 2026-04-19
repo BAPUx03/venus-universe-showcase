@@ -37,6 +37,14 @@ export const Route = createRootRoute({
       },
       { name: "theme-color", content: "#1a1612" },
       { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:title", content: "Venus Universe — A Universe of Luxury Living" },
+      { name: "twitter:title", content: "Venus Universe — A Universe of Luxury Living" },
+      { name: "description", content: "A luxury real estate website for the \"Venus Universe\" project, designed for high conversion and a premium brand experience." },
+      { property: "og:description", content: "A luxury real estate website for the \"Venus Universe\" project, designed for high conversion and a premium brand experience." },
+      { name: "twitter:description", content: "A luxury real estate website for the \"Venus Universe\" project, designed for high conversion and a premium brand experience." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/Nlau0aIfcNZ994VHhH1ZCQI5FFn1/social-images/social-1776592390810-vectorstock_45301125.webp" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/Nlau0aIfcNZ994VHhH1ZCQI5FFn1/social-images/social-1776592390810-vectorstock_45301125.webp" },
+      { property: "og:type", content: "website" },
     ],
     links: [
       {
