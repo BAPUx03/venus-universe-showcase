@@ -126,7 +126,7 @@ export function LeadGate() {
       {/* Strong frosted backdrop — no close handler */}
       <div className="absolute inset-0 bg-black/55 backdrop-blur-xl" />
 
-      <div className="relative w-full max-w-[400px] bg-white border border-border rounded-lg shadow-luxe">
+      <div className="relative w-full max-w-[400px] max-h-[95vh] overflow-y-auto bg-white border border-border rounded-lg shadow-luxe">
         <div className="px-3.5 py-3 sm:px-5 sm:py-4">
           <div className="text-center">
             <span className="eyebrow text-[8.5px]">Exclusive Access</span>
