@@ -121,12 +121,12 @@ export function LeadGate() {
       role="dialog"
       aria-modal="true"
       aria-label="Get exclusive access"
-      className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-4 animate-fade-up"
+      className="fixed inset-0 z-[100] flex items-start sm:items-center justify-center p-3 sm:p-4 overflow-y-auto animate-fade-up"
     >
       {/* Strong frosted backdrop — no close handler */}
       <div className="absolute inset-0 bg-black/55 backdrop-blur-xl" />
 
-      <div className="relative w-full max-w-[420px] bg-white border border-border rounded-lg shadow-luxe">
+      <div className="relative w-full max-w-[420px] my-auto bg-white border border-border rounded-lg shadow-luxe max-h-[calc(100dvh-1.5rem)] sm:max-h-[calc(100dvh-2rem)] overflow-y-auto">
         <div className="px-4 py-4 sm:px-6 sm:py-5">
           <div className="text-center">
             <span className="eyebrow text-[9px]">Exclusive Access</span>
