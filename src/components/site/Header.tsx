@@ -32,12 +32,15 @@ export function Header({ brand }: { brand: string }) {
       }`}
     >
       <div className="container-luxe flex items-center justify-between gap-4">
-        <a href="#home" className="flex items-center gap-2 group">
+        <a href="#home" className="flex items-baseline gap-1.5 group">
           <span
             className="font-display font-extrabold text-xl md:text-2xl tracking-tight"
             style={{ color: "var(--accent-red)" }}
           >
-            {brand.split(" ")[0].toUpperCase()}
+            VENUS
+          </span>
+          <span className="font-display font-medium text-sm md:text-base tracking-wide text-foreground/80">
+            Universe
           </span>
         </a>
 
