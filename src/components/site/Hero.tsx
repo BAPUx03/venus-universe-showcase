@@ -55,12 +55,6 @@ export function Hero({ hero }: { hero: SiteContent["hero"] }) {
               Enquire Now
             </a>
             <a
-              href="#brochure"
-              className="px-6 py-3.5 border border-gold/60 text-ivory uppercase tracking-[0.2em] text-[12px] hover:bg-gold/10 hover:border-gold transition"
-            >
-              Download Brochure
-            </a>
-            <a
               href="#contact"
               className="px-6 py-3.5 bg-glass text-ivory uppercase tracking-[0.2em] text-[12px] hover:bg-white/10 transition"
             >
