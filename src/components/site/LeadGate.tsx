@@ -38,8 +38,22 @@ export function LeadGate() {
   useEffect(() => {
     if (typeof window === "undefined") return;
     if (window.localStorage.getItem(STORAGE_KEY)) return;
-    const t = setTimeout(() => setOpen(true), 5000);
-    return () => clearTimeout(t);
+
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    const start = () => {
+      timer = setTimeout(() => setOpen(true), 5000);
+    };
+
+    if (document.readyState === "complete") {
+      start();
+    } else {
+      window.addEventListener("load", start, { once: true });
+    }
+
+    return () => {
+      if (timer) clearTimeout(timer);
+      window.removeEventListener("load", start);
+    };
   }, []);
 
   useEffect(() => {
