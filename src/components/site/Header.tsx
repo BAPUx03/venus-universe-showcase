@@ -38,7 +38,7 @@ export function Header({ brand }: { brand: string }) {
             src={logo}
             alt={brand}
             className={`transition-all duration-300 ${
-              scrolled ? "h-9 md:h-10" : "h-11 md:h-14"
+              scrolled ? "h-12 md:h-14" : "h-16 md:h-20"
             } w-auto object-contain`}
           />
         </a>
