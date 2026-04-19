@@ -28,8 +28,8 @@ export function Header({ brand }: { brand: string }) {
     <header
       className={`fixed top-0 inset-x-0 z-40 transition-all duration-300 ${
         scrolled
-          ? "bg-white/95 backdrop-blur-md border-b border-border shadow-sm py-2"
-          : "bg-white/80 backdrop-blur-sm py-3"
+          ? "bg-white border-b border-border shadow-sm py-2"
+          : "bg-white py-3"
       }`}
     >
       <div className="container-luxe flex items-center justify-between gap-4">
