@@ -29,14 +29,14 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
+      { title: "Venus Universe — A Universe of Luxury Living" },
+      {
+        name: "description",
+        content:
+          "Venus Universe — luxury 4 & 5 BHK sky residences. Twin towers, sky clubhouse, concierge living.",
+      },
+      { name: "theme-color", content: "#1a1612" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
       {
