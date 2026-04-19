@@ -8,6 +8,11 @@ import g5 from "@/assets/gallery-5.jpg";
 import g6 from "@/assets/gallery-6.jpg";
 import g7 from "@/assets/gallery-7.jpg";
 import g8 from "@/assets/gallery-8.jpg";
+import g9 from "@/assets/gallery-9.jpg";
+import g10 from "@/assets/gallery-10.jpg";
+import g11 from "@/assets/gallery-11.jpg";
+import g12 from "@/assets/gallery-12.jpg";
+import showreel from "@/assets/showreel.mp4.asset.json";
 
 /**
  * Default site content. The admin panel (/studio) overrides any of these
@@ -110,11 +115,16 @@ export const defaultContent = {
     ],
   },
   gallery: [
+    { src: showreel.url, caption: "Twin towers — cinematic showreel", type: "video", poster: heroTower },
     { src: g1, caption: "Penthouse living room" },
+    { src: g9, caption: "Rooftop infinity pool" },
     { src: g2, caption: "Infinity sky pool" },
+    { src: g10, caption: "Walk-in marble wardrobe" },
     { src: g3, caption: "Grand clubhouse lobby" },
     { src: g4, caption: "Master suite" },
+    { src: g11, caption: "Private dining room" },
     { src: g5, caption: "Spa & hammam" },
+    { src: g12, caption: "Marble bathroom with skyline view" },
     { src: g6, caption: "Penthouse terrace" },
     { src: g7, caption: "Arrival lobby" },
     { src: g8, caption: "Private cinema" },
