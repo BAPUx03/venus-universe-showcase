@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Download } from "lucide-react";
+import { useSiteContent } from "@/hooks/useSiteContent";
 
 const STORAGE_KEY = "venus_lead_submitted_v1";
 
@@ -23,6 +24,7 @@ const schema = z.object({
 type FormState = z.infer<typeof schema>;
 
 export function LeadGate() {
+  const { content } = useSiteContent();
   const [open, setOpen] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>({});
@@ -38,11 +40,10 @@ export function LeadGate() {
   useEffect(() => {
     if (typeof window === "undefined") return;
     if (window.localStorage.getItem(STORAGE_KEY)) return;
-    const t = setTimeout(() => setOpen(true), 2200);
+    const t = setTimeout(() => setOpen(true), 5000);
     return () => clearTimeout(t);
   }, []);
 
-  // Lock scroll while open
   useEffect(() => {
     if (!open) return;
     const prev = document.body.style.overflow;
@@ -79,7 +80,6 @@ export function LeadGate() {
       window.localStorage.setItem(STORAGE_KEY, "1");
       setOpen(false);
     } catch {
-      // Even on error, allow user through (don't block experience). Mark submitted to avoid re-show.
       window.localStorage.setItem(STORAGE_KEY, "1");
       setOpen(false);
     } finally {
@@ -94,24 +94,24 @@ export function LeadGate() {
       role="dialog"
       aria-modal="true"
       aria-label="Get exclusive access"
-      className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 animate-fade-up"
+      className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-4 animate-fade-up"
     >
-      {/* Backdrop — no close handler (mandatory popup) */}
-      <div className="absolute inset-0 bg-charcoal-deep/85 backdrop-blur-xl" />
+      {/* Strong frosted backdrop — no close handler */}
+      <div className="absolute inset-0 bg-charcoal-deep/80 backdrop-blur-2xl" />
 
-      <div className="relative w-full max-w-[640px] max-h-[calc(100dvh-2rem)] overflow-y-auto bg-card border border-border luxe-border shadow-luxe">
-        <div className="px-6 py-7 sm:px-9 sm:py-9">
+      <div className="relative w-full max-w-[480px] bg-card border border-border luxe-border shadow-luxe">
+        <div className="px-5 py-5 sm:px-7 sm:py-6">
           <div className="text-center">
-            <span className="eyebrow">By Invitation</span>
-            <h2 className="mt-3 font-display text-2xl sm:text-3xl text-ivory leading-tight">
+            <span className="eyebrow text-[10px]">By Invitation</span>
+            <h2 className="mt-2 font-display text-[22px] sm:text-[26px] text-ivory leading-[1.15]">
               Step inside the <span className="text-gradient-gold italic">Venus Universe</span>
             </h2>
-            <p className="mt-2 text-[13px] text-muted-foreground">
-              Receive private pricing, floor plans &amp; an invitation to the sales gallery.
+            <p className="mt-1.5 text-[12px] text-muted-foreground">
+              Private pricing, floor plans &amp; sales gallery invite.
             </p>
           </div>
 
-          <form onSubmit={submit} className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <form onSubmit={submit} className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2.5">
             <Select
               label="Requirement"
               value={form.requirement}
@@ -155,13 +155,22 @@ export function LeadGate() {
             <button
               type="submit"
               disabled={submitting}
-              className="sm:col-span-2 mt-2 py-3.5 bg-gradient-gold text-charcoal-deep font-semibold tracking-[0.2em] uppercase text-[12.5px] shadow-gold hover:brightness-110 disabled:opacity-60 transition"
+              className="sm:col-span-2 mt-1 py-3 bg-gradient-gold text-charcoal-deep font-semibold tracking-[0.2em] uppercase text-[11.5px] shadow-gold hover:brightness-110 disabled:opacity-60 transition"
             >
               {submitting ? "Submitting…" : "Get Exclusive Access"}
             </button>
-            <p className="sm:col-span-2 text-[10.5px] text-muted-foreground/80 text-center leading-relaxed">
+
+            {/* Brochure download — below the CTA */}
+            <a
+              href={content.brochure.url}
+              download
+              className="sm:col-span-2 inline-flex items-center justify-center gap-2 py-2.5 border border-gold/40 text-gold hover:bg-gold/10 uppercase tracking-[0.2em] text-[11px] transition"
+            >
+              <Download size={14} /> Download Brochure
+            </a>
+
+            <p className="sm:col-span-2 text-[10px] text-muted-foreground/80 text-center leading-relaxed">
               By submitting, you consent to be contacted by Venus Universe and our authorised partners.
-              Your details remain confidential.
             </p>
           </form>
         </div>
@@ -185,16 +194,16 @@ function Field({
 }) {
   return (
     <label className="block">
-      <span className="block text-[10.5px] uppercase tracking-[0.22em] text-ivory/60 mb-1.5">{label}</span>
+      <span className="block text-[10px] uppercase tracking-[0.2em] text-ivory/60 mb-1">{label}</span>
       <input
         type={type}
         value={value}
         onChange={(e) => onChange(e.target.value)}
         className={`w-full bg-input/60 border ${
           error ? "border-destructive" : "border-border"
-        } px-3.5 py-3 text-sm text-ivory placeholder:text-muted-foreground/60 focus:outline-none focus:border-gold transition`}
+        } px-3 py-2.5 text-[13px] text-ivory placeholder:text-muted-foreground/60 focus:outline-none focus:border-gold transition`}
       />
-      {error && <span className="block mt-1 text-[10.5px] text-destructive">{error}</span>}
+      {error && <span className="block mt-0.5 text-[10px] text-destructive">{error}</span>}
     </label>
   );
 }
@@ -202,13 +211,13 @@ function Field({
 function PhoneField(props: { label: string; value: string; onChange: (v: string) => void; error?: string }) {
   return (
     <label className="block">
-      <span className="block text-[10.5px] uppercase tracking-[0.22em] text-ivory/60 mb-1.5">{props.label}</span>
+      <span className="block text-[10px] uppercase tracking-[0.2em] text-ivory/60 mb-1">{props.label}</span>
       <div
         className={`flex items-stretch w-full bg-input/60 border ${
           props.error ? "border-destructive" : "border-border"
         } focus-within:border-gold transition`}
       >
-        <span className="px-3 flex items-center text-sm text-ivory/70 border-r border-border bg-charcoal-soft/50">
+        <span className="px-2.5 flex items-center text-[12.5px] text-ivory/70 border-r border-border bg-charcoal-soft/50">
           +91
         </span>
         <input
@@ -216,19 +225,14 @@ function PhoneField(props: { label: string; value: string; onChange: (v: string)
           value={props.value}
           onChange={(e) => props.onChange(e.target.value)}
           placeholder="98000 00000"
-          className="flex-1 bg-transparent px-3.5 py-3 text-sm text-ivory placeholder:text-muted-foreground/60 focus:outline-none"
+          className="flex-1 bg-transparent px-3 py-2.5 text-[13px] text-ivory placeholder:text-muted-foreground/60 focus:outline-none"
         />
       </div>
-      {props.error && <span className="block mt-1 text-[10.5px] text-destructive">{props.error}</span>}
+      {props.error && <span className="block mt-0.5 text-[10px] text-destructive">{props.error}</span>}
     </label>
   );
 }
 
-/**
- * Custom premium select — same width as input, smooth opening, no clipping.
- * We deliberately avoid Radix Popover here to guarantee popup-friendly z-index
- * and full-width matching at every breakpoint.
- */
 function Select({
   label,
   value,
@@ -245,27 +249,27 @@ function Select({
   const [open, setOpen] = useState(false);
   return (
     <div className="block relative">
-      <span className="block text-[10.5px] uppercase tracking-[0.22em] text-ivory/60 mb-1.5">{label}</span>
+      <span className="block text-[10px] uppercase tracking-[0.2em] text-ivory/60 mb-1">{label}</span>
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
         onBlur={() => setTimeout(() => setOpen(false), 120)}
         className={`w-full flex items-center justify-between bg-input/60 border ${
           error ? "border-destructive" : open ? "border-gold" : "border-border"
-        } px-3.5 py-3 text-sm text-left transition ${value ? "text-ivory" : "text-muted-foreground/70"}`}
+        } px-3 py-2.5 text-[13px] text-left transition ${value ? "text-ivory" : "text-muted-foreground/70"}`}
       >
         <span className="truncate">{value || "Select"}</span>
         <ChevronDown
-          size={16}
+          size={14}
           className={`text-gold transition-transform ${open ? "rotate-180" : ""}`}
         />
       </button>
       <div
-        className={`absolute left-0 right-0 top-full mt-1.5 z-50 origin-top transition-all ${
+        className={`absolute left-0 right-0 top-full mt-1 z-50 origin-top transition-all ${
           open ? "scale-100 opacity-100" : "scale-95 opacity-0 pointer-events-none"
         }`}
       >
-        <div className="bg-popover border border-border shadow-luxe max-h-56 overflow-y-auto">
+        <div className="bg-popover border border-border shadow-luxe max-h-48 overflow-y-auto">
           {options.map((o) => (
             <button
               key={o}
@@ -275,7 +279,7 @@ function Select({
                 onChange(o);
                 setOpen(false);
               }}
-              className={`w-full text-left px-3.5 py-2.5 text-sm hover:bg-gold/10 hover:text-gold transition ${
+              className={`w-full text-left px-3 py-2 text-[13px] hover:bg-gold/10 hover:text-gold transition ${
                 value === o ? "text-gold" : "text-ivory/85"
               }`}
             >
@@ -284,7 +288,7 @@ function Select({
           ))}
         </div>
       </div>
-      {error && <span className="block mt-1 text-[10.5px] text-destructive">{error}</span>}
+      {error && <span className="block mt-0.5 text-[10px] text-destructive">{error}</span>}
     </div>
   );
 }
