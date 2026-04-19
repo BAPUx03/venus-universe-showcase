@@ -5,8 +5,23 @@ import { ChevronDown } from "lucide-react";
 
 const STORAGE_KEY = "venus_lead_submitted_v1";
 
-const REQUIREMENTS = ["4 BHK Residence", "5 BHK Penthouse", "Investor Enquiry", "Just Exploring"];
-const BUDGETS = ["₹ 5 – 8 Cr", "₹ 8 – 12 Cr", "₹ 12 – 18 Cr", "₹ 18 Cr +"];
+const REQUIREMENTS = [
+  "4 BHK",
+  "5 BHK",
+  "Penthouse",
+  "Duplex",
+  "Villa / Bungalow",
+  "Investment",
+  "Site Visit",
+];
+const BUDGETS = [
+  "₹3 Cr – ₹5 Cr",
+  "₹5 Cr – ₹7 Cr",
+  "₹7 Cr – ₹10 Cr",
+  "₹10 Cr – ₹15 Cr",
+  "₹15 Cr+",
+  "Need Assistance",
+];
 
 const schema = z.object({
   requirement: z.string().min(1, "Required"),
@@ -114,25 +129,27 @@ export function LeadGate() {
       <div className="relative w-full max-w-[420px] bg-card border border-border luxe-border shadow-luxe">
         <div className="px-4 py-4 sm:px-6 sm:py-5">
           <div className="text-center">
-            <span className="eyebrow text-[9px]">By Invitation</span>
+            <span className="eyebrow text-[9px]">Exclusive Access</span>
             <h2 className="mt-1.5 font-display text-[19px] sm:text-[22px] text-ivory leading-[1.15]">
-              Step inside the <span className="text-gradient-gold italic">Venus Universe</span>
+              Find Your <span className="text-gradient-gold italic">Dream Property</span>
             </h2>
             <p className="mt-1 text-[11px] text-muted-foreground">
-              Private pricing, floor plans &amp; sales gallery invite.
+              Share your requirements &amp; get exclusive listings.
             </p>
           </div>
 
           <form onSubmit={submit} className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-2">
             <Select
               label="Requirement"
+              placeholder="Select Requirement"
               value={form.requirement}
               onChange={(v) => set("requirement", v)}
               options={REQUIREMENTS}
               error={errors.requirement}
             />
             <Select
-              label="Budget"
+              label="Budget (INR)"
+              placeholder="Select Budget"
               value={form.budget}
               onChange={(v) => set("budget", v)}
               options={BUDGETS}
@@ -140,29 +157,38 @@ export function LeadGate() {
             />
             <Field
               label="First Name"
+              placeholder="Enter First Name"
               value={form.first_name}
               onChange={(v) => set("first_name", v)}
               error={errors.first_name}
             />
             <Field
               label="Last Name"
+              placeholder="Enter Last Name"
               value={form.last_name}
               onChange={(v) => set("last_name", v)}
               error={errors.last_name}
             />
             <Field
-              label="Email"
+              label="Email Address"
               type="email"
+              placeholder="your@email.com"
               value={form.email}
               onChange={(v) => set("email", v)}
               error={errors.email}
             />
             <PhoneField
-              label="Phone"
+              label="Phone Number"
               value={form.phone}
               onChange={(v) => set("phone", v.replace(/\D/g, "").slice(0, 10))}
               error={errors.phone}
             />
+
+            <ul className="sm:col-span-2 mt-1 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[9.5px] uppercase tracking-[0.18em] text-ivory/70">
+              <li className="flex items-center gap-1"><span className="text-gold">✦</span> Instant Call Back</li>
+              <li className="flex items-center gap-1"><span className="text-gold">✦</span> Floor Plans &amp; Pricing</li>
+              <li className="flex items-center gap-1"><span className="text-gold">✦</span> Priority Site Visit</li>
+            </ul>
 
             <button
               type="submit"
@@ -173,7 +199,7 @@ export function LeadGate() {
             </button>
 
             <p className="sm:col-span-2 text-[9.5px] text-muted-foreground/80 text-center leading-relaxed">
-              By submitting, you consent to be contacted by Venus Universe and our authorised partners.
+              By submitting, you agree to receive property updates via call, SMS &amp; email.
             </p>
           </form>
         </div>
@@ -188,12 +214,14 @@ function Field({
   onChange,
   type = "text",
   error,
+  placeholder,
 }: {
   label: string;
   value: string;
   onChange: (v: string) => void;
   type?: string;
   error?: string;
+  placeholder?: string;
 }) {
   return (
     <label className="block">
@@ -201,6 +229,7 @@ function Field({
       <input
         type={type}
         value={value}
+        placeholder={placeholder}
         onChange={(e) => onChange(e.target.value)}
         className={`w-full bg-input/60 border ${
           error ? "border-destructive" : "border-border"
@@ -227,7 +256,7 @@ function PhoneField(props: { label: string; value: string; onChange: (v: string)
           inputMode="numeric"
           value={props.value}
           onChange={(e) => props.onChange(e.target.value)}
-          placeholder="98000 00000"
+          placeholder="9876543210"
           className="flex-1 bg-transparent px-3 py-2.5 text-[13px] text-ivory placeholder:text-muted-foreground/60 focus:outline-none"
         />
       </div>
@@ -242,12 +271,14 @@ function Select({
   onChange,
   options,
   error,
+  placeholder,
 }: {
   label: string;
   value: string;
   onChange: (v: string) => void;
   options: readonly string[];
   error?: string;
+  placeholder?: string;
 }) {
   const [open, setOpen] = useState(false);
   return (
@@ -261,7 +292,7 @@ function Select({
           error ? "border-destructive" : open ? "border-gold" : "border-border"
         } px-3 py-2.5 text-[13px] text-left transition ${value ? "text-ivory" : "text-muted-foreground/70"}`}
       >
-        <span className="truncate">{value || "Select"}</span>
+        <span className="truncate">{value || placeholder || "Select"}</span>
         <ChevronDown
           size={14}
           className={`text-gold transition-transform ${open ? "rotate-180" : ""}`}
