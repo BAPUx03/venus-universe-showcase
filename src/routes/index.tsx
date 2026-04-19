@@ -15,6 +15,7 @@ import { Contact } from "@/components/site/Contact";
 import { WhatsAppButton } from "@/components/site/WhatsAppButton";
 import { Footer } from "@/components/site/Footer";
 import { LeadGate } from "@/components/site/LeadGate";
+import { StickyProjectBar } from "@/components/site/StickyProjectBar";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -54,6 +55,7 @@ function Index() {
       </main>
       <Footer brand={content.brand.name} contact={content.contact} rera={content.brand.rera} />
       <WhatsAppButton phone={content.contact.whatsapp} />
+      <StickyProjectBar />
     </div>
   );
 }
