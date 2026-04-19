@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
-import { ChevronDown, Download } from "lucide-react";
-import { useSiteContent } from "@/hooks/useSiteContent";
+import { ChevronDown } from "lucide-react";
 
 const STORAGE_KEY = "venus_lead_submitted_v1";
 
@@ -24,7 +23,6 @@ const schema = z.object({
 type FormState = z.infer<typeof schema>;
 
 export function LeadGate() {
-  const { content } = useSiteContent();
   const [open, setOpen] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>({});
@@ -99,19 +97,19 @@ export function LeadGate() {
       {/* Strong frosted backdrop — no close handler */}
       <div className="absolute inset-0 bg-charcoal-deep/80 backdrop-blur-2xl" />
 
-      <div className="relative w-full max-w-[480px] bg-card border border-border luxe-border shadow-luxe">
-        <div className="px-5 py-5 sm:px-7 sm:py-6">
+      <div className="relative w-full max-w-[420px] bg-card border border-border luxe-border shadow-luxe">
+        <div className="px-4 py-4 sm:px-6 sm:py-5">
           <div className="text-center">
-            <span className="eyebrow text-[10px]">By Invitation</span>
-            <h2 className="mt-2 font-display text-[22px] sm:text-[26px] text-ivory leading-[1.15]">
+            <span className="eyebrow text-[9px]">By Invitation</span>
+            <h2 className="mt-1.5 font-display text-[19px] sm:text-[22px] text-ivory leading-[1.15]">
               Step inside the <span className="text-gradient-gold italic">Venus Universe</span>
             </h2>
-            <p className="mt-1.5 text-[12px] text-muted-foreground">
+            <p className="mt-1 text-[11px] text-muted-foreground">
               Private pricing, floor plans &amp; sales gallery invite.
             </p>
           </div>
 
-          <form onSubmit={submit} className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+          <form onSubmit={submit} className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-2">
             <Select
               label="Requirement"
               value={form.requirement}
@@ -155,21 +153,12 @@ export function LeadGate() {
             <button
               type="submit"
               disabled={submitting}
-              className="sm:col-span-2 mt-1 py-3 bg-gradient-gold text-charcoal-deep font-semibold tracking-[0.2em] uppercase text-[11.5px] shadow-gold hover:brightness-110 disabled:opacity-60 transition"
+              className="sm:col-span-2 mt-1 py-2.5 bg-gradient-gold text-charcoal-deep font-semibold tracking-[0.2em] uppercase text-[11px] shadow-gold hover:brightness-110 disabled:opacity-60 transition"
             >
               {submitting ? "Submitting…" : "Get Exclusive Access"}
             </button>
 
-            {/* Brochure download — below the CTA */}
-            <a
-              href={content.brochure.url}
-              download
-              className="sm:col-span-2 inline-flex items-center justify-center gap-2 py-2.5 border border-gold/40 text-gold hover:bg-gold/10 uppercase tracking-[0.2em] text-[11px] transition"
-            >
-              <Download size={14} /> Download Brochure
-            </a>
-
-            <p className="sm:col-span-2 text-[10px] text-muted-foreground/80 text-center leading-relaxed">
+            <p className="sm:col-span-2 text-[9.5px] text-muted-foreground/80 text-center leading-relaxed">
               By submitting, you consent to be contacted by Venus Universe and our authorised partners.
             </p>
           </form>
