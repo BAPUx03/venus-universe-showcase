@@ -121,30 +121,30 @@ export function LeadGate() {
       role="dialog"
       aria-modal="true"
       aria-label="Get exclusive access"
-      className="fixed inset-0 z-[100] flex items-start sm:items-center justify-center p-3 sm:p-4 overflow-y-auto animate-fade-up"
+      className="fixed inset-0 z-[100] flex items-center justify-center p-2 sm:p-4 animate-fade-up"
     >
       {/* Strong frosted backdrop — no close handler */}
       <div className="absolute inset-0 bg-black/55 backdrop-blur-xl" />
 
-      <div className="relative w-full max-w-[420px] my-auto bg-white border border-border rounded-lg shadow-luxe max-h-[calc(100dvh-1.5rem)] sm:max-h-[calc(100dvh-2rem)] overflow-y-auto">
-        <div className="px-4 py-4 sm:px-6 sm:py-5">
+      <div className="relative w-full max-w-[400px] bg-white border border-border rounded-lg shadow-luxe">
+        <div className="px-3.5 py-3 sm:px-5 sm:py-4">
           <div className="text-center">
-            <span className="eyebrow text-[9px]">Exclusive Access</span>
-            <h2 className="mt-1.5 font-display font-semibold text-[19px] sm:text-[22px] text-foreground leading-[1.15]">
+            <span className="eyebrow text-[8.5px]">Exclusive Access</span>
+            <h2 className="mt-1 font-display font-semibold text-[16px] sm:text-[19px] text-foreground leading-[1.15]">
               Find Your <span style={{ color: "var(--accent-red)" }}>Dream Property</span>
             </h2>
-            <p className="mt-1 text-[11px] text-muted-foreground">
+            <p className="mt-0.5 text-[10.5px] text-muted-foreground">
               Share your requirements &amp; get exclusive listings.
             </p>
             <p
-              className="mt-1.5 inline-block text-[9.5px] uppercase tracking-[0.22em] border px-2 py-0.5 rounded"
+              className="mt-1 inline-block text-[8.5px] uppercase tracking-[0.2em] border px-1.5 py-0.5 rounded"
               style={{ color: "var(--accent-red)", borderColor: "oklch(0.65 0.21 25 / 0.4)" }}
             >
               Site Visits — By Appointment Only
             </p>
           </div>
 
-          <form onSubmit={submit} className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-2">
+          <form onSubmit={submit} className="mt-2.5 grid grid-cols-2 gap-x-2 gap-y-1.5">
             <Select
               label="Requirement"
               placeholder="Select Requirement"
@@ -163,14 +163,14 @@ export function LeadGate() {
             />
             <Field
               label="First Name"
-              placeholder="Enter First Name"
+              placeholder="First Name"
               value={form.first_name}
               onChange={(v) => set("first_name", v)}
               error={errors.first_name}
             />
             <Field
               label="Last Name"
-              placeholder="Enter Last Name"
+              placeholder="Last Name"
               value={form.last_name}
               onChange={(v) => set("last_name", v)}
               error={errors.last_name}
@@ -190,22 +190,22 @@ export function LeadGate() {
               error={errors.phone}
             />
 
-            <ul className="sm:col-span-2 mt-1 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[9.5px] uppercase tracking-[0.18em] text-muted-foreground">
+            <ul className="col-span-2 mt-0.5 flex flex-wrap items-center justify-center gap-x-2.5 gap-y-0.5 text-[8.5px] uppercase tracking-[0.14em] text-muted-foreground">
               <li className="flex items-center gap-1"><span style={{ color: "var(--accent-red)" }}>✦</span> Instant Call Back</li>
-              <li className="flex items-center gap-1"><span style={{ color: "var(--accent-red)" }}>✦</span> Floor Plans &amp; Pricing</li>
-              <li className="flex items-center gap-1"><span style={{ color: "var(--accent-red)" }}>✦</span> Priority Site Visit</li>
+              <li className="flex items-center gap-1"><span style={{ color: "var(--accent-red)" }}>✦</span> Floor Plans</li>
+              <li className="flex items-center gap-1"><span style={{ color: "var(--accent-red)" }}>✦</span> Priority Visit</li>
             </ul>
 
             <button
               type="submit"
               disabled={submitting}
-              className="sm:col-span-2 mt-1 py-3 rounded-md text-white font-semibold tracking-[0.12em] uppercase text-[12px] shadow-gold hover:brightness-110 disabled:opacity-60 transition"
+              className="col-span-2 mt-0.5 py-2.5 rounded-md text-white font-semibold tracking-[0.1em] uppercase text-[11.5px] shadow-gold hover:brightness-110 disabled:opacity-60 transition"
               style={{ background: "var(--accent-red)" }}
             >
               {submitting ? "Submitting…" : "Get Exclusive Access"}
             </button>
 
-            <p className="sm:col-span-2 text-[9.5px] text-muted-foreground/80 text-center leading-relaxed">
+            <p className="col-span-2 text-[9px] text-muted-foreground/80 text-center leading-snug">
               By submitting, you agree to receive property updates via call, SMS &amp; email.
             </p>
           </form>
