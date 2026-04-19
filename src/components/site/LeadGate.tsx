@@ -240,7 +240,7 @@ function Field({
         onChange={(e) => onChange(e.target.value)}
         className={`w-full bg-input border rounded-md ${
           error ? "border-destructive" : "border-border"
-        } px-3 py-2.5 text-[13px] text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-[color:var(--accent-red)] focus:ring-1 focus:ring-[color:var(--accent-red)] transition`}
+        } px-2.5 py-2 text-[12px] text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-[color:var(--accent-red)] focus:ring-1 focus:ring-[color:var(--accent-red)] transition`}
       />
       {error && <span className="block mt-0.5 text-[10px] text-destructive">{error}</span>}
     </label>
@@ -264,7 +264,7 @@ function PhoneField(props: { label: string; value: string; onChange: (v: string)
           value={props.value}
           onChange={(e) => props.onChange(e.target.value)}
           placeholder="9876543210"
-          className="flex-1 bg-transparent px-3 py-2.5 text-[13px] text-foreground placeholder:text-muted-foreground/60 focus:outline-none"
+          className="flex-1 bg-transparent px-2.5 py-2 text-[12px] text-foreground placeholder:text-muted-foreground/60 focus:outline-none"
         />
       </div>
       {props.error && <span className="block mt-0.5 text-[10px] text-destructive">{props.error}</span>}
@@ -297,7 +297,7 @@ function Select({
         onBlur={() => setTimeout(() => setOpen(false), 120)}
         className={`w-full flex items-center justify-between bg-input border rounded-md ${
           error ? "border-destructive" : open ? "border-[color:var(--accent-red)] ring-1 ring-[color:var(--accent-red)]" : "border-border"
-        } px-3 py-2.5 text-[13px] text-left transition ${value ? "text-foreground" : "text-muted-foreground/70"}`}
+        } px-2.5 py-2 text-[12px] text-left transition ${value ? "text-foreground" : "text-muted-foreground/70"}`}
       >
         <span className="truncate">{value || placeholder || "Select"}</span>
         <ChevronDown
