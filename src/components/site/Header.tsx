@@ -58,7 +58,7 @@ export function Header({ brand }: { brand: string }) {
         <div className="flex items-center gap-2">
           <a
             href="#contact"
-            className="px-4 md:px-5 py-2 md:py-2.5 text-[12px] md:text-[13px] font-semibold rounded-md text-white shadow-gold hover:brightness-110 transition"
+            className="px-4 md:px-5 py-2 md:py-2.5 text-[12px] md:text-[13px] font-medium rounded-md text-white hover:brightness-110 transition"
             style={{ background: "var(--accent-red)" }}
           >
             Inquire Now
