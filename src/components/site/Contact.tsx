@@ -60,8 +60,16 @@ export function Contact({ contact }: { contact: SiteContent["contact"] }) {
           <div className="luxe-border bg-card/60 p-5">
             <p className="text-[11px] uppercase tracking-[0.25em] text-gold mb-2">Visit Hours</p>
             <p className="text-ivory/85 text-sm leading-relaxed">
-              Open all 7 days · 10:00 AM – 8:00 PM <br />
-              Site visits by prior appointment only.
+              Open all 7 days · 10:00 AM – 8:00 PM
+            </p>
+            <div className="mt-3 inline-flex items-center gap-2 border border-gold/40 bg-gold/10 px-3 py-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" />
+              <span className="text-[10.5px] uppercase tracking-[0.22em] text-gold">
+                Site Visits — By Appointment Only
+              </span>
+            </div>
+            <p className="mt-2 text-[12px] text-ivory/60 leading-relaxed">
+              Kindly schedule a private viewing in advance — our concierge will confirm your slot within 2 hours.
             </p>
           </div>
         </div>
