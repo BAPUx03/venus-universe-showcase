@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
-import { ChevronDown, Download } from "lucide-react";
-import { useSiteContent } from "@/hooks/useSiteContent";
+import { ChevronDown } from "lucide-react";
 
 const STORAGE_KEY = "venus_lead_submitted_v1";
 
