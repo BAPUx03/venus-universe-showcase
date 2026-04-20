@@ -234,7 +234,7 @@ export function LeadGate() {
               error={errors.phone}
             />
 
-            <ul className="col-span-2 mt-0.5 flex flex-wrap items-center justify-center gap-x-2.5 gap-y-0.5 text-[8.5px] uppercase tracking-[0.14em] text-muted-foreground">
+            <ul className="col-span-2 mt-1 flex flex-wrap items-center justify-center gap-x-3 gap-y-0.5 text-[9.5px] uppercase tracking-[0.14em] text-muted-foreground">
               <li className="flex items-center gap-1"><span style={{ color: "var(--accent-red)" }}>✦</span> Instant Call Back</li>
               <li className="flex items-center gap-1"><span style={{ color: "var(--accent-red)" }}>✦</span> Floor Plans</li>
               <li className="flex items-center gap-1"><span style={{ color: "var(--accent-red)" }}>✦</span> Priority Visit</li>
@@ -243,13 +243,13 @@ export function LeadGate() {
             <button
               type="submit"
               disabled={submitting}
-              className="col-span-2 mt-0.5 py-2.5 rounded-md text-white font-semibold tracking-[0.1em] uppercase text-[11.5px] shadow-gold hover:brightness-110 disabled:opacity-60 transition"
+              className="col-span-2 mt-1 py-3 rounded-md text-white font-semibold tracking-[0.1em] uppercase text-[12.5px] shadow-gold hover:brightness-110 disabled:opacity-60 transition"
               style={{ background: "var(--accent-red)" }}
             >
               {submitting ? "Submitting…" : "Get Exclusive Access"}
             </button>
 
-            <p className="col-span-2 text-[9px] text-muted-foreground/80 text-center leading-snug">
+            <p className="col-span-2 text-[10px] text-muted-foreground/80 text-center leading-snug">
               By submitting, you agree to receive property updates via call, SMS &amp; email.
             </p>
           </form>
