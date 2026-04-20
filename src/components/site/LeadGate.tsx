@@ -227,8 +227,10 @@ export function LeadGate() {
             />
             <PhoneField
               label="Phone Number"
+              countryCode={form.country_code}
+              onCountryChange={(v) => set("country_code", v)}
               value={form.phone}
-              onChange={(v) => set("phone", v.replace(/\D/g, "").slice(0, 10))}
+              onChange={(v) => set("phone", v.replace(/\D/g, "").slice(0, 15))}
               error={errors.phone}
             />
 
