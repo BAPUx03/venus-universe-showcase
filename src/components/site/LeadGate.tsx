@@ -64,10 +64,11 @@ const schema = z.object({
   first_name: z.string().trim().min(1, "Required").max(60),
   last_name: z.string().trim().min(1, "Required").max(60),
   email: z.string().trim().email("Invalid email").max(120),
+  country_code: z.string().min(1, "Required"),
   phone: z
     .string()
     .trim()
-    .regex(/^[0-9]{10}$/, "Enter a 10-digit number"),
+    .regex(/^[0-9]{6,15}$/, "Enter a valid number"),
 });
 
 type FormState = z.infer<typeof schema>;
@@ -82,6 +83,7 @@ export function LeadGate() {
     first_name: "",
     last_name: "",
     email: "",
+    country_code: "+91",
     phone: "",
   });
 
