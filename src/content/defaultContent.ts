@@ -22,19 +22,19 @@ import showreel from "@/assets/showreel.mp4.asset.json";
 export const defaultContent = {
   brand: {
     name: "Venus Grounds 2",
-    tagline: "Luxury 4 BHK Residences at Nehru Nagar, Ahmedabad",
+    tagline: "Luxury 4 BHK Residences at Nehrunagar, Ahmedabad",
     rera: "RERA Registered — Details on Request",
   },
   contact: {
     phone: "+91 98000 00000",
     whatsapp: "919800000000",
     email: "sales@venusgrounds.in",
-    address: "Venus Grounds 2 Sales Gallery, Nehru Nagar, Ahmedabad, Gujarat 380015, India",
+    address: "Venus Grounds 2 Sales Gallery, Nehrunagar, Ahmedabad",
     mapEmbed:
-      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3672.0!2d72.5497!3d23.0307!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sNehru+Nagar+Ahmedabad!5e0!3m2!1sen!2sin!4v1700000000000",
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3672.0!2d72.5497!3d23.0307!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sNehrunagar+Ahmedabad!5e0!3m2!1sen!2sin!4v1700000000000",
   },
   hero: {
-    title: "Nehru Nagar — The Heart of Ahmedabad",
+    title: "Nehrunagar — The Heart of Ahmedabad",
     subtitle:
       "Venus Grounds 2 — an exclusive collection of 4 BHK residences spread across 7 acres with 70% open landscape, in Ahmedabad's most coveted address.",
     image: heroTower,
@@ -44,7 +44,7 @@ export const defaultContent = {
     eyebrow: "The Project",
     title: "Where everything aligns perfectly.",
     body:
-      "Venus Grounds 2 is a landmark 4 BHK development in Nehru Nagar — Ahmedabad's most established premium micro-market. Sprawling across 7 acres with 70% open area and a 2.2 acre serene podium, the project is designed by Hafeez Contractor with landscaping by SWA (California), interiors by HBA Singapore and lighting by LET Dubai.",
+      "Venus Grounds 2 is a landmark 4 BHK development in Nehrunagar — Ahmedabad's most established premium micro-market. Sprawling across 7 acres with 70% open area and a 2.2 acre serene podium, the project is designed by Hafeez Contractor with landscaping by SWA (California), interiors by HBA Singapore and lighting by LET Dubai.",
     stats: [
       { label: "Acres", value: "7" },
       { label: "Open Area", value: "70%" },
@@ -61,7 +61,7 @@ export const defaultContent = {
     { title: "Interiors by HBA Singapore", desc: "Singapore's largest hospitality interior design firm." },
     { title: "Lighting by LET, Dubai", desc: "Signature façade and landscape lighting design." },
     { title: "F&B by Stratum @ Venus Grounds", desc: "Activatrium, Active8, Rungg & Café Ray on the doorstep." },
-    { title: "Walk to IIM-A & BRTS", desc: "5 min to IIM-Ahmedabad, 2 min to Nehru Nagar BRTS stand." },
+    { title: "Walk to IIM-A & BRTS", desc: "5 min to IIM-Ahmedabad, 2 min to Nehrunagar BRTS stand." },
   ],
   masterPlan: {
     image: masterPlan,
@@ -130,11 +130,11 @@ export const defaultContent = {
   ],
   location: {
     eyebrow: "The Address",
-    title: "Nehru Nagar — where everything aligns perfectly.",
+    title: "Nehrunagar — where everything aligns perfectly.",
     body:
-      "Nehru Nagar is the heart of Ahmedabad — a premium micro-market seeing 2x demand growth in premium home sales and 6% YoY commercial rental yield growth. Top schools, hospitals, retail and IIM-A are all within minutes.",
+      "Nehrunagar is the heart of Ahmedabad — a premium micro-market seeing 2x demand growth in premium home sales and 6% YoY commercial rental yield growth. Top schools, hospitals, retail and IIM-A are all within minutes.",
     nearby: [
-      { name: "Nehru Nagar BRTS Bus Stand", time: "2 min" },
+      { name: "Nehrunagar BRTS Bus Stand", time: "2 min" },
       { name: "IIM Ahmedabad", time: "5 min" },
       { name: "Shalby Hospital", time: "10 min" },
       { name: "Sterling Hospital", time: "10 min" },

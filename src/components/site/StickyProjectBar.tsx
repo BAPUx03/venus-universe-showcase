@@ -23,7 +23,7 @@ export function StickyProjectBar() {
               Location
             </div>
             <div className="text-[10.5px] md:text-sm font-semibold text-foreground leading-tight mt-0.5 truncate">
-              Nehru Nagar, Ahmedabad
+              Nehrunagar, Ahmedabad
             </div>
           </div>
           <div className="w-px h-7 md:h-8 bg-border shrink-0" />
