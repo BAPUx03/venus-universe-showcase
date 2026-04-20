@@ -10,17 +10,52 @@ const REQUIREMENTS = [
   "5 BHK",
   "Penthouse",
   "Duplex",
-  "Villa / Bungalow",
+  "Jodi Apartments",
   "Investment",
   "Site Visit",
 ];
 const BUDGETS = [
-  "₹3 Cr – ₹5 Cr",
-  "₹5 Cr – ₹7 Cr",
-  "₹7 Cr – ₹10 Cr",
-  "₹10 Cr – ₹15 Cr",
-  "₹15 Cr+",
-  "Need Assistance",
+  "₹2 Cr – ₹3 Cr",
+  "₹4 Cr – ₹5 Cr",
+  "₹6 Cr – ₹7 Cr",
+  "₹8 Cr – ₹10 Cr",
+  "₹10 Cr+",
+];
+
+const COUNTRY_CODES = [
+  { code: "+91", label: "🇮🇳 IN +91" },
+  { code: "+1", label: "🇺🇸 US +1" },
+  { code: "+44", label: "🇬🇧 UK +44" },
+  { code: "+61", label: "🇦🇺 AU +61" },
+  { code: "+971", label: "🇦🇪 AE +971" },
+  { code: "+966", label: "🇸🇦 SA +966" },
+  { code: "+65", label: "🇸🇬 SG +65" },
+  { code: "+60", label: "🇲🇾 MY +60" },
+  { code: "+1", label: "🇨🇦 CA +1" },
+  { code: "+49", label: "🇩🇪 DE +49" },
+  { code: "+33", label: "🇫🇷 FR +33" },
+  { code: "+39", label: "🇮🇹 IT +39" },
+  { code: "+34", label: "🇪🇸 ES +34" },
+  { code: "+31", label: "🇳🇱 NL +31" },
+  { code: "+41", label: "🇨🇭 CH +41" },
+  { code: "+46", label: "🇸🇪 SE +46" },
+  { code: "+47", label: "🇳🇴 NO +47" },
+  { code: "+81", label: "🇯🇵 JP +81" },
+  { code: "+82", label: "🇰🇷 KR +82" },
+  { code: "+86", label: "🇨🇳 CN +86" },
+  { code: "+852", label: "🇭🇰 HK +852" },
+  { code: "+64", label: "🇳🇿 NZ +64" },
+  { code: "+27", label: "🇿🇦 ZA +27" },
+  { code: "+254", label: "🇰🇪 KE +254" },
+  { code: "+234", label: "🇳🇬 NG +234" },
+  { code: "+880", label: "🇧🇩 BD +880" },
+  { code: "+94", label: "🇱🇰 LK +94" },
+  { code: "+977", label: "🇳🇵 NP +977" },
+  { code: "+92", label: "🇵🇰 PK +92" },
+  { code: "+974", label: "🇶🇦 QA +974" },
+  { code: "+973", label: "🇧🇭 BH +973" },
+  { code: "+965", label: "🇰🇼 KW +965" },
+  { code: "+968", label: "🇴🇲 OM +968" },
 ];
 
 const schema = z.object({
@@ -29,10 +64,11 @@ const schema = z.object({
   first_name: z.string().trim().min(1, "Required").max(60),
   last_name: z.string().trim().min(1, "Required").max(60),
   email: z.string().trim().email("Invalid email").max(120),
+  country_code: z.string().min(1, "Required"),
   phone: z
     .string()
     .trim()
-    .regex(/^[0-9]{10}$/, "Enter a 10-digit number"),
+    .regex(/^[0-9]{6,15}$/, "Enter a valid number"),
 });
 
 type FormState = z.infer<typeof schema>;
@@ -47,6 +83,7 @@ export function LeadGate() {
     first_name: "",
     last_name: "",
     email: "",
+    country_code: "+91",
     phone: "",
   });
 
@@ -99,9 +136,10 @@ export function LeadGate() {
     }
     setSubmitting(true);
     try {
+      const { country_code, phone, ...rest } = parsed.data;
       await supabase.from("leads").insert({
-        ...parsed.data,
-        phone: `+91${parsed.data.phone}`,
+        ...rest,
+        phone: `${country_code}${phone}`,
         source: "lead_gate",
       });
       window.sessionStorage.setItem(STORAGE_KEY, "1");
@@ -129,19 +167,23 @@ export function LeadGate() {
       <div className="relative w-full max-w-[400px] max-h-[95vh] overflow-y-auto bg-white border border-border rounded-lg shadow-luxe">
         <div className="px-3.5 py-3 sm:px-5 sm:py-4">
           <div className="text-center">
-            <span className="eyebrow text-[8.5px]">Exclusive Access</span>
-            <h2 className="mt-1 font-display font-semibold text-[16px] sm:text-[19px] text-foreground leading-[1.15]">
-              Find Your <span style={{ color: "var(--accent-red)" }}>Dream Property</span>
-            </h2>
             <p className="mt-0.5 text-[10.5px] text-muted-foreground">
               Share your requirements &amp; get exclusive listings.
             </p>
-            <p
-              className="mt-1 inline-block text-[8.5px] uppercase tracking-[0.2em] border px-1.5 py-0.5 rounded"
-              style={{ color: "var(--accent-red)", borderColor: "oklch(0.65 0.21 25 / 0.4)" }}
-            >
-              Site Visits — By Appointment Only
-            </p>
+            <div className="mt-1.5 relative inline-flex items-center justify-center overflow-hidden rounded-full">
+              <span
+                aria-hidden
+                className="absolute inset-0 rounded-full animate-pulse-ring"
+                style={{ background: "oklch(0.65 0.21 25 / 0.18)" }}
+              />
+              <span
+                className="relative inline-flex items-center gap-1.5 text-[8.5px] uppercase tracking-[0.2em] border px-2 py-0.5 rounded-full bg-white animate-appointment-loop"
+                style={{ color: "var(--accent-red)", borderColor: "oklch(0.65 0.21 25 / 0.5)" }}
+              >
+                <span className="w-1.5 h-1.5 rounded-full animate-ping-dot" style={{ background: "var(--accent-red)" }} />
+                Site Visits — By Appointment Only
+              </span>
+            </div>
           </div>
 
           <form onSubmit={submit} className="mt-2.5 grid grid-cols-2 gap-x-2 gap-y-1.5">
@@ -185,8 +227,10 @@ export function LeadGate() {
             />
             <PhoneField
               label="Phone Number"
+              countryCode={form.country_code}
+              onCountryChange={(v) => set("country_code", v)}
               value={form.phone}
-              onChange={(v) => set("phone", v.replace(/\D/g, "").slice(0, 10))}
+              onChange={(v) => set("phone", v.replace(/\D/g, "").slice(0, 15))}
               error={errors.phone}
             />
 
@@ -247,24 +291,39 @@ function Field({
   );
 }
 
-function PhoneField(props: { label: string; value: string; onChange: (v: string) => void; error?: string }) {
+function PhoneField(props: {
+  label: string;
+  value: string;
+  onChange: (v: string) => void;
+  countryCode: string;
+  onCountryChange: (v: string) => void;
+  error?: string;
+}) {
   return (
-    <label className="block">
+    <label className="block col-span-2 sm:col-span-1">
       <span className="block text-[10px] font-medium uppercase tracking-[0.18em] text-muted-foreground mb-1">{props.label}</span>
       <div
         className={`flex items-stretch w-full bg-input border rounded-md overflow-hidden ${
           props.error ? "border-destructive" : "border-border"
         } focus-within:border-[color:var(--accent-red)] focus-within:ring-1 focus-within:ring-[color:var(--accent-red)] transition`}
       >
-        <span className="px-2.5 flex items-center text-[12.5px] text-foreground/70 border-r border-border bg-muted">
-          +91
-        </span>
+        <select
+          value={props.countryCode}
+          onChange={(e) => props.onCountryChange(e.target.value)}
+          className="px-1.5 text-[11.5px] text-foreground/80 border-r border-border bg-muted focus:outline-none max-w-[78px]"
+        >
+          {COUNTRY_CODES.map((c, i) => (
+            <option key={`${c.label}-${i}`} value={c.code}>
+              {c.label}
+            </option>
+          ))}
+        </select>
         <input
           inputMode="numeric"
           value={props.value}
           onChange={(e) => props.onChange(e.target.value)}
           placeholder="9876543210"
-          className="flex-1 bg-transparent px-2.5 py-2 text-[12px] text-foreground placeholder:text-muted-foreground/60 focus:outline-none"
+          className="flex-1 min-w-0 bg-transparent px-2.5 py-2 text-[12px] text-foreground placeholder:text-muted-foreground/60 focus:outline-none"
         />
       </div>
       {props.error && <span className="block mt-0.5 text-[10px] text-destructive">{props.error}</span>}
