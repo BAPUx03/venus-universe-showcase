@@ -22,7 +22,7 @@ import showreel from "@/assets/showreel.mp4.asset.json";
 export const defaultContent = {
   brand: {
     name: "Venus Grounds 2",
-    tagline: "Luxury 4 BHK Residences at Nehrunagar, Ahmedabad",
+    tagline: "Luxury 4 & 5 BHK Residences at Nehrunagar, Ahmedabad",
     rera: "RERA Registered — Details on Request",
   },
   contact: {
@@ -36,7 +36,7 @@ export const defaultContent = {
   hero: {
     title: "Nehrunagar — The Heart of Ahmedabad",
     subtitle:
-      "Venus Grounds 2 — an exclusive collection of 4 BHK residences spread across 7 acres with 70% open landscape, in Ahmedabad's most coveted address.",
+      "Venus Grounds 2 — an exclusive collection of 4 & 5 BHK residences spread across 7 acres with 70% open landscape, in Ahmedabad's most coveted address.",
     image: heroTower,
     videoUrl: "",
   },
@@ -44,12 +44,12 @@ export const defaultContent = {
     eyebrow: "The Project",
     title: "Where everything aligns perfectly.",
     body:
-      "Venus Grounds 2 is a landmark 4 BHK development in Nehrunagar — Ahmedabad's most established premium micro-market. Sprawling across 7 acres with 70% open area and a 2.2 acre serene podium, the project is designed by Hafeez Contractor with landscaping by SWA (California), interiors by HBA Singapore and lighting by LET Dubai.",
+      "Venus Grounds 2 is a landmark 4 & 5 BHK development in Nehrunagar — Ahmedabad's most established premium micro-market. Sprawling across 7 acres with 70% open area and a 2.2 acre serene podium, the project is designed by Hafeez Contractor with landscaping by SWA (California), interiors by HBA Singapore and lighting by LET Dubai.",
     stats: [
       { label: "Acres", value: "7" },
       { label: "Open Area", value: "70%" },
       { label: "Podium", value: "2.2 Acres" },
-      { label: "Configuration", value: "4 BHK" },
+      { label: "Configuration", value: "4 & 5 BHK" },
     ],
   },
   highlights: [
@@ -70,32 +70,32 @@ export const defaultContent = {
   },
   residences: [
     {
-      type: "4 BHK",
-      title: "Compact 4 BHK",
+      type: "4 & 5 BHK",
+      title: "Compact 4 & 5 BHK",
       carpet: "1,550 sq ft",
       saleable: "RERA Carpet (indicative)",
       price: "₹ On Request",
-      features: ["Smart-sized 4 BHK layout", "Premium specifications", "Podium-facing options", "Reserved parking"],
+      features: ["Smart-sized 4 & 5 BHK layout", "Premium specifications", "Podium-facing options", "Reserved parking"],
     },
     {
-      type: "4 BHK",
-      title: "Classic 4 BHK",
+      type: "4 & 5 BHK",
+      title: "Classic 4 & 5 BHK",
       carpet: "1,775 sq ft",
       saleable: "RERA Carpet (indicative)",
       price: "₹ On Request",
       features: ["Spacious living + dining", "Master suite with walk-in", "Utility + servant room", "Reserved parking"],
     },
     {
-      type: "4 BHK",
-      title: "Grand 4 BHK",
+      type: "4 & 5 BHK",
+      title: "Grand 4 & 5 BHK",
       carpet: "2,100 sq ft",
       saleable: "RERA Carpet (indicative)",
       price: "₹ On Request",
       features: ["Wide-frontage living", "Two master suites", "Family lounge", "Two reserved parkings"],
     },
     {
-      type: "4 BHK",
-      title: "Signature 4 BHK",
+      type: "4 & 5 BHK",
+      title: "Signature 4 & 5 BHK",
       carpet: "2,475 sq ft",
       saleable: "RERA Carpet (indicative)",
       price: "₹ On Request",

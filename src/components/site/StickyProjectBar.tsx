@@ -32,7 +32,7 @@ export function StickyProjectBar() {
               Property
             </div>
             <div className="text-[10.5px] md:text-sm font-semibold text-foreground leading-tight mt-0.5 truncate">
-              Luxury 4 BHK
+              Luxury 4 & 5 BHK
             </div>
           </div>
         </div>
