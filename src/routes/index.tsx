@@ -20,13 +20,13 @@ import { StickyProjectBar } from "@/components/site/StickyProjectBar";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Venus Grounds 2 — Luxury 4 BHK at Nehru Nagar, Ahmedabad" },
+      { title: "Venus Grounds 2 — Luxury 4 BHK at Nehrunagar, Ahmedabad" },
       {
         name: "description",
         content:
-          "Venus Grounds 2 — 7-acre 4 BHK luxury development at Nehru Nagar, Ahmedabad. 70% open area, 2.2-acre podium, designed by Hafeez Contractor, SWA, HBA & LET. Enquire now.",
+          "Venus Grounds 2 — 7-acre 4 BHK luxury development at Nehrunagar, Ahmedabad. 70% open area, 2.2-acre podium, designed by Hafeez Contractor, SWA, HBA & LET. Enquire now.",
       },
-      { property: "og:title", content: "Venus Grounds 2 — Luxury 4 BHK at Nehru Nagar, Ahmedabad" },
+      { property: "og:title", content: "Venus Grounds 2 — Luxury 4 BHK at Nehrunagar, Ahmedabad" },
       { property: "og:description", content: "7-acre landmark 4 BHK development at the heart of Ahmedabad. By invitation." },
       { property: "og:type", content: "website" },
     ],
