@@ -20,14 +20,14 @@ import { StickyProjectBar } from "@/components/site/StickyProjectBar";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Venus Universe — Luxury 4 & 5 BHK Sky Residences" },
+      { title: "Venus Grounds 2 — Luxury 4 BHK at Nehru Nagar, Ahmedabad" },
       {
         name: "description",
         content:
-          "A limited collection of 4 & 5 BHK sky residences. Twin towers, 60,000 sqft sky clubhouse, concierge living. Enquire for private pricing.",
+          "Venus Grounds 2 — 7-acre 4 BHK luxury development at Nehru Nagar, Ahmedabad. 70% open area, 2.2-acre podium, designed by Hafeez Contractor, SWA, HBA & LET. Enquire now.",
       },
-      { property: "og:title", content: "Venus Universe — A Universe of Luxury Living" },
-      { property: "og:description", content: "Luxury 4 & 5 BHK sky residences in India. By invitation only." },
+      { property: "og:title", content: "Venus Grounds 2 — Luxury 4 BHK at Nehru Nagar, Ahmedabad" },
+      { property: "og:description", content: "7-acre landmark 4 BHK development at the heart of Ahmedabad. By invitation." },
       { property: "og:type", content: "website" },
     ],
   }),
