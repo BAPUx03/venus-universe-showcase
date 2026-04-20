@@ -136,9 +136,10 @@ export function LeadGate() {
     }
     setSubmitting(true);
     try {
+      const { country_code, phone, ...rest } = parsed.data;
       await supabase.from("leads").insert({
-        ...parsed.data,
-        phone: `+91${parsed.data.phone}`,
+        ...rest,
+        phone: `${country_code}${phone}`,
         source: "lead_gate",
       });
       window.sessionStorage.setItem(STORAGE_KEY, "1");
