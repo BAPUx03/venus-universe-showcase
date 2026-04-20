@@ -167,19 +167,23 @@ export function LeadGate() {
       <div className="relative w-full max-w-[400px] max-h-[95vh] overflow-y-auto bg-white border border-border rounded-lg shadow-luxe">
         <div className="px-3.5 py-3 sm:px-5 sm:py-4">
           <div className="text-center">
-            <span className="eyebrow text-[8.5px]">Exclusive Access</span>
-            <h2 className="mt-1 font-display font-semibold text-[16px] sm:text-[19px] text-foreground leading-[1.15]">
-              Find Your <span style={{ color: "var(--accent-red)" }}>Dream Property</span>
-            </h2>
             <p className="mt-0.5 text-[10.5px] text-muted-foreground">
               Share your requirements &amp; get exclusive listings.
             </p>
-            <p
-              className="mt-1 inline-block text-[8.5px] uppercase tracking-[0.2em] border px-1.5 py-0.5 rounded"
-              style={{ color: "var(--accent-red)", borderColor: "oklch(0.65 0.21 25 / 0.4)" }}
-            >
-              Site Visits — By Appointment Only
-            </p>
+            <div className="mt-1.5 relative inline-flex items-center justify-center overflow-hidden rounded-full">
+              <span
+                aria-hidden
+                className="absolute inset-0 rounded-full animate-pulse-ring"
+                style={{ background: "oklch(0.65 0.21 25 / 0.18)" }}
+              />
+              <span
+                className="relative inline-flex items-center gap-1.5 text-[8.5px] uppercase tracking-[0.2em] border px-2 py-0.5 rounded-full bg-white animate-appointment-loop"
+                style={{ color: "var(--accent-red)", borderColor: "oklch(0.65 0.21 25 / 0.5)" }}
+              >
+                <span className="w-1.5 h-1.5 rounded-full animate-ping-dot" style={{ background: "var(--accent-red)" }} />
+                Site Visits — By Appointment Only
+              </span>
+            </div>
           </div>
 
           <form onSubmit={submit} className="mt-2.5 grid grid-cols-2 gap-x-2 gap-y-1.5">
