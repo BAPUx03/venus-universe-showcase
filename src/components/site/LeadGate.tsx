@@ -164,20 +164,20 @@ export function LeadGate() {
       {/* Strong frosted backdrop — no close handler */}
       <div className="absolute inset-0 bg-black/55 backdrop-blur-xl" />
 
-      <div className="relative w-full max-w-[400px] max-h-[95vh] overflow-y-auto bg-white border border-border rounded-lg shadow-luxe">
-        <div className="px-3.5 py-3 sm:px-5 sm:py-4">
+      <div className="relative w-full max-w-[480px] sm:max-w-[520px] max-h-[95vh] overflow-y-auto bg-white border border-border rounded-xl shadow-luxe">
+        <div className="px-5 py-5 sm:px-7 sm:py-6">
           <div className="text-center">
-            <p className="mt-0.5 text-[10.5px] text-muted-foreground">
+            <p className="text-[12px] sm:text-[12.5px] text-muted-foreground">
               Share your requirements &amp; get exclusive listings.
             </p>
-            <div className="mt-1.5 relative inline-flex items-center justify-center overflow-hidden rounded-full">
+            <div className="mt-3 relative inline-flex items-center justify-center px-2 py-1.5">
               <span
                 aria-hidden
-                className="absolute inset-0 rounded-full animate-pulse-ring"
+                className="absolute inset-0 rounded-full animate-pulse-ring pointer-events-none"
                 style={{ background: "oklch(0.65 0.21 25 / 0.18)" }}
               />
               <span
-                className="relative inline-flex items-center gap-1.5 text-[8.5px] uppercase tracking-[0.2em] border px-2 py-0.5 rounded-full bg-white animate-appointment-loop"
+                className="relative inline-flex items-center gap-1.5 text-[10px] sm:text-[10.5px] uppercase tracking-[0.2em] border px-2.5 py-1 rounded-full bg-white animate-appointment-loop"
                 style={{ color: "var(--accent-red)", borderColor: "oklch(0.65 0.21 25 / 0.5)" }}
               >
                 <span className="w-1.5 h-1.5 rounded-full animate-ping-dot" style={{ background: "var(--accent-red)" }} />
@@ -186,7 +186,7 @@ export function LeadGate() {
             </div>
           </div>
 
-          <form onSubmit={submit} className="mt-2.5 grid grid-cols-2 gap-x-2 gap-y-1.5">
+          <form onSubmit={submit} className="mt-4 grid grid-cols-2 gap-x-3 gap-y-2.5">
             <Select
               label="Requirement"
               placeholder="Select Requirement"
