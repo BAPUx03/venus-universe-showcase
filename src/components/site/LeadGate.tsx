@@ -291,24 +291,39 @@ function Field({
   );
 }
 
-function PhoneField(props: { label: string; value: string; onChange: (v: string) => void; error?: string }) {
+function PhoneField(props: {
+  label: string;
+  value: string;
+  onChange: (v: string) => void;
+  countryCode: string;
+  onCountryChange: (v: string) => void;
+  error?: string;
+}) {
   return (
-    <label className="block">
+    <label className="block col-span-2 sm:col-span-1">
       <span className="block text-[10px] font-medium uppercase tracking-[0.18em] text-muted-foreground mb-1">{props.label}</span>
       <div
         className={`flex items-stretch w-full bg-input border rounded-md overflow-hidden ${
           props.error ? "border-destructive" : "border-border"
         } focus-within:border-[color:var(--accent-red)] focus-within:ring-1 focus-within:ring-[color:var(--accent-red)] transition`}
       >
-        <span className="px-2.5 flex items-center text-[12.5px] text-foreground/70 border-r border-border bg-muted">
-          +91
-        </span>
+        <select
+          value={props.countryCode}
+          onChange={(e) => props.onCountryChange(e.target.value)}
+          className="px-1.5 text-[11.5px] text-foreground/80 border-r border-border bg-muted focus:outline-none max-w-[78px]"
+        >
+          {COUNTRY_CODES.map((c, i) => (
+            <option key={`${c.label}-${i}`} value={c.code}>
+              {c.label}
+            </option>
+          ))}
+        </select>
         <input
           inputMode="numeric"
           value={props.value}
           onChange={(e) => props.onChange(e.target.value)}
           placeholder="9876543210"
-          className="flex-1 bg-transparent px-2.5 py-2 text-[12px] text-foreground placeholder:text-muted-foreground/60 focus:outline-none"
+          className="flex-1 min-w-0 bg-transparent px-2.5 py-2 text-[12px] text-foreground placeholder:text-muted-foreground/60 focus:outline-none"
         />
       </div>
       {props.error && <span className="block mt-0.5 text-[10px] text-destructive">{props.error}</span>}
