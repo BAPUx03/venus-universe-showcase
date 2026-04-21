@@ -42,8 +42,8 @@ export function Hero({ hero }: { hero: SiteContent["hero"] }) {
             </span>
           </div>
           <h1 className="font-display font-bold text-[clamp(2.4rem,6vw,5.25rem)] leading-[1.02] text-white tracking-tight">
-            A Universe of <br />
-            <span style={{ color: "oklch(0.78 0.18 25)" }}>Luxury Living.</span>
+            Nehrunagar, Ahmedabad <br />
+            <span style={{ color: "oklch(0.78 0.18 25)" }}>A Universe of Luxury Living.</span>
           </h1>
           <p className="mt-6 max-w-xl text-base md:text-lg text-white/85 leading-relaxed font-light">
             {hero.subtitle}
