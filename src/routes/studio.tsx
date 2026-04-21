@@ -76,6 +76,7 @@ function Studio() {
 }
 
 const SECTIONS = [
+  { key: "seo", label: "SEO & Robots" },
   { key: "brand", label: "Brand & RERA" },
   { key: "contact", label: "Contact & Map" },
   { key: "hero", label: "Hero" },
@@ -246,6 +247,7 @@ function AdminPanel({ onLogout }: { onLogout: () => void }) {
 
 function SectionEditor({ section, value, onChange }: { section: SectionKey; value: unknown; onChange: (v: unknown) => void }) {
   switch (section) {
+    case "seo": return <SeoEditor value={value as SiteContent["seo"]} onChange={onChange} />;
     case "brand": return <BrandEditor value={value as SiteContent["brand"]} onChange={onChange} />;
     case "contact": return <ContactEditor value={value as SiteContent["contact"]} onChange={onChange} />;
     case "hero": return <HeroEditor value={value as SiteContent["hero"]} onChange={onChange} />;
