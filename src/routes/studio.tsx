@@ -409,6 +409,31 @@ function SeoEditor({ value, onChange }: { value: SiteContent["seo"]; onChange: (
         <TextInput value={value.twitterHandle} onChange={(v) => set("twitterHandle", v)} />
       </Field>
       <ImageField label="Social Share Image (OG Image)" value={value.ogImage} onChange={(v) => set("ogImage", v)} folder="seo" hint="1200×630 recommended. Used for Facebook, LinkedIn, Twitter previews." />
+
+      <div className="pt-4 border-t border-border">
+        <span className="eyebrow">Analytics & Verification</span>
+        <p className="text-[12px] text-muted-foreground mt-1 mb-4">
+          Paste your IDs below — tags are auto-injected into every page. Leave blank to disable.
+        </p>
+      </div>
+      <div className="grid md:grid-cols-2 gap-5">
+        <Field label="Google Analytics ID" hint="Format: G-XXXXXXXXXX (GA4)">
+          <TextInput value={value.gaId ?? ""} onChange={(v) => set("gaId", v)} placeholder="G-XXXXXXXXXX" />
+        </Field>
+        <Field label="Google Tag Manager ID" hint="Format: GTM-XXXXXXX (optional)">
+          <TextInput value={value.gtmId ?? ""} onChange={(v) => set("gtmId", v)} placeholder="GTM-XXXXXXX" />
+        </Field>
+      </div>
+      <Field label="Google Search Console Verification" hint="Paste only the content value from the meta tag (not the full HTML)">
+        <TextInput value={value.gscVerification ?? ""} onChange={(v) => set("gscVerification", v)} placeholder="abc123xyz..." />
+      </Field>
+      <Field label="Bing Webmaster Verification" hint="Paste only the content value from the meta tag">
+        <TextInput value={value.bingVerification ?? ""} onChange={(v) => set("bingVerification", v)} placeholder="abc123..." />
+      </Field>
+      <Field label="Facebook Pixel ID" hint="Optional — for Meta Ads conversion tracking">
+        <TextInput value={value.facebookPixelId ?? ""} onChange={(v) => set("facebookPixelId", v)} placeholder="1234567890" />
+      </Field>
+
       <Field label="Allow Indexing">
         <label className="flex items-center gap-3 cursor-pointer">
           <input

@@ -35,41 +35,58 @@ export const Route = createFileRoute("/")({
   head: ({ loaderData }) => {
     const seo = loaderData?.seo ?? defaultContent.seo;
     const robots = seo.allowIndexing === false ? "noindex, nofollow" : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1";
+    const meta: Array<Record<string, string>> = [
+      { title: seo.title },
+      { name: "description", content: seo.description },
+      { name: "keywords", content: seo.keywords },
+      { name: "author", content: seo.author },
+      { name: "robots", content: robots },
+      { name: "googlebot", content: robots },
+      { name: "bingbot", content: robots },
+      { property: "og:title", content: seo.title },
+      { property: "og:description", content: seo.description },
+      { property: "og:image", content: seo.ogImage },
+      { property: "og:url", content: (seo as { canonical?: string }).canonical || seo.siteUrl },
+      { property: "og:type", content: "website" },
+      { property: "og:site_name", content: loaderData?.brand?.name ?? defaultContent.brand.name },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: seo.title },
+      { name: "twitter:description", content: seo.description },
+      { name: "twitter:image", content: seo.ogImage },
+      { name: "twitter:site", content: seo.twitterHandle },
+    ];
+    const s = seo as Record<string, string | boolean | undefined>;
+    if (s.gscVerification) meta.push({ name: "google-site-verification", content: String(s.gscVerification) });
+    if (s.bingVerification) meta.push({ name: "msvalidate.01", content: String(s.bingVerification) });
+
+    const scripts: Array<Record<string, string>> = [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "RealEstateAgent",
+          name: loaderData?.brand?.name ?? defaultContent.brand.name,
+          url: seo.siteUrl,
+          image: seo.ogImage,
+          description: seo.description,
+        }),
+      },
+    ];
+    if (s.gaId) {
+      scripts.push({ src: `https://www.googletagmanager.com/gtag/js?id=${s.gaId}`, async: "" });
+      scripts.push({ children: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${s.gaId}');` });
+    }
+    if (s.gtmId) {
+      scripts.push({ children: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s);j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${s.gtmId}');` });
+    }
+    if (s.facebookPixelId) {
+      scripts.push({ children: `!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','${s.facebookPixelId}');fbq('track','PageView');` });
+    }
+
     return {
-      meta: [
-        { title: seo.title },
-        { name: "description", content: seo.description },
-        { name: "keywords", content: seo.keywords },
-        { name: "author", content: seo.author },
-        { name: "robots", content: robots },
-        { name: "googlebot", content: robots },
-        { name: "bingbot", content: robots },
-        { property: "og:title", content: seo.title },
-        { property: "og:description", content: seo.description },
-        { property: "og:image", content: seo.ogImage },
-        { property: "og:url", content: seo.canonical || seo.siteUrl },
-        { property: "og:type", content: "website" },
-        { property: "og:site_name", content: loaderData?.brand?.name ?? defaultContent.brand.name },
-        { name: "twitter:card", content: "summary_large_image" },
-        { name: "twitter:title", content: seo.title },
-        { name: "twitter:description", content: seo.description },
-        { name: "twitter:image", content: seo.ogImage },
-        { name: "twitter:site", content: seo.twitterHandle },
-      ],
-      links: [{ rel: "canonical", href: seo.canonical || seo.siteUrl }],
-      scripts: [
-        {
-          type: "application/ld+json",
-          children: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "RealEstateAgent",
-            name: loaderData?.brand?.name ?? defaultContent.brand.name,
-            url: seo.siteUrl,
-            image: seo.ogImage,
-            description: seo.description,
-          }),
-        },
-      ],
+      meta,
+      links: [{ rel: "canonical", href: (seo as { canonical?: string }).canonical || seo.siteUrl }],
+      scripts,
     };
   },
   component: Index,

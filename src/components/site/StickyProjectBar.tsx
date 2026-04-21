@@ -4,10 +4,24 @@ export function StickyProjectBar() {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setShow(window.scrollY > 600);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const update = () => {
+      const scrolled = window.scrollY > 600;
+      const footer = document.querySelector("footer");
+      let footerVisible = false;
+      if (footer) {
+        const rect = footer.getBoundingClientRect();
+        // Hide when footer top enters the viewport
+        footerVisible = rect.top < window.innerHeight - 40;
+      }
+      setShow(scrolled && !footerVisible);
+    };
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    return () => {
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
   }, []);
 
   return (
