@@ -195,6 +195,12 @@ export const defaultContent = {
     ],
     awards: ["7 Acre Development", "70% Open Area", "2.2 Acre Podium", "World-Class Design Partners"],
   },
-} as const;
+};
 
-export type SiteContent = typeof defaultContent;
+type DeepMutable<T> = T extends readonly (infer U)[]
+  ? DeepMutable<U>[]
+  : T extends object
+    ? { -readonly [K in keyof T]: DeepMutable<T[K]> }
+    : T;
+
+export type SiteContent = DeepMutable<typeof defaultContent>;

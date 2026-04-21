@@ -1,16 +1,18 @@
 import { useEffect, useMemo, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { supabase } from "@/integrations/supabase/client";
-import { defaultContent } from "@/content/defaultContent";
+import { defaultContent, type SiteContent } from "@/content/defaultContent";
 import { saveSiteContentKey, useSiteContent } from "@/hooks/useSiteContent";
-import { Upload, Save, ArrowLeft, Loader2 } from "lucide-react";
+import { Upload, Save, ArrowLeft, Loader2, Plus, Trash2, LogOut, Image as ImageIcon } from "lucide-react";
 
-const PASSPHRASE = "venus2025"; // mock gate per spec — "no login needed"
+const ADMIN_EMAIL = "pruthviraj.admin@example.com";
+const ADMIN_PASSWORD = "Pruthvi!01";
+const AUTH_KEY = "venus_admin_auth_v1";
 
 export const Route = createFileRoute("/studio")({
   head: () => ({
     meta: [
-      { title: "Studio · Venus Universe" },
+      { title: "Admin · Venus Universe" },
       { name: "robots", content: "noindex, nofollow" },
     ],
   }),
@@ -18,82 +20,90 @@ export const Route = createFileRoute("/studio")({
 });
 
 function Studio() {
-  const [unlocked, setUnlocked] = useState(false);
+  const [authed, setAuthed] = useState(false);
+  const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const [err, setErr] = useState("");
 
   useEffect(() => {
-    if (sessionStorage.getItem("studio_unlocked") === "1") setUnlocked(true);
+    if (sessionStorage.getItem(AUTH_KEY) === "1") setAuthed(true);
   }, []);
 
-  if (!unlocked) {
+  if (!authed) {
     return (
       <div className="min-h-screen flex items-center justify-center px-4 bg-background">
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            if (pass === PASSPHRASE) {
-              sessionStorage.setItem("studio_unlocked", "1");
-              setUnlocked(true);
+            if (email.trim().toLowerCase() === ADMIN_EMAIL && pass === ADMIN_PASSWORD) {
+              sessionStorage.setItem(AUTH_KEY, "1");
+              setAuthed(true);
             } else {
-              setErr("Incorrect passphrase.");
+              setErr("Invalid email or password.");
             }
           }}
           className="w-full max-w-sm bg-card luxe-border p-8"
         >
-          <span className="eyebrow">Studio Access</span>
-          <h1 className="font-display text-2xl mt-2 text-ivory">Venus Universe Admin</h1>
-          <p className="text-sm text-muted-foreground mt-1">Enter the passphrase to continue.</p>
+          <span className="eyebrow">Admin Login</span>
+          <h1 className="font-display text-2xl mt-2 text-ivory">Venus Universe</h1>
+          <p className="text-sm text-muted-foreground mt-1">Sign in to manage the site.</p>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email"
+            autoComplete="email"
+            className="mt-5 w-full bg-input/60 border border-border px-3.5 py-3 text-sm text-ivory focus:outline-none focus:border-gold"
+          />
           <input
             type="password"
             value={pass}
             onChange={(e) => setPass(e.target.value)}
-            placeholder="Passphrase"
-            className="mt-5 w-full bg-input/60 border border-border px-3.5 py-3 text-sm text-ivory focus:outline-none focus:border-gold"
+            placeholder="Password"
+            autoComplete="current-password"
+            className="mt-3 w-full bg-input/60 border border-border px-3.5 py-3 text-sm text-ivory focus:outline-none focus:border-gold"
           />
           {err && <div className="mt-2 text-[12px] text-destructive">{err}</div>}
           <button className="mt-4 w-full py-3 bg-gradient-gold text-charcoal-deep font-semibold uppercase tracking-[0.22em] text-[12px] shadow-gold">
-            Unlock
+            Sign In
           </button>
-          <p className="mt-4 text-[10.5px] text-muted-foreground">
-            Hint for demo: <span className="text-gold">venus2025</span>
-          </p>
         </form>
       </div>
     );
   }
 
-  return <StudioPanel />;
+  return <AdminPanel onLogout={() => { sessionStorage.removeItem(AUTH_KEY); setAuthed(false); }} />;
 }
 
 const SECTIONS = [
   { key: "brand", label: "Brand & RERA" },
-  { key: "contact", label: "Contact & WhatsApp & Map" },
+  { key: "contact", label: "Contact & Map" },
   { key: "hero", label: "Hero" },
   { key: "about", label: "About + Stats" },
   { key: "highlights", label: "Highlights" },
   { key: "masterPlan", label: "Master Plan" },
-  { key: "residences", label: "Residences (4 & 5 BHK)" },
+  { key: "residences", label: "Residences" },
   { key: "amenities", label: "Amenities" },
-  { key: "location", label: "Location" },
+  { key: "location", label: "Location & Nearby" },
   { key: "gallery", label: "Gallery" },
   { key: "brochure", label: "Brochure" },
   { key: "trust", label: "Testimonials & Awards" },
 ] as const;
 
-function StudioPanel() {
+type SectionKey = (typeof SECTIONS)[number]["key"];
+
+function AdminPanel({ onLogout }: { onLogout: () => void }) {
   const { content, loading } = useSiteContent();
-  const [active, setActive] = useState<(typeof SECTIONS)[number]["key"]>("hero");
-  const [draft, setDraft] = useState<string>("");
+  const [active, setActive] = useState<SectionKey>("hero");
+  const [tab, setTab] = useState<"content" | "leads">("content");
+  const [draft, setDraft] = useState<unknown>(null);
   const [saving, setSaving] = useState(false);
   const [savedAt, setSavedAt] = useState<string | null>(null);
   const [leads, setLeads] = useState<Record<string, unknown>[]>([]);
-  const [tab, setTab] = useState<"content" | "leads">("content");
 
-  // when active section or content loads, refresh draft JSON
   useEffect(() => {
     if (loading) return;
-    setDraft(JSON.stringify(content[active as keyof typeof content], null, 2));
+    setDraft(structuredClone(content[active]));
     setSavedAt(null);
   }, [active, loading, content]);
 
@@ -104,59 +114,39 @@ function StudioPanel() {
         .from("leads")
         .select("*")
         .order("created_at", { ascending: false })
-        .limit(100);
+        .limit(200);
       setLeads(data ?? []);
     })();
   }, [tab]);
 
-  const parsedOk = useMemo(() => {
-    try {
-      JSON.parse(draft);
-      return true;
-    } catch {
-      return false;
-    }
-  }, [draft]);
-
   const save = async () => {
-    if (!parsedOk) return;
+    if (draft === null) return;
     setSaving(true);
     try {
-      await saveSiteContentKey(active, JSON.parse(draft));
+      await saveSiteContentKey(active, draft);
       setSavedAt(new Date().toLocaleTimeString());
+    } catch (e) {
+      alert("Save failed: " + (e as Error).message);
     } finally {
       setSaving(false);
     }
   };
 
   const reset = () => {
-    setDraft(JSON.stringify(defaultContent[active as keyof typeof defaultContent], null, 2));
-  };
-
-  const onUpload = async (file: File, fieldHint: string) => {
-    const ext = file.name.split(".").pop() ?? "bin";
-    const path = `${active}/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
-    const { error } = await supabase.storage.from("venus-media").upload(path, file, { upsert: false });
-    if (error) {
-      alert("Upload failed: " + error.message);
-      return;
-    }
-    const { data } = supabase.storage.from("venus-media").getPublicUrl(path);
-    // Append URL to draft for quick paste
-    navigator.clipboard?.writeText(data.publicUrl).catch(() => {});
-    alert(`Uploaded! Public URL copied to clipboard.\nPaste into "${fieldHint}" field of the JSON.\n\n${data.publicUrl}`);
+    if (!confirm("Reset this section to defaults? Your edits will be lost.")) return;
+    setDraft(structuredClone(defaultContent[active]));
   };
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <header className="sticky top-0 z-30 bg-charcoal-deep/90 backdrop-blur-xl border-b border-border">
-        <div className="container-luxe py-4 flex items-center justify-between gap-4">
+      <header className="sticky top-0 z-30 bg-charcoal-deep/95 backdrop-blur-xl border-b border-border">
+        <div className="container-luxe py-4 flex items-center justify-between gap-4 flex-wrap">
           <div className="flex items-center gap-3">
             <Link to="/" className="text-ivory/80 hover:text-gold transition" aria-label="Back to site">
               <ArrowLeft size={18} />
             </Link>
             <span className="font-display text-lg text-ivory">
-              Venus <span className="text-gradient-gold italic">Studio</span>
+              Venus <span className="text-gradient-gold italic">Admin</span>
             </span>
           </div>
           <div className="flex items-center gap-2">
@@ -175,6 +165,12 @@ function StudioPanel() {
               }`}
             >
               Leads
+            </button>
+            <button
+              onClick={onLogout}
+              className="ml-2 inline-flex items-center gap-1.5 px-3 py-2 text-[11px] uppercase tracking-[0.2em] border border-border text-ivory/70 hover:text-destructive hover:border-destructive transition"
+            >
+              <LogOut size={12} /> Logout
             </button>
           </div>
         </div>
@@ -199,30 +195,17 @@ function StudioPanel() {
           </aside>
 
           <main className="bg-card luxe-border p-5 md:p-7">
-            <div className="flex items-center justify-between gap-3 mb-4">
+            <div className="flex items-center justify-between gap-3 mb-5 flex-wrap">
               <div>
                 <span className="eyebrow">Editing</span>
                 <h2 className="font-display text-2xl text-ivory mt-1">
                   {SECTIONS.find((s) => s.key === active)?.label}
                 </h2>
                 <p className="text-[12px] text-muted-foreground mt-1">
-                  Edit the JSON below. Click Save to publish. Use Upload Media to add images, video or brochure.
+                  Edit fields below. Click Save to publish — changes appear live on the site.
                 </p>
               </div>
               <div className="flex items-center gap-2">
-                <label className="cursor-pointer inline-flex items-center gap-2 px-3.5 py-2 text-[11px] uppercase tracking-[0.2em] border border-border hover:border-gold hover:text-gold transition">
-                  <Upload size={13} />
-                  Upload Media
-                  <input
-                    type="file"
-                    accept="image/*,video/*,application/pdf"
-                    className="hidden"
-                    onChange={(e) => {
-                      const f = e.target.files?.[0];
-                      if (f) onUpload(f, active === "hero" ? "image / videoUrl" : active === "brochure" ? "url" : "src / image");
-                    }}
-                  />
-                </label>
                 <button
                   onClick={reset}
                   className="px-3.5 py-2 text-[11px] uppercase tracking-[0.2em] border border-border hover:border-gold hover:text-gold transition"
@@ -231,7 +214,7 @@ function StudioPanel() {
                 </button>
                 <button
                   onClick={save}
-                  disabled={!parsedOk || saving}
+                  disabled={saving || draft === null}
                   className="inline-flex items-center gap-2 px-4 py-2 text-[11px] uppercase tracking-[0.22em] bg-gradient-gold text-charcoal-deep font-semibold disabled:opacity-50"
                 >
                   {saving ? <Loader2 size={13} className="animate-spin" /> : <Save size={13} />}
@@ -239,56 +222,503 @@ function StudioPanel() {
                 </button>
               </div>
             </div>
-            {savedAt && <div className="text-[11px] text-gold mb-2">Saved at {savedAt}. Refresh the homepage to view.</div>}
-            {!parsedOk && <div className="text-[11px] text-destructive mb-2">Invalid JSON</div>}
-            <textarea
-              value={draft}
-              onChange={(e) => setDraft(e.target.value)}
-              spellCheck={false}
-              className="w-full min-h-[60vh] bg-charcoal-deep border border-border p-4 font-mono text-[12.5px] text-ivory/90 focus:outline-none focus:border-gold"
-            />
+            {savedAt && (
+              <div className="text-[11px] text-gold mb-4 px-3 py-2 border border-gold/30 bg-gold/5">
+                ✓ Saved at {savedAt}. <Link to="/" className="underline">View site</Link> (refresh to see changes).
+              </div>
+            )}
+
+            {loading || draft === null ? (
+              <div className="py-20 text-center text-muted-foreground"><Loader2 className="inline animate-spin" /> Loading…</div>
+            ) : (
+              <SectionEditor section={active} value={draft} onChange={setDraft} />
+            )}
           </main>
         </div>
       ) : (
-        <div className="container-luxe py-8">
-          <div className="bg-card luxe-border p-5 md:p-7">
-            <h2 className="font-display text-2xl text-ivory">Captured Leads</h2>
-            <p className="text-[12px] text-muted-foreground mt-1 mb-4">Most recent first · max 100 shown</p>
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm min-w-[720px]">
-                <thead>
-                  <tr className="text-left text-[10.5px] uppercase tracking-[0.22em] text-muted-foreground border-b border-border">
-                    <th className="py-3 pr-3">When</th>
-                    <th className="py-3 pr-3">Name</th>
-                    <th className="py-3 pr-3">Contact</th>
-                    <th className="py-3 pr-3">Requirement</th>
-                    <th className="py-3 pr-3">Budget</th>
-                    <th className="py-3 pr-3">Source</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {leads.length === 0 && (
-                    <tr><td colSpan={6} className="py-8 text-center text-muted-foreground">No leads yet.</td></tr>
-                  )}
-                  {leads.map((l) => (
-                    <tr key={String(l.id)} className="border-b border-border/50 text-ivory/85">
-                      <td className="py-3 pr-3 whitespace-nowrap">{new Date(String(l.created_at)).toLocaleString()}</td>
-                      <td className="py-3 pr-3">{String(l.first_name)} {String(l.last_name)}</td>
-                      <td className="py-3 pr-3">
-                        <div>{String(l.email)}</div>
-                        <div className="text-muted-foreground text-[12px]">{String(l.phone)}</div>
-                      </td>
-                      <td className="py-3 pr-3">{String(l.requirement)}</td>
-                      <td className="py-3 pr-3">{String(l.budget)}</td>
-                      <td className="py-3 pr-3 text-muted-foreground">{String(l.source ?? "")}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+        <LeadsTab leads={leads} />
+      )}
+    </div>
+  );
+}
+
+/* -------------------- Section Editor Router -------------------- */
+
+function SectionEditor({ section, value, onChange }: { section: SectionKey; value: unknown; onChange: (v: unknown) => void }) {
+  switch (section) {
+    case "brand": return <BrandEditor value={value as SiteContent["brand"]} onChange={onChange} />;
+    case "contact": return <ContactEditor value={value as SiteContent["contact"]} onChange={onChange} />;
+    case "hero": return <HeroEditor value={value as SiteContent["hero"]} onChange={onChange} />;
+    case "about": return <AboutEditor value={value as SiteContent["about"]} onChange={onChange} />;
+    case "highlights": return <HighlightsEditor value={value as SiteContent["highlights"]} onChange={onChange} />;
+    case "masterPlan": return <MasterPlanEditor value={value as SiteContent["masterPlan"]} onChange={onChange} />;
+    case "residences": return <ResidencesEditor value={value as SiteContent["residences"]} onChange={onChange} />;
+    case "amenities": return <AmenitiesEditor value={value as SiteContent["amenities"]} onChange={onChange} />;
+    case "location": return <LocationEditor value={value as SiteContent["location"]} onChange={onChange} />;
+    case "gallery": return <GalleryEditor value={value as SiteContent["gallery"]} onChange={onChange} />;
+    case "brochure": return <BrochureEditor value={value as SiteContent["brochure"]} onChange={onChange} />;
+    case "trust": return <TrustEditor value={value as SiteContent["trust"]} onChange={onChange} />;
+  }
+}
+
+/* -------------------- Reusable Inputs -------------------- */
+
+function Field({ label, children, hint }: { label: string; children: React.ReactNode; hint?: string }) {
+  return (
+    <label className="block">
+      <div className="text-[11px] uppercase tracking-[0.2em] text-ivory/70 mb-1.5">{label}</div>
+      {children}
+      {hint && <div className="text-[11px] text-muted-foreground mt-1">{hint}</div>}
+    </label>
+  );
+}
+
+function TextInput({ value, onChange, placeholder, type = "text" }: { value: string; onChange: (v: string) => void; placeholder?: string; type?: string }) {
+  return (
+    <input
+      type={type}
+      value={value ?? ""}
+      onChange={(e) => onChange(e.target.value)}
+      placeholder={placeholder}
+      className="w-full bg-charcoal-deep border border-border px-3.5 py-2.5 text-sm text-ivory focus:outline-none focus:border-gold"
+    />
+  );
+}
+
+function TextArea({ value, onChange, rows = 4, placeholder }: { value: string; onChange: (v: string) => void; rows?: number; placeholder?: string }) {
+  return (
+    <textarea
+      value={value ?? ""}
+      onChange={(e) => onChange(e.target.value)}
+      rows={rows}
+      placeholder={placeholder}
+      className="w-full bg-charcoal-deep border border-border px-3.5 py-2.5 text-sm text-ivory focus:outline-none focus:border-gold resize-y"
+    />
+  );
+}
+
+function ImageField({ label, value, onChange, accept = "image/*", folder, hint }: {
+  label: string;
+  value: string;
+  onChange: (url: string) => void;
+  accept?: string;
+  folder: string;
+  hint?: string;
+}) {
+  const [uploading, setUploading] = useState(false);
+
+  const handleFile = async (file: File) => {
+    setUploading(true);
+    try {
+      const ext = file.name.split(".").pop() ?? "bin";
+      const path = `${folder}/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
+      const { error } = await supabase.storage.from("venus-media").upload(path, file, { upsert: false, contentType: file.type });
+      if (error) throw error;
+      const { data } = supabase.storage.from("venus-media").getPublicUrl(path);
+      onChange(data.publicUrl);
+    } catch (e) {
+      alert("Upload failed: " + (e as Error).message);
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  const isVideo = accept.includes("video") || /\.(mp4|webm|mov)(\?|$)/i.test(value || "");
+
+  return (
+    <Field label={label} hint={hint}>
+      <div className="flex gap-3 items-start">
+        <div className="w-28 h-20 shrink-0 border border-border bg-charcoal-deep flex items-center justify-center overflow-hidden">
+          {value ? (
+            isVideo ? (
+              <video src={value} className="w-full h-full object-cover" muted />
+            ) : (
+              <img src={value} alt="" className="w-full h-full object-cover" />
+            )
+          ) : (
+            <ImageIcon size={22} className="text-muted-foreground" />
+          )}
+        </div>
+        <div className="flex-1 space-y-2">
+          <TextInput value={value} onChange={onChange} placeholder="https://… or upload below" />
+          <label className="cursor-pointer inline-flex items-center gap-2 px-3 py-1.5 text-[11px] uppercase tracking-[0.2em] border border-border hover:border-gold hover:text-gold transition">
+            {uploading ? <Loader2 size={12} className="animate-spin" /> : <Upload size={12} />}
+            {uploading ? "Uploading…" : "Upload File"}
+            <input
+              type="file"
+              accept={accept}
+              className="hidden"
+              disabled={uploading}
+              onChange={(e) => { const f = e.target.files?.[0]; if (f) handleFile(f); e.target.value = ""; }}
+            />
+          </label>
+        </div>
+      </div>
+    </Field>
+  );
+}
+
+function ListControls({ onAdd, onRemove, canRemove = true, addLabel = "Add Item" }: { onAdd: () => void; onRemove?: () => void; canRemove?: boolean; addLabel?: string }) {
+  return (
+    <div className="flex items-center gap-2">
+      {onRemove && (
+        <button type="button" onClick={onRemove} disabled={!canRemove}
+          className="inline-flex items-center gap-1 px-2.5 py-1.5 text-[10.5px] uppercase tracking-[0.2em] border border-border text-destructive hover:border-destructive disabled:opacity-40 transition">
+          <Trash2 size={11} /> Remove
+        </button>
+      )}
+      <button type="button" onClick={onAdd}
+        className="inline-flex items-center gap-1 px-2.5 py-1.5 text-[10.5px] uppercase tracking-[0.2em] border border-border text-ivory/80 hover:border-gold hover:text-gold transition">
+        <Plus size={11} /> {addLabel}
+      </button>
+    </div>
+  );
+}
+
+/* -------------------- Section Editors -------------------- */
+
+function BrandEditor({ value, onChange }: { value: SiteContent["brand"]; onChange: (v: SiteContent["brand"]) => void }) {
+  const set = (k: keyof SiteContent["brand"], v: string) => onChange({ ...value, [k]: v });
+  return (
+    <div className="space-y-5">
+      <Field label="Brand Name"><TextInput value={value.name} onChange={(v) => set("name", v)} /></Field>
+      <Field label="Tagline"><TextInput value={value.tagline} onChange={(v) => set("tagline", v)} /></Field>
+      <Field label="RERA Text"><TextInput value={value.rera} onChange={(v) => set("rera", v)} /></Field>
+    </div>
+  );
+}
+
+function ContactEditor({ value, onChange }: { value: SiteContent["contact"]; onChange: (v: SiteContent["contact"]) => void }) {
+  const set = (k: keyof SiteContent["contact"], v: string) => onChange({ ...value, [k]: v });
+  return (
+    <div className="space-y-5">
+      <div className="grid md:grid-cols-2 gap-5">
+        <Field label="Phone"><TextInput value={value.phone} onChange={(v) => set("phone", v)} placeholder="+91 98000 00000" /></Field>
+        <Field label="WhatsApp Number" hint="Digits only, with country code (e.g. 919800000000)">
+          <TextInput value={value.whatsapp} onChange={(v) => set("whatsapp", v)} placeholder="919800000000" />
+        </Field>
+      </div>
+      <Field label="Email"><TextInput value={value.email} onChange={(v) => set("email", v)} type="email" /></Field>
+      <Field label="Address"><TextArea value={value.address} onChange={(v) => set("address", v)} rows={2} /></Field>
+      <Field label="Google Map Embed URL" hint="Get from Google Maps → Share → Embed a map → copy the src URL">
+        <TextArea value={value.mapEmbed} onChange={(v) => set("mapEmbed", v)} rows={3} />
+      </Field>
+    </div>
+  );
+}
+
+function HeroEditor({ value, onChange }: { value: SiteContent["hero"]; onChange: (v: SiteContent["hero"]) => void }) {
+  const set = <K extends keyof SiteContent["hero"]>(k: K, v: SiteContent["hero"][K]) => onChange({ ...value, [k]: v });
+  return (
+    <div className="space-y-5">
+      <Field label="Title"><TextInput value={value.title} onChange={(v) => set("title", v)} /></Field>
+      <Field label="Subtitle"><TextArea value={value.subtitle} onChange={(v) => set("subtitle", v)} rows={3} /></Field>
+      <ImageField label="Hero Background Image" value={value.image as string} onChange={(v) => set("image", v as never)} folder="hero" />
+      <ImageField label="Hero Video URL (optional, takes priority over image)" value={value.videoUrl ?? ""} onChange={(v) => set("videoUrl", v as never)} folder="hero" accept="video/*" hint="Upload an MP4 or paste a URL. Leave empty to use the image." />
+    </div>
+  );
+}
+
+function AboutEditor({ value, onChange }: { value: SiteContent["about"]; onChange: (v: SiteContent["about"]) => void }) {
+  const set = <K extends keyof SiteContent["about"]>(k: K, v: SiteContent["about"][K]) => onChange({ ...value, [k]: v });
+  const stats = value.stats as Array<{ label: string; value: string }>;
+  const setStat = (i: number, k: "label" | "value", v: string) => {
+    const next = stats.map((s, idx) => idx === i ? { ...s, [k]: v } : s);
+    set("stats", next as never);
+  };
+  return (
+    <div className="space-y-5">
+      <Field label="Eyebrow"><TextInput value={value.eyebrow} onChange={(v) => set("eyebrow", v)} /></Field>
+      <Field label="Title"><TextInput value={value.title} onChange={(v) => set("title", v)} /></Field>
+      <Field label="Body"><TextArea value={value.body} onChange={(v) => set("body", v)} rows={5} /></Field>
+      <div>
+        <div className="flex items-center justify-between mb-3">
+          <div className="text-[11px] uppercase tracking-[0.2em] text-ivory/70">Stats</div>
+          <ListControls addLabel="Add Stat" onAdd={() => set("stats", [...stats, { label: "", value: "" }] as never)} />
+        </div>
+        <div className="space-y-3">
+          {stats.map((s, i) => (
+            <div key={i} className="grid grid-cols-[1fr_1fr_auto] gap-2 items-end p-3 border border-border/50">
+              <Field label="Label"><TextInput value={s.label} onChange={(v) => setStat(i, "label", v)} /></Field>
+              <Field label="Value"><TextInput value={s.value} onChange={(v) => setStat(i, "value", v)} /></Field>
+              <button type="button" onClick={() => set("stats", stats.filter((_, idx) => idx !== i) as never)}
+                className="px-2.5 py-2 border border-border text-destructive hover:border-destructive">
+                <Trash2 size={13} />
+              </button>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function HighlightsEditor({ value, onChange }: { value: SiteContent["highlights"]; onChange: (v: SiteContent["highlights"]) => void }) {
+  const items = value as Array<{ title: string; desc: string }>;
+  const set = (i: number, k: "title" | "desc", v: string) => onChange(items.map((it, idx) => idx === i ? { ...it, [k]: v } : it) as never);
+  return (
+    <div className="space-y-3">
+      <div className="flex items-center justify-between">
+        <p className="text-[12px] text-muted-foreground">{items.length} highlights</p>
+        <ListControls addLabel="Add Highlight" onAdd={() => onChange([...items, { title: "", desc: "" }] as never)} />
+      </div>
+      {items.map((it, i) => (
+        <div key={i} className="p-4 border border-border/50 space-y-3">
+          <div className="flex justify-between items-center">
+            <span className="text-[11px] uppercase tracking-[0.2em] text-gold">#{i + 1}</span>
+            <button type="button" onClick={() => onChange(items.filter((_, idx) => idx !== i) as never)} className="text-destructive hover:text-destructive/70"><Trash2 size={13} /></button>
+          </div>
+          <Field label="Title"><TextInput value={it.title} onChange={(v) => set(i, "title", v)} /></Field>
+          <Field label="Description"><TextArea value={it.desc} onChange={(v) => set(i, "desc", v)} rows={2} /></Field>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function MasterPlanEditor({ value, onChange }: { value: SiteContent["masterPlan"]; onChange: (v: SiteContent["masterPlan"]) => void }) {
+  return (
+    <div className="space-y-5">
+      <ImageField label="Master Plan Image" value={value.image as string} onChange={(v) => onChange({ ...value, image: v as never })} folder="masterplan" />
+      <Field label="Description"><TextArea value={value.description} onChange={(v) => onChange({ ...value, description: v })} rows={5} /></Field>
+    </div>
+  );
+}
+
+function ResidencesEditor({ value, onChange }: { value: SiteContent["residences"]; onChange: (v: SiteContent["residences"]) => void }) {
+  const items = value as Array<{ type: string; title: string; carpet: string; saleable: string; price: string; features: string[] }>;
+  const setItem = (i: number, patch: Partial<typeof items[number]>) => onChange(items.map((it, idx) => idx === i ? { ...it, ...patch } : it) as never);
+  return (
+    <div className="space-y-3">
+      <div className="flex items-center justify-between">
+        <p className="text-[12px] text-muted-foreground">{items.length} unit types</p>
+        <ListControls addLabel="Add Unit Type" onAdd={() => onChange([...items, { type: "", title: "", carpet: "", saleable: "", price: "", features: [] }] as never)} />
+      </div>
+      {items.map((it, i) => (
+        <div key={i} className="p-4 border border-border/50 space-y-3">
+          <div className="flex justify-between items-center">
+            <span className="text-[11px] uppercase tracking-[0.2em] text-gold">Unit #{i + 1}</span>
+            <button type="button" onClick={() => onChange(items.filter((_, idx) => idx !== i) as never)} className="text-destructive"><Trash2 size={13} /></button>
+          </div>
+          <div className="grid md:grid-cols-2 gap-3">
+            <Field label="Type"><TextInput value={it.type} onChange={(v) => setItem(i, { type: v })} /></Field>
+            <Field label="Title"><TextInput value={it.title} onChange={(v) => setItem(i, { title: v })} /></Field>
+            <Field label="Carpet Area"><TextInput value={it.carpet} onChange={(v) => setItem(i, { carpet: v })} /></Field>
+            <Field label="Saleable / Note"><TextInput value={it.saleable} onChange={(v) => setItem(i, { saleable: v })} /></Field>
+            <Field label="Price"><TextInput value={it.price} onChange={(v) => setItem(i, { price: v })} /></Field>
+          </div>
+          <div>
+            <div className="flex items-center justify-between mb-2">
+              <div className="text-[11px] uppercase tracking-[0.2em] text-ivory/70">Features</div>
+              <button type="button" onClick={() => setItem(i, { features: [...it.features, ""] })}
+                className="text-[10.5px] uppercase tracking-[0.2em] text-gold hover:text-gold/80"><Plus size={11} className="inline" /> Add</button>
+            </div>
+            <div className="space-y-2">
+              {it.features.map((f, fi) => (
+                <div key={fi} className="flex gap-2">
+                  <TextInput value={f} onChange={(v) => setItem(i, { features: it.features.map((x, xi) => xi === fi ? v : x) })} />
+                  <button type="button" onClick={() => setItem(i, { features: it.features.filter((_, xi) => xi !== fi) })}
+                    className="px-2 border border-border text-destructive hover:border-destructive"><Trash2 size={12} /></button>
+                </div>
+              ))}
             </div>
           </div>
         </div>
-      )}
+      ))}
+    </div>
+  );
+}
+
+function AmenitiesEditor({ value, onChange }: { value: SiteContent["amenities"]; onChange: (v: SiteContent["amenities"]) => void }) {
+  const items = value as string[];
+  return (
+    <div className="space-y-3">
+      <div className="flex items-center justify-between">
+        <p className="text-[12px] text-muted-foreground">{items.length} amenities</p>
+        <ListControls addLabel="Add Amenity" onAdd={() => onChange([...items, ""] as never)} />
+      </div>
+      <div className="grid md:grid-cols-2 gap-2">
+        {items.map((it, i) => (
+          <div key={i} className="flex gap-2">
+            <TextInput value={it} onChange={(v) => onChange(items.map((x, idx) => idx === i ? v : x) as never)} />
+            <button type="button" onClick={() => onChange(items.filter((_, idx) => idx !== i) as never)} className="px-2 border border-border text-destructive hover:border-destructive"><Trash2 size={12} /></button>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function LocationEditor({ value, onChange }: { value: SiteContent["location"]; onChange: (v: SiteContent["location"]) => void }) {
+  const set = <K extends keyof SiteContent["location"]>(k: K, v: SiteContent["location"][K]) => onChange({ ...value, [k]: v });
+  const nearby = value.nearby as Array<{ name: string; time: string }>;
+  return (
+    <div className="space-y-5">
+      <Field label="Eyebrow"><TextInput value={value.eyebrow} onChange={(v) => set("eyebrow", v)} /></Field>
+      <Field label="Title"><TextInput value={value.title} onChange={(v) => set("title", v)} /></Field>
+      <Field label="Body"><TextArea value={value.body} onChange={(v) => set("body", v)} rows={4} /></Field>
+      <div>
+        <div className="flex items-center justify-between mb-3">
+          <div className="text-[11px] uppercase tracking-[0.2em] text-ivory/70">Nearby Places</div>
+          <ListControls addLabel="Add Place" onAdd={() => set("nearby", [...nearby, { name: "", time: "" }] as never)} />
+        </div>
+        <div className="space-y-2">
+          {nearby.map((n, i) => (
+            <div key={i} className="grid grid-cols-[2fr_1fr_auto] gap-2">
+              <TextInput value={n.name} onChange={(v) => set("nearby", nearby.map((x, idx) => idx === i ? { ...x, name: v } : x) as never)} placeholder="Place name" />
+              <TextInput value={n.time} onChange={(v) => set("nearby", nearby.map((x, idx) => idx === i ? { ...x, time: v } : x) as never)} placeholder="e.g. 5 min" />
+              <button type="button" onClick={() => set("nearby", nearby.filter((_, idx) => idx !== i) as never)} className="px-2 border border-border text-destructive hover:border-destructive"><Trash2 size={12} /></button>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function GalleryEditor({ value, onChange }: { value: SiteContent["gallery"]; onChange: (v: SiteContent["gallery"]) => void }) {
+  const items = value as Array<{ src: string; caption?: string; type?: string; poster?: string }>;
+  const setItem = (i: number, patch: Partial<typeof items[number]>) => onChange(items.map((it, idx) => idx === i ? { ...it, ...patch } : it) as never);
+  return (
+    <div className="space-y-3">
+      <div className="flex items-center justify-between">
+        <p className="text-[12px] text-muted-foreground">{items.length} items</p>
+        <ListControls addLabel="Add Image/Video" onAdd={() => onChange([...items, { src: "", caption: "" }] as never)} />
+      </div>
+      {items.map((it, i) => (
+        <div key={i} className="p-4 border border-border/50 space-y-3">
+          <div className="flex justify-between items-center">
+            <span className="text-[11px] uppercase tracking-[0.2em] text-gold">#{i + 1} {it.type === "video" && "(video)"}</span>
+            <button type="button" onClick={() => onChange(items.filter((_, idx) => idx !== i) as never)} className="text-destructive"><Trash2 size={13} /></button>
+          </div>
+          <ImageField label="Media (image or video)" value={it.src} onChange={(v) => setItem(i, { src: v, type: /\.(mp4|webm|mov)(\?|$)/i.test(v) ? "video" : undefined })} folder="gallery" accept="image/*,video/*" />
+          <Field label="Caption"><TextInput value={it.caption ?? ""} onChange={(v) => setItem(i, { caption: v })} /></Field>
+          {(it.type === "video" || /\.(mp4|webm|mov)(\?|$)/i.test(it.src)) && (
+            <ImageField label="Video Poster Image" value={it.poster ?? ""} onChange={(v) => setItem(i, { poster: v })} folder="gallery" />
+          )}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function BrochureEditor({ value, onChange }: { value: SiteContent["brochure"]; onChange: (v: SiteContent["brochure"]) => void }) {
+  const set = (k: keyof SiteContent["brochure"], v: string) => onChange({ ...value, [k]: v });
+  return (
+    <div className="space-y-5">
+      <Field label="Title"><TextInput value={value.title} onChange={(v) => set("title", v)} /></Field>
+      <Field label="Subtitle"><TextArea value={value.subtitle} onChange={(v) => set("subtitle", v)} rows={2} /></Field>
+      <ImageField label="Brochure PDF" value={value.url} onChange={(v) => set("url", v)} folder="brochure" accept="application/pdf" hint="Upload a PDF or paste an external URL" />
+    </div>
+  );
+}
+
+function TrustEditor({ value, onChange }: { value: SiteContent["trust"]; onChange: (v: SiteContent["trust"]) => void }) {
+  const quotes = value.quotes as Array<{ quote: string; author: string }>;
+  const awards = value.awards as string[];
+  return (
+    <div className="space-y-7">
+      <div>
+        <div className="flex items-center justify-between mb-3">
+          <div className="text-[11px] uppercase tracking-[0.2em] text-ivory/70">Testimonials / Quotes</div>
+          <ListControls addLabel="Add Quote" onAdd={() => onChange({ ...value, quotes: [...quotes, { quote: "", author: "" }] })} />
+        </div>
+        <div className="space-y-3">
+          {quotes.map((q, i) => (
+            <div key={i} className="p-3 border border-border/50 space-y-2">
+              <div className="flex justify-between"><span className="text-[10.5px] uppercase tracking-[0.2em] text-gold">#{i + 1}</span>
+                <button type="button" onClick={() => onChange({ ...value, quotes: quotes.filter((_, idx) => idx !== i) })} className="text-destructive"><Trash2 size={12} /></button>
+              </div>
+              <Field label="Quote"><TextArea value={q.quote} onChange={(v) => onChange({ ...value, quotes: quotes.map((x, idx) => idx === i ? { ...x, quote: v } : x) })} rows={3} /></Field>
+              <Field label="Author"><TextInput value={q.author} onChange={(v) => onChange({ ...value, quotes: quotes.map((x, idx) => idx === i ? { ...x, author: v } : x) })} /></Field>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div>
+        <div className="flex items-center justify-between mb-3">
+          <div className="text-[11px] uppercase tracking-[0.2em] text-ivory/70">Awards / Badges</div>
+          <ListControls addLabel="Add Award" onAdd={() => onChange({ ...value, awards: [...awards, ""] })} />
+        </div>
+        <div className="grid md:grid-cols-2 gap-2">
+          {awards.map((a, i) => (
+            <div key={i} className="flex gap-2">
+              <TextInput value={a} onChange={(v) => onChange({ ...value, awards: awards.map((x, idx) => idx === i ? v : x) })} />
+              <button type="button" onClick={() => onChange({ ...value, awards: awards.filter((_, idx) => idx !== i) })} className="px-2 border border-border text-destructive hover:border-destructive"><Trash2 size={12} /></button>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* -------------------- Leads Tab -------------------- */
+
+function LeadsTab({ leads }: { leads: Record<string, unknown>[] }) {
+  const csv = useMemo(() => {
+    if (!leads.length) return "";
+    const headers = ["created_at", "first_name", "last_name", "email", "phone", "requirement", "budget", "source"];
+    const rows = leads.map((l) => headers.map((h) => `"${String(l[h] ?? "").replace(/"/g, '""')}"`).join(","));
+    return [headers.join(","), ...rows].join("\n");
+  }, [leads]);
+
+  const downloadCsv = () => {
+    const blob = new Blob([csv], { type: "text/csv" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url; a.download = `leads-${Date.now()}.csv`; a.click();
+    URL.revokeObjectURL(url);
+  };
+
+  return (
+    <div className="container-luxe py-8">
+      <div className="bg-card luxe-border p-5 md:p-7">
+        <div className="flex items-center justify-between mb-4 flex-wrap gap-3">
+          <div>
+            <h2 className="font-display text-2xl text-ivory">Captured Leads</h2>
+            <p className="text-[12px] text-muted-foreground mt-1">Most recent first · max 200 shown</p>
+          </div>
+          {leads.length > 0 && (
+            <button onClick={downloadCsv}
+              className="px-4 py-2 text-[11px] uppercase tracking-[0.22em] border border-gold text-gold hover:bg-gold hover:text-charcoal-deep transition">
+              Export CSV
+            </button>
+          )}
+        </div>
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm min-w-[720px]">
+            <thead>
+              <tr className="text-left text-[10.5px] uppercase tracking-[0.22em] text-muted-foreground border-b border-border">
+                <th className="py-3 pr-3">When</th>
+                <th className="py-3 pr-3">Name</th>
+                <th className="py-3 pr-3">Contact</th>
+                <th className="py-3 pr-3">Requirement</th>
+                <th className="py-3 pr-3">Budget</th>
+                <th className="py-3 pr-3">Source</th>
+              </tr>
+            </thead>
+            <tbody>
+              {leads.length === 0 && (
+                <tr><td colSpan={6} className="py-8 text-center text-muted-foreground">No leads yet.</td></tr>
+              )}
+              {leads.map((l) => (
+                <tr key={String(l.id)} className="border-b border-border/50 text-ivory/85">
+                  <td className="py-3 pr-3 whitespace-nowrap">{new Date(String(l.created_at)).toLocaleString()}</td>
+                  <td className="py-3 pr-3">{String(l.first_name)} {String(l.last_name)}</td>
+                  <td className="py-3 pr-3">
+                    <div>{String(l.email)}</div>
+                    <div className="text-muted-foreground text-[12px]">{String(l.phone)}</div>
+                  </td>
+                  <td className="py-3 pr-3">{String(l.requirement)}</td>
+                  <td className="py-3 pr-3">{String(l.budget)}</td>
+                  <td className="py-3 pr-3 text-muted-foreground">{String(l.source ?? "")}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   );
 }

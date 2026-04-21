@@ -1,4 +1,3 @@
-import { Link } from "@tanstack/react-router";
 import { Instagram, Facebook, Linkedin, Youtube } from "lucide-react";
 import type { SiteContent } from "@/content/defaultContent";
 
@@ -62,15 +61,6 @@ export function Footer({ brand, contact, rera }: { brand: string; contact: SiteC
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-[11px] text-muted-foreground">
           <p>© {new Date().getFullYear()} {brand}. All rights reserved.</p>
           <p className="uppercase tracking-[0.22em]">{rera}</p>
-          {/* Hidden admin entry — small dot */}
-          <Link
-            to="/studio"
-            aria-label="Studio"
-            className="opacity-30 hover:opacity-100 hover:text-gold transition"
-            title="Studio"
-          >
-            ◆
-          </Link>
         </div>
 
         <p className="mt-6 text-[10.5px] text-muted-foreground/70 leading-relaxed">
