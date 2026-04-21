@@ -76,6 +76,7 @@ function Studio() {
 }
 
 const SECTIONS = [
+  { key: "seo", label: "SEO & Robots" },
   { key: "brand", label: "Brand & RERA" },
   { key: "contact", label: "Contact & Map" },
   { key: "hero", label: "Hero" },
@@ -246,6 +247,7 @@ function AdminPanel({ onLogout }: { onLogout: () => void }) {
 
 function SectionEditor({ section, value, onChange }: { section: SectionKey; value: unknown; onChange: (v: unknown) => void }) {
   switch (section) {
+    case "seo": return <SeoEditor value={value as SiteContent["seo"]} onChange={onChange} />;
     case "brand": return <BrandEditor value={value as SiteContent["brand"]} onChange={onChange} />;
     case "contact": return <ContactEditor value={value as SiteContent["contact"]} onChange={onChange} />;
     case "hero": return <HeroEditor value={value as SiteContent["hero"]} onChange={onChange} />;
@@ -376,6 +378,57 @@ function ListControls({ onAdd, onRemove, canRemove = true, addLabel = "Add Item"
 }
 
 /* -------------------- Section Editors -------------------- */
+
+function SeoEditor({ value, onChange }: { value: SiteContent["seo"]; onChange: (v: SiteContent["seo"]) => void }) {
+  const set = <K extends keyof SiteContent["seo"]>(k: K, v: SiteContent["seo"][K]) => onChange({ ...value, [k]: v });
+  return (
+    <div className="space-y-5">
+      <div className="p-3 border border-gold/30 bg-gold/5 text-[12px] text-ivory/85">
+        These settings control SEO for the homepage, social previews, <code className="text-gold">/robots.txt</code> and <code className="text-gold">/sitemap.xml</code>.
+        Keep "Allow Indexing" ON to let Google and all bots/crawlers index the site.
+      </div>
+      <Field label="Site URL" hint="Your final live domain, e.g. https://venusuniverse.com">
+        <TextInput value={value.siteUrl} onChange={(v) => set("siteUrl", v)} placeholder="https://yourdomain.com" />
+      </Field>
+      <Field label="Page Title" hint="Shown in browser tab and Google results (50-60 chars ideal)">
+        <TextInput value={value.title} onChange={(v) => set("title", v)} />
+      </Field>
+      <Field label="Meta Description" hint="Shown under title in Google (150-160 chars ideal)">
+        <TextArea value={value.description} onChange={(v) => set("description", v)} rows={3} />
+      </Field>
+      <Field label="Keywords" hint="Comma separated">
+        <TextArea value={value.keywords} onChange={(v) => set("keywords", v)} rows={2} />
+      </Field>
+      <Field label="Author / Brand Name">
+        <TextInput value={value.author} onChange={(v) => set("author", v)} />
+      </Field>
+      <Field label="Canonical URL" hint="Usually same as Site URL">
+        <TextInput value={value.canonical} onChange={(v) => set("canonical", v)} />
+      </Field>
+      <Field label="Twitter Handle" hint="With @, e.g. @venusuniverse">
+        <TextInput value={value.twitterHandle} onChange={(v) => set("twitterHandle", v)} />
+      </Field>
+      <ImageField label="Social Share Image (OG Image)" value={value.ogImage} onChange={(v) => set("ogImage", v)} folder="seo" hint="1200×630 recommended. Used for Facebook, LinkedIn, Twitter previews." />
+      <Field label="Allow Indexing">
+        <label className="flex items-center gap-3 cursor-pointer">
+          <input
+            type="checkbox"
+            checked={value.allowIndexing !== false}
+            onChange={(e) => set("allowIndexing", e.target.checked)}
+            className="w-4 h-4 accent-gold"
+          />
+          <span className="text-sm text-ivory/85">
+            Allow all search engines and bots to crawl & index (recommended)
+          </span>
+        </label>
+        <div className="text-[11px] text-muted-foreground mt-1">
+          When ON: <code className="text-gold">/robots.txt</code> serves <code>Allow: /</code> for all bots and includes the sitemap.
+          When OFF: bots are told to stay out (use only during construction).
+        </div>
+      </Field>
+    </div>
+  );
+}
 
 function BrandEditor({ value, onChange }: { value: SiteContent["brand"]; onChange: (v: SiteContent["brand"]) => void }) {
   const set = (k: keyof SiteContent["brand"], v: string) => onChange({ ...value, [k]: v });

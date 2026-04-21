@@ -1,4 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { supabase } from "@/integrations/supabase/client";
+import { defaultContent } from "@/content/defaultContent";
 import { useSiteContent } from "@/hooks/useSiteContent";
 import { Header } from "@/components/site/Header";
 import { Hero } from "@/components/site/Hero";
@@ -18,19 +20,58 @@ import { LeadGate } from "@/components/site/LeadGate";
 import { StickyProjectBar } from "@/components/site/StickyProjectBar";
 
 export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Venus Grounds 2 — Luxury 4 & 5 BHK at Nehrunagar, Ahmedabad" },
-      {
-        name: "description",
-        content:
-          "Venus Grounds 2 — 7-acre 4 & 5 BHK luxury development at Nehrunagar, Ahmedabad. 70% open area, 2.2-acre podium, designed by Hafeez Contractor, SWA, HBA & LET. Enquire now.",
-      },
-      { property: "og:title", content: "Venus Grounds 2 — Luxury 4 & 5 BHK at Nehrunagar, Ahmedabad" },
-      { property: "og:description", content: "7-acre landmark 4 & 5 BHK development at the heart of Ahmedabad. By invitation." },
-      { property: "og:type", content: "website" },
-    ],
-  }),
+  loader: async () => {
+    try {
+      const { data } = await supabase.from("site_content").select("key, value").in("key", ["seo", "brand"]);
+      const map: Record<string, unknown> = {};
+      for (const r of data ?? []) map[r.key] = r.value;
+      const seo = { ...defaultContent.seo, ...((map.seo as object) ?? {}) };
+      const brand = { ...defaultContent.brand, ...((map.brand as object) ?? {}) };
+      return { seo, brand };
+    } catch {
+      return { seo: defaultContent.seo, brand: defaultContent.brand };
+    }
+  },
+  head: ({ loaderData }) => {
+    const seo = loaderData?.seo ?? defaultContent.seo;
+    const robots = seo.allowIndexing === false ? "noindex, nofollow" : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1";
+    return {
+      meta: [
+        { title: seo.title },
+        { name: "description", content: seo.description },
+        { name: "keywords", content: seo.keywords },
+        { name: "author", content: seo.author },
+        { name: "robots", content: robots },
+        { name: "googlebot", content: robots },
+        { name: "bingbot", content: robots },
+        { property: "og:title", content: seo.title },
+        { property: "og:description", content: seo.description },
+        { property: "og:image", content: seo.ogImage },
+        { property: "og:url", content: seo.canonical || seo.siteUrl },
+        { property: "og:type", content: "website" },
+        { property: "og:site_name", content: loaderData?.brand?.name ?? defaultContent.brand.name },
+        { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:title", content: seo.title },
+        { name: "twitter:description", content: seo.description },
+        { name: "twitter:image", content: seo.ogImage },
+        { name: "twitter:site", content: seo.twitterHandle },
+      ],
+      links: [{ rel: "canonical", href: seo.canonical || seo.siteUrl }],
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "RealEstateAgent",
+            name: loaderData?.brand?.name ?? defaultContent.brand.name,
+            url: seo.siteUrl,
+            image: seo.ogImage,
+            description: seo.description,
+          }),
+        },
+      ],
+    };
+  },
   component: Index,
 });
 

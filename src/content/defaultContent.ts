@@ -20,6 +20,19 @@ import showreel from "@/assets/showreel.mp4.asset.json";
  * hook merges DB values over these defaults.
  */
 export const defaultContent = {
+  seo: {
+    siteUrl: "https://venusuniverse.com",
+    title: "Venus Grounds 2 — Luxury 4 & 5 BHK at Nehrunagar, Ahmedabad",
+    description:
+      "Venus Grounds 2 — 7-acre 4 & 5 BHK luxury development at Nehrunagar, Ahmedabad. 70% open area, 2.2-acre podium, designed by Hafeez Contractor, SWA, HBA & LET.",
+    keywords:
+      "Venus Grounds 2, Nehrunagar Ahmedabad, 4 BHK Ahmedabad, 5 BHK Ahmedabad, luxury apartments Ahmedabad, Hafeez Contractor, premium real estate Ahmedabad",
+    ogImage: "https://storage.googleapis.com/gpt-engineer-file-uploads/Nlau0aIfcNZ994VHhH1ZCQI5FFn1/social-images/social-1776592390810-vectorstock_45301125.webp",
+    twitterHandle: "@venusuniverse",
+    author: "Venus Universe",
+    canonical: "https://venusuniverse.com",
+    allowIndexing: true,
+  },
   brand: {
     name: "Venus Grounds 2",
     tagline: "Luxury 4 & 5 BHK Residences at Nehrunagar, Ahmedabad",
