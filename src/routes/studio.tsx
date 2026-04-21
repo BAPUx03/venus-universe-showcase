@@ -644,6 +644,8 @@ function EoiEditor({ value, onChange }: { value: SiteContent["eoi"]; onChange: (
     </div>
   );
 }
+
+function MasterPlanEditor({ value, onChange }: { value: SiteContent["masterPlan"]; onChange: (v: SiteContent["masterPlan"]) => void }) {
   return (
     <div className="space-y-5">
       <ImageField label="Master Plan Image" value={value.image as string} onChange={(v) => onChange({ ...value, image: v as never })} folder="masterplan" />
