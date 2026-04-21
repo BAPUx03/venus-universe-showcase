@@ -2,6 +2,13 @@ import { Instagram, Facebook, Linkedin, Youtube } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import type { SiteContent } from "@/content/defaultContent";
 
+const SOCIALS = [
+  { label: "Instagram", icon: Instagram },
+  { label: "Facebook", icon: Facebook },
+  { label: "LinkedIn", icon: Linkedin },
+  { label: "YouTube", icon: Youtube },
+] as const;
+
 export function Footer({ brand, contact, rera }: { brand: string; contact: SiteContent["contact"]; rera: string }) {
   return (
     <footer className="bg-charcoal-deep border-t border-border/60 pt-16 pb-8">
@@ -19,15 +26,16 @@ export function Footer({ brand, contact, rera }: { brand: string; contact: SiteC
               for those who measure life in moments.
             </p>
             <div className="mt-5 flex items-center gap-3">
-              {[Instagram, Facebook, Linkedin, Youtube].map((Icon, i) => (
-                <a
-                  key={i}
-                  href="#"
-                  aria-label="social"
-                  className="w-9 h-9 inline-flex items-center justify-center border border-border hover:border-gold hover:text-gold text-ivory/80 transition"
+              {SOCIALS.map(({ label, icon: Icon }) => (
+                <button
+                  key={label}
+                  type="button"
+                  aria-label={`${label} coming soon`}
+                  title={`${label} coming soon`}
+                  className="w-9 h-9 inline-flex items-center justify-center border border-border text-ivory/60 transition cursor-default"
                 >
                   <Icon size={15} />
-                </a>
+                </button>
               ))}
             </div>
           </div>

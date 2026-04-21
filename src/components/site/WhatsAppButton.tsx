@@ -1,9 +1,11 @@
 import { MessageCircle } from "lucide-react";
 
 export function WhatsAppButton({ phone }: { phone: string }) {
-  const href = `https://wa.me/${phone}?text=${encodeURIComponent(
+  const cleanPhone = phone.replace(/\D/g, "");
+  const href = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(
     "Hello, I'm interested in Venus Universe. Please share details."
   )}`;
+
   return (
     <a
       href={href}

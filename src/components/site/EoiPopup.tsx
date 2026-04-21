@@ -1,11 +1,12 @@
+import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ShieldCheck, ArrowRight, Sparkles } from "lucide-react";
 import type { SiteContent } from "@/content/defaultContent";
 
 const DISMISS_KEY = "venus_eoi_popup_dismissed_v1";
-const SCROLL_THRESHOLD = 0.6; // 60%
-const TIME_THRESHOLD = 30_000; // 30s
+const SCROLL_THRESHOLD = 0.6;
+const TIME_THRESHOLD = 30_000;
 
 export function EoiPopup({ eoi }: { eoi: SiteContent["eoi"] }) {
   const [open, setOpen] = useState(false);
@@ -80,7 +81,6 @@ export function EoiPopup({ eoi }: { eoi: SiteContent["eoi"] }) {
               <X size={16} />
             </button>
 
-            {/* Top accent bar */}
             <div
               className="h-1.5 w-full"
               style={{ background: "linear-gradient(90deg, var(--accent-red), var(--accent-red-deep), var(--accent-red))" }}
@@ -95,7 +95,6 @@ export function EoiPopup({ eoi }: { eoi: SiteContent["eoi"] }) {
               </h3>
               <p className="mt-2.5 text-[13.5px] text-foreground/65 leading-relaxed">{eoi.popupSubtitle}</p>
 
-              {/* Amount badge */}
               <div className="mt-5 p-4 rounded-xl bg-[oklch(0.97_0.02_25)] border border-[oklch(0.9_0.04_25)] flex items-center justify-between">
                 <div>
                   <div className="text-[10.5px] uppercase tracking-[0.18em] text-foreground/55 font-semibold">EOI Amount</div>
@@ -108,14 +107,14 @@ export function EoiPopup({ eoi }: { eoi: SiteContent["eoi"] }) {
                 </div>
               </div>
 
-              <a
-                href="/eoi"
+              <Link
+                to="/eoi"
                 onClick={close}
                 className="mt-5 w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-md text-white font-semibold text-[13px] uppercase tracking-[0.12em] shadow-[0_10px_25px_-8px_rgba(200,40,30,0.5)] hover:shadow-[0_15px_35px_-8px_rgba(200,40,30,0.7)] transition-all"
                 style={{ background: "linear-gradient(135deg, var(--accent-red), var(--accent-red-deep))" }}
               >
                 {eoi.ctaPrimary} <ArrowRight size={15} />
-              </a>
+              </Link>
               <button onClick={close} className="mt-2.5 w-full text-center text-[11.5px] text-foreground/50 hover:text-foreground/80 transition">
                 Maybe later
               </button>
