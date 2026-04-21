@@ -3,7 +3,7 @@ import type { SiteContent } from "@/content/defaultContent";
 
 export function Hero({ hero }: { hero: SiteContent["hero"] }) {
   return (
-    <section id="home" className="relative min-h-[100svh] flex items-end overflow-hidden">
+    <section id="home" className="relative min-h-[92svh] flex items-end overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
         {hero.videoUrl ? (
@@ -23,33 +23,36 @@ export function Hero({ hero }: { hero: SiteContent["hero"] }) {
           />
         )}
         {/* Gradient overlays — softer for clean editorial look */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-transparent to-transparent" />
       </div>
 
       {/* Content */}
-      <div className="relative container-luxe pb-20 md:pb-28 pt-36 md:pt-40 z-10">
+      <div className="relative container-luxe pb-16 md:pb-24 pt-28 md:pt-32 z-10">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.35, ease: [0.2, 0.7, 0.2, 1] }}
           className="max-w-3xl"
         >
-          <div className="flex items-center gap-3 mb-6">
+          <div className="flex items-center gap-3 mb-5">
             <span className="gold-rule" />
             <span className="text-[11px] font-semibold tracking-[0.22em] uppercase text-white/90">
-              Now Previewing · 4 &amp; 5 BHK Sky Residences
+              Nehrunagar · Ahmedabad
             </span>
           </div>
-          <h1 className="font-display font-bold text-[clamp(2.4rem,6vw,5.25rem)] leading-[1.02] text-white tracking-tight">
-            Nehrunagar, Ahmedabad <br />
-            <span style={{ color: "oklch(0.78 0.18 25)" }}>A Universe of Luxury Living.</span>
+          <h1 className="font-display font-bold text-[clamp(2.2rem,5.5vw,4.75rem)] leading-[1.05] text-white tracking-tight">
+            A Universe of{" "}
+            <span style={{ color: "oklch(0.78 0.18 25)" }}>Luxury Living.</span>
           </h1>
-          <p className="mt-6 max-w-xl text-base md:text-lg text-white/85 leading-relaxed font-light">
+          <p className="mt-5 text-[11px] font-semibold tracking-[0.22em] uppercase text-white/75">
+            Now Previewing · 4 &amp; 5 BHK Sky Residences
+          </p>
+          <p className="mt-5 max-w-xl text-base md:text-lg text-white/85 leading-relaxed font-light">
             {hero.subtitle}
           </p>
 
-          <div className="mt-9 flex flex-wrap gap-3">
+          <div className="mt-8 flex flex-wrap gap-3">
             <a
               href="#contact"
               className="px-7 py-3.5 rounded-md text-white font-semibold text-[13px] shadow-gold hover:brightness-110 transition"
