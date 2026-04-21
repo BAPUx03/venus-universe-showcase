@@ -90,6 +90,7 @@ const SECTIONS = [
   { key: "hero", label: "Hero" },
   { key: "about", label: "About + Stats" },
   { key: "highlights", label: "Highlights" },
+  { key: "eoi", label: "EOI / Book Slot" },
   { key: "masterPlan", label: "Master Plan" },
   { key: "residences", label: "Residences" },
   { key: "amenities", label: "Amenities" },
@@ -261,6 +262,7 @@ function SectionEditor({ section, value, onChange }: { section: SectionKey; valu
     case "hero": return <HeroEditor value={value as SiteContent["hero"]} onChange={onChange} />;
     case "about": return <AboutEditor value={value as SiteContent["about"]} onChange={onChange} />;
     case "highlights": return <HighlightsEditor value={value as SiteContent["highlights"]} onChange={onChange} />;
+    case "eoi": return <EoiEditor value={value as SiteContent["eoi"]} onChange={onChange} />;
     case "masterPlan": return <MasterPlanEditor value={value as SiteContent["masterPlan"]} onChange={onChange} />;
     case "residences": return <ResidencesEditor value={value as SiteContent["residences"]} onChange={onChange} />;
     case "amenities": return <AmenitiesEditor value={value as SiteContent["amenities"]} onChange={onChange} />;
