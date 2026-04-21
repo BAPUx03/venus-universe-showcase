@@ -61,7 +61,7 @@ export const defaultContent = {
     { title: "Interiors by HBA Singapore", desc: "Singapore's largest hospitality interior design firm." },
     { title: "Lighting by LET, Dubai", desc: "Signature façade and landscape lighting design." },
     { title: "F&B by Stratum @ Venus Grounds", desc: "Activatrium, Active8, Rungg & Café Ray on the doorstep." },
-    { title: "Walk to IIM-A & BRTS", desc: "5 min to IIM-Ahmedabad, 2 min to Nehrunagar BRTS stand." },
+    
   ],
   masterPlan: {
     image: masterPlan,
