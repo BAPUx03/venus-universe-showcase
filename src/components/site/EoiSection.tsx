@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { ShieldCheck, PlayCircle, Sparkles, Zap, X } from "lucide-react";
@@ -21,14 +22,12 @@ export function EoiSection({ eoi }: { eoi: SiteContent["eoi"] }) {
 
   return (
     <section id="eoi" className="relative py-20 md:py-28 overflow-hidden bg-gradient-to-b from-white via-[oklch(0.985_0.005_25)] to-white">
-      {/* Decorative bg */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute -top-32 -left-32 w-96 h-96 rounded-full opacity-20 blur-3xl" style={{ background: "var(--accent-red)" }} />
         <div className="absolute -bottom-32 -right-32 w-96 h-96 rounded-full opacity-15 blur-3xl" style={{ background: "var(--accent-red-soft)" }} />
       </div>
 
       <div className="relative container-luxe">
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -45,7 +44,6 @@ export function EoiSection({ eoi }: { eoi: SiteContent["eoi"] }) {
           <p className="mt-5 text-base md:text-lg text-foreground/70 leading-relaxed">{eoi.subtitle}</p>
         </motion.div>
 
-        {/* Main Card */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -54,7 +52,6 @@ export function EoiSection({ eoi }: { eoi: SiteContent["eoi"] }) {
           className="relative max-w-5xl mx-auto rounded-2xl overflow-hidden shadow-[0_20px_70px_-15px_rgba(180,40,30,0.25)] border border-[oklch(0.92_0.02_25)] bg-white"
         >
           <div className="grid md:grid-cols-[1.1fr_1fr]">
-            {/* Left — Pitch */}
             <div className="p-8 md:p-10">
               <div className="flex items-baseline gap-2">
                 <span className="text-[12px] uppercase tracking-[0.2em] text-foreground/60 font-semibold">EOI Amount</span>
@@ -71,7 +68,6 @@ export function EoiSection({ eoi }: { eoi: SiteContent["eoi"] }) {
               </div>
               <p className="mt-2 text-[13px] text-foreground/60">{eoi.refundNote}</p>
 
-              {/* Urgency */}
               <div className="mt-7 p-4 rounded-xl bg-[oklch(0.97_0.02_25)] border border-[oklch(0.9_0.04_25)]">
                 <div className="flex items-center justify-between gap-3 mb-2">
                   <span className="inline-flex items-center gap-1.5 text-[12px] font-semibold text-foreground">
@@ -93,16 +89,15 @@ export function EoiSection({ eoi }: { eoi: SiteContent["eoi"] }) {
                 </div>
               </div>
 
-              {/* CTAs */}
               <div className="mt-7 flex flex-wrap gap-3">
-                <a
-                  href="/eoi"
+                <Link
+                  to="/eoi"
                   className="group inline-flex items-center gap-2 px-7 py-3.5 rounded-md text-white font-semibold text-[13px] uppercase tracking-[0.12em] shadow-[0_10px_25px_-8px_rgba(200,40,30,0.5)] hover:shadow-[0_15px_35px_-8px_rgba(200,40,30,0.7)] hover:-translate-y-0.5 transition-all"
                   style={{ background: "linear-gradient(135deg, var(--accent-red), var(--accent-red-deep))" }}
                 >
                   {eoi.ctaPrimary}
                   <span className="group-hover:translate-x-1 transition-transform">→</span>
-                </a>
+                </Link>
                 {eoi.videoUrl && (
                   <button
                     onClick={() => setVideoOpen(true)}
@@ -113,7 +108,6 @@ export function EoiSection({ eoi }: { eoi: SiteContent["eoi"] }) {
                 )}
               </div>
 
-              {/* Steps */}
               <div className="mt-8 grid sm:grid-cols-3 gap-3">
                 {eoi.steps.map((s, i) => (
                   <motion.div
@@ -132,7 +126,6 @@ export function EoiSection({ eoi }: { eoi: SiteContent["eoi"] }) {
               </div>
             </div>
 
-            {/* Right — Benefits */}
             <div className="p-8 md:p-10 bg-[oklch(0.98_0.005_25)] border-t md:border-t-0 md:border-l border-[oklch(0.92_0.02_25)]">
               <div className="text-[11px] uppercase tracking-[0.2em] font-semibold text-foreground/60 mb-4">
                 What you get
@@ -162,7 +155,6 @@ export function EoiSection({ eoi }: { eoi: SiteContent["eoi"] }) {
         </motion.div>
       </div>
 
-      {/* Video Modal */}
       {videoOpen && embed && (
         <div className="fixed inset-0 z-[100] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 animate-fade-in" onClick={() => setVideoOpen(false)}>
           <div className="relative w-full max-w-4xl aspect-video bg-black rounded-xl overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>

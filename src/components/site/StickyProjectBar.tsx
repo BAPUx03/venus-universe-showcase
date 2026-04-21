@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 
 export function StickyProjectBar() {
@@ -10,11 +11,11 @@ export function StickyProjectBar() {
       let footerVisible = false;
       if (footer) {
         const rect = footer.getBoundingClientRect();
-        // Hide when footer top enters the viewport
         footerVisible = rect.top < window.innerHeight - 40;
       }
       setShow(scrolled && !footerVisible);
     };
+
     update();
     window.addEventListener("scroll", update, { passive: true });
     window.addEventListener("resize", update);
@@ -50,13 +51,13 @@ export function StickyProjectBar() {
             </div>
           </div>
         </div>
-        <a
-          href="/eoi"
+        <Link
+          to="/eoi"
           className="shrink-0 px-3 md:px-6 py-1.5 md:py-2.5 text-[10.5px] md:text-[13px] font-semibold rounded-md text-white shadow-gold hover:brightness-110 transition whitespace-nowrap"
           style={{ background: "var(--accent-red)" }}
         >
           Secure Your Spot · ₹5L
-        </a>
+        </Link>
       </div>
     </div>
   );

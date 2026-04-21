@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import type { SiteContent } from "@/content/defaultContent";
 
@@ -53,13 +54,13 @@ export function Hero({ hero }: { hero: SiteContent["hero"] }) {
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">
-            <a
-              href="/eoi"
+            <Link
+              to="/eoi"
               className="px-7 py-3.5 rounded-md text-white font-semibold text-[13px] shadow-gold hover:brightness-110 hover:-translate-y-0.5 transition-all"
               style={{ background: "var(--accent-red)" }}
             >
               Secure Your Spot · ₹5L EOI
-            </a>
+            </Link>
             <a
               href="#contact"
               className="px-7 py-3.5 rounded-md bg-white/10 backdrop-blur-md border border-white/30 text-white font-medium text-[13px] hover:bg-white/20 transition"
