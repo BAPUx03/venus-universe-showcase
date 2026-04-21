@@ -565,7 +565,7 @@ function HighlightsEditor({ value, onChange }: { value: SiteContent["highlights"
 }
 
 function EoiEditor({ value, onChange }: { value: SiteContent["eoi"]; onChange: (v: SiteContent["eoi"]) => void }) {
-  const set = <K extends keyof SiteContent["eoi"]>(k: K, v: SiteContent["eoi"][K]) => onChange({ ...value, [k]: v });
+  const set = <K extends keyof SiteContent["eoi"],>(k: K, v: SiteContent["eoi"][K]) => onChange({ ...value, [k]: v });
   const benefits = value.benefits;
   const steps = value.steps;
   return (
