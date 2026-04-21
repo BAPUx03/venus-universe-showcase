@@ -35,8 +35,12 @@ function Studio() {
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            if (email.trim().toLowerCase() === ADMIN_EMAIL && pass === ADMIN_PASSWORD) {
+            const fd = new FormData(e.currentTarget);
+            const emailVal = String(fd.get("email") ?? "").trim().toLowerCase();
+            const passVal = String(fd.get("password") ?? "");
+            if (emailVal === ADMIN_EMAIL && passVal === ADMIN_PASSWORD) {
               sessionStorage.setItem(AUTH_KEY, "1");
+              setErr("");
               setAuthed(true);
             } else {
               setErr("Invalid email or password.");
@@ -49,22 +53,26 @@ function Studio() {
           <p className="text-sm text-muted-foreground mt-1">Sign in to manage the site.</p>
           <input
             type="email"
+            name="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Email"
-            autoComplete="email"
+            autoComplete="username"
+            required
             className="mt-5 w-full bg-input/60 border border-border px-3.5 py-3 text-sm text-ivory focus:outline-none focus:border-gold"
           />
           <input
             type="password"
+            name="password"
             value={pass}
             onChange={(e) => setPass(e.target.value)}
             placeholder="Password"
             autoComplete="current-password"
+            required
             className="mt-3 w-full bg-input/60 border border-border px-3.5 py-3 text-sm text-ivory focus:outline-none focus:border-gold"
           />
           {err && <div className="mt-2 text-[12px] text-destructive">{err}</div>}
-          <button className="mt-4 w-full py-3 bg-gradient-gold text-charcoal-deep font-semibold uppercase tracking-[0.22em] text-[12px] shadow-gold">
+          <button type="submit" className="mt-4 w-full py-3 bg-gradient-gold text-charcoal-deep font-semibold uppercase tracking-[0.22em] text-[12px] shadow-gold cursor-pointer">
             Sign In
           </button>
         </form>
