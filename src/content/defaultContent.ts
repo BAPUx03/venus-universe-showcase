@@ -213,6 +213,39 @@ export const defaultContent = {
     ],
     awards: ["7 Acre Development", "70% Open Area", "2.2 Acre Podium", "World-Class Design Partners"],
   },
+  eoi: {
+    eyebrow: "Expression of Interest",
+    title: "Secure Your Spot at Venus Grounds 2",
+    subtitle:
+      "Pay a fully refundable EOI of ₹5,00,000 and lock-in priority allotment, pre-launch pricing and your preferred unit before public launch.",
+    amount: 500000,
+    amountLabel: "₹ 5,00,000",
+    refundable: true,
+    refundNote: "100% Refundable · No questions asked",
+    ctaPrimary: "Secure Your Spot Now",
+    ctaSecondary: "What is EOI?",
+    videoUrl: "", // YouTube URL — admin paste karega
+    videoTitle: "What is EOI? — Watch 2 min explainer",
+    benefits: [
+      { title: "Priority Allotment", desc: "First right to choose your unit, floor and view before public launch." },
+      { title: "Pre-Launch Pricing", desc: "Lock-in special EOI pricing — protected against future price hikes." },
+      { title: "100% Refundable", desc: "Full refund anytime if you choose not to proceed. Zero risk." },
+      { title: "Exclusive Site Visit", desc: "Private sales gallery walkthrough with our senior advisor." },
+      { title: "Dedicated Relationship Manager", desc: "Personal point of contact through the entire journey." },
+      { title: "Adjustable in Booking", desc: "EOI amount fully adjustable in your final booking value." },
+    ],
+    steps: [
+      { step: "01", title: "Pay ₹5,00,000 EOI", desc: "Secure online payment via Stripe — instant confirmation." },
+      { step: "02", title: "Get Priority Access", desc: "Receive your priority number and exclusive pricing details." },
+      { step: "03", title: "Choose Your Residence", desc: "Pick your preferred unit before public launch opens." },
+    ],
+    spotsLeft: 47,
+    spotsTotal: 100,
+    urgencyText: "Limited slots — only a few EOI spots remain",
+    popupEnabled: true,
+    popupTitle: "Don't Miss Out — Secure Your Spot",
+    popupSubtitle: "Pay ₹5,00,000 fully refundable EOI to unlock priority allotment & pre-launch pricing.",
+  },
 };
 
 type DeepMutable<T> = T extends readonly (infer U)[]

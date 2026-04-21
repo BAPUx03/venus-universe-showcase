@@ -54,11 +54,11 @@ export function Hero({ hero }: { hero: SiteContent["hero"] }) {
 
           <div className="mt-8 flex flex-wrap gap-3">
             <a
-              href="#contact"
-              className="px-7 py-3.5 rounded-md text-white font-semibold text-[13px] shadow-gold hover:brightness-110 transition"
+              href="/eoi"
+              className="px-7 py-3.5 rounded-md text-white font-semibold text-[13px] shadow-gold hover:brightness-110 hover:-translate-y-0.5 transition-all"
               style={{ background: "var(--accent-red)" }}
             >
-              Inquire Now
+              Secure Your Spot · ₹5L EOI
             </a>
             <a
               href="#contact"

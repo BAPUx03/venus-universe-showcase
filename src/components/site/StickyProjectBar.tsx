@@ -51,11 +51,11 @@ export function StickyProjectBar() {
           </div>
         </div>
         <a
-          href="#contact"
+          href="/eoi"
           className="shrink-0 px-3 md:px-6 py-1.5 md:py-2.5 text-[10.5px] md:text-[13px] font-semibold rounded-md text-white shadow-gold hover:brightness-110 transition whitespace-nowrap"
           style={{ background: "var(--accent-red)" }}
         >
-          Register Interest
+          Secure Your Spot · ₹5L
         </a>
       </div>
     </div>

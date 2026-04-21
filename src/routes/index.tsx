@@ -18,6 +18,8 @@ import { WhatsAppButton } from "@/components/site/WhatsAppButton";
 import { Footer } from "@/components/site/Footer";
 import { LeadGate } from "@/components/site/LeadGate";
 import { StickyProjectBar } from "@/components/site/StickyProjectBar";
+import { EoiSection } from "@/components/site/EoiSection";
+import { EoiPopup } from "@/components/site/EoiPopup";
 
 export const Route = createFileRoute("/")({
   loader: async () => {
@@ -102,6 +104,7 @@ function Index() {
         <Hero hero={content.hero} />
         <About about={content.about} />
         <Highlights items={content.highlights} />
+        <EoiSection eoi={content.eoi} />
         <MasterPlan data={content.masterPlan} />
         <Residences items={content.residences} />
         <Amenities items={content.amenities} />
@@ -114,6 +117,7 @@ function Index() {
       <Footer brand={content.brand.name} contact={content.contact} rera={content.brand.rera} />
       <WhatsAppButton phone={content.contact.whatsapp} />
       <StickyProjectBar />
+      <EoiPopup eoi={content.eoi} />
     </div>
   );
 }

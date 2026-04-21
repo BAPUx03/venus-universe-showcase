@@ -90,6 +90,7 @@ const SECTIONS = [
   { key: "hero", label: "Hero" },
   { key: "about", label: "About + Stats" },
   { key: "highlights", label: "Highlights" },
+  { key: "eoi", label: "EOI / Book Slot" },
   { key: "masterPlan", label: "Master Plan" },
   { key: "residences", label: "Residences" },
   { key: "amenities", label: "Amenities" },
@@ -261,6 +262,7 @@ function SectionEditor({ section, value, onChange }: { section: SectionKey; valu
     case "hero": return <HeroEditor value={value as SiteContent["hero"]} onChange={onChange} />;
     case "about": return <AboutEditor value={value as SiteContent["about"]} onChange={onChange} />;
     case "highlights": return <HighlightsEditor value={value as SiteContent["highlights"]} onChange={onChange} />;
+    case "eoi": return <EoiEditor value={value as SiteContent["eoi"]} onChange={onChange} />;
     case "masterPlan": return <MasterPlanEditor value={value as SiteContent["masterPlan"]} onChange={onChange} />;
     case "residences": return <ResidencesEditor value={value as SiteContent["residences"]} onChange={onChange} />;
     case "amenities": return <AmenitiesEditor value={value as SiteContent["amenities"]} onChange={onChange} />;
@@ -558,6 +560,87 @@ function HighlightsEditor({ value, onChange }: { value: SiteContent["highlights"
           <Field label="Description"><TextArea value={it.desc} onChange={(v) => set(i, "desc", v)} rows={2} /></Field>
         </div>
       ))}
+    </div>
+  );
+}
+
+function EoiEditor({ value, onChange }: { value: SiteContent["eoi"]; onChange: (v: SiteContent["eoi"]) => void }) {
+  const set = <K extends keyof SiteContent["eoi"]>(k: K, v: SiteContent["eoi"][K]) => onChange({ ...value, [k]: v });
+  const benefits = value.benefits;
+  const steps = value.steps;
+  return (
+    <div className="space-y-5">
+      <div className="p-3 border border-gold/30 bg-gold/5 text-[12px] text-ivory/85">
+        Controls the EOI / "Secure Your Spot" section, the auto-popup, and the /eoi booking page.
+      </div>
+      <div className="grid md:grid-cols-2 gap-5">
+        <Field label="Eyebrow"><TextInput value={value.eyebrow} onChange={(v) => set("eyebrow", v)} /></Field>
+        <Field label="Amount Label" hint="Display string e.g. ₹ 5,00,000"><TextInput value={value.amountLabel} onChange={(v) => set("amountLabel", v)} /></Field>
+      </div>
+      <Field label="Section Title"><TextInput value={value.title} onChange={(v) => set("title", v)} /></Field>
+      <Field label="Subtitle"><TextArea value={value.subtitle} onChange={(v) => set("subtitle", v)} rows={3} /></Field>
+      <div className="grid md:grid-cols-2 gap-5">
+        <Field label="Amount (in rupees)" hint="Used for payment"><TextInput type="number" value={String(value.amount)} onChange={(v) => set("amount", Number(v) || 0)} /></Field>
+        <Field label="Refund Note"><TextInput value={value.refundNote} onChange={(v) => set("refundNote", v)} /></Field>
+      </div>
+      <div className="grid md:grid-cols-2 gap-5">
+        <Field label="Primary CTA"><TextInput value={value.ctaPrimary} onChange={(v) => set("ctaPrimary", v)} /></Field>
+        <Field label="Secondary CTA (video)"><TextInput value={value.ctaSecondary} onChange={(v) => set("ctaSecondary", v)} /></Field>
+      </div>
+      <Field label="Explainer Video URL (YouTube)" hint="Paste full YouTube URL — opens in modal when user clicks 'What is EOI'">
+        <TextInput value={value.videoUrl} onChange={(v) => set("videoUrl", v)} placeholder="https://www.youtube.com/watch?v=..." />
+      </Field>
+      <Field label="Video Modal Title"><TextInput value={value.videoTitle} onChange={(v) => set("videoTitle", v)} /></Field>
+      <div className="grid md:grid-cols-3 gap-3">
+        <Field label="Spots Total"><TextInput type="number" value={String(value.spotsTotal)} onChange={(v) => set("spotsTotal", Number(v) || 0)} /></Field>
+        <Field label="Spots Left"><TextInput type="number" value={String(value.spotsLeft)} onChange={(v) => set("spotsLeft", Number(v) || 0)} /></Field>
+        <Field label="Refundable">
+          <label className="flex items-center gap-2 mt-1.5"><input type="checkbox" checked={value.refundable} onChange={(e) => set("refundable", e.target.checked)} className="w-4 h-4 accent-gold" /><span className="text-sm text-ivory/85">Show refundable badge</span></label>
+        </Field>
+      </div>
+      <Field label="Urgency Text"><TextInput value={value.urgencyText} onChange={(v) => set("urgencyText", v)} /></Field>
+
+      <div className="pt-4 border-t border-border">
+        <div className="flex items-center justify-between mb-3">
+          <div className="text-[11px] uppercase tracking-[0.2em] text-ivory/70">Benefits</div>
+          <ListControls addLabel="Add Benefit" onAdd={() => set("benefits", [...benefits, { title: "", desc: "" }])} />
+        </div>
+        <div className="space-y-2">
+          {benefits.map((b, i) => (
+            <div key={i} className="grid grid-cols-[1fr_2fr_auto] gap-2 items-end p-3 border border-border/50">
+              <Field label="Title"><TextInput value={b.title} onChange={(v) => set("benefits", benefits.map((x, idx) => idx === i ? { ...x, title: v } : x))} /></Field>
+              <Field label="Description"><TextInput value={b.desc} onChange={(v) => set("benefits", benefits.map((x, idx) => idx === i ? { ...x, desc: v } : x))} /></Field>
+              <button type="button" onClick={() => set("benefits", benefits.filter((_, idx) => idx !== i))} className="px-2.5 py-2 border border-border text-destructive hover:border-destructive"><Trash2 size={13} /></button>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="pt-4 border-t border-border">
+        <div className="flex items-center justify-between mb-3">
+          <div className="text-[11px] uppercase tracking-[0.2em] text-ivory/70">3 Steps</div>
+          <ListControls addLabel="Add Step" onAdd={() => set("steps", [...steps, { step: "", title: "", desc: "" }])} />
+        </div>
+        <div className="space-y-2">
+          {steps.map((s, i) => (
+            <div key={i} className="grid grid-cols-[80px_1fr_2fr_auto] gap-2 items-end p-3 border border-border/50">
+              <Field label="Step #"><TextInput value={s.step} onChange={(v) => set("steps", steps.map((x, idx) => idx === i ? { ...x, step: v } : x))} /></Field>
+              <Field label="Title"><TextInput value={s.title} onChange={(v) => set("steps", steps.map((x, idx) => idx === i ? { ...x, title: v } : x))} /></Field>
+              <Field label="Description"><TextInput value={s.desc} onChange={(v) => set("steps", steps.map((x, idx) => idx === i ? { ...x, desc: v } : x))} /></Field>
+              <button type="button" onClick={() => set("steps", steps.filter((_, idx) => idx !== i))} className="px-2.5 py-2 border border-border text-destructive hover:border-destructive"><Trash2 size={13} /></button>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="pt-4 border-t border-border">
+        <div className="text-[11px] uppercase tracking-[0.2em] text-ivory/70 mb-3">Auto Popup (60% scroll + 30s)</div>
+        <Field label="Enable Popup">
+          <label className="flex items-center gap-2 mt-1.5"><input type="checkbox" checked={value.popupEnabled} onChange={(e) => set("popupEnabled", e.target.checked)} className="w-4 h-4 accent-gold" /><span className="text-sm text-ivory/85">Show EOI popup automatically</span></label>
+        </Field>
+        <Field label="Popup Title"><TextInput value={value.popupTitle} onChange={(v) => set("popupTitle", v)} /></Field>
+        <Field label="Popup Subtitle"><TextArea value={value.popupSubtitle} onChange={(v) => set("popupSubtitle", v)} rows={2} /></Field>
+      </div>
     </div>
   );
 }
