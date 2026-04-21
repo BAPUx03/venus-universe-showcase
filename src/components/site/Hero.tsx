@@ -3,7 +3,7 @@ import type { SiteContent } from "@/content/defaultContent";
 
 export function Hero({ hero }: { hero: SiteContent["hero"] }) {
   return (
-    <section id="home" className="relative min-h-[640px] h-[100svh] max-h-[900px] flex items-end overflow-hidden">
+    <section id="home" className="relative min-h-[640px] md:min-h-[88svh] md:h-[92svh] md:max-h-[900px] flex items-end overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
         {hero.videoUrl ? (
@@ -28,7 +28,7 @@ export function Hero({ hero }: { hero: SiteContent["hero"] }) {
       </div>
 
       {/* Content */}
-      <div className="relative container-luxe pb-12 md:pb-24 pt-24 md:pt-32 z-10">
+      <div className="relative container-luxe pb-10 md:pb-24 pt-20 md:pt-32 z-10">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
