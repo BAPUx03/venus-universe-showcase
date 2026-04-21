@@ -32,6 +32,11 @@ export const defaultContent = {
     author: "Venus Universe",
     canonical: "https://venusuniverse.com",
     allowIndexing: true,
+    gaId: "",
+    gtmId: "",
+    gscVerification: "",
+    bingVerification: "",
+    facebookPixelId: "",
   },
   brand: {
     name: "Venus Grounds 2",

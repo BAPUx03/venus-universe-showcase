@@ -1,4 +1,5 @@
 import { Instagram, Facebook, Linkedin, Youtube } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 import type { SiteContent } from "@/content/defaultContent";
 
 export function Footer({ brand, contact, rera }: { brand: string; contact: SiteContent["contact"]; rera: string }) {
@@ -59,7 +60,17 @@ export function Footer({ brand, contact, rera }: { brand: string; contact: SiteC
         <div className="gold-divider my-10" />
 
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-[11px] text-muted-foreground">
-          <p>© {new Date().getFullYear()} {brand}. All rights reserved.</p>
+          <p>
+            <Link
+              to="/studio"
+              aria-label="Admin"
+              title="Admin"
+              className="hover:text-gold transition cursor-pointer"
+            >
+              ©
+            </Link>{" "}
+            {new Date().getFullYear()} {brand}. All rights reserved.
+          </p>
           <p className="uppercase tracking-[0.22em]">{rera}</p>
         </div>
 
