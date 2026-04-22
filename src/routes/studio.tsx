@@ -540,16 +540,16 @@ function HeroEditor({ value, onChange }: { value: SiteContent["hero"]; onChange:
 
 function AboutEditor({ value, onChange }: { value: SiteContent["about"]; onChange: (v: SiteContent["about"]) => void }) {
   const set = <K extends keyof SiteContent["about"]>(k: K, v: SiteContent["about"][K]) => onChange({ ...value, [k]: v });
-  const stats = value.stats as Array<{ label: string; value: string }>;
+  const stats: Array<{ label: string; value: string }> = Array.isArray(value?.stats) ? (value.stats as Array<{ label: string; value: string }>) : [];
   const setStat = (i: number, k: "label" | "value", v: string) => {
     const next = stats.map((s, idx) => idx === i ? { ...s, [k]: v } : s);
     set("stats", next as never);
   };
   return (
     <div className="space-y-5">
-      <Field label="Eyebrow"><TextInput value={value.eyebrow} onChange={(v) => set("eyebrow", v)} /></Field>
-      <Field label="Title"><TextInput value={value.title} onChange={(v) => set("title", v)} /></Field>
-      <Field label="Body"><TextArea value={value.body} onChange={(v) => set("body", v)} rows={5} /></Field>
+      <Field label="Eyebrow"><TextInput value={value?.eyebrow ?? ""} onChange={(v) => set("eyebrow", v)} /></Field>
+      <Field label="Title"><TextInput value={value?.title ?? ""} onChange={(v) => set("title", v)} /></Field>
+      <Field label="Body"><TextArea value={value?.body ?? ""} onChange={(v) => set("body", v)} rows={5} /></Field>
       <div>
         <div className="flex items-center justify-between mb-3">
           <div className="text-[11px] uppercase tracking-[0.2em] text-ivory/70">Stats</div>
