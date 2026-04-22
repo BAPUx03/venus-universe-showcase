@@ -573,7 +573,7 @@ function AboutEditor({ value, onChange }: { value: SiteContent["about"]; onChang
 }
 
 function HighlightsEditor({ value, onChange }: { value: SiteContent["highlights"]; onChange: (v: SiteContent["highlights"]) => void }) {
-  const items = value as Array<{ title: string; desc: string }>;
+  const items: Array<{ title: string; desc: string }> = Array.isArray(value) ? (value as Array<{ title: string; desc: string }>) : [];
   const set = (i: number, k: "title" | "desc", v: string) => onChange(items.map((it, idx) => idx === i ? { ...it, [k]: v } : it) as never);
   return (
     <div className="space-y-3">
@@ -597,8 +597,8 @@ function HighlightsEditor({ value, onChange }: { value: SiteContent["highlights"
 
 function EoiEditor({ value, onChange }: { value: SiteContent["eoi"]; onChange: (v: SiteContent["eoi"]) => void }) {
   const set = <K extends keyof SiteContent["eoi"],>(k: K, v: SiteContent["eoi"][K]) => onChange({ ...value, [k]: v });
-  const benefits = value.benefits;
-  const steps = value.steps;
+  const benefits: Array<{ title: string; desc: string }> = Array.isArray(value?.benefits) ? value.benefits : [];
+  const steps: Array<{ step: string; title: string; desc: string }> = Array.isArray(value?.steps) ? value.steps : [];
   return (
     <div className="space-y-5">
       <div className="p-3 border border-gold/30 bg-gold/5 text-[12px] text-ivory/85">
@@ -686,8 +686,9 @@ function MasterPlanEditor({ value, onChange }: { value: SiteContent["masterPlan"
 }
 
 function ResidencesEditor({ value, onChange }: { value: SiteContent["residences"]; onChange: (v: SiteContent["residences"]) => void }) {
-  const items = value as Array<{ type: string; title: string; carpet: string; saleable: string; price: string; features: string[] }>;
-  const setItem = (i: number, patch: Partial<typeof items[number]>) => onChange(items.map((it, idx) => idx === i ? { ...it, ...patch } : it) as never);
+  type Item = { type: string; title: string; carpet: string; saleable: string; price: string; features: string[] };
+  const items: Item[] = Array.isArray(value) ? (value as Item[]).map((it) => ({ ...it, features: Array.isArray(it?.features) ? it.features : [] })) : [];
+  const setItem = (i: number, patch: Partial<Item>) => onChange(items.map((it, idx) => idx === i ? { ...it, ...patch } : it) as never);
   return (
     <div className="space-y-3">
       <div className="flex items-center justify-between">
@@ -730,7 +731,7 @@ function ResidencesEditor({ value, onChange }: { value: SiteContent["residences"
 }
 
 function AmenitiesEditor({ value, onChange }: { value: SiteContent["amenities"]; onChange: (v: SiteContent["amenities"]) => void }) {
-  const items = value as string[];
+  const items: string[] = Array.isArray(value) ? (value as string[]) : [];
   return (
     <div className="space-y-3">
       <div className="flex items-center justify-between">
@@ -751,7 +752,7 @@ function AmenitiesEditor({ value, onChange }: { value: SiteContent["amenities"];
 
 function LocationEditor({ value, onChange }: { value: SiteContent["location"]; onChange: (v: SiteContent["location"]) => void }) {
   const set = <K extends keyof SiteContent["location"]>(k: K, v: SiteContent["location"][K]) => onChange({ ...value, [k]: v });
-  const nearby = value.nearby as Array<{ name: string; time: string }>;
+  const nearby: Array<{ name: string; time: string }> = Array.isArray(value?.nearby) ? (value.nearby as Array<{ name: string; time: string }>) : [];
   return (
     <div className="space-y-5">
       <Field label="Eyebrow"><TextInput value={value.eyebrow} onChange={(v) => set("eyebrow", v)} /></Field>
@@ -777,8 +778,9 @@ function LocationEditor({ value, onChange }: { value: SiteContent["location"]; o
 }
 
 function GalleryEditor({ value, onChange }: { value: SiteContent["gallery"]; onChange: (v: SiteContent["gallery"]) => void }) {
-  const items = value as Array<{ src: string; caption?: string; type?: string; poster?: string }>;
-  const setItem = (i: number, patch: Partial<typeof items[number]>) => onChange(items.map((it, idx) => idx === i ? { ...it, ...patch } : it) as never);
+  type Item = { src: string; caption?: string; type?: string; poster?: string };
+  const items: Item[] = Array.isArray(value) ? (value as Item[]) : [];
+  const setItem = (i: number, patch: Partial<Item>) => onChange(items.map((it, idx) => idx === i ? { ...it, ...patch } : it) as never);
   return (
     <div className="space-y-3">
       <div className="flex items-center justify-between">
@@ -814,8 +816,8 @@ function BrochureEditor({ value, onChange }: { value: SiteContent["brochure"]; o
 }
 
 function TrustEditor({ value, onChange }: { value: SiteContent["trust"]; onChange: (v: SiteContent["trust"]) => void }) {
-  const quotes = value.quotes as Array<{ quote: string; author: string }>;
-  const awards = value.awards as string[];
+  const quotes: Array<{ quote: string; author: string }> = Array.isArray(value?.quotes) ? (value.quotes as Array<{ quote: string; author: string }>) : [];
+  const awards: string[] = Array.isArray(value?.awards) ? (value.awards as string[]) : [];
   return (
     <div className="space-y-7">
       <div>
