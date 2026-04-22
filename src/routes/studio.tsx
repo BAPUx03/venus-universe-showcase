@@ -113,7 +113,9 @@ function AdminPanel({ onLogout }: { onLogout: () => void }) {
 
   useEffect(() => {
     if (loading) return;
-    setDraft(structuredClone(content[active]));
+    // Ensure draft always has the full default structure merged with current content.
+    // Prevents editors from crashing if the saved DB row is missing arrays/keys.
+    setDraft(structuredClone(ensureShape(active, content[active])));
     setSavedAt(null);
   }, [active, loading, content]);
 
