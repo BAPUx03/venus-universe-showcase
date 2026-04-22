@@ -235,7 +235,7 @@ export const defaultContent = {
       { title: "Adjustable in Booking", desc: "EOI amount fully adjustable in your final booking value." },
     ],
     steps: [
-      { step: "01", title: "Pay ₹5,00,000 EOI", desc: "Secure online payment via Stripe — instant confirmation." },
+      { step: "01", title: "Pay ₹5,00,000 EOI", desc: "Secure payment with our advisor — instant confirmation." },
       { step: "02", title: "Get Priority Access", desc: "Receive your priority number and exclusive pricing details." },
       { step: "03", title: "Choose Your Residence", desc: "Pick your preferred unit before public launch opens." },
     ],

@@ -54,7 +54,6 @@ function EoiPage() {
       });
       if (error) throw error;
       setDone(true);
-      // Future: redirect to Stripe checkout here
     } catch (e2) {
       setErr((e2 as Error).message);
     } finally {
