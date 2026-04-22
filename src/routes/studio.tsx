@@ -102,6 +102,35 @@ const SECTIONS = [
 
 type SectionKey = (typeof SECTIONS)[number]["key"];
 
+/** Recursively guarantee that `value` has the same shape as `defaults`.
+ *  - Missing keys are filled from defaults.
+ *  - Wrong types (e.g. saved string where default is array/object) are replaced with defaults.
+ *  - Arrays of objects: each item is shape-merged against the first default item. */
+function ensureShape<T>(_section: SectionKey, value: unknown, defaults?: unknown): T {
+  // First call: look up defaults from defaultContent for this section.
+  const def = defaults === undefined ? (defaultContent as Record<string, unknown>)[_section] : defaults;
+  if (Array.isArray(def)) {
+    if (!Array.isArray(value)) return structuredClone(def) as T;
+    const template = def[0];
+    if (template && typeof template === "object" && !Array.isArray(template)) {
+      return value.map((item) => ensureShape(_section, item, template)) as T;
+    }
+    return value as T;
+  }
+  if (def && typeof def === "object") {
+    const out: Record<string, unknown> = {};
+    const v = (value && typeof value === "object" && !Array.isArray(value)) ? (value as Record<string, unknown>) : {};
+    for (const k of Object.keys(def as Record<string, unknown>)) {
+      const dv = (def as Record<string, unknown>)[k];
+      out[k] = k in v ? ensureShape(_section, v[k], dv) : structuredClone(dv);
+    }
+    // Preserve any extra keys the user may have saved
+    for (const k of Object.keys(v)) if (!(k in out)) out[k] = v[k];
+    return out as T;
+  }
+  return (value === undefined || value === null ? def : value) as T;
+}
+
 function AdminPanel({ onLogout }: { onLogout: () => void }) {
   const { content, loading } = useSiteContent();
   const [active, setActive] = useState<SectionKey>("hero");
