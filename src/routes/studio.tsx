@@ -33,6 +33,8 @@ function Studio() {
     return (
       <div className="min-h-screen flex items-center justify-center px-4 bg-background">
         <form
+          method="post"
+          action=""
           onSubmit={(e) => {
             e.preventDefault();
             const fd = new FormData(e.currentTarget);
