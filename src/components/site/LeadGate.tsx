@@ -3,6 +3,7 @@ import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
 import { notifyLead } from "@/lib/notifyLead";
 import { ChevronDown } from "lucide-react";
+import { OtpModal } from "./OtpModal";
 
 const STORAGE_KEY = "venus_lead_submitted_v1";
 
