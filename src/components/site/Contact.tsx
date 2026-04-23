@@ -2,6 +2,7 @@ import { useState } from "react";
 import { z } from "zod";
 import { Phone, Mail, MapPin, Send } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { notifyLead } from "@/lib/notifyLead";
 import { Section } from "./Section";
 import type { SiteContent } from "@/content/defaultContent";
 
@@ -27,7 +28,7 @@ export function Contact({ contact }: { contact: SiteContent["contact"] }) {
     }
     setErr("");
     setStatus("sending");
-    const { error } = await supabase.from("leads").insert({
+    const lead = {
       requirement: "Contact Form",
       budget: "—",
       first_name: parsed.data.first_name,
@@ -35,12 +36,14 @@ export function Contact({ contact }: { contact: SiteContent["contact"] }) {
       email: parsed.data.email,
       phone: `+91${parsed.data.phone}`,
       source: "contact_form",
-    });
+    };
+    const { error } = await supabase.from("leads").insert(lead);
     if (error) {
       setStatus("error");
       setErr("Something went wrong. Please call us directly.");
       return;
     }
+    void notifyLead(lead);
     setStatus("sent");
     setForm({ first_name: "", last_name: "", email: "", phone: "", message: "" });
   };

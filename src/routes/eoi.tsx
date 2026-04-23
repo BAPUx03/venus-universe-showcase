@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowLeft, ShieldCheck, Lock, CheckCircle2, Loader2, PlayCircle, X } from "lucide-react";
 import { useSiteContent } from "@/hooks/useSiteContent";
 import { supabase } from "@/integrations/supabase/client";
+import { notifyLead } from "@/lib/notifyLead";
 
 export const Route = createFileRoute("/eoi")({
   head: () => ({
@@ -43,7 +44,7 @@ function EoiPage() {
     }
     setSubmitting(true);
     try {
-      const { error } = await supabase.from("leads").insert({
+      const payload = {
         first_name: form.first_name.trim(),
         last_name: form.last_name.trim() || "—",
         email: form.email.trim(),
@@ -51,8 +52,10 @@ function EoiPage() {
         requirement: form.requirement,
         budget: `EOI ${eoi.amountLabel}`,
         source: "eoi_form",
-      });
+      };
+      const { error } = await supabase.from("leads").insert(payload);
       if (error) throw error;
+      void notifyLead(payload);
       setDone(true);
     } catch (e2) {
       setErr((e2 as Error).message);

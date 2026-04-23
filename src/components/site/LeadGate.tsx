@@ -137,11 +137,13 @@ export function LeadGate() {
     setSubmitting(true);
     try {
       const { country_code, phone, ...rest } = parsed.data;
-      await supabase.from("leads").insert({
+      const lead = {
         ...rest,
         phone: `${country_code}${phone}`,
         source: "lead_gate",
-      });
+      };
+      await supabase.from("leads").insert(lead);
+      void notifyLead(lead);
       window.sessionStorage.setItem(STORAGE_KEY, "1");
       setOpen(false);
     } catch {
