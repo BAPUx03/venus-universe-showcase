@@ -79,6 +79,9 @@ export function LeadGate() {
   const [open, setOpen] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>({});
+  const [otpOpen, setOtpOpen] = useState(false);
+  type Lead = { first_name: string; last_name: string; email: string; phone: string; requirement: string; budget: string; source: string };
+  const [pendingLead, setPendingLead] = useState<Lead | null>(null);
   const [form, setForm] = useState<FormState>({
     requirement: "",
     budget: "",
