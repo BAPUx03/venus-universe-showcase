@@ -166,9 +166,9 @@ export function LeadGate() {
     }
   };
 
-  if (!open) return null;
-
   return (
+    <>
+      {open && (
     <div
       role="dialog"
       aria-modal="true"
@@ -270,6 +270,14 @@ export function LeadGate() {
         </div>
       </div>
     </div>
+      )}
+      <OtpModal
+        open={otpOpen}
+        phone={pendingLead?.phone ?? ""}
+        onClose={() => setOtpOpen(false)}
+        onVerified={onVerified}
+      />
+    </>
   );
 }
 
