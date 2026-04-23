@@ -226,6 +226,13 @@ function EoiPage() {
           </div>
         </div>
       )}
+
+      <OtpModal
+        open={otpOpen}
+        phone={normalizedPhone(form.phone)}
+        onClose={() => setOtpOpen(false)}
+        onVerified={onVerified}
+      />
     </div>
   );
 }
