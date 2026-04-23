@@ -14,6 +14,7 @@ import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
 import { Route as EoiRouteImport } from './routes/eoi'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ApiPublicNotifyLeadRouteImport } from './routes/api/public/notify-lead'
 
 const StudioRoute = StudioRouteImport.update({
   id: '/studio',
@@ -40,6 +41,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicNotifyLeadRoute = ApiPublicNotifyLeadRouteImport.update({
+  id: '/api/public/notify-lead',
+  path: '/api/public/notify-lead',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -47,6 +53,7 @@ export interface FileRoutesByFullPath {
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/studio': typeof StudioRoute
+  '/api/public/notify-lead': typeof ApiPublicNotifyLeadRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -54,6 +61,7 @@ export interface FileRoutesByTo {
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/studio': typeof StudioRoute
+  '/api/public/notify-lead': typeof ApiPublicNotifyLeadRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -62,13 +70,33 @@ export interface FileRoutesById {
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/studio': typeof StudioRoute
+  '/api/public/notify-lead': typeof ApiPublicNotifyLeadRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/eoi' | '/robots.txt' | '/sitemap.xml' | '/studio'
+  fullPaths:
+    | '/'
+    | '/eoi'
+    | '/robots.txt'
+    | '/sitemap.xml'
+    | '/studio'
+    | '/api/public/notify-lead'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/eoi' | '/robots.txt' | '/sitemap.xml' | '/studio'
-  id: '__root__' | '/' | '/eoi' | '/robots.txt' | '/sitemap.xml' | '/studio'
+  to:
+    | '/'
+    | '/eoi'
+    | '/robots.txt'
+    | '/sitemap.xml'
+    | '/studio'
+    | '/api/public/notify-lead'
+  id:
+    | '__root__'
+    | '/'
+    | '/eoi'
+    | '/robots.txt'
+    | '/sitemap.xml'
+    | '/studio'
+    | '/api/public/notify-lead'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -77,6 +105,7 @@ export interface RootRouteChildren {
   RobotsDottxtRoute: typeof RobotsDottxtRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   StudioRoute: typeof StudioRoute
+  ApiPublicNotifyLeadRoute: typeof ApiPublicNotifyLeadRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -116,6 +145,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/notify-lead': {
+      id: '/api/public/notify-lead'
+      path: '/api/public/notify-lead'
+      fullPath: '/api/public/notify-lead'
+      preLoaderRoute: typeof ApiPublicNotifyLeadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -125,6 +161,7 @@ const rootRouteChildren: RootRouteChildren = {
   RobotsDottxtRoute: RobotsDottxtRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   StudioRoute: StudioRoute,
+  ApiPublicNotifyLeadRoute: ApiPublicNotifyLeadRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
