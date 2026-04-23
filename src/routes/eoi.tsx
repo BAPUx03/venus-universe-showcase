@@ -5,6 +5,7 @@ import { ArrowLeft, ShieldCheck, Lock, CheckCircle2, Loader2, PlayCircle, X } fr
 import { useSiteContent } from "@/hooks/useSiteContent";
 import { supabase } from "@/integrations/supabase/client";
 import { notifyLead } from "@/lib/notifyLead";
+import { OtpModal } from "@/components/site/OtpModal";
 
 export const Route = createFileRoute("/eoi")({
   head: () => ({
@@ -33,22 +34,35 @@ function EoiPage() {
   const [done, setDone] = useState(false);
   const [err, setErr] = useState("");
   const [videoOpen, setVideoOpen] = useState(false);
+  const [otpOpen, setOtpOpen] = useState(false);
   const embed = ytEmbed(eoi.videoUrl);
 
-  const onSubmit = async (e: React.FormEvent) => {
+  const normalizedPhone = (raw: string) => {
+    const digits = raw.replace(/\D/g, "");
+    if (raw.trim().startsWith("+")) return `+${digits}`;
+    if (digits.length === 10) return `+91${digits}`;
+    return `+${digits}`;
+  };
+
+  const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setErr("");
     if (!form.first_name.trim() || !form.email.trim() || !form.phone.trim()) {
       setErr("Please fill all required fields.");
       return;
     }
+    setOtpOpen(true);
+  };
+
+  const onVerified = async () => {
+    setOtpOpen(false);
     setSubmitting(true);
     try {
       const payload = {
         first_name: form.first_name.trim(),
         last_name: form.last_name.trim() || "—",
         email: form.email.trim(),
-        phone: form.phone.trim(),
+        phone: normalizedPhone(form.phone),
         requirement: form.requirement,
         budget: `EOI ${eoi.amountLabel}`,
         source: "eoi_form",
