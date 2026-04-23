@@ -127,7 +127,7 @@ export function LeadGate() {
     if (errors[k]) setErrors((e) => ({ ...e, [k]: undefined }));
   };
 
-  const submit = async (e: React.FormEvent) => {
+  const submit = (e: React.FormEvent) => {
     e.preventDefault();
     const parsed = schema.safeParse(form);
     if (!parsed.success) {
@@ -139,23 +139,30 @@ export function LeadGate() {
       setErrors(fieldErrors);
       return;
     }
+    const { country_code, phone, ...rest } = parsed.data;
+    const lead: Lead = {
+      ...rest,
+      phone: `${country_code}${phone}`,
+      source: "lead_gate",
+    };
+    setPendingLead(lead);
+    setOtpOpen(true);
+  };
+
+  const onVerified = async () => {
+    if (!pendingLead) return;
+    setOtpOpen(false);
     setSubmitting(true);
     try {
-      const { country_code, phone, ...rest } = parsed.data;
-      const lead = {
-        ...rest,
-        phone: `${country_code}${phone}`,
-        source: "lead_gate",
-      };
-      await supabase.from("leads").insert(lead);
-      void notifyLead(lead);
-      window.sessionStorage.setItem(STORAGE_KEY, "1");
-      setOpen(false);
+      await supabase.from("leads").insert(pendingLead);
+      void notifyLead(pendingLead);
     } catch {
-      window.sessionStorage.setItem(STORAGE_KEY, "1");
-      setOpen(false);
+      /* ignore */
     } finally {
+      window.sessionStorage.setItem(STORAGE_KEY, "1");
       setSubmitting(false);
+      setOpen(false);
+      setPendingLead(null);
     }
   };
 
