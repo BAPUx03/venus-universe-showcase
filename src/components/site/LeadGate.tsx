@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
+import { notifyLead } from "@/lib/notifyLead";
 import { ChevronDown } from "lucide-react";
 
 const STORAGE_KEY = "venus_lead_submitted_v1";
@@ -137,11 +138,13 @@ export function LeadGate() {
     setSubmitting(true);
     try {
       const { country_code, phone, ...rest } = parsed.data;
-      await supabase.from("leads").insert({
+      const lead = {
         ...rest,
         phone: `${country_code}${phone}`,
         source: "lead_gate",
-      });
+      };
+      await supabase.from("leads").insert(lead);
+      void notifyLead(lead);
       window.sessionStorage.setItem(STORAGE_KEY, "1");
       setOpen(false);
     } catch {

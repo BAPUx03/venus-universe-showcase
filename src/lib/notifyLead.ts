@@ -1,0 +1,23 @@
+export interface LeadPayload {
+  first_name: string;
+  last_name?: string;
+  email: string;
+  phone: string;
+  requirement?: string;
+  budget?: string;
+  source?: string;
+}
+
+export async function notifyLead(lead: LeadPayload): Promise<void> {
+  try {
+    await fetch("/api/public/notify-lead", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(lead),
+      keepalive: true,
+    });
+  } catch (e) {
+    // Non-blocking — never break the form on notification failure
+    console.warn("notifyLead failed:", e);
+  }
+}
