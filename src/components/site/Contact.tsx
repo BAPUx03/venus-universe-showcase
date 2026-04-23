@@ -4,6 +4,7 @@ import { Phone, Mail, MapPin, Send } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { notifyLead } from "@/lib/notifyLead";
 import { Section } from "./Section";
+import { OtpModal } from "./OtpModal";
 import type { SiteContent } from "@/content/defaultContent";
 
 const schema = z.object({
@@ -18,8 +19,11 @@ export function Contact({ contact }: { contact: SiteContent["contact"] }) {
   const [form, setForm] = useState({ first_name: "", last_name: "", email: "", phone: "", message: "" });
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [err, setErr] = useState("");
+  const [otpOpen, setOtpOpen] = useState(false);
+  type Lead = { first_name: string; last_name: string; email: string; phone: string; requirement: string; budget: string; source: string };
+  const [pendingLead, setPendingLead] = useState<Lead | null>(null);
 
-  const submit = async (e: React.FormEvent) => {
+  const submit = (e: React.FormEvent) => {
     e.preventDefault();
     const parsed = schema.safeParse(form);
     if (!parsed.success) {
@@ -27,7 +31,6 @@ export function Contact({ contact }: { contact: SiteContent["contact"] }) {
       return;
     }
     setErr("");
-    setStatus("sending");
     const lead = {
       requirement: "Contact Form",
       budget: "—",
@@ -37,15 +40,24 @@ export function Contact({ contact }: { contact: SiteContent["contact"] }) {
       phone: `+91${parsed.data.phone}`,
       source: "contact_form",
     };
-    const { error } = await supabase.from("leads").insert(lead);
+    setPendingLead(lead);
+    setOtpOpen(true);
+  };
+
+  const onVerified = async () => {
+    if (!pendingLead) return;
+    setOtpOpen(false);
+    setStatus("sending");
+    const { error } = await supabase.from("leads").insert(pendingLead);
     if (error) {
       setStatus("error");
       setErr("Something went wrong. Please call us directly.");
       return;
     }
-    void notifyLead(lead);
+    void notifyLead(pendingLead);
     setStatus("sent");
     setForm({ first_name: "", last_name: "", email: "", phone: "", message: "" });
+    setPendingLead(null);
   };
 
   return (
@@ -108,6 +120,12 @@ export function Contact({ contact }: { contact: SiteContent["contact"] }) {
           )}
         </form>
       </div>
+      <OtpModal
+        open={otpOpen}
+        phone={pendingLead?.phone ?? ""}
+        onClose={() => setOtpOpen(false)}
+        onVerified={onVerified}
+      />
     </Section>
   );
 }

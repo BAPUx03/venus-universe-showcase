@@ -3,6 +3,7 @@ import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
 import { notifyLead } from "@/lib/notifyLead";
 import { ChevronDown } from "lucide-react";
+import { OtpModal } from "./OtpModal";
 
 const STORAGE_KEY = "venus_lead_submitted_v1";
 
@@ -78,6 +79,9 @@ export function LeadGate() {
   const [open, setOpen] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>({});
+  const [otpOpen, setOtpOpen] = useState(false);
+  type Lead = { first_name: string; last_name: string; email: string; phone: string; requirement: string; budget: string; source: string };
+  const [pendingLead, setPendingLead] = useState<Lead | null>(null);
   const [form, setForm] = useState<FormState>({
     requirement: "",
     budget: "",
@@ -123,7 +127,7 @@ export function LeadGate() {
     if (errors[k]) setErrors((e) => ({ ...e, [k]: undefined }));
   };
 
-  const submit = async (e: React.FormEvent) => {
+  const submit = (e: React.FormEvent) => {
     e.preventDefault();
     const parsed = schema.safeParse(form);
     if (!parsed.success) {
@@ -135,29 +139,36 @@ export function LeadGate() {
       setErrors(fieldErrors);
       return;
     }
+    const { country_code, phone, ...rest } = parsed.data;
+    const lead: Lead = {
+      ...rest,
+      phone: `${country_code}${phone}`,
+      source: "lead_gate",
+    };
+    setPendingLead(lead);
+    setOtpOpen(true);
+  };
+
+  const onVerified = async () => {
+    if (!pendingLead) return;
+    setOtpOpen(false);
     setSubmitting(true);
     try {
-      const { country_code, phone, ...rest } = parsed.data;
-      const lead = {
-        ...rest,
-        phone: `${country_code}${phone}`,
-        source: "lead_gate",
-      };
-      await supabase.from("leads").insert(lead);
-      void notifyLead(lead);
-      window.sessionStorage.setItem(STORAGE_KEY, "1");
-      setOpen(false);
+      await supabase.from("leads").insert(pendingLead);
+      void notifyLead(pendingLead);
     } catch {
-      window.sessionStorage.setItem(STORAGE_KEY, "1");
-      setOpen(false);
+      /* ignore */
     } finally {
+      window.sessionStorage.setItem(STORAGE_KEY, "1");
       setSubmitting(false);
+      setOpen(false);
+      setPendingLead(null);
     }
   };
 
-  if (!open) return null;
-
   return (
+    <>
+      {open && (
     <div
       role="dialog"
       aria-modal="true"
@@ -259,6 +270,14 @@ export function LeadGate() {
         </div>
       </div>
     </div>
+      )}
+      <OtpModal
+        open={otpOpen}
+        phone={pendingLead?.phone ?? ""}
+        onClose={() => setOtpOpen(false)}
+        onVerified={onVerified}
+      />
+    </>
   );
 }
 

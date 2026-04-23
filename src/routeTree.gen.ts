@@ -14,6 +14,7 @@ import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
 import { Route as EoiRouteImport } from './routes/eoi'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ApiPublicOtpRouteImport } from './routes/api/public/otp'
 import { Route as ApiPublicNotifyLeadRouteImport } from './routes/api/public/notify-lead'
 
 const StudioRoute = StudioRouteImport.update({
@@ -41,6 +42,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicOtpRoute = ApiPublicOtpRouteImport.update({
+  id: '/api/public/otp',
+  path: '/api/public/otp',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiPublicNotifyLeadRoute = ApiPublicNotifyLeadRouteImport.update({
   id: '/api/public/notify-lead',
   path: '/api/public/notify-lead',
@@ -54,6 +60,7 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/studio': typeof StudioRoute
   '/api/public/notify-lead': typeof ApiPublicNotifyLeadRoute
+  '/api/public/otp': typeof ApiPublicOtpRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -62,6 +69,7 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/studio': typeof StudioRoute
   '/api/public/notify-lead': typeof ApiPublicNotifyLeadRoute
+  '/api/public/otp': typeof ApiPublicOtpRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -71,6 +79,7 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/studio': typeof StudioRoute
   '/api/public/notify-lead': typeof ApiPublicNotifyLeadRoute
+  '/api/public/otp': typeof ApiPublicOtpRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -81,6 +90,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/studio'
     | '/api/public/notify-lead'
+    | '/api/public/otp'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -89,6 +99,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/studio'
     | '/api/public/notify-lead'
+    | '/api/public/otp'
   id:
     | '__root__'
     | '/'
@@ -97,6 +108,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/studio'
     | '/api/public/notify-lead'
+    | '/api/public/otp'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -106,6 +118,7 @@ export interface RootRouteChildren {
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   StudioRoute: typeof StudioRoute
   ApiPublicNotifyLeadRoute: typeof ApiPublicNotifyLeadRoute
+  ApiPublicOtpRoute: typeof ApiPublicOtpRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -145,6 +158,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/otp': {
+      id: '/api/public/otp'
+      path: '/api/public/otp'
+      fullPath: '/api/public/otp'
+      preLoaderRoute: typeof ApiPublicOtpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/public/notify-lead': {
       id: '/api/public/notify-lead'
       path: '/api/public/notify-lead'
@@ -162,6 +182,7 @@ const rootRouteChildren: RootRouteChildren = {
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   StudioRoute: StudioRoute,
   ApiPublicNotifyLeadRoute: ApiPublicNotifyLeadRoute,
+  ApiPublicOtpRoute: ApiPublicOtpRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
