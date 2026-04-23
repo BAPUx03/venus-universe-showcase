@@ -4,6 +4,7 @@ import { Phone, Mail, MapPin, Send } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { notifyLead } from "@/lib/notifyLead";
 import { Section } from "./Section";
+import { OtpModal } from "./OtpModal";
 import type { SiteContent } from "@/content/defaultContent";
 
 const schema = z.object({
