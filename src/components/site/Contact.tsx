@@ -20,7 +20,8 @@ export function Contact({ contact }: { contact: SiteContent["contact"] }) {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [err, setErr] = useState("");
   const [otpOpen, setOtpOpen] = useState(false);
-  const [pendingLead, setPendingLead] = useState<Record<string, string> | null>(null);
+  type Lead = { first_name: string; last_name: string; email: string; phone: string; requirement: string; budget: string; source: string };
+  const [pendingLead, setPendingLead] = useState<Lead | null>(null);
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -119,6 +120,12 @@ export function Contact({ contact }: { contact: SiteContent["contact"] }) {
           )}
         </form>
       </div>
+      <OtpModal
+        open={otpOpen}
+        phone={pendingLead?.phone ?? ""}
+        onClose={() => setOtpOpen(false)}
+        onVerified={onVerified}
+      />
     </Section>
   );
 }
