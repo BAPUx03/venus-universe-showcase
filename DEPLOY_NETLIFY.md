@@ -26,15 +26,14 @@ Add ALL of these (copy values from Lovable Cloud → Secrets):
 
 | Variable | Where to copy from |
 |---|---|
-| `TWOFACTOR_API_KEY` | Lovable Cloud secrets |
-| `BREVO_API_KEY` | Lovable Cloud secrets |
-| `LEAD_NOTIFICATION_EMAIL` | Lovable Cloud secrets |
-| `GOOGLE_SHEET_ID` | Lovable Cloud secrets |
-| `GOOGLE_SERVICE_ACCOUNT_EMAIL` | Lovable Cloud secrets |
-| `GOOGLE_PRIVATE_KEY` | Lovable Cloud secrets (paste as-is, with `\n` newlines) |
+| `TWOFACTOR_API_KEY` | Lovable Cloud → Secrets |
+| `BREVO_API_KEY` | Lovable Cloud → Secrets |
+| `BREVO_SENDER_EMAIL` | Lovable Cloud → Secrets |
+| `NOTIFICATION_EMAIL` | Lovable Cloud → Secrets |
+| `GOOGLE_SHEET_ID` | Lovable Cloud → Secrets |
+| `GOOGLE_SHEETS_API_KEY` | Lovable Cloud → Connectors → Google Sheets |
 | `SUPABASE_URL` | `https://yszfvicefomtrwbzemct.supabase.co` |
-| `SUPABASE_PUBLISHABLE_KEY` | from `.env` |
-| `SUPABASE_SERVICE_ROLE_KEY` | Lovable Cloud → Settings → API |
+| `SUPABASE_PUBLISHABLE_KEY` | from `.env` (anon key) |
 | `VITE_SUPABASE_URL` | same as `SUPABASE_URL` |
 | `VITE_SUPABASE_PUBLISHABLE_KEY` | same as `SUPABASE_PUBLISHABLE_KEY` |
 | `VITE_SUPABASE_PROJECT_ID` | `yszfvicefomtrwbzemct` |
