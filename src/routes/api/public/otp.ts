@@ -47,27 +47,58 @@ export const Route = createFileRoute("/api/public/otp")({
 
         try {
           if (parsed.data.action === "send") {
-            const phone = parsed.data.phone.replace(/^\+/, "");
-            // Use TRANSACTIONAL SMS endpoint (no template = default SMS, NOT voice call)
-            const url = `https://2factor.in/API/V1/${apiKey}/SMS/${encodeURIComponent(phone)}/AUTOGEN`;
-            const r = await fetch(url);
-            const data = (await r.json()) as { Status?: string; Details?: string };
-            if (data.Status !== "Success") {
-              return json({ ok: false, error: data.Details || "Failed to send OTP" }, 502);
+            const r = await fetch("https://2factor.in/API/V1/OTP/SEND", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                "X-API-Key": apiKey,
+              },
+              body: JSON.stringify({
+                to: parsed.data.phone,
+                channel: "SMS",
+              }),
+            });
+            const data = (await r.json()) as {
+              status?: string;
+              session_id?: string;
+              details?: string;
+              message?: string;
+              error?: string;
+            };
+            if (!r.ok || data.status?.toLowerCase() !== "sent" || !data.session_id) {
+              return json(
+                { ok: false, error: data.message || data.error || data.details || "Failed to send OTP" },
+                502,
+              );
             }
-            return json({ ok: true, sessionId: data.Details });
+            return json({ ok: true, sessionId: data.session_id });
           }
 
-          // verify
           const url = `https://2factor.in/API/V1/${apiKey}/SMS/VERIFY/${encodeURIComponent(
             parsed.data.sessionId,
           )}/${encodeURIComponent(parsed.data.otp)}`;
           const r = await fetch(url);
-          const data = (await r.json()) as { Status?: string; Details?: string };
-          if (data.Status === "Success" && data.Details === "OTP Matched") {
+          const data = (await r.json()) as {
+            Status?: string;
+            Details?: string;
+            status?: string;
+            details?: string;
+            message?: string;
+          };
+          const matched =
+            (data.Status === "Success" && data.Details === "OTP Matched") ||
+            (data.status?.toLowerCase() === "verified");
+          if (matched) {
             return json({ ok: true, verified: true });
           }
-          return json({ ok: false, verified: false, error: data.Details || "Invalid OTP" }, 400);
+          return json(
+            {
+              ok: false,
+              verified: false,
+              error: data.message || data.Details || data.details || "Invalid OTP",
+            },
+            400,
+          );
         } catch (e) {
           return json({ ok: false, error: (e as Error).message }, 500);
         }
