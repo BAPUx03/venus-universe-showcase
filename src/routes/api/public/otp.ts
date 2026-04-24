@@ -48,7 +48,8 @@ export const Route = createFileRoute("/api/public/otp")({
         try {
           if (parsed.data.action === "send") {
             const phone = parsed.data.phone.replace(/^\+/, "");
-            const url = `https://2factor.in/API/V1/${apiKey}/SMS/${encodeURIComponent(phone)}/AUTOGEN/OTP1`;
+            // Use TRANSACTIONAL SMS endpoint (no template = default SMS, NOT voice call)
+            const url = `https://2factor.in/API/V1/${apiKey}/SMS/${encodeURIComponent(phone)}/AUTOGEN`;
             const r = await fetch(url);
             const data = (await r.json()) as { Status?: string; Details?: string };
             if (data.Status !== "Success") {
