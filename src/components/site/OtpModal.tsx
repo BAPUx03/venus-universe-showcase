@@ -8,6 +8,8 @@ type Props = {
   onVerified: () => void;
 };
 
+const OTP_LENGTH = 4;
+
 export function OtpModal({ open, phone, onClose, onVerified }: Props) {
   const [stage, setStage] = useState<"sending" | "enter" | "verifying" | "done" | "error">("sending");
   const [sessionId, setSessionId] = useState("");
@@ -65,18 +67,18 @@ export function OtpModal({ open, phone, onClose, onVerified }: Props) {
 
   const setDigit = (i: number, v: string) => {
     const d = v.replace(/\D/g, "").slice(-1);
-    const next = otp.padEnd(6, " ").split("");
+    const next = otp.padEnd(OTP_LENGTH, " ").split("");
     next[i] = d || " ";
     const joined = next.join("").trimEnd();
     setOtp(joined);
-    if (d && i < 5) inputsRef.current[i + 1]?.focus();
-    if (joined.replace(/\s/g, "").length === 6) {
+    if (d && i < OTP_LENGTH - 1) inputsRef.current[i + 1]?.focus();
+    if (joined.replace(/\s/g, "").length === OTP_LENGTH) {
       void verify(joined.replace(/\s/g, ""));
     }
   };
 
   const onPaste = (e: React.ClipboardEvent) => {
-    const text = e.clipboardData.getData("text").replace(/\D/g, "").slice(0, 6);
+    const text = e.clipboardData.getData("text").replace(/\D/g, "").slice(0, OTP_LENGTH);
     if (!text) return;
     e.preventDefault();
     setOtp(text);
@@ -84,7 +86,7 @@ export function OtpModal({ open, phone, onClose, onVerified }: Props) {
       const el = inputsRef.current[idx];
       if (el) el.value = ch;
     });
-    if (text.length === 6) void verify(text);
+    if (text.length === OTP_LENGTH) void verify(text);
     else inputsRef.current[text.length]?.focus();
   };
 
@@ -133,7 +135,7 @@ export function OtpModal({ open, phone, onClose, onVerified }: Props) {
           </div>
           <h3 className="font-display text-xl font-bold text-foreground">Verify your mobile</h3>
           <p className="mt-1.5 text-[13px] text-foreground/60 inline-flex items-center justify-center gap-1.5">
-            <Phone size={12} /> OTP sent to <span className="font-semibold text-foreground">{phone}</span>
+            <Phone size={12} /> 4-digit SMS OTP sent to <span className="font-semibold text-foreground">{phone}</span>
           </p>
 
           {stage === "sending" && (
@@ -145,7 +147,7 @@ export function OtpModal({ open, phone, onClose, onVerified }: Props) {
           {(stage === "enter" || stage === "verifying") && (
             <>
               <div className="mt-6 flex justify-center gap-2" onPaste={onPaste}>
-                {Array.from({ length: 6 }).map((_, i) => (
+                {Array.from({ length: OTP_LENGTH }).map((_, i) => (
                   <input
                     key={i}
                     ref={(el) => {
@@ -160,7 +162,7 @@ export function OtpModal({ open, phone, onClose, onVerified }: Props) {
                         inputsRef.current[i - 1]?.focus();
                       }
                     }}
-                    className="w-11 h-13 sm:w-12 sm:h-14 text-center text-xl font-semibold border-2 border-[oklch(0.9_0.02_25)] rounded-lg focus:outline-none focus:border-[var(--accent-red)] focus:ring-2 focus:ring-[oklch(0.65_0.21_25/0.2)] transition disabled:opacity-60"
+                    className="w-12 h-14 sm:w-14 sm:h-16 text-center text-xl font-semibold border-2 border-[oklch(0.9_0.02_25)] rounded-lg focus:outline-none focus:border-[var(--accent-red)] focus:ring-2 focus:ring-[oklch(0.65_0.21_25/0.2)] transition disabled:opacity-60"
                   />
                 ))}
               </div>

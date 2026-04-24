@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { createHmac, timingSafeEqual } from "node:crypto";
 import { z } from "zod";
 
 const CORS = {
@@ -20,11 +21,62 @@ const SendSchema = z.object({
 
 const VerifySchema = z.object({
   action: z.literal("verify"),
-  sessionId: z.string().min(8).max(80),
-  otp: z.string().trim().regex(/^[0-9]{4,8}$/, "Invalid OTP"),
+  sessionId: z.string().min(32).max(512),
+  otp: z.string().trim().regex(/^[0-9]{4}$/, "Invalid OTP"),
 });
 
 const Schema = z.discriminatedUnion("action", [SendSchema, VerifySchema]);
+
+const OTP_LENGTH = 4;
+const OTP_TTL_MS = 10 * 60 * 1000;
+
+function getSigningSecret(apiKey: string) {
+  return process.env.OTP_SIGNING_SECRET || apiKey;
+}
+
+function signPayload(payload: string, secret: string) {
+  return createHmac("sha256", secret).update(payload).digest("hex");
+}
+
+function createSessionId(phone: string, otp: string, secret: string) {
+  const expiresAt = Date.now() + OTP_TTL_MS;
+  const payload = `${phone}.${otp}.${expiresAt}`;
+  const signature = signPayload(payload, secret);
+  return Buffer.from(`${payload}.${signature}`, "utf8").toString("base64url");
+}
+
+function verifySessionId(sessionId: string, otp: string, secret: string) {
+  try {
+    const decoded = Buffer.from(sessionId, "base64url").toString("utf8");
+    const parts = decoded.split(".");
+    if (parts.length !== 4) return { ok: false as const, error: "Invalid session" };
+
+    const [phone, storedOtp, expiresAtRaw, signature] = parts;
+    const payload = `${phone}.${storedOtp}.${expiresAtRaw}`;
+    const expected = signPayload(payload, secret);
+    const validSignature = timingSafeEqual(Buffer.from(signature), Buffer.from(expected));
+    if (!validSignature) return { ok: false as const, error: "Invalid session" };
+
+    const expiresAt = Number(expiresAtRaw);
+    if (!Number.isFinite(expiresAt) || Date.now() > expiresAt) {
+      return { ok: false as const, error: "OTP expired. Please request a new code." };
+    }
+
+    if (storedOtp !== otp) return { ok: false as const, error: "Invalid OTP" };
+
+    return { ok: true as const, phone };
+  } catch {
+    return { ok: false as const, error: "Invalid session" };
+  }
+}
+
+function parseGatewayResponse(text: string) {
+  try {
+    return JSON.parse(text) as { Status?: string; Details?: string };
+  } catch {
+    return null;
+  }
+}
 
 export const Route = createFileRoute("/api/public/otp")({
   server: {
@@ -47,52 +99,32 @@ export const Route = createFileRoute("/api/public/otp")({
 
         try {
           if (parsed.data.action === "send") {
-            // Strip leading + for 2Factor.in (expects digits only, e.g. 917016592727)
             const phone = parsed.data.phone.replace(/^\+/, "");
-            // GET /SMS/{phone}/AUTOGEN3 — sends numeric OTP via SMS only (no voice fallback)
-            const sendUrl = `https://2factor.in/API/V1/${apiKey}/SMS/${encodeURIComponent(phone)}/AUTOGEN3`;
-            const r = await fetch(sendUrl);
+            const otp = Math.floor(10 ** (OTP_LENGTH - 1) + Math.random() * 9 * 10 ** (OTP_LENGTH - 1)).toString();
+            const sendUrl = `https://2factor.in/API/V1/${apiKey}/SMS/${encodeURIComponent(phone)}/${encodeURIComponent(otp)}`;
+            const r = await fetch(sendUrl, { method: "POST" });
             const text = await r.text();
-            let data: { Status?: string; Details?: string } = {};
-            try {
-              data = JSON.parse(text);
-            } catch {
+            const data = parseGatewayResponse(text);
+            if (!data || data.Status !== "Success") {
               return json(
-                { ok: false, error: `OTP gateway error (${r.status})` },
+                { ok: false, error: data?.Details || `Failed to send OTP (${r.status})` },
                 502,
               );
             }
-            if (data.Status !== "Success" || !data.Details) {
-              return json(
-                { ok: false, error: data.Details || "Failed to send OTP" },
-                502,
-              );
-            }
-            return json({ ok: true, sessionId: data.Details });
+
+            const sessionId = createSessionId(phone, otp, getSigningSecret(apiKey));
+            return json({ ok: true, sessionId, digits: OTP_LENGTH });
           }
 
-          const url = `https://2factor.in/API/V1/${apiKey}/SMS/VERIFY/${encodeURIComponent(
-            parsed.data.sessionId,
-          )}/${encodeURIComponent(parsed.data.otp)}`;
-          const r = await fetch(url);
-          const data = (await r.json()) as {
-            Status?: string;
-            Details?: string;
-            status?: string;
-            details?: string;
-            message?: string;
-          };
-          const matched =
-            (data.Status === "Success" && data.Details === "OTP Matched") ||
-            (data.status?.toLowerCase() === "verified");
-          if (matched) {
+          const verified = verifySessionId(parsed.data.sessionId, parsed.data.otp, getSigningSecret(apiKey));
+          if (verified.ok) {
             return json({ ok: true, verified: true });
           }
           return json(
             {
               ok: false,
               verified: false,
-              error: data.message || data.Details || data.details || "Invalid OTP",
+              error: verified.error,
             },
             400,
           );
