@@ -1,0 +1,17 @@
+[build]
+  command = "npm run build"
+  publish = ".output/public"
+
+[build.environment]
+  NODE_VERSION = "20"
+  DEPLOY_TARGET = "netlify"
+
+# TanStack Start with Netlify produces a Netlify Function as the SSR + API handler.
+# The build output places it under .netlify/functions-internal automatically when
+# the netlify preset is used. The redirect below ensures all non-static requests
+# are routed through the SSR/server-route handler.
+[[redirects]]
+  from = "/*"
+  to = "/.netlify/functions/server"
+  status = 200
+  force = false
