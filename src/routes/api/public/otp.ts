@@ -47,31 +47,28 @@ export const Route = createFileRoute("/api/public/otp")({
 
         try {
           if (parsed.data.action === "send") {
-            const r = await fetch("https://2factor.in/API/V1/OTP/SEND", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-                "X-API-Key": apiKey,
-              },
-              body: JSON.stringify({
-                to: parsed.data.phone,
-                channel: "SMS",
-              }),
-            });
-            const data = (await r.json()) as {
-              status?: string;
-              session_id?: string;
-              details?: string;
-              message?: string;
-              error?: string;
-            };
-            if (!r.ok || data.status?.toLowerCase() !== "sent" || !data.session_id) {
+            // Strip leading + for 2Factor.in (expects digits only, e.g. 917016592727)
+            const phone = parsed.data.phone.replace(/^\+/, "");
+            // GET /SMS/{phone}/AUTOGEN3 — sends numeric OTP via SMS only (no voice fallback)
+            const sendUrl = `https://2factor.in/API/V1/${apiKey}/SMS/${encodeURIComponent(phone)}/AUTOGEN3`;
+            const r = await fetch(sendUrl);
+            const text = await r.text();
+            let data: { Status?: string; Details?: string } = {};
+            try {
+              data = JSON.parse(text);
+            } catch {
               return json(
-                { ok: false, error: data.message || data.error || data.details || "Failed to send OTP" },
+                { ok: false, error: `OTP gateway error (${r.status})` },
                 502,
               );
             }
-            return json({ ok: true, sessionId: data.session_id });
+            if (data.Status !== "Success" || !data.Details) {
+              return json(
+                { ok: false, error: data.Details || "Failed to send OTP" },
+                502,
+              );
+            }
+            return json({ ok: true, sessionId: data.Details });
           }
 
           const url = `https://2factor.in/API/V1/${apiKey}/SMS/VERIFY/${encodeURIComponent(
