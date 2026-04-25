@@ -95,7 +95,7 @@ export function OtpModal({ open, phone, onClose, onVerified }: Props) {
     setStage("verifying");
     setErr("");
     try {
-      const r = await fetch("/api/public/otp", {
+      const r = await fetch(apiUrl("/api/public/otp"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ action: "verify", sessionId, otp: code }),
