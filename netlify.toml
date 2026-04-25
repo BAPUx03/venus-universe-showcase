@@ -1,5 +1,5 @@
 [build]
-  command = "npm run build"
+  command = "npm run build && node scripts/prerender-static.mjs"
   publish = "dist/client"
 
 [build.environment]
@@ -8,12 +8,15 @@
 
 # Hybrid hosting:
 # - Frontend (this site) is served as a static SPA from Netlify.
-# - Backend API routes (/api/public/*) live on Lovable (Cloudflare).
-#   The frontend reads VITE_API_BASE_URL at build time and prefixes
-#   all /api/public/* fetches with the Lovable URL — see src/lib/apiBase.ts.
+# - Backend API routes (/api/public/*) live on Lovable (Cloudflare). The
+#   frontend reads VITE_API_BASE_URL at build time and prefixes all
+#   /api/public/* fetches with that URL — see src/lib/apiBase.ts.
 #
-# REQUIRED env var on Netlify (Site settings → Environment variables):
-#   VITE_API_BASE_URL = https://venus-universe-showcase.lovable.app
+# REQUIRED env vars on Netlify (Site settings → Environment variables):
+#   VITE_API_BASE_URL          = https://venus-universe-showcase.lovable.app
+#   VITE_SUPABASE_URL          = https://yszfvicefomtrwbzemct.supabase.co
+#   VITE_SUPABASE_PUBLISHABLE_KEY = (anon key from .env)
+#   VITE_SUPABASE_PROJECT_ID   = yszfvicefomtrwbzemct
 #
 # SPA fallback so client-side routes (e.g. /eoi, /studio) work on refresh.
 [[redirects]]
