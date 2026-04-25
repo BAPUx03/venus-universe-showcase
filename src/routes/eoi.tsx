@@ -196,7 +196,7 @@ function EoiPage() {
                 ))}
               </div>
 
-              {embed && (
+              {embed && eoi.videoEnabled && (
                 <button
                   onClick={() => setVideoOpen(true)}
                   className="mt-6 w-full inline-flex items-center justify-center gap-2 px-4 py-3 rounded-md text-[12.5px] font-semibold border-2 border-[oklch(0.85_0.04_25)] text-foreground hover:bg-[oklch(0.97_0.02_25)] hover:border-[var(--accent-red)] transition"
@@ -205,6 +205,35 @@ function EoiPage() {
                 </button>
               )}
             </div>
+
+            {/* Watch: What is EOI? — admin-controlled video card */}
+            {embed && eoi.videoEnabled && (
+              <div className="bg-gradient-to-br from-[oklch(0.99_0.01_25)] to-white rounded-2xl border border-[oklch(0.92_0.02_25)] p-6 overflow-hidden">
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-semibold tracking-[0.16em] uppercase text-white" style={{ background: "var(--accent-red)" }}>
+                  {eoi.videoEyebrow}
+                </span>
+                <h3 className="font-display text-xl font-bold mt-3 text-foreground">{eoi.videoHeading}</h3>
+                <p className="mt-2 text-[13px] text-foreground/65 leading-relaxed">{eoi.videoDescription}</p>
+
+                {/* Thumbnail / play preview */}
+                <button
+                  onClick={() => setVideoOpen(true)}
+                  className="mt-4 group relative block w-full aspect-video rounded-xl overflow-hidden border border-[oklch(0.9_0.03_25)] bg-black/90"
+                  aria-label={eoi.videoCtaText}
+                >
+                  <iframe
+                    src={embed.replace("autoplay=1", "autoplay=0")}
+                    className="absolute inset-0 w-full h-full pointer-events-none opacity-90 group-hover:opacity-100 transition"
+                    title={eoi.videoTitle}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent flex items-end justify-center pb-4 group-hover:from-black/40 transition">
+                    <div className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-white/95 text-foreground font-semibold text-[12px] shadow-lg group-hover:scale-105 transition">
+                      <PlayCircle size={16} style={{ color: "var(--accent-red)" }} /> {eoi.videoCtaText}
+                    </div>
+                  </div>
+                </button>
+              </div>
+            )}
 
             <div className="bg-white rounded-2xl border border-[oklch(0.92_0.02_25)] p-5 flex items-start gap-3">
               <Lock size={16} className="shrink-0 mt-0.5 text-foreground/60" />

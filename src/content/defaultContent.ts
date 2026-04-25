@@ -226,6 +226,11 @@ export const defaultContent = {
     ctaSecondary: "What is EOI?",
     videoUrl: "", // YouTube URL — admin paste karega
     videoTitle: "What is EOI? — Watch 2 min explainer",
+    videoEnabled: true,
+    videoEyebrow: "Watch & Understand",
+    videoHeading: "What is EOI?",
+    videoDescription: "A short 2-minute explainer covering how the Expression of Interest works, why it's 100% refundable, and the priority benefits you unlock by reserving your spot today.",
+    videoCtaText: "▶ Play Video — What is EOI?",
     benefits: [
       { title: "Priority Allotment", desc: "First right to choose your unit, floor and view before public launch." },
       { title: "Pre-Launch Pricing", desc: "Lock-in special EOI pricing — protected against future price hikes." },
