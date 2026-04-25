@@ -21,16 +21,16 @@ import showreel from "@/assets/showreel.mp4.asset.json";
  */
 export const defaultContent = {
   seo: {
-    siteUrl: "https://venusuniverse.com",
-    title: "Venus Grounds 2 — Luxury 4 & 5 BHK at Nehrunagar, Ahmedabad",
+    siteUrl: "https://venusuniverse.in",
+    title: "Venus Universe Nehrunagar — Luxury 4 & 5 BHK Ahmedabad",
     description:
-      "Venus Grounds 2 — 7-acre 4 & 5 BHK luxury development at Nehrunagar, Ahmedabad. 70% open area, 2.2-acre podium, designed by Hafeez Contractor, SWA, HBA & LET.",
+      "Venus Universe Nehrunagar — luxury 4 & 5 BHK apartments in central Ahmedabad. Pre-booking open, site office active. Book your site visit today.",
     keywords:
-      "Venus Grounds 2, Nehrunagar Ahmedabad, 4 BHK Ahmedabad, 5 BHK Ahmedabad, luxury apartments Ahmedabad, Hafeez Contractor, premium real estate Ahmedabad",
+      "venus universe nehrunagar, luxury apartments in nehrunagar ahmedabad, 4 bhk flats nehrunagar, 5 bhk luxury apartments ahmedabad, premium flats near CG Road, apartments near Ashram Road, central ahmedabad luxury property, under construction project nehrunagar, pre booking project ahmedabad, site office open nehrunagar, Hafeez Contractor Ahmedabad, luxury flats Paldi",
     ogImage: "https://storage.googleapis.com/gpt-engineer-file-uploads/Nlau0aIfcNZ994VHhH1ZCQI5FFn1/social-images/social-1776592390810-vectorstock_45301125.webp",
     twitterHandle: "@venusuniverse",
     author: "Venus Universe",
-    canonical: "https://venusuniverse.com",
+    canonical: "https://venusuniverse.in",
     allowIndexing: true,
     gaId: "",
     gtmId: "",
@@ -39,8 +39,8 @@ export const defaultContent = {
     facebookPixelId: "",
   },
   brand: {
-    name: "Venus Grounds 2",
-    tagline: "Luxury 4 & 5 BHK Residences at Nehrunagar, Ahmedabad",
+    name: "Venus Universe Nehrunagar",
+    tagline: "Luxury 4 & 5 BHK Apartments in Nehrunagar, Ahmedabad",
     rera: "RERA Registered — Details on Request",
   },
   contact: {
@@ -52,9 +52,9 @@ export const defaultContent = {
       "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3672.0!2d72.5497!3d23.0307!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sNehrunagar+Ahmedabad!5e0!3m2!1sen!2sin!4v1700000000000",
   },
   hero: {
-    title: "Nehrunagar — The Heart of Ahmedabad",
+    title: "Luxury 4 & 5 BHK Apartments in Nehrunagar Ahmedabad",
     subtitle:
-      "Venus Grounds 2 — an exclusive collection of 4 & 5 BHK residences spread across 7 acres with 70% open landscape, in Ahmedabad's most coveted address.",
+      "Venus Universe — under-construction luxury 4 & 5 BHK residences in the heart of Ahmedabad, minutes from CG Road, Ashram Road & Paldi. Pre-booking now open · Site office welcoming visitors.",
     image: heroTower,
     videoUrl: "",
   },
