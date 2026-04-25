@@ -8,9 +8,11 @@ export interface LeadPayload {
   source?: string;
 }
 
+import { apiUrl } from "./apiBase";
+
 export async function notifyLead(lead: LeadPayload): Promise<void> {
   try {
-    await fetch("/api/public/notify-lead", {
+    await fetch(apiUrl("/api/public/notify-lead"), {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(lead),
