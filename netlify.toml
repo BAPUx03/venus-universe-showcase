@@ -1,17 +1,22 @@
 [build]
   command = "npm run build"
-  publish = ".output/public"
+  publish = "dist/client"
 
 [build.environment]
   NODE_VERSION = "20"
   DEPLOY_TARGET = "netlify"
 
-# TanStack Start with Netlify produces a Netlify Function as the SSR + API handler.
-# The build output places it under .netlify/functions-internal automatically when
-# the netlify preset is used. The redirect below ensures all non-static requests
-# are routed through the SSR/server-route handler.
+# Hybrid hosting:
+# - Frontend (this site) is served as a static SPA from Netlify.
+# - Backend API routes (/api/public/*) live on Lovable (Cloudflare).
+#   The frontend reads VITE_API_BASE_URL at build time and prefixes
+#   all /api/public/* fetches with the Lovable URL — see src/lib/apiBase.ts.
+#
+# REQUIRED env var on Netlify (Site settings → Environment variables):
+#   VITE_API_BASE_URL = https://venus-universe-showcase.lovable.app
+#
+# SPA fallback so client-side routes (e.g. /eoi, /studio) work on refresh.
 [[redirects]]
   from = "/*"
-  to = "/.netlify/functions/server"
+  to = "/index.html"
   status = 200
-  force = false
