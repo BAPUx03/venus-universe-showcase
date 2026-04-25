@@ -61,18 +61,84 @@ export const Route = createFileRoute("/")({
     if (s.gscVerification) meta.push({ name: "google-site-verification", content: String(s.gscVerification) });
     if (s.bingVerification) meta.push({ name: "msvalidate.01", content: String(s.bingVerification) });
 
-    const scripts: Array<Record<string, string>> = [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "RealEstateAgent",
-          name: loaderData?.brand?.name ?? defaultContent.brand.name,
-          url: seo.siteUrl,
-          image: seo.ogImage,
-          description: seo.description,
-        }),
+    const siteUrl = seo.siteUrl;
+    const brandName = loaderData?.brand?.name ?? defaultContent.brand.name;
+
+    const realEstateSchema = {
+      "@context": "https://schema.org",
+      "@type": "RealEstateAgent",
+      "@id": `${siteUrl}/#organization`,
+      name: brandName,
+      url: siteUrl,
+      image: seo.ogImage,
+      logo: seo.ogImage,
+      description: seo.description,
+      telephone: defaultContent.contact.phone,
+      email: defaultContent.contact.email,
+      priceRange: "₹₹₹₹",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "Nehrunagar",
+        addressLocality: "Ahmedabad",
+        addressRegion: "Gujarat",
+        postalCode: "380015",
+        addressCountry: "IN",
       },
+      geo: { "@type": "GeoCoordinates", latitude: 23.0307, longitude: 72.5497 },
+      areaServed: ["Nehrunagar", "CG Road", "Ashram Road", "Paldi", "Ahmedabad"],
+    };
+
+    const residenceSchema = {
+      "@context": "https://schema.org",
+      "@type": "ApartmentComplex",
+      name: "Venus Universe Nehrunagar",
+      url: siteUrl,
+      image: seo.ogImage,
+      description: "Luxury 4 & 5 BHK under-construction apartments in Nehrunagar, Ahmedabad. Pre-booking open.",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "Nehrunagar",
+        addressLocality: "Ahmedabad",
+        addressRegion: "Gujarat",
+        postalCode: "380015",
+        addressCountry: "IN",
+      },
+      amenityFeature: defaultContent.amenities.slice(0, 12).map((a) => ({
+        "@type": "LocationFeatureSpecification",
+        name: a,
+        value: true,
+      })),
+    };
+
+    const faqSchema = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: [
+        { "@type": "Question", name: "Where is Venus Universe located?", acceptedAnswer: { "@type": "Answer", text: "Venus Universe is located in Nehrunagar, central Ahmedabad — minutes from CG Road, Ashram Road, Paldi and IIM-A." } },
+        { "@type": "Question", name: "What configurations are available at Venus Universe Nehrunagar?", acceptedAnswer: { "@type": "Answer", text: "Venus Universe offers luxury 4 BHK and 5 BHK apartments with carpet sizes from 1,550 sq ft to 2,475 sq ft including duplex penthouses." } },
+        { "@type": "Question", name: "Is Venus Universe under construction?", acceptedAnswer: { "@type": "Answer", text: "Yes, Venus Universe Nehrunagar is currently under construction and pre-booking is open. The site office is open for visits." } },
+        { "@type": "Question", name: "Can I book a site visit?", acceptedAnswer: { "@type": "Answer", text: "Yes, our site office in Nehrunagar is open for visits. Call or WhatsApp us to schedule a private walkthrough." } },
+        { "@type": "Question", name: "What is the EOI amount and is it refundable?", acceptedAnswer: { "@type": "Answer", text: "The Expression of Interest amount is ₹5,00,000 and is 100% refundable. It locks in priority allotment and pre-launch pricing." } },
+        { "@type": "Question", name: "Who designed Venus Universe?", acceptedAnswer: { "@type": "Answer", text: "Venus Universe is designed by Hafeez Contractor with landscaping by SWA California, interiors by HBA Singapore and lighting by LET Dubai." } },
+        { "@type": "Question", name: "Why invest in Nehrunagar Ahmedabad?", acceptedAnswer: { "@type": "Answer", text: "Nehrunagar is central Ahmedabad's most premium micro-market with 2x demand growth in luxury homes and proximity to CG Road, Ashram Road, IIM-A and top schools." } },
+        { "@type": "Question", name: "What luxury amenities are offered?", acceptedAnswer: { "@type": "Answer", text: "Wellness club, swimming pool, jacuzzi, gymnasium, jogging track, multiple sports courts, garden theatre, guest suite and 70% open landscape." } },
+      ],
+    };
+
+    const breadcrumbSchema = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
+        { "@type": "ListItem", position: 2, name: "Venus Universe Nehrunagar", item: siteUrl },
+      ],
+    };
+
+    const scripts: Array<Record<string, string>> = [
+      { type: "application/ld+json", children: JSON.stringify(realEstateSchema) },
+      { type: "application/ld+json", children: JSON.stringify(residenceSchema) },
+      { type: "application/ld+json", children: JSON.stringify(faqSchema) },
+      { type: "application/ld+json", children: JSON.stringify(breadcrumbSchema) },
     ];
     if (s.gaId) {
       scripts.push({ src: `https://www.googletagmanager.com/gtag/js?id=${s.gaId}`, async: "" });
