@@ -1,60 +1,79 @@
-# Deploy to Netlify
+# Deploy to Netlify (Hybrid: Frontend on Netlify, Backend on Lovable)
 
-This project is built with **TanStack Start** and supports both Lovable's
-default hosting (Cloudflare Workers) and **Netlify**. The Netlify build is
-selected automatically when the `DEPLOY_TARGET=netlify` environment variable
-is set (already configured in `netlify.toml`).
+This project uses a **hybrid hosting** setup:
+- **Frontend (website)** → Netlify (static SPA)
+- **Backend (`/api/public/*`, OTP, leads, notify)** → Lovable Cloud (Cloudflare)
 
-## 1. Push code to GitHub
+The frontend reads `VITE_API_BASE_URL` at build time and prefixes every
+backend call with the Lovable URL. CORS is already enabled on the API routes.
 
-In Lovable: **Connectors → GitHub → Connect project** and create the repo.
+---
 
-## 2. Create the Netlify site
+## 1. Make sure Lovable is published
 
-1. Go to https://app.netlify.com → **Add new site → Import an existing project**
+Click **Publish** in Lovable so the backend is live at:
+`https://venus-universe-showcase.lovable.app`
+
+The OTP, leads, and notify endpoints must be reachable here. Test:
+```
+curl -X POST https://venus-universe-showcase.lovable.app/api/public/otp \
+  -H "Content-Type: application/json" \
+  -d '{"action":"send","phone":"+919999999999"}'
+```
+
+## 2. Push code to GitHub
+
+In Lovable: **Connectors → GitHub → Connect project**.
+
+## 3. Create the Netlify site
+
+1. https://app.netlify.com → **Add new site → Import an existing project**
 2. Pick **GitHub** and select your repo
-3. Build settings (Netlify usually auto-detects from `netlify.toml`):
-   - **Build command:** `npm run build`
-   - **Publish directory:** `.output/public`
-   - **Functions directory:** *(leave default)*
-4. Click **Deploy site** — first deploy will run.
+3. Build settings auto-detect from `netlify.toml`:
+   - **Build command:** `npm run build && node scripts/prerender-static.mjs`
+   - **Publish directory:** `dist/client`
+4. Click **Deploy site** (first deploy will likely fail until env vars are set).
 
-## 3. Add environment variables (CRITICAL)
+## 4. Add environment variables (CRITICAL)
 
-In Netlify: **Site settings → Environment variables → Add variables**.
-Add ALL of these (copy values from Lovable Cloud → Secrets):
+In Netlify: **Site settings → Environment variables → Add a variable**.
 
-| Variable | Where to copy from |
+| Variable | Value |
 |---|---|
-| `TWOFACTOR_API_KEY` | Lovable Cloud → Secrets |
-| `BREVO_API_KEY` | Lovable Cloud → Secrets |
-| `BREVO_SENDER_EMAIL` | Lovable Cloud → Secrets |
-| `NOTIFICATION_EMAIL` | Lovable Cloud → Secrets |
-| `GOOGLE_SHEET_ID` | Lovable Cloud → Secrets |
-| `GOOGLE_SHEETS_API_KEY` | Lovable Cloud → Connectors → Google Sheets |
-| `SUPABASE_URL` | `https://yszfvicefomtrwbzemct.supabase.co` |
-| `SUPABASE_PUBLISHABLE_KEY` | from `.env` (anon key) |
-| `VITE_SUPABASE_URL` | same as `SUPABASE_URL` |
-| `VITE_SUPABASE_PUBLISHABLE_KEY` | same as `SUPABASE_PUBLISHABLE_KEY` |
+| `VITE_API_BASE_URL` | `https://venus-universe-showcase.lovable.app` |
+| `VITE_SUPABASE_URL` | `https://yszfvicefomtrwbzemct.supabase.co` |
+| `VITE_SUPABASE_PUBLISHABLE_KEY` | (anon key from your `.env`) |
 | `VITE_SUPABASE_PROJECT_ID` | `yszfvicefomtrwbzemct` |
 
-After adding variables, click **Trigger deploy → Clear cache and deploy site**.
+> No `TWOFACTOR_API_KEY`, `BREVO_API_KEY`, `GOOGLE_*` etc. on Netlify — those
+> stay on Lovable Cloud since the backend runs there.
 
-## 4. Verify
+After adding variables: **Deploys → Trigger deploy → Clear cache and deploy site**.
 
-- Open the Netlify URL → site should load
-- Submit the EOI form → OTP should arrive on phone (SMS)
-- After verifying OTP → lead should:
-  - appear in Supabase `leads` table
-  - send notification email via Brevo
-  - append a row to your Google Sheet
+## 5. Verify
 
-If anything fails, check **Netlify → Deploys → Functions → server logs**.
+- Open the Netlify URL → site should load (real HTML shell, then SPA hydrates)
+- Open browser DevTools → Network → submit the EOI form → the OTP request
+  should go to `venus-universe-showcase.lovable.app/api/public/otp`
+- OTP should arrive on phone via SMS (4-digit)
+- After verifying OTP → lead should appear in the database and notification email should fire
 
-## Notes
+## 6. Custom domain
 
-- The `netlify.toml` already configures the redirect so all routes
-  (including `/api/public/*`) go through the SSR function.
-- Lovable preview keeps using Cloudflare — Netlify only activates when
-  `DEPLOY_TARGET=netlify` is set (Netlify sets it via `netlify.toml`).
-- Custom domain: **Netlify → Domain settings → Add custom domain**.
+**Netlify → Domain settings → Add custom domain**. The Lovable backend URL
+stays the same — only the frontend domain changes.
+
+---
+
+## How it works
+
+- `vite.config.ts` disables the Cloudflare plugin when `DEPLOY_TARGET=netlify`
+  (so the build doesn't produce a Cloudflare Worker).
+- `scripts/prerender-static.mjs` runs the SSR server bundle once, renders `/`,
+  and writes `dist/client/index.html` so Netlify has a real HTML entry point.
+- `[[redirects]]` in `netlify.toml` makes every unknown path serve `index.html`
+  (SPA fallback for `/eoi`, `/studio`, etc.).
+- `src/lib/apiBase.ts` prepends `VITE_API_BASE_URL` to every backend fetch.
+
+If anything fails, check Netlify → **Deploys → Deploy log** and the browser
+**Network** tab.

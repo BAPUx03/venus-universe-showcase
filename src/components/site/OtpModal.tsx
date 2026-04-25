@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Loader2, ShieldCheck, X, Phone, RotateCw } from "lucide-react";
+import { apiUrl } from "@/lib/apiBase";
 
 type Props = {
   open: boolean;
@@ -48,7 +49,7 @@ export function OtpModal({ open, phone, onClose, onVerified }: Props) {
     setStage("sending");
     setErr("");
     try {
-      const r = await fetch("/api/public/otp", {
+      const r = await fetch(apiUrl("/api/public/otp"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ action: "send", phone }),
@@ -94,7 +95,7 @@ export function OtpModal({ open, phone, onClose, onVerified }: Props) {
     setStage("verifying");
     setErr("");
     try {
-      const r = await fetch("/api/public/otp", {
+      const r = await fetch(apiUrl("/api/public/otp"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ action: "verify", sessionId, otp: code }),
