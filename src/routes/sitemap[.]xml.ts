@@ -14,7 +14,9 @@ export const Route = createFileRoute("/sitemap.xml")({
         const base = (seo.siteUrl || "").replace(/\/$/, "");
         const today = new Date().toISOString().slice(0, 10);
         const urls = [
-          { loc: `${base}/`, priority: "1.0" },
+          { loc: `${base}/`, priority: "1.0", changefreq: "weekly" },
+          { loc: `${base}/eoi`, priority: "0.9", changefreq: "weekly" },
+          { loc: `${base}/studio`, priority: "0.6", changefreq: "monthly" },
         ];
         const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls
           .map((u) => `  <url><loc>${u.loc}</loc><lastmod>${today}</lastmod><changefreq>weekly</changefreq><priority>${u.priority}</priority></url>`)
