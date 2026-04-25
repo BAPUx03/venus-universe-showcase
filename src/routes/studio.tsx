@@ -620,10 +620,24 @@ function EoiEditor({ value, onChange }: { value: SiteContent["eoi"]; onChange: (
         <Field label="Primary CTA"><TextInput value={value.ctaPrimary} onChange={(v) => set("ctaPrimary", v)} /></Field>
         <Field label="Secondary CTA (video)"><TextInput value={value.ctaSecondary} onChange={(v) => set("ctaSecondary", v)} /></Field>
       </div>
-      <Field label="Explainer Video URL (YouTube)" hint="Paste full YouTube URL — opens in modal when user clicks 'What is EOI'">
-        <TextInput value={value.videoUrl} onChange={(v) => set("videoUrl", v)} placeholder="https://www.youtube.com/watch?v=..." />
-      </Field>
-      <Field label="Video Modal Title"><TextInput value={value.videoTitle} onChange={(v) => set("videoTitle", v)} /></Field>
+      <div className="pt-4 border-t border-border">
+        <div className="text-[11px] uppercase tracking-[0.2em] text-gold mb-3">"What is EOI?" Video Card</div>
+        <Field label="Enable Video Card on /eoi page">
+          <label className="flex items-center gap-2 mt-1.5"><input type="checkbox" checked={value.videoEnabled ?? true} onChange={(e) => set("videoEnabled", e.target.checked)} className="w-4 h-4 accent-gold" /><span className="text-sm text-ivory/85">Show the video card & play button</span></label>
+        </Field>
+        <Field label="YouTube Video URL" hint="Paste full YouTube URL (e.g. https://youtube.com/watch?v=XXXX). Leave empty to hide.">
+          <TextInput value={value.videoUrl} onChange={(v) => set("videoUrl", v)} placeholder="https://www.youtube.com/watch?v=..." />
+        </Field>
+        <div className="grid md:grid-cols-2 gap-5 mt-3">
+          <Field label="Eyebrow Tag"><TextInput value={value.videoEyebrow ?? ""} onChange={(v) => set("videoEyebrow", v)} placeholder="Watch & Understand" /></Field>
+          <Field label="Heading"><TextInput value={value.videoHeading ?? ""} onChange={(v) => set("videoHeading", v)} placeholder="What is EOI?" /></Field>
+        </div>
+        <Field label="Description"><TextArea value={value.videoDescription ?? ""} onChange={(v) => set("videoDescription", v)} rows={3} placeholder="Short description shown above the video..." /></Field>
+        <div className="grid md:grid-cols-2 gap-5 mt-3">
+          <Field label="Play Button CTA Text"><TextInput value={value.videoCtaText ?? ""} onChange={(v) => set("videoCtaText", v)} placeholder="▶ Play Video — What is EOI?" /></Field>
+          <Field label="Modal / Tooltip Title"><TextInput value={value.videoTitle} onChange={(v) => set("videoTitle", v)} /></Field>
+        </div>
+      </div>
       <div className="grid md:grid-cols-3 gap-3">
         <Field label="Spots Total"><TextInput type="number" value={String(value.spotsTotal)} onChange={(v) => set("spotsTotal", Number(v) || 0)} /></Field>
         <Field label="Spots Left"><TextInput type="number" value={String(value.spotsLeft)} onChange={(v) => set("spotsLeft", Number(v) || 0)} /></Field>
