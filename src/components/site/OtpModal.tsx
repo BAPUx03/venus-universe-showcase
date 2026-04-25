@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Loader2, ShieldCheck, X, Phone, RotateCw } from "lucide-react";
+import { apiUrl } from "@/lib/apiBase";
 
 type Props = {
   open: boolean;
