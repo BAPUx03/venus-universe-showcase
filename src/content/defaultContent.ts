@@ -35,7 +35,7 @@ export const defaultContent = {
     gaId: "",
     gtmId: "",
     gscVerification: "",
-    bingVerification: "",
+    bingVerification: "16E055BCF808A3E7BC6D89CC583B680D",
     facebookPixelId: "",
   },
   brand: {
