@@ -179,6 +179,7 @@ function Index() {
         <Gallery items={content.gallery} />
         <Brochure data={content.brochure} />
         <Trust data={content.trust} />
+        <FAQ />
         <Contact contact={content.contact} />
       </main>
       <Footer brand={content.brand.name} contact={content.contact} rera={content.brand.rera} />
