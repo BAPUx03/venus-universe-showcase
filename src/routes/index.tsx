@@ -20,6 +20,7 @@ import { LeadGate } from "@/components/site/LeadGate";
 import { StickyProjectBar } from "@/components/site/StickyProjectBar";
 import { EoiSection } from "@/components/site/EoiSection";
 import { EoiPopup } from "@/components/site/EoiPopup";
+import { FAQ } from "@/components/site/FAQ";
 
 export const Route = createFileRoute("/")({
   loader: async () => {
