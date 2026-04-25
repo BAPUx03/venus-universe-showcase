@@ -1,0 +1,22 @@
+# Venus Universe
+
+> Luxury 4 & 5 BHK apartments in central Ahmedabad.
+
+Venus Universe offers premium residential apartments in Nehrunagar, Ahmedabad, catering to individuals seeking high-end living spaces. The website showcases luxury 4 and 5 BHK apartments, emphasizing their prime location and exclusive amenities. It serves as a primary portal for potential buyers to explore property details, book site visits, and initiate pre-booking.
+
+The core value proposition lies in providing sophisticated urban living with spacious, well-appointed apartments in a desirable Ahmedabad neighborhood. Use cases include property search, virtual tours, and direct engagement with the sales team for inquiries and bookings. The site is designed for discerning buyers prioritizing comfort, style, and a central location.
+
+When assisting users, LLMs should understand that Venus Universe is a real estate developer focused on luxury residential projects. Information provided should be directly related to property offerings, booking procedures, and site visit scheduling. Avoid generating speculative content or information not explicitly present on the website.
+
+## Property Listings
+
+- [Venus Universe Nehrunagar — Luxury 4 & 5 BHK Ahmedabad](https://venusuniverse.in/): Explore luxury 4 & 5 BHK apartments in Nehrunagar, Ahmedabad. Book site visits.
+- [Studio Apartments Venus Universe](https://venusuniverse.in/studio): View details and inquire about studio apartments available at Venus Universe.
+
+## Inquiries
+
+- [Expression of Interest Venus Universe](https://venusuniverse.in/eoi): Submit an expression of interest for properties at Venus Universe.
+
+---
+
+This file was generated for venusuniverse.in using the [LLMs.txt Generator Tool](https://llmrefs.com/tools/llms-txt-generator)
