@@ -10,10 +10,19 @@ import { OtpModal } from "@/components/site/OtpModal";
 export const Route = createFileRoute("/eoi")({
   head: () => ({
     meta: [
-      { title: "Secure Your Spot — EOI · Venus Grounds 2" },
-      { name: "description", content: "Pay a fully refundable ₹5,00,000 EOI to lock-in priority allotment & pre-launch pricing at Venus Grounds 2." },
-      { name: "robots", content: "index, follow" },
+      { title: "EOI — Pre-Book Luxury 4 & 5 BHK Venus Universe Nehrunagar" },
+      { name: "description", content: "Pay a fully refundable ₹5,00,000 EOI to lock priority allotment & pre-launch pricing at Venus Universe Nehrunagar Ahmedabad. Limited slots." },
+      { name: "keywords", content: "venus universe eoi, pre booking nehrunagar, 4 bhk pre launch ahmedabad, 5 bhk pre booking, refundable eoi ahmedabad" },
+      { name: "robots", content: "index, follow, max-image-preview:large" },
+      { property: "og:title", content: "Pre-Book Venus Universe Nehrunagar — ₹5L Refundable EOI" },
+      { property: "og:description", content: "Lock priority allotment & pre-launch pricing on luxury 4 & 5 BHK apartments in Nehrunagar, Ahmedabad." },
+      { property: "og:url", content: "https://venusuniverse.in/eoi" },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Pre-Book Venus Universe Nehrunagar — ₹5L Refundable EOI" },
+      { name: "twitter:description", content: "Lock priority allotment & pre-launch pricing on luxury 4 & 5 BHK apartments in Nehrunagar, Ahmedabad." },
     ],
+    links: [{ rel: "canonical", href: "https://venusuniverse.in/eoi" }],
   }),
   component: EoiPage,
 });
