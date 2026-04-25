@@ -19,7 +19,7 @@ export function Hero({ hero }: { hero: SiteContent["hero"] }) {
         ) : (
           <img
             src={hero.image}
-            alt="Venus Universe — twin towers at dusk"
+            alt="Venus Universe Nehrunagar — luxury 4 & 5 BHK apartments in Ahmedabad"
             className="w-full h-full object-cover"
           />
         )}
@@ -43,11 +43,11 @@ export function Hero({ hero }: { hero: SiteContent["hero"] }) {
             </span>
           </div>
           <h1 className="font-display font-bold text-[clamp(2rem,5.5vw,4.75rem)] leading-[1.05] text-white tracking-tight">
-            A Universe of{" "}
-            <span style={{ color: "oklch(0.78 0.18 25)" }}>Luxury Living.</span>
+            Luxury 4 &amp; 5 BHK Apartments in{" "}
+            <span style={{ color: "oklch(0.78 0.18 25)" }}>Nehrunagar Ahmedabad.</span>
           </h1>
           <p className="mt-5 text-[11px] font-semibold tracking-[0.22em] uppercase text-white/75">
-            Now Previewing · 4 &amp; 5 BHK Sky Residences
+            Venus Universe · Pre-Booking Open · Site Office Now Welcoming Visitors
           </p>
           <p className="mt-5 max-w-xl text-base md:text-lg text-white/85 leading-relaxed font-light">
             {hero.subtitle}
@@ -59,13 +59,13 @@ export function Hero({ hero }: { hero: SiteContent["hero"] }) {
               className="px-7 py-3.5 rounded-md text-white font-semibold text-[13px] shadow-gold hover:brightness-110 hover:-translate-y-0.5 transition-all"
               style={{ background: "var(--accent-red)" }}
             >
-              Schedule Site Visit
+              Book Site Visit · Site Office Open
             </a>
             <Link
               to="/eoi"
               className="px-7 py-3.5 rounded-md bg-white/10 backdrop-blur-md border border-white/30 text-white font-medium text-[13px] hover:bg-white/20 transition"
             >
-              Secure Your Spot · ₹5L EOI
+              Pre-Book Now · ₹5L Refundable EOI
             </Link>
           </div>
         </motion.div>
