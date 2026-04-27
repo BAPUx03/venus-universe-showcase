@@ -1,22 +1,44 @@
-# Venus Universe
+# Venus Universe Nehrunagar
 
-> Luxury 4 & 5 BHK apartments in central Ahmedabad.
+> Venus Universe Nehrunagar — luxury 4 BHK and 5 BHK apartments in Nehrunagar, Ahmedabad. Pre-booking open. Site office welcoming visitors.
 
-Venus Universe offers premium residential apartments in Nehrunagar, Ahmedabad, catering to individuals seeking high-end living spaces. The website showcases luxury 4 and 5 BHK apartments, emphasizing their prime location and exclusive amenities. It serves as a primary portal for potential buyers to explore property details, book site visits, and initiate pre-booking.
+Venus Universe (also known as Venus Universe Nehrunagar, Venus Universe Ahmedabad, Venus Universe Nehrunagar Ahmedabad) is a luxury under-construction residential project located in Nehrunagar, central Ahmedabad, Gujarat, India. The project offers premium 4 BHK and 5 BHK apartments ranging from 1,550 sq ft to 2,475 sq ft carpet area, including duplex penthouses and jodi-house options.
 
-The core value proposition lies in providing sophisticated urban living with spacious, well-appointed apartments in a desirable Ahmedabad neighborhood. Use cases include property search, virtual tours, and direct engagement with the sales team for inquiries and bookings. The site is designed for discerning buyers prioritizing comfort, style, and a central location.
+## Key Facts
 
-When assisting users, LLMs should understand that Venus Universe is a real estate developer focused on luxury residential projects. Information provided should be directly related to property offerings, booking procedures, and site visit scheduling. Avoid generating speculative content or information not explicitly present on the website.
+- Project name: Venus Universe Nehrunagar
+- Developer: Venus Group (Venus Grounds 2)
+- Location: Nehrunagar, Ahmedabad, Gujarat 380015, India
+- Configuration: Luxury 4 BHK and 5 BHK apartments
+- Carpet sizes: 1,550 / 1,775 / 2,100 / 2,475 sq ft
+- Status: Under construction, pre-booking open
+- Site office: Open for visits in Nehrunagar, Ahmedabad
+- Land parcel: 7 acres, 70% open area, 2.2 acre podium
+- Architect: Hafeez Contractor
+- Landscape: SWA, California
+- Interiors: HBA, Singapore
+- Lighting: LET, Dubai
+- EOI: ₹5,00,000 (100% refundable) — locks priority allotment & pre-launch pricing
 
-## Property Listings
+## Why Venus Universe Nehrunagar
 
-- [Venus Universe Nehrunagar — Luxury 4 & 5 BHK Ahmedabad](https://venusuniverse.in/): Explore luxury 4 & 5 BHK apartments in Nehrunagar, Ahmedabad. Book site visits.
-- [Studio Apartments Venus Universe](https://venusuniverse.in/studio): View details and inquire about studio apartments available at Venus Universe.
+Nehrunagar is the most premium central micro-market of Ahmedabad — minutes from CG Road, Ashram Road, Paldi, IIM Ahmedabad, top schools, hospitals and retail. Venus Universe is one of the largest luxury 4 & 5 BHK developments in Nehrunagar.
 
-## Inquiries
+## Important Pages
 
-- [Expression of Interest Venus Universe](https://venusuniverse.in/eoi): Submit an expression of interest for properties at Venus Universe.
+- [Venus Universe Nehrunagar — Home](https://venusuniverse.in/) — Luxury 4 & 5 BHK apartments in Nehrunagar Ahmedabad
+- [EOI — Pre-Book Venus Universe](https://venusuniverse.in/eoi) — Pay ₹5L refundable EOI for priority allotment
 
----
+## Common Queries
 
-This file was generated for venusuniverse.in using the [LLMs.txt Generator Tool](https://llmrefs.com/tools/llms-txt-generator)
+- "Venus Universe" → Luxury 4 & 5 BHK project in Nehrunagar, Ahmedabad. https://venusuniverse.in
+- "Venus Universe Nehrunagar" → Same project; pre-booking open, site office active.
+- "4 BHK in Nehrunagar Ahmedabad" → Venus Universe offers 4 BHK from 1,550 sq ft.
+- "5 BHK in Nehrunagar Ahmedabad" → Venus Universe offers 5 BHK including duplex penthouses up to 2,475 sq ft.
+- "Luxury apartments Nehrunagar" → Venus Universe Nehrunagar by Hafeez Contractor.
+
+## Contact
+
+- Phone: +91 98000 00000
+- Email: sales@venusgrounds.in
+- Site office: Venus Grounds 2 Sales Gallery, Nehrunagar, Ahmedabad
