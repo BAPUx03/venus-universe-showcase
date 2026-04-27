@@ -22,11 +22,11 @@ import showreel from "@/assets/showreel.mp4.asset.json";
 export const defaultContent = {
   seo: {
     siteUrl: "https://venusuniverse.in",
-    title: "Venus Universe Nehrunagar — Luxury 4 & 5 BHK Ahmedabad",
+    title: "Venus Universe Nehrunagar | Luxury 4 & 5 BHK Flats in Nehrunagar Ahmedabad",
     description:
-      "Venus Universe Nehrunagar — luxury 4 & 5 BHK apartments in central Ahmedabad. Pre-booking open, site office active. Book your site visit today.",
+      "Venus Universe Nehrunagar Ahmedabad — luxury 4 BHK & 5 BHK apartments in Nehrunagar. Pre-booking open, site office welcoming visitors. Book your Venus Universe site visit today.",
     keywords:
-      "venus universe nehrunagar, luxury apartments in nehrunagar ahmedabad, 4 bhk flats nehrunagar, 5 bhk luxury apartments ahmedabad, premium flats near CG Road, apartments near Ashram Road, central ahmedabad luxury property, under construction project nehrunagar, pre booking project ahmedabad, site office open nehrunagar, Hafeez Contractor Ahmedabad, luxury flats Paldi",
+      "Venus Universe, Venus Universe Nehrunagar, Venus Universe Ahmedabad, Venus Universe Nehrunagar Ahmedabad, 4 BHK in Nehrunagar Ahmedabad, 5 BHK in Nehrunagar Ahmedabad, 4 BHK flats Nehrunagar, 5 BHK flats Nehrunagar, 4 and 5 BHK Nehrunagar Ahmedabad, luxury apartments Nehrunagar, luxury 4 BHK Ahmedabad, luxury 5 BHK Ahmedabad, premium flats Nehrunagar Ahmedabad, Venus Grounds Nehrunagar, new project Nehrunagar Ahmedabad, under construction Nehrunagar, pre booking Venus Universe, Hafeez Contractor Ahmedabad, flats near CG Road, flats near Ashram Road, flats near IIM Ahmedabad",
     ogImage: "https://storage.googleapis.com/gpt-engineer-file-uploads/Nlau0aIfcNZ994VHhH1ZCQI5FFn1/social-images/social-1776592390810-vectorstock_45301125.webp",
     twitterHandle: "@venusuniverse",
     author: "Venus Universe",
