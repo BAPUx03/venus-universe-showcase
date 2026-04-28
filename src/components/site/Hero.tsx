@@ -29,7 +29,7 @@ export function Hero({ hero }: { hero: SiteContent["hero"] }) {
       </div>
 
       {/* Content */}
-      <div className="relative container-luxe pb-16 md:pb-24 pt-24 md:pt-32 z-10">
+      <div className="relative container-luxe pb-16 md:pb-24 pt-28 md:pt-36 z-10">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
@@ -42,7 +42,7 @@ export function Hero({ hero }: { hero: SiteContent["hero"] }) {
               Nehrunagar · Ahmedabad
             </span>
           </div>
-          <h1 className="font-display font-bold text-[clamp(2rem,5.5vw,4.75rem)] leading-[1.05] text-white tracking-tight">
+          <h1 className="font-display font-bold text-[clamp(1.75rem,4vw,3.5rem)] leading-[1.1] text-white tracking-tight">
             Luxury 4 &amp; 5 BHK in Nehrunagar Ahmedabad — <span style={{ color: "oklch(0.78 0.18 25)" }}>Venus Universe Nehrunagar</span>
           </h1>
           <p className="mt-5 text-[11px] font-semibold tracking-[0.22em] uppercase text-white/75">
