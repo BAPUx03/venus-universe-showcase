@@ -116,8 +116,8 @@ export const Route = createFileRoute("/")({
       "@context": "https://schema.org",
       "@type": "FAQPage",
       mainEntity: [
-        { "@type": "Question", name: "Where is Venus Universe located?", acceptedAnswer: { "@type": "Answer", text: "Venus Universe is located in Nehrunagar, central Ahmedabad — minutes from CG Road, Ashram Road, Paldi and IIM-A." } },
-        { "@type": "Question", name: "What configurations are available at Venus Universe Nehrunagar?", acceptedAnswer: { "@type": "Answer", text: "Venus Universe offers luxury 4 BHK and 5 BHK apartments with carpet sizes from 1,550 sq ft to 2,475 sq ft including duplex penthouses." } },
+        { "@type": "Question", name: "Where is Venus Universe Nehrunagar located?", acceptedAnswer: { "@type": "Answer", text: "Venus Universe Nehrunagar (also called Venus Nehrunagar) is located in Nehrunagar, central Ahmedabad — minutes from CG Road, Ashram Road, Paldi and IIM-A." } },
+        { "@type": "Question", name: "What luxury 4 and 5 BHK options are available in Nehrunagar Ahmedabad at Venus Universe?", acceptedAnswer: { "@type": "Answer", text: "Venus Universe Nehrunagar offers luxury 4 BHK and 5 BHK in Nehrunagar Ahmedabad with carpet sizes from 1,550 sq ft to 2,475 sq ft including duplex penthouses and jodi-house options." } },
         { "@type": "Question", name: "Is Venus Universe under construction?", acceptedAnswer: { "@type": "Answer", text: "Yes, Venus Universe Nehrunagar is currently under construction and pre-booking is open. The site office is open for visits." } },
         { "@type": "Question", name: "Can I book a site visit?", acceptedAnswer: { "@type": "Answer", text: "Yes, our site office in Nehrunagar is open for visits. Call or WhatsApp us to schedule a private walkthrough." } },
         { "@type": "Question", name: "What is the EOI amount and is it refundable?", acceptedAnswer: { "@type": "Answer", text: "The Expression of Interest amount is ₹5,00,000 and is 100% refundable. It locks in priority allotment and pre-launch pricing." } },
