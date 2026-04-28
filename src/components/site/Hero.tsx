@@ -4,7 +4,7 @@ import type { SiteContent } from "@/content/defaultContent";
 
 export function Hero({ hero }: { hero: SiteContent["hero"] }) {
   return (
-    <section id="home" className="relative min-h-[600px] md:min-h-[88svh] md:h-[92svh] md:max-h-[900px] flex items-center md:items-end overflow-hidden">
+    <section id="home" className="relative min-h-[640px] md:min-h-[92svh] md:h-auto flex items-center overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
         {hero.videoUrl ? (
