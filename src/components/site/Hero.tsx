@@ -43,10 +43,10 @@ export function Hero({ hero }: { hero: SiteContent["hero"] }) {
             </span>
           </div>
           <h1 className="font-display font-bold text-[clamp(2rem,5.5vw,4.75rem)] leading-[1.05] text-white tracking-tight">
-            <span style={{ color: "oklch(0.78 0.18 25)" }}>Venus Universe</span> Nehrunagar — Luxury 4 &amp; 5 BHK Apartments in Ahmedabad
+            Luxury 4 &amp; 5 BHK in Nehrunagar Ahmedabad — <span style={{ color: "oklch(0.78 0.18 25)" }}>Venus Universe Nehrunagar</span>
           </h1>
           <p className="mt-5 text-[11px] font-semibold tracking-[0.22em] uppercase text-white/75">
-            Venus Universe Nehrunagar · 4 &amp; 5 BHK · Pre-Booking Open · Site Office Welcoming Visitors
+            Venus Nehrunagar · Venus Universe · 4 &amp; 5 BHK · Pre-Booking Open · Site Office Welcoming Visitors
           </p>
           <p className="mt-5 max-w-xl text-base md:text-lg text-white/85 leading-relaxed font-light">
             {hero.subtitle}
