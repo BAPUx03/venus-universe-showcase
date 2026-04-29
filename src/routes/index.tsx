@@ -16,7 +16,7 @@ import { Trust } from "@/components/site/Trust";
 import { Contact } from "@/components/site/Contact";
 import { WhatsAppButton } from "@/components/site/WhatsAppButton";
 import { Footer } from "@/components/site/Footer";
-import { LeadGate } from "@/components/site/LeadGate";
+
 import { StickyProjectBar } from "@/components/site/StickyProjectBar";
 import { EoiSection } from "@/components/site/EoiSection";
 import { EoiPopup } from "@/components/site/EoiPopup";
@@ -166,7 +166,7 @@ function Index() {
   const { content } = useSiteContent();
   return (
     <div className="bg-background text-foreground overflow-x-hidden">
-      <LeadGate />
+      
       <Header brand={content.brand.name} />
       <main>
         <Hero hero={content.hero} />
