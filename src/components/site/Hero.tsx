@@ -1,28 +1,26 @@
 import { Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
+import showreel from "@/assets/showreel.mp4.asset.json";
 import type { SiteContent } from "@/content/defaultContent";
 
 export function Hero({ hero }: { hero: SiteContent["hero"] }) {
+  const videoSrc = hero.videoUrl || showreel.url;
   return (
-    <section id="home" className="relative min-h-[640px] md:min-h-[92svh] md:h-auto flex items-center overflow-hidden">
+    <section
+      id="home"
+      className="relative min-h-[640px] md:min-h-[92svh] md:h-auto flex items-center overflow-hidden"
+      style={{ background: "oklch(0.18 0.02 25)" }}
+    >
       {/* Background */}
       <div className="absolute inset-0">
-        {hero.videoUrl ? (
-          <video
-            src={hero.videoUrl}
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="w-full h-full object-cover"
-          />
-        ) : (
-          <img
-            src={hero.image}
-            alt="Venus Universe Nehrunagar — luxury 4 & 5 BHK apartments in Ahmedabad"
-            className="w-full h-full object-cover"
-          />
-        )}
+        <video
+          src={videoSrc}
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="w-full h-full object-cover"
+        />
         {/* Gradient overlays — softer for clean editorial look */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-transparent to-transparent" />
