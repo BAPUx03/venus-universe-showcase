@@ -116,14 +116,14 @@ export const Route = createFileRoute("/")({
       "@context": "https://schema.org",
       "@type": "FAQPage",
       mainEntity: [
-        { "@type": "Question", name: "Where is Venus Universe Nehrunagar located?", acceptedAnswer: { "@type": "Answer", text: "Venus Universe Nehrunagar (also called Venus Nehrunagar) is located in Nehrunagar, central Ahmedabad — minutes from CG Road, Ashram Road, Paldi and IIM-A." } },
-        { "@type": "Question", name: "What luxury 4 and 5 BHK options are available in Nehrunagar Ahmedabad at Venus Universe?", acceptedAnswer: { "@type": "Answer", text: "Venus Universe Nehrunagar offers luxury 4 BHK and 5 BHK in Nehrunagar Ahmedabad with carpet sizes from 1,550 sq ft to 2,475 sq ft including duplex penthouses and jodi-house options." } },
+        { "@type": "Question", name: "Are 4 BHK Luxury Apartments in Nehrunagar available at Venus Universe?", acceptedAnswer: { "@type": "Answer", text: "Yes, Venus Universe offers 4 BHK Luxury Apartments in Nehrunagar starting from 1,550 sq ft carpet — ultra luxury apartments near Nehrunagar designed by Hafeez Contractor." } },
+        { "@type": "Question", name: "What 5 BHK Premium Flats in Nehrunagar Ahmedabad are on offer?", acceptedAnswer: { "@type": "Answer", text: "Venus Universe offers 5 BHK Premium Flats in Nehrunagar Ahmedabad from 2,100 sq ft up to 2,475 sq ft including duplex penthouses and jodi-house options." } },
+        { "@type": "Question", name: "Where to find Ultra Luxury Apartments Near Nehrunagar?", acceptedAnswer: { "@type": "Answer", text: "Venus Universe is the leading destination for Ultra Luxury Apartments Near Nehrunagar — a 7-acre landmark with 70% open area and world-class design partners." } },
+        { "@type": "Question", name: "Why choose luxury apartments Nehrunagar at Venus Universe?", acceptedAnswer: { "@type": "Answer", text: "Luxury apartments Nehrunagar at Venus Universe combine central Ahmedabad's most premium address with 4 BHK and 5 BHK configurations and proximity to CG Road, Ashram Road and IIM-A." } },
+        { "@type": "Question", name: "Where is Venus Universe Nehrunagar located?", acceptedAnswer: { "@type": "Answer", text: "Venus Universe Nehrunagar is located in Nehrunagar, central Ahmedabad — minutes from CG Road, Ashram Road, Paldi and IIM-A." } },
         { "@type": "Question", name: "Is Venus Universe under construction?", acceptedAnswer: { "@type": "Answer", text: "Yes, Venus Universe Nehrunagar is currently under construction and pre-booking is open. The site office is open for visits." } },
-        { "@type": "Question", name: "Can I book a site visit?", acceptedAnswer: { "@type": "Answer", text: "Yes, our site office in Nehrunagar is open for visits. Call or WhatsApp us to schedule a private walkthrough." } },
         { "@type": "Question", name: "What is the EOI amount and is it refundable?", acceptedAnswer: { "@type": "Answer", text: "The Expression of Interest amount is ₹5,00,000 and is 100% refundable. It locks in priority allotment and pre-launch pricing." } },
         { "@type": "Question", name: "Who designed Venus Universe?", acceptedAnswer: { "@type": "Answer", text: "Venus Universe is designed by Hafeez Contractor with landscaping by SWA California, interiors by HBA Singapore and lighting by LET Dubai." } },
-        { "@type": "Question", name: "Why invest in Nehrunagar Ahmedabad?", acceptedAnswer: { "@type": "Answer", text: "Nehrunagar is central Ahmedabad's most premium micro-market with 2x demand growth in luxury homes and proximity to CG Road, Ashram Road, IIM-A and top schools." } },
-        { "@type": "Question", name: "What luxury amenities are offered?", acceptedAnswer: { "@type": "Answer", text: "Wellness club, swimming pool, jacuzzi, gymnasium, jogging track, multiple sports courts, garden theatre, guest suite and 70% open landscape." } },
       ],
     };
 
