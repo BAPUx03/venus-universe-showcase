@@ -36,7 +36,7 @@ export const defaultContent = {
     gtmId: "",
     gscVerification: "",
     bingVerification: "16E055BCF808A3E7BC6D89CC583B680D",
-    facebookPixelId: "",
+    facebookPixelId: "1277476574551380",
   },
   brand: {
     name: "Venus Universe Nehrunagar",
