@@ -95,22 +95,9 @@ export function LeadGate() {
   useEffect(() => {
     if (typeof window === "undefined") return;
     if (window.sessionStorage.getItem(STORAGE_KEY)) return;
-
-    let timer: ReturnType<typeof setTimeout> | undefined;
-    const start = () => {
-      timer = setTimeout(() => setOpen(true), 5000);
-    };
-
-    if (document.readyState === "complete") {
-      start();
-    } else {
-      window.addEventListener("load", start, { once: true });
-    }
-
-    return () => {
-      if (timer) clearTimeout(timer);
-      window.removeEventListener("load", start);
-    };
+    // Force-show the lead gate immediately on page load
+    const t = setTimeout(() => setOpen(true), 300);
+    return () => clearTimeout(t);
   }, []);
 
   useEffect(() => {

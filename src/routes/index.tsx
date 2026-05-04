@@ -20,6 +20,7 @@ import { Footer } from "@/components/site/Footer";
 import { StickyProjectBar } from "@/components/site/StickyProjectBar";
 import { EoiSection } from "@/components/site/EoiSection";
 import { EoiPopup } from "@/components/site/EoiPopup";
+import { LeadGate } from "@/components/site/LeadGate";
 import { FAQ } from "@/components/site/FAQ";
 
 export const Route = createFileRoute("/")({
@@ -187,6 +188,7 @@ function Index() {
       <WhatsAppButton phone={content.contact.whatsapp} />
       <StickyProjectBar />
       <EoiPopup eoi={content.eoi} />
+      <LeadGate />
     </div>
   );
 }
