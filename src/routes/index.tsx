@@ -167,13 +167,14 @@ export const Route = createFileRoute("/")({
 function Index() {
   const { content } = useSiteContent();
   const loaderData = Route.useLoaderData();
-  const siteMode = (content as unknown as { siteMode?: { mode?: string } }).siteMode?.mode
-    ?? loaderData?.siteMode
-    ?? "site";
+  const savedMode = (content as unknown as { siteMode?: { mode?: string } }).siteMode?.mode;
+  const siteMode = loaderData?.siteMode === "coming_soon" || savedMode === "coming_soon"
+    ? "coming_soon"
+    : "site";
 
   if (siteMode === "coming_soon") {
     return (
-      <div className="min-h-screen bg-white">
+      <div className="fixed inset-0 overflow-hidden bg-white">
         <LeadGate mode="coming_soon" />
       </div>
     );
