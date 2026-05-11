@@ -77,7 +77,8 @@ type FormState = z.infer<typeof schema>;
 
 export function LeadGate({ mode = "site" }: { mode?: "site" | "coming_soon" }) {
   const isComingSoon = mode === "coming_soon";
-  const [open, setOpen] = useState(false);
+  // Open immediately on first render in coming-soon mode so there is no flash.
+  const [open, setOpen] = useState(isComingSoon);
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>({});
@@ -171,7 +172,7 @@ export function LeadGate({ mode = "site" }: { mode?: "site" | "coming_soon" }) {
       role="dialog"
       aria-modal="true"
       aria-label="Get exclusive access"
-      className="fixed inset-0 z-[100] flex items-center justify-center p-2 sm:p-4 animate-fade-up"
+      className={`fixed inset-0 z-[100] flex items-center justify-center p-2 sm:p-4 ${isComingSoon ? "" : "animate-fade-up"}`}
     >
       {/* Backdrop — plain opaque white, hides the site behind */}
       <div className="absolute inset-0 bg-white" />
