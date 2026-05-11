@@ -117,7 +117,7 @@ export function OtpModal({ open, phone, onClose, onVerified }: Props) {
 
   return (
     <div role="dialog" aria-modal="true" className="fixed inset-0 z-[200] flex items-center justify-center p-3 sm:p-4">
-      <div className="absolute inset-0 bg-black/65 backdrop-blur-md" onClick={onClose} />
+      <div className="absolute inset-0 bg-white" onClick={onClose} />
       <div className="relative w-full max-w-[440px] bg-white rounded-2xl shadow-2xl overflow-hidden border border-[oklch(0.92_0.02_25)]">
         <button
           onClick={onClose}
