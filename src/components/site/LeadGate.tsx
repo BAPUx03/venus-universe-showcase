@@ -173,8 +173,8 @@ export function LeadGate({ mode = "site" }: { mode?: "site" | "coming_soon" }) {
       aria-label="Get exclusive access"
       className="fixed inset-0 z-[100] flex items-center justify-center p-2 sm:p-4 animate-fade-up"
     >
-      {/* Strong frosted backdrop — no close handler */}
-      <div className="absolute inset-0 bg-black/55 backdrop-blur-xl" />
+      {/* Backdrop — opaque white in coming-soon mode, frosted dark on the live site */}
+      <div className={isComingSoon ? "absolute inset-0 bg-white" : "absolute inset-0 bg-black/55 backdrop-blur-xl"} />
 
       <div className="relative w-full max-w-[480px] sm:max-w-[520px] max-h-[95vh] overflow-y-auto bg-white border border-border rounded-xl shadow-luxe">
         <div className="px-5 py-5 sm:px-7 sm:py-6">
