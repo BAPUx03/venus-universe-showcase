@@ -162,6 +162,8 @@ export const Route = createFileRoute("/")({
     };
   },
   component: Index,
+  pendingMs: 0,
+  pendingComponent: () => <div className="fixed inset-0 bg-white" />,
 });
 
 function Index() {
