@@ -26,14 +26,15 @@ import { FAQ } from "@/components/site/FAQ";
 export const Route = createFileRoute("/")({
   loader: async () => {
     try {
-      const { data } = await supabase.from("site_content").select("key, value").in("key", ["seo", "brand"]);
+      const { data } = await supabase.from("site_content").select("key, value").in("key", ["seo", "brand", "siteMode"]);
       const map: Record<string, unknown> = {};
       for (const r of data ?? []) map[r.key] = r.value;
       const seo = { ...defaultContent.seo, ...((map.seo as object) ?? {}) };
       const brand = { ...defaultContent.brand, ...((map.brand as object) ?? {}) };
-      return { seo, brand };
+      const siteMode = ((map.siteMode as { mode?: string })?.mode === "coming_soon") ? "coming_soon" : "site";
+      return { seo, brand, siteMode };
     } catch {
-      return { seo: defaultContent.seo, brand: defaultContent.brand };
+      return { seo: defaultContent.seo, brand: defaultContent.brand, siteMode: "site" as const };
     }
   },
   head: ({ loaderData }) => {
