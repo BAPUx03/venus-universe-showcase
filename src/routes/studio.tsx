@@ -192,7 +192,8 @@ function AdminPanel({ onLogout }: { onLogout: () => void }) {
               Venus <span className="text-gradient-gold italic">Admin</span>
             </span>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 flex-wrap">
+            <SiteModeToggle />
             <button
               onClick={() => setTab("content")}
               className={`px-3.5 py-2 text-[11px] uppercase tracking-[0.2em] border transition ${
