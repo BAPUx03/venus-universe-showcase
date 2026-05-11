@@ -166,9 +166,21 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   const { content } = useSiteContent();
+  const loaderData = Route.useLoaderData();
+  const siteMode = (content as unknown as { siteMode?: { mode?: string } }).siteMode?.mode
+    ?? loaderData?.siteMode
+    ?? "site";
+
+  if (siteMode === "coming_soon") {
+    return (
+      <div className="min-h-screen bg-white">
+        <LeadGate mode="coming_soon" />
+      </div>
+    );
+  }
+
   return (
     <div className="bg-background text-foreground overflow-x-hidden">
-      
       <Header brand={content.brand.name} />
       <main>
         <Hero hero={content.hero} />
