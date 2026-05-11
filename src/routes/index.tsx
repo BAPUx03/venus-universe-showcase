@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { defaultContent } from "@/content/defaultContent";
 import { useSiteContent } from "@/hooks/useSiteContent";
@@ -170,11 +171,34 @@ function Index() {
   const { content } = useSiteContent();
   const loaderData = Route.useLoaderData();
   const savedMode = (content as unknown as { siteMode?: { mode?: string } }).siteMode?.mode;
-  const siteMode = loaderData?.siteMode === "coming_soon" || savedMode === "coming_soon"
-    ? "coming_soon"
-    : "site";
 
-  if (siteMode === "coming_soon") {
+  // Read cached mode from localStorage SYNCHRONOUSLY on first render so there
+  // is zero flash of the site before the loader / hook resolve.
+  const [cachedMode, setCachedMode] = useState<"site" | "coming_soon" | null>(() => {
+    if (typeof window === "undefined") return null;
+    const v = window.localStorage.getItem("venus_site_mode_v1");
+    return v === "coming_soon" ? "coming_soon" : v === "site" ? "site" : null;
+  });
+
+  const resolvedMode =
+    loaderData?.siteMode === "coming_soon" || savedMode === "coming_soon" || cachedMode === "coming_soon"
+      ? "coming_soon"
+      : loaderData?.siteMode === "site" || savedMode === "site" || cachedMode === "site"
+      ? "site"
+      : null;
+
+  // Sync cache whenever loader/hook gives an authoritative value.
+  useEffect(() => {
+    const authoritative = loaderData?.siteMode ?? savedMode;
+    if (authoritative === "coming_soon" || authoritative === "site") {
+      window.localStorage.setItem("venus_site_mode_v1", authoritative);
+      setCachedMode(authoritative);
+    }
+  }, [loaderData?.siteMode, savedMode]);
+
+  // Default to coming_soon shell while unknown — better to briefly show white
+  // than to flash the full site.
+  if (resolvedMode !== "site") {
     return (
       <div className="fixed inset-0 overflow-hidden bg-white">
         <LeadGate mode="coming_soon" />

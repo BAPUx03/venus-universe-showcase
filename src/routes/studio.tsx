@@ -311,6 +311,7 @@ function SiteModeToggle() {
     setMode(next);
     try {
       await saveSiteContentKey("siteMode", { mode: next });
+      try { window.localStorage.setItem("venus_site_mode_v1", next); } catch { /* ignore */ }
     } catch (e) {
       setMode(prev);
       alert("Failed to update mode: " + (e as Error).message);
