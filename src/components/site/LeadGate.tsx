@@ -269,6 +269,33 @@ export function LeadGate({ mode = "site" }: { mode?: "site" | "coming_soon" }) {
       </div>
     </div>
       )}
+      {submitted && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Successfully enrolled"
+          className="fixed inset-0 z-[110] bg-white flex flex-col items-center justify-center px-6 text-center"
+        >
+          <h1
+            className="font-display font-black tracking-[-0.04em] text-foreground leading-none animate-cs-reveal"
+            style={{ fontSize: "clamp(2.75rem, 11vw, 9rem)" }}
+          >
+            COMING SOON
+          </h1>
+          <p
+            className="mt-8 text-[clamp(1rem,2.4vw,1.5rem)] font-semibold tracking-[0.2em] uppercase animate-cs-rise"
+            style={{ color: "var(--accent-red)", animationDelay: "0.5s" }}
+          >
+            You're Successfully Enrolled
+          </p>
+          <p
+            className="mt-4 max-w-xl text-[clamp(0.85rem,1.6vw,1.05rem)] text-muted-foreground leading-relaxed animate-cs-rise"
+            style={{ animationDelay: "0.75s" }}
+          >
+            Thank you for joining us. We'll notify you as soon as the project goes live.
+          </p>
+        </div>
+      )}
       <OtpModal
         open={otpOpen}
         phone={pendingLead?.phone ?? ""}
