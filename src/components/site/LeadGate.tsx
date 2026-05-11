@@ -75,9 +75,11 @@ const schema = z.object({
 
 type FormState = z.infer<typeof schema>;
 
-export function LeadGate() {
+export function LeadGate({ mode = "site" }: { mode?: "site" | "coming_soon" }) {
+  const isComingSoon = mode === "coming_soon";
   const [open, setOpen] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>({});
   const [otpOpen, setOtpOpen] = useState(false);
   type Lead = { first_name: string; last_name: string; email: string; phone: string; requirement: string; budget: string; source: string };
