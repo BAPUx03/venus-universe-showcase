@@ -96,20 +96,28 @@ export function LeadGate({ mode = "site" }: { mode?: "site" | "coming_soon" }) {
 
   useEffect(() => {
     if (typeof window === "undefined") return;
+    if (isComingSoon) {
+      // Always force open in coming-soon mode (unless already submitted this session)
+      if (window.sessionStorage.getItem(STORAGE_KEY)) {
+        setSubmitted(true);
+      } else {
+        setOpen(true);
+      }
+      return;
+    }
     if (window.sessionStorage.getItem(STORAGE_KEY)) return;
-    // Force-show the lead gate immediately on page load
-    const t = setTimeout(() => setOpen(true), 300);
+    const t = setTimeout(() => setOpen(true), 5000);
     return () => clearTimeout(t);
-  }, []);
+  }, [isComingSoon]);
 
   useEffect(() => {
-    if (!open) return;
+    if (!open && !submitted) return;
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     return () => {
       document.body.style.overflow = prev;
     };
-  }, [open]);
+  }, [open, submitted]);
 
   const set = <K extends keyof FormState>(k: K, v: FormState[K]) => {
     setForm((f) => ({ ...f, [k]: v }));
@@ -132,7 +140,7 @@ export function LeadGate({ mode = "site" }: { mode?: "site" | "coming_soon" }) {
     const lead: Lead = {
       ...rest,
       phone: `${country_code}${phone}`,
-      source: "lead_gate",
+      source: isComingSoon ? "coming_soon" : "lead_gate",
     };
     setPendingLead(lead);
     setOtpOpen(true);
@@ -151,6 +159,7 @@ export function LeadGate({ mode = "site" }: { mode?: "site" | "coming_soon" }) {
       window.sessionStorage.setItem(STORAGE_KEY, "1");
       setSubmitting(false);
       setOpen(false);
+      setSubmitted(true);
       setPendingLead(null);
     }
   };
