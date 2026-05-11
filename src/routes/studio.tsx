@@ -192,7 +192,8 @@ function AdminPanel({ onLogout }: { onLogout: () => void }) {
               Venus <span className="text-gradient-gold italic">Admin</span>
             </span>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 flex-wrap">
+            <SiteModeToggle />
             <button
               onClick={() => setTab("content")}
               className={`px-3.5 py-2 text-[11px] uppercase tracking-[0.2em] border transition ${
@@ -281,6 +282,64 @@ function AdminPanel({ onLogout }: { onLogout: () => void }) {
       ) : (
         <LeadsTab leads={leads} />
       )}
+    </div>
+  );
+}
+
+/* -------------------- Site Mode Toggle -------------------- */
+
+function SiteModeToggle() {
+  const [mode, setMode] = useState<"site" | "coming_soon" | null>(null);
+  const [saving, setSaving] = useState(false);
+
+  useEffect(() => {
+    (async () => {
+      const { data } = await supabase
+        .from("site_content")
+        .select("value")
+        .eq("key", "siteMode")
+        .maybeSingle();
+      const m = (data?.value as { mode?: string } | null)?.mode;
+      setMode(m === "coming_soon" ? "coming_soon" : "site");
+    })();
+  }, []);
+
+  const update = async (next: "site" | "coming_soon") => {
+    if (next === mode || saving) return;
+    setSaving(true);
+    const prev = mode;
+    setMode(next);
+    try {
+      await saveSiteContentKey("siteMode", { mode: next });
+    } catch (e) {
+      setMode(prev);
+      alert("Failed to update mode: " + (e as Error).message);
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  return (
+    <div className="inline-flex items-center border border-border overflow-hidden mr-2" role="group" aria-label="Site mode">
+      <span className="px-2.5 py-2 text-[10px] uppercase tracking-[0.2em] text-ivory/50 bg-charcoal-deep/60 border-r border-border">Mode</span>
+      <button
+        onClick={() => update("site")}
+        disabled={saving || mode === null}
+        className={`px-3 py-2 text-[11px] uppercase tracking-[0.2em] transition ${
+          mode === "site" ? "bg-gradient-gold text-charcoal-deep font-semibold" : "text-ivory/70 hover:text-gold"
+        }`}
+      >
+        Site
+      </button>
+      <button
+        onClick={() => update("coming_soon")}
+        disabled={saving || mode === null}
+        className={`px-3 py-2 text-[11px] uppercase tracking-[0.2em] border-l border-border transition ${
+          mode === "coming_soon" ? "bg-gradient-gold text-charcoal-deep font-semibold" : "text-ivory/70 hover:text-gold"
+        }`}
+      >
+        Coming Soon
+      </button>
     </div>
   );
 }

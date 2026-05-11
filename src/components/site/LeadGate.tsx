@@ -75,9 +75,11 @@ const schema = z.object({
 
 type FormState = z.infer<typeof schema>;
 
-export function LeadGate() {
+export function LeadGate({ mode = "site" }: { mode?: "site" | "coming_soon" }) {
+  const isComingSoon = mode === "coming_soon";
   const [open, setOpen] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>({});
   const [otpOpen, setOtpOpen] = useState(false);
   type Lead = { first_name: string; last_name: string; email: string; phone: string; requirement: string; budget: string; source: string };
@@ -94,20 +96,28 @@ export function LeadGate() {
 
   useEffect(() => {
     if (typeof window === "undefined") return;
+    if (isComingSoon) {
+      // Always force open in coming-soon mode (unless already submitted this session)
+      if (window.sessionStorage.getItem(STORAGE_KEY)) {
+        setSubmitted(true);
+      } else {
+        setOpen(true);
+      }
+      return;
+    }
     if (window.sessionStorage.getItem(STORAGE_KEY)) return;
-    // Force-show the lead gate immediately on page load
-    const t = setTimeout(() => setOpen(true), 300);
+    const t = setTimeout(() => setOpen(true), 5000);
     return () => clearTimeout(t);
-  }, []);
+  }, [isComingSoon]);
 
   useEffect(() => {
-    if (!open) return;
+    if (!open && !submitted) return;
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     return () => {
       document.body.style.overflow = prev;
     };
-  }, [open]);
+  }, [open, submitted]);
 
   const set = <K extends keyof FormState>(k: K, v: FormState[K]) => {
     setForm((f) => ({ ...f, [k]: v }));
@@ -130,7 +140,7 @@ export function LeadGate() {
     const lead: Lead = {
       ...rest,
       phone: `${country_code}${phone}`,
-      source: "lead_gate",
+      source: isComingSoon ? "coming_soon" : "lead_gate",
     };
     setPendingLead(lead);
     setOtpOpen(true);
@@ -149,6 +159,7 @@ export function LeadGate() {
       window.sessionStorage.setItem(STORAGE_KEY, "1");
       setSubmitting(false);
       setOpen(false);
+      setSubmitted(true);
       setPendingLead(null);
     }
   };
@@ -162,8 +173,8 @@ export function LeadGate() {
       aria-label="Get exclusive access"
       className="fixed inset-0 z-[100] flex items-center justify-center p-2 sm:p-4 animate-fade-up"
     >
-      {/* Strong frosted backdrop — no close handler */}
-      <div className="absolute inset-0 bg-black/55 backdrop-blur-xl" />
+      {/* Backdrop — opaque white in coming-soon mode, frosted dark on the live site */}
+      <div className={isComingSoon ? "absolute inset-0 bg-white" : "absolute inset-0 bg-black/55 backdrop-blur-xl"} />
 
       <div className="relative w-full max-w-[480px] sm:max-w-[520px] max-h-[95vh] overflow-y-auto bg-white border border-border rounded-xl shadow-luxe">
         <div className="px-5 py-5 sm:px-7 sm:py-6">
@@ -257,6 +268,33 @@ export function LeadGate() {
         </div>
       </div>
     </div>
+      )}
+      {submitted && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Successfully enrolled"
+          className="fixed inset-0 z-[110] bg-white flex flex-col items-center justify-center px-6 text-center"
+        >
+          <h1
+            className="font-display font-black tracking-[-0.04em] text-foreground leading-none animate-cs-reveal"
+            style={{ fontSize: "clamp(2.75rem, 11vw, 9rem)" }}
+          >
+            COMING SOON
+          </h1>
+          <p
+            className="mt-8 text-[clamp(1rem,2.4vw,1.5rem)] font-semibold tracking-[0.2em] uppercase animate-cs-rise"
+            style={{ color: "var(--accent-red)", animationDelay: "0.5s" }}
+          >
+            You're Successfully Enrolled
+          </p>
+          <p
+            className="mt-4 max-w-xl text-[clamp(0.85rem,1.6vw,1.05rem)] text-muted-foreground leading-relaxed animate-cs-rise"
+            style={{ animationDelay: "0.75s" }}
+          >
+            Thank you for joining us. We'll notify you as soon as the project goes live.
+          </p>
+        </div>
       )}
       <OtpModal
         open={otpOpen}
