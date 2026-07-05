@@ -159,7 +159,7 @@ export function LeadGate({ mode = "site" }: { mode?: "site" | "coming_soon" }) {
       window.sessionStorage.setItem(STORAGE_KEY, "1");
       setSubmitting(false);
       setOpen(false);
-      setSubmitted(true);
+      setSubmitted(false);
       setPendingLead(null);
     }
   };
