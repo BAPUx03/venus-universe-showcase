@@ -137,7 +137,7 @@ function ensureShape<T>(_section: SectionKey, value: unknown, defaults?: unknown
 function AdminPanel({ onLogout }: { onLogout: () => void }) {
   const { content, loading } = useSiteContent();
   const [active, setActive] = useState<SectionKey>("hero");
-  const [tab, setTab] = useState<"content" | "leads">("content");
+  const [tab, setTab] = useState<"content" | "leads" | "seo">("content");
   const [draft, setDraft] = useState<unknown>(null);
   const [saving, setSaving] = useState(false);
   const [savedAt, setSavedAt] = useState<string | null>(null);
