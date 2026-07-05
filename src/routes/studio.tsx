@@ -288,8 +288,10 @@ function AdminPanel({ onLogout }: { onLogout: () => void }) {
             )}
           </main>
         </div>
-      ) : (
+      ) : tab === "leads" ? (
         <LeadsTab leads={leads} />
+      ) : (
+        <SeoTab />
       )}
     </div>
   );
