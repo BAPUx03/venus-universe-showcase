@@ -212,6 +212,14 @@ function AdminPanel({ onLogout }: { onLogout: () => void }) {
               Leads
             </button>
             <button
+              onClick={() => setTab("seo")}
+              className={`px-3.5 py-2 text-[11px] uppercase tracking-[0.2em] border transition ${
+                tab === "seo" ? "border-gold text-gold" : "border-border text-ivory/70 hover:text-gold"
+              }`}
+            >
+              SEO
+            </button>
+            <button
               onClick={onLogout}
               className="ml-2 inline-flex items-center gap-1.5 px-3 py-2 text-[11px] uppercase tracking-[0.2em] border border-border text-ivory/70 hover:text-destructive hover:border-destructive transition"
             >
