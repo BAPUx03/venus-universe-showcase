@@ -1329,3 +1329,209 @@ function AutoSeoAgentPanel() {
   );
 }
 
+
+function CompetitorDrawer({ domain, onClose }: { domain: string; onClose: () => void }) {
+  const [detail, setDetail] = useState<CompetitorDetail | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [filter, setFilter] = useState<"all" | "quick-win" | "close-gap" | "defend">("all");
+
+  useEffect(() => {
+    let active = true;
+    (async () => {
+      setLoading(true); setError(null);
+      try {
+        const res = await getCompetitorDetail({ data: { domain } });
+        if (!active) return;
+        setDetail(res);
+        if (res.error) setError(res.error);
+      } catch (e) {
+        if (active) setError((e as Error).message);
+      } finally {
+        if (active) setLoading(false);
+      }
+    })();
+    return () => { active = false; };
+  }, [domain]);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
+    window.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => { window.removeEventListener("keydown", onKey); document.body.style.overflow = ""; };
+  }, [onClose]);
+
+  const shared = detail?.shared ?? [];
+  const filtered = filter === "all" ? shared : shared.filter((s) => s.opportunity === filter);
+  const counts = {
+    "quick-win": shared.filter((s) => s.opportunity === "quick-win").length,
+    "close-gap": shared.filter((s) => s.opportunity === "close-gap").length,
+    defend: shared.filter((s) => s.opportunity === "defend").length,
+  };
+  const maxTraffic = Math.max(1, ...(detail?.trend ?? []).map((t) => t.traffic));
+  const first = detail?.trend[0]?.traffic ?? 0;
+  const last = detail?.trend[detail.trend.length - 1]?.traffic ?? 0;
+  const trendDelta = first > 0 ? Math.round(((last - first) / first) * 100) : 0;
+
+  const oppBadge = (o: string) => {
+    const map: Record<string, string> = {
+      "quick-win": "bg-green-500/15 text-green-400 border-green-500/30",
+      "close-gap": "bg-orange-500/15 text-orange-400 border-orange-500/30",
+      defend: "bg-gold/15 text-gold border-gold/30",
+      watch: "bg-muted/20 text-muted-foreground border-border",
+    };
+    return <span className={`px-1.5 py-0.5 text-[9.5px] uppercase tracking-[0.18em] border ${map[o]}`}>{o.replace("-", " ")}</span>;
+  };
+
+  const posCell = (p: number | null) => {
+    if (p == null) return <span className="text-muted-foreground">—</span>;
+    const color = p <= 3 ? "text-green-400" : p <= 10 ? "text-gold" : p <= 20 ? "text-orange-400" : "text-destructive";
+    return <span className={color}>#{p}</span>;
+  };
+
+  return (
+    <div className="fixed inset-0 z-50 flex justify-end" role="dialog" aria-label={`${domain} details`}>
+      <button className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={onClose} aria-label="Close" />
+      <div className="relative w-full max-w-2xl h-full bg-background border-l border-border overflow-y-auto animate-in slide-in-from-right duration-200">
+        <div className="sticky top-0 z-10 bg-background/95 backdrop-blur border-b border-border px-6 py-4 flex items-start justify-between gap-3">
+          <div>
+            <div className="text-[10.5px] uppercase tracking-[0.22em] text-gold">Competitor</div>
+            <h2 className="font-display text-xl text-ivory mt-1 flex items-center gap-2">
+              {domain}
+              <a href={`https://${domain}`} target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-gold">
+                <ExternalLink size={14} />
+              </a>
+            </h2>
+            {detail && (
+              <p className="text-[11px] text-muted-foreground mt-1">
+                {detail.totals.sharedCount} shared keyword{detail.totals.sharedCount === 1 ? "" : "s"} · {detail.totals.theirTotal} total ranking
+              </p>
+            )}
+          </div>
+          <button onClick={onClose} className="text-muted-foreground hover:text-ivory p-1" aria-label="Close drawer">
+            <X size={20} />
+          </button>
+        </div>
+
+        <div className="px-6 py-5 space-y-6">
+          {loading && <div className="text-center py-10 text-muted-foreground"><Loader2 className="inline animate-spin mr-2" /> Loading shared keywords…</div>}
+          {error && <div className="bg-destructive/10 border border-destructive/30 text-destructive text-[12px] p-3">{error}</div>}
+
+          {detail && !loading && (
+            <>
+              {/* Opportunity summary */}
+              <div className="grid grid-cols-3 gap-2">
+                <div className="border border-green-500/30 bg-green-500/5 p-3">
+                  <div className="text-[9.5px] uppercase tracking-[0.18em] text-green-400">Quick wins</div>
+                  <div className="font-display text-2xl text-ivory mt-1">{counts["quick-win"]}</div>
+                </div>
+                <div className="border border-orange-500/30 bg-orange-500/5 p-3">
+                  <div className="text-[9.5px] uppercase tracking-[0.18em] text-orange-400">Close gap</div>
+                  <div className="font-display text-2xl text-ivory mt-1">{counts["close-gap"]}</div>
+                </div>
+                <div className="border border-gold/30 bg-gold/5 p-3">
+                  <div className="text-[9.5px] uppercase tracking-[0.18em] text-gold">Defend</div>
+                  <div className="font-display text-2xl text-ivory mt-1">{counts.defend}</div>
+                </div>
+              </div>
+
+              {/* Their trend */}
+              {detail.trend.length > 0 && (
+                <div className="border border-border p-4">
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="text-[11px] uppercase tracking-[0.22em] text-gold">Their traffic trend</span>
+                    <span className={`text-[12px] ${trendDelta >= 0 ? "text-green-400" : "text-destructive"}`}>
+                      {trendDelta >= 0 ? "▲" : "▼"} {Math.abs(trendDelta)}% over {detail.trend.length} mo
+                    </span>
+                  </div>
+                  <div className="space-y-1.5">
+                    {detail.trend.map((t) => (
+                      <div key={t.date} className="flex items-center gap-2 text-[11px]">
+                        <div className="w-16 text-muted-foreground">{t.date}</div>
+                        <div className="flex-1 h-4 bg-charcoal-deep/60 relative overflow-hidden">
+                          <div className="h-full bg-gradient-gold" style={{ width: `${(t.traffic / maxTraffic) * 100}%` }} />
+                        </div>
+                        <div className="w-20 text-right text-ivory/85">{t.traffic.toLocaleString()}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Shared keywords */}
+              <div>
+                <div className="flex items-center justify-between flex-wrap gap-2 mb-3">
+                  <span className="text-[11px] uppercase tracking-[0.22em] text-gold">Shared keywords</span>
+                  <div className="flex gap-1 flex-wrap">
+                    {(["all", "quick-win", "close-gap", "defend"] as const).map((f) => (
+                      <button
+                        key={f}
+                        onClick={() => setFilter(f)}
+                        className={`px-2.5 py-1 text-[10px] uppercase tracking-[0.18em] border transition ${
+                          filter === f ? "border-gold text-gold bg-gold/10" : "border-border text-muted-foreground hover:text-ivory"
+                        }`}
+                      >
+                        {f.replace("-", " ")}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {filtered.length === 0 ? (
+                  <div className="text-[12px] text-muted-foreground py-6 text-center border border-border">
+                    No keywords in this bucket.
+                  </div>
+                ) : (
+                  <div className="border border-border">
+                    <table className="w-full text-[12px]">
+                      <thead>
+                        <tr className="text-left text-[9.5px] uppercase tracking-[0.22em] text-muted-foreground border-b border-border bg-charcoal-deep/40">
+                          <th className="py-2 px-3">Keyword</th>
+                          <th className="py-2 px-2 text-right">You</th>
+                          <th className="py-2 px-2 text-right">Them</th>
+                          <th className="py-2 px-2 text-right">Vol</th>
+                          <th className="py-2 px-2 text-right">KD</th>
+                          <th className="py-2 px-3"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {filtered.slice(0, 60).map((k) => (
+                          <tr key={k.phrase} className="border-b border-border/40 text-ivory/85">
+                            <td className="py-2 px-3">
+                              <div className="text-ivory">{k.phrase}</div>
+                              <div className="mt-1">{oppBadge(k.opportunity)}</div>
+                            </td>
+                            <td className="py-2 px-2 text-right">{posCell(k.ourPosition)}</td>
+                            <td className="py-2 px-2 text-right">{posCell(k.theirPosition)}</td>
+                            <td className="py-2 px-2 text-right text-ivory/80">{k.volume.toLocaleString()}</td>
+                            <td className="py-2 px-2 text-right text-muted-foreground">{k.difficulty ?? "—"}</td>
+                            <td className="py-2 px-3 text-right">
+                              {k.url && (
+                                <a href={k.url} target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-gold inline-flex">
+                                  <ExternalLink size={12} />
+                                </a>
+                              )}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                    {filtered.length > 60 && (
+                      <div className="text-[10.5px] text-muted-foreground text-center py-2 border-t border-border">
+                        Showing top 60 of {filtered.length}
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+
+              <div className="text-[10px] text-muted-foreground text-center pt-2">
+                Semrush · {new Date(detail.fetchedAt).toLocaleString()}
+              </div>
+            </>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
