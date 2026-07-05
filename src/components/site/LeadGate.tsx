@@ -107,8 +107,7 @@ export function LeadGate({ mode = "site" }: { mode?: "site" | "coming_soon" }) {
       return;
     }
     if (window.sessionStorage.getItem(STORAGE_KEY)) return;
-    const t = setTimeout(() => setOpen(true), 5000);
-    return () => clearTimeout(t);
+    setOpen(true);
   }, [isComingSoon]);
 
   useEffect(() => {
