@@ -1,0 +1,58 @@
+{
+  "version": 1,
+  "sdk_version": "0.20.0",
+  "path": "/mcp",
+  "auth": {
+    "type": "none"
+  },
+  "mcp": {
+    "server": {
+      "name": "venus-universe-mcp",
+      "version": "0.1.0",
+      "title": "Venus Universe MCP"
+    },
+    "tools": [
+      {
+        "name": "get_project_overview",
+        "title": "Get project overview",
+        "description": "Return an overview of the Venus Grounds 2 luxury residential project: location, developer, residence types, and enquiry channel.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "get_site_content",
+        "title": "Get site content",
+        "description": "Fetch a piece of publicly editable site content (hero copy, sections, etc.) by its key. Returns the raw JSON value stored for that key.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "key": {
+              "type": "string",
+              "minLength": 1,
+              "description": "The content key to fetch, e.g. 'hero', 'about', 'contact'."
+            }
+          },
+          "required": [
+            "key"
+          ]
+        },
+        "outputSchema": null
+      }
+    ]
+  }
+}

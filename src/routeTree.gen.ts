@@ -12,10 +12,14 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as StudioRouteImport } from './routes/studio'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
+import { Route as McpRouteImport } from './routes/mcp'
 import { Route as EoiRouteImport } from './routes/eoi'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as Char91DotwellKnownChar93OauthProtectedResourceRouteImport } from './routes/[.well-known]/oauth-protected-resource'
+import { Route as Char91DotmcpChar93ListToolsRouteImport } from './routes/[.mcp]/list-tools'
 import { Route as ApiPublicOtpRouteImport } from './routes/api/public/otp'
 import { Route as ApiPublicNotifyLeadRouteImport } from './routes/api/public/notify-lead'
+import { Route as Char91DotmcpChar93InvokeToolToolRouteImport } from './routes/[.mcp]/invoke-tool/$tool'
 
 const StudioRoute = StudioRouteImport.update({
   id: '/studio',
@@ -32,6 +36,11 @@ const RobotsDottxtRoute = RobotsDottxtRouteImport.update({
   path: '/robots.txt',
   getParentRoute: () => rootRouteImport,
 } as any)
+const McpRoute = McpRouteImport.update({
+  id: '/mcp',
+  path: '/mcp',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EoiRoute = EoiRouteImport.update({
   id: '/eoi',
   path: '/eoi',
@@ -42,6 +51,18 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const Char91DotwellKnownChar93OauthProtectedResourceRoute =
+  Char91DotwellKnownChar93OauthProtectedResourceRouteImport.update({
+    id: '/.well-known/oauth-protected-resource',
+    path: '/.well-known/oauth-protected-resource',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const Char91DotmcpChar93ListToolsRoute =
+  Char91DotmcpChar93ListToolsRouteImport.update({
+    id: '/.mcp/list-tools',
+    path: '/.mcp/list-tools',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ApiPublicOtpRoute = ApiPublicOtpRouteImport.update({
   id: '/api/public/otp',
   path: '/api/public/otp',
@@ -52,22 +73,36 @@ const ApiPublicNotifyLeadRoute = ApiPublicNotifyLeadRouteImport.update({
   path: '/api/public/notify-lead',
   getParentRoute: () => rootRouteImport,
 } as any)
+const Char91DotmcpChar93InvokeToolToolRoute =
+  Char91DotmcpChar93InvokeToolToolRouteImport.update({
+    id: '/.mcp/invoke-tool/$tool',
+    path: '/.mcp/invoke-tool/$tool',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/eoi': typeof EoiRoute
+  '/mcp': typeof McpRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/studio': typeof StudioRoute
+  '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
+  '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
+  '/.mcp/invoke-tool/$tool': typeof Char91DotmcpChar93InvokeToolToolRoute
   '/api/public/notify-lead': typeof ApiPublicNotifyLeadRoute
   '/api/public/otp': typeof ApiPublicOtpRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/eoi': typeof EoiRoute
+  '/mcp': typeof McpRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/studio': typeof StudioRoute
+  '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
+  '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
+  '/.mcp/invoke-tool/$tool': typeof Char91DotmcpChar93InvokeToolToolRoute
   '/api/public/notify-lead': typeof ApiPublicNotifyLeadRoute
   '/api/public/otp': typeof ApiPublicOtpRoute
 }
@@ -75,9 +110,13 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/eoi': typeof EoiRoute
+  '/mcp': typeof McpRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/studio': typeof StudioRoute
+  '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
+  '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
+  '/.mcp/invoke-tool/$tool': typeof Char91DotmcpChar93InvokeToolToolRoute
   '/api/public/notify-lead': typeof ApiPublicNotifyLeadRoute
   '/api/public/otp': typeof ApiPublicOtpRoute
 }
@@ -86,27 +125,39 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/eoi'
+    | '/mcp'
     | '/robots.txt'
     | '/sitemap.xml'
     | '/studio'
+    | '/.mcp/list-tools'
+    | '/.well-known/oauth-protected-resource'
+    | '/.mcp/invoke-tool/$tool'
     | '/api/public/notify-lead'
     | '/api/public/otp'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/eoi'
+    | '/mcp'
     | '/robots.txt'
     | '/sitemap.xml'
     | '/studio'
+    | '/.mcp/list-tools'
+    | '/.well-known/oauth-protected-resource'
+    | '/.mcp/invoke-tool/$tool'
     | '/api/public/notify-lead'
     | '/api/public/otp'
   id:
     | '__root__'
     | '/'
     | '/eoi'
+    | '/mcp'
     | '/robots.txt'
     | '/sitemap.xml'
     | '/studio'
+    | '/.mcp/list-tools'
+    | '/.well-known/oauth-protected-resource'
+    | '/.mcp/invoke-tool/$tool'
     | '/api/public/notify-lead'
     | '/api/public/otp'
   fileRoutesById: FileRoutesById
@@ -114,9 +165,13 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   EoiRoute: typeof EoiRoute
+  McpRoute: typeof McpRoute
   RobotsDottxtRoute: typeof RobotsDottxtRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   StudioRoute: typeof StudioRoute
+  Char91DotmcpChar93ListToolsRoute: typeof Char91DotmcpChar93ListToolsRoute
+  Char91DotwellKnownChar93OauthProtectedResourceRoute: typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
+  Char91DotmcpChar93InvokeToolToolRoute: typeof Char91DotmcpChar93InvokeToolToolRoute
   ApiPublicNotifyLeadRoute: typeof ApiPublicNotifyLeadRoute
   ApiPublicOtpRoute: typeof ApiPublicOtpRoute
 }
@@ -144,6 +199,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RobotsDottxtRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/mcp': {
+      id: '/mcp'
+      path: '/mcp'
+      fullPath: '/mcp'
+      preLoaderRoute: typeof McpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/eoi': {
       id: '/eoi'
       path: '/eoi'
@@ -156,6 +218,20 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/.well-known/oauth-protected-resource': {
+      id: '/.well-known/oauth-protected-resource'
+      path: '/.well-known/oauth-protected-resource'
+      fullPath: '/.well-known/oauth-protected-resource'
+      preLoaderRoute: typeof Char91DotwellKnownChar93OauthProtectedResourceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/.mcp/list-tools': {
+      id: '/.mcp/list-tools'
+      path: '/.mcp/list-tools'
+      fullPath: '/.mcp/list-tools'
+      preLoaderRoute: typeof Char91DotmcpChar93ListToolsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/public/otp': {
@@ -172,18 +248,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPublicNotifyLeadRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/.mcp/invoke-tool/$tool': {
+      id: '/.mcp/invoke-tool/$tool'
+      path: '/.mcp/invoke-tool/$tool'
+      fullPath: '/.mcp/invoke-tool/$tool'
+      preLoaderRoute: typeof Char91DotmcpChar93InvokeToolToolRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   EoiRoute: EoiRoute,
+  McpRoute: McpRoute,
   RobotsDottxtRoute: RobotsDottxtRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   StudioRoute: StudioRoute,
+  Char91DotmcpChar93ListToolsRoute: Char91DotmcpChar93ListToolsRoute,
+  Char91DotwellKnownChar93OauthProtectedResourceRoute:
+    Char91DotwellKnownChar93OauthProtectedResourceRoute,
+  Char91DotmcpChar93InvokeToolToolRoute: Char91DotmcpChar93InvokeToolToolRoute,
   ApiPublicNotifyLeadRoute: ApiPublicNotifyLeadRoute,
   ApiPublicOtpRoute: ApiPublicOtpRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { createStart } from '@tanstack/react-start'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+  }
+}
