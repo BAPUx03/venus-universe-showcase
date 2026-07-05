@@ -6,6 +6,7 @@ import { saveSiteContentKey, useSiteContent } from "@/hooks/useSiteContent";
 import { Upload, Save, ArrowLeft, Loader2, Plus, Trash2, LogOut, Image as ImageIcon, TrendingUp, RefreshCw, Sparkles, Check } from "lucide-react";
 import { getSeoDashboard, type SeoDashboardData } from "@/lib/seo/seo-dashboard.functions";
 import { runAutoSeoAgent, type AutoSeoSuggestion } from "@/lib/seo/auto-seo-agent.functions";
+import { getCompetitorDetail, type CompetitorDetail } from "@/lib/seo/competitor-detail.functions";
 
 const ADMIN_EMAIL = "pruthviraj.admin@example.com";
 const ADMIN_PASSWORD = "Pruthvi!01";
