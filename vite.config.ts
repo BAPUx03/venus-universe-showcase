@@ -11,7 +11,6 @@ const isNetlify = process.env.DEPLOY_TARGET === "netlify";
 export default defineConfig(
   isNetlify
     ? {
-        cloudflare: false,
         tanstackStart: {
           target: "netlify",
         },
