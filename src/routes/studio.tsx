@@ -1154,6 +1154,167 @@ function SeoTab() {
           </div>
         </>
       )}
+
+      <AutoSeoAgentPanel />
     </div>
   );
 }
+
+function AutoSeoAgentPanel() {
+  const { content } = useSiteContent();
+  const [sug, setSug] = useState<AutoSeoSuggestion | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [applied, setApplied] = useState<Record<string, boolean>>({});
+  const [applying, setApplying] = useState<string | null>(null);
+
+  const generate = async () => {
+    setLoading(true); setError(null); setApplied({});
+    try {
+      const res = await runAutoSeoAgent({
+        data: {
+          currentSeo: { title: content.seo.title, description: content.seo.description },
+          currentHero: { title: content.hero.title, subtitle: content.hero.subtitle },
+          currentHighlights: content.highlights.map((h) => ({ title: h.title, desc: h.desc })),
+        },
+      });
+      setSug(res);
+      if (res.error) setError(res.error);
+    } catch (e) { setError((e as Error).message); }
+    finally { setLoading(false); }
+  };
+
+  const apply = async (key: "seo" | "hero" | "highlights", value: unknown) => {
+    setApplying(key);
+    try {
+      if (key === "seo") await saveSiteContentKey("seo", { ...content.seo, ...(value as object) });
+      else if (key === "hero") await saveSiteContentKey("hero", { ...content.hero, ...(value as object) });
+      else await saveSiteContentKey("highlights", value);
+      setApplied((p) => ({ ...p, [key]: true }));
+    } catch (e) { setError((e as Error).message); }
+    finally { setApplying(null); }
+  };
+
+  const Diff = ({ label, before, after }: { label: string; before: string; after: string }) => (
+    <div className="space-y-1">
+      <div className="text-[10.5px] uppercase tracking-[0.22em] text-muted-foreground">{label}</div>
+      <div className="text-[12px] text-muted-foreground line-through opacity-70">{before}</div>
+      <div className="text-[13px] text-ivory">{after}</div>
+    </div>
+  );
+
+  return (
+    <div className="bg-card luxe-border p-5 md:p-7 space-y-5">
+      <div className="flex items-center justify-between flex-wrap gap-3">
+        <div>
+          <h3 className="font-display text-lg text-ivory flex items-center gap-2">
+            <Sparkles size={18} className="text-gold" /> Auto-SEO Agent
+          </h3>
+          <p className="text-[12px] text-muted-foreground mt-1">
+            Generates title, hero, highlight and internal-link rewrites from live Semrush data.
+          </p>
+        </div>
+        <button
+          onClick={generate}
+          disabled={loading}
+          className="inline-flex items-center gap-2 px-4 py-2 text-[11px] uppercase tracking-[0.22em] bg-gold text-charcoal-deep hover:opacity-90 transition disabled:opacity-50"
+        >
+          {loading ? <Loader2 size={13} className="animate-spin" /> : <Sparkles size={13} />}
+          {sug ? "Regenerate" : "Generate suggestions"}
+        </button>
+      </div>
+
+      {error && <div className="bg-destructive/10 border border-destructive/30 text-destructive text-[12px] p-3">{error}</div>}
+
+      {sug && (
+        <div className="space-y-6">
+          {sug.rationale && (
+            <div className="text-[12px] text-ivory/80 bg-charcoal-deep/40 border border-border p-3">
+              <span className="text-gold uppercase tracking-[0.22em] text-[10px] mr-2">Agent rationale</span>
+              {sug.rationale}
+            </div>
+          )}
+
+          {/* SEO */}
+          <div className="border border-border p-4 space-y-3">
+            <div className="flex items-center justify-between gap-2">
+              <span className="text-[11px] uppercase tracking-[0.22em] text-gold">SEO Meta</span>
+              <button
+                onClick={() => apply("seo", sug.seo)}
+                disabled={applying === "seo" || applied.seo}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-[10.5px] uppercase tracking-[0.22em] border border-gold text-gold hover:bg-gold hover:text-charcoal-deep transition disabled:opacity-50"
+              >
+                {applied.seo ? <><Check size={12} /> Applied</> : applying === "seo" ? <Loader2 size={12} className="animate-spin" /> : "Apply"}
+              </button>
+            </div>
+            <Diff label={`Title (${sug.seo.title.length} chars)`} before={content.seo.title} after={sug.seo.title} />
+            <Diff label={`Description (${sug.seo.description.length} chars)`} before={content.seo.description} after={sug.seo.description} />
+          </div>
+
+          {/* Hero */}
+          <div className="border border-border p-4 space-y-3">
+            <div className="flex items-center justify-between gap-2">
+              <span className="text-[11px] uppercase tracking-[0.22em] text-gold">Hero (H1)</span>
+              <button
+                onClick={() => apply("hero", sug.hero)}
+                disabled={applying === "hero" || applied.hero}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-[10.5px] uppercase tracking-[0.22em] border border-gold text-gold hover:bg-gold hover:text-charcoal-deep transition disabled:opacity-50"
+              >
+                {applied.hero ? <><Check size={12} /> Applied</> : applying === "hero" ? <Loader2 size={12} className="animate-spin" /> : "Apply"}
+              </button>
+            </div>
+            <Diff label="Title" before={content.hero.title} after={sug.hero.title} />
+            <Diff label="Subtitle" before={content.hero.subtitle} after={sug.hero.subtitle} />
+          </div>
+
+          {/* Highlights */}
+          <div className="border border-border p-4 space-y-3">
+            <div className="flex items-center justify-between gap-2">
+              <span className="text-[11px] uppercase tracking-[0.22em] text-gold">Highlights (H2s)</span>
+              <button
+                onClick={() => apply("highlights", sug.highlights)}
+                disabled={applying === "highlights" || applied.highlights}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-[10.5px] uppercase tracking-[0.22em] border border-gold text-gold hover:bg-gold hover:text-charcoal-deep transition disabled:opacity-50"
+              >
+                {applied.highlights ? <><Check size={12} /> Applied</> : applying === "highlights" ? <Loader2 size={12} className="animate-spin" /> : "Apply all"}
+              </button>
+            </div>
+            <div className="grid gap-2 md:grid-cols-2">
+              {sug.highlights.map((h, i) => (
+                <div key={i} className="border border-border/50 p-3 bg-charcoal-deep/30">
+                  <div className="text-[10px] uppercase tracking-[0.22em] text-muted-foreground line-through opacity-70">
+                    {content.highlights[i]?.title ?? "—"}
+                  </div>
+                  <div className="text-[13px] text-ivory mt-0.5">{h.title}</div>
+                  <div className="text-[11.5px] text-ivory/75 mt-1">{h.desc}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Internal links */}
+          {sug.internalLinks.length > 0 && (
+            <div className="border border-border p-4 space-y-2">
+              <span className="text-[11px] uppercase tracking-[0.22em] text-gold">Suggested Internal Links</span>
+              <p className="text-[11px] text-muted-foreground">Copy these into the relevant sections via Content tab.</p>
+              <ul className="mt-2 space-y-2">
+                {sug.internalLinks.map((l, i) => (
+                  <li key={i} className="text-[12.5px] text-ivory/85 border-l-2 border-gold/50 pl-3">
+                    <span className="text-gold">→ {l.anchor}</span>{" "}
+                    <span className="text-muted-foreground">→ {l.targetPath}</span>
+                    <div className="text-[11px] text-ivory/60 mt-0.5">Placement: {l.placementHint}</div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          <div className="text-[10.5px] text-muted-foreground">
+            Generated {new Date(sug.generatedAt).toLocaleString()} · Positions checked: {sug.insights.positions.length} · Related: {sug.insights.related.length} · Questions: {sug.insights.questions.length}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
