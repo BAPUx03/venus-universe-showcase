@@ -3,7 +3,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { supabase } from "@/integrations/supabase/client";
 import { defaultContent, type SiteContent } from "@/content/defaultContent";
 import { saveSiteContentKey, useSiteContent } from "@/hooks/useSiteContent";
-import { Upload, Save, ArrowLeft, Loader2, Plus, Trash2, LogOut, Image as ImageIcon } from "lucide-react";
+import { Upload, Save, ArrowLeft, Loader2, Plus, Trash2, LogOut, Image as ImageIcon, TrendingUp, RefreshCw } from "lucide-react";
+import { getSeoDashboard, type SeoDashboardData } from "@/lib/seo/seo-dashboard.functions";
 
 const ADMIN_EMAIL = "pruthviraj.admin@example.com";
 const ADMIN_PASSWORD = "Pruthvi!01";
@@ -136,7 +137,7 @@ function ensureShape<T>(_section: SectionKey, value: unknown, defaults?: unknown
 function AdminPanel({ onLogout }: { onLogout: () => void }) {
   const { content, loading } = useSiteContent();
   const [active, setActive] = useState<SectionKey>("hero");
-  const [tab, setTab] = useState<"content" | "leads">("content");
+  const [tab, setTab] = useState<"content" | "leads" | "seo">("content");
   const [draft, setDraft] = useState<unknown>(null);
   const [saving, setSaving] = useState(false);
   const [savedAt, setSavedAt] = useState<string | null>(null);
@@ -211,6 +212,14 @@ function AdminPanel({ onLogout }: { onLogout: () => void }) {
               Leads
             </button>
             <button
+              onClick={() => setTab("seo")}
+              className={`px-3.5 py-2 text-[11px] uppercase tracking-[0.2em] border transition ${
+                tab === "seo" ? "border-gold text-gold" : "border-border text-ivory/70 hover:text-gold"
+              }`}
+            >
+              SEO
+            </button>
+            <button
               onClick={onLogout}
               className="ml-2 inline-flex items-center gap-1.5 px-3 py-2 text-[11px] uppercase tracking-[0.2em] border border-border text-ivory/70 hover:text-destructive hover:border-destructive transition"
             >
@@ -279,8 +288,10 @@ function AdminPanel({ onLogout }: { onLogout: () => void }) {
             )}
           </main>
         </div>
-      ) : (
+      ) : tab === "leads" ? (
         <LeadsTab leads={leads} />
+      ) : (
+        <SeoTab />
       )}
     </div>
   );
@@ -997,6 +1008,151 @@ function LeadsTab({ leads }: { leads: Record<string, unknown>[] }) {
           </table>
         </div>
       </div>
+    </div>
+  );
+}
+
+/* -------------------- SEO Tab -------------------- */
+
+function SeoTab() {
+  const [data, setData] = useState<SeoDashboardData | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const load = async () => {
+    setLoading(true); setError(null);
+    try {
+      const res = await getSeoDashboard();
+      setData(res);
+      if (res.error) setError(res.error);
+    } catch (e) {
+      setError((e as Error).message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => { load(); }, []);
+
+  const posBadge = (p: number | null) => {
+    if (p == null) return <span className="text-muted-foreground text-[12px]">Not ranking</span>;
+    const color = p <= 3 ? "text-green-400" : p <= 10 ? "text-gold" : p <= 20 ? "text-orange-400" : "text-destructive";
+    return <span className={`font-display text-2xl ${color}`}>#{p}</span>;
+  };
+
+  const maxTraffic = Math.max(1, ...(data?.trend ?? []).map((t) => t.traffic));
+
+  return (
+    <div className="container-luxe py-8 space-y-6">
+      <div className="flex items-center justify-between flex-wrap gap-3">
+        <div>
+          <h2 className="font-display text-2xl text-ivory flex items-center gap-2">
+            <TrendingUp size={20} className="text-gold" /> SEO Dashboard
+          </h2>
+          <p className="text-[12px] text-muted-foreground mt-1">
+            Live from Semrush · venusuniverse.in · India (in) database
+            {data?.fetchedAt && ` · updated ${new Date(data.fetchedAt).toLocaleTimeString()}`}
+          </p>
+        </div>
+        <button
+          onClick={load}
+          disabled={loading}
+          className="inline-flex items-center gap-2 px-4 py-2 text-[11px] uppercase tracking-[0.22em] border border-gold text-gold hover:bg-gold hover:text-charcoal-deep transition disabled:opacity-50"
+        >
+          {loading ? <Loader2 size={13} className="animate-spin" /> : <RefreshCw size={13} />} Refresh
+        </button>
+      </div>
+
+      {error && (
+        <div className="bg-destructive/10 border border-destructive/30 text-destructive text-[13px] p-4">
+          {error}
+        </div>
+      )}
+
+      {loading && !data ? (
+        <div className="py-20 text-center text-muted-foreground"><Loader2 className="inline animate-spin" /> Loading Semrush data…</div>
+      ) : (
+        <>
+          {/* Keyword positions */}
+          <div className="bg-card luxe-border p-5 md:p-7">
+            <h3 className="font-display text-lg text-ivory mb-4">Target Keyword Positions</h3>
+            <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+              {data?.keywords.map((k) => (
+                <div key={k.phrase} className="border border-border p-4 bg-charcoal-deep/40">
+                  <div className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground truncate">{k.phrase}</div>
+                  <div className="mt-2 flex items-baseline justify-between">
+                    {posBadge(k.position)}
+                    <div className="text-right text-[11px] text-muted-foreground">
+                      {k.volume != null ? <>{k.volume.toLocaleString()}/mo</> : "—"}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Competitors */}
+          <div className="bg-card luxe-border p-5 md:p-7">
+            <h3 className="font-display text-lg text-ivory mb-4">Top Organic Competitors</h3>
+            {data?.competitors.length === 0 ? (
+              <div className="text-[12px] text-muted-foreground">No competitor data returned.</div>
+            ) : (
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm min-w-[560px]">
+                  <thead>
+                    <tr className="text-left text-[10.5px] uppercase tracking-[0.22em] text-muted-foreground border-b border-border">
+                      <th className="py-3 pr-3">Domain</th>
+                      <th className="py-3 pr-3 text-right">Shared keywords</th>
+                      <th className="py-3 pr-3 text-right">Total keywords</th>
+                      <th className="py-3 pr-3 text-right">Competition</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {data?.competitors.map((c) => (
+                      <tr key={c.domain} className="border-b border-border/50 text-ivory/85">
+                        <td className="py-3 pr-3">
+                          <a href={`https://${c.domain}`} target="_blank" rel="noreferrer" className="hover:text-gold">{c.domain}</a>
+                        </td>
+                        <td className="py-3 pr-3 text-right">{c.commonKeywords.toLocaleString()}</td>
+                        <td className="py-3 pr-3 text-right">{c.totalKeywords.toLocaleString()}</td>
+                        <td className="py-3 pr-3 text-right">{(c.competitionLevel * 100).toFixed(0)}%</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </div>
+
+          {/* Trend */}
+          <div className="bg-card luxe-border p-5 md:p-7">
+            <h3 className="font-display text-lg text-ivory mb-4">Monthly Trend — Keywords &amp; Traffic</h3>
+            {data?.trend.length === 0 ? (
+              <div className="text-[12px] text-muted-foreground">No historical data available.</div>
+            ) : (
+              <div className="space-y-2">
+                {data?.trend.map((t) => (
+                  <div key={t.date} className="flex items-center gap-3 text-[12px]">
+                    <div className="w-20 text-muted-foreground">{t.date}</div>
+                    <div className="flex-1 h-6 bg-charcoal-deep/60 relative overflow-hidden">
+                      <div
+                        className="h-full bg-gradient-gold"
+                        style={{ width: `${(t.traffic / maxTraffic) * 100}%` }}
+                      />
+                    </div>
+                    <div className="w-28 text-right text-ivory/85">
+                      {t.traffic.toLocaleString()} <span className="text-muted-foreground">visits</span>
+                    </div>
+                    <div className="w-24 text-right text-ivory/70">
+                      {t.keywords.toLocaleString()} <span className="text-muted-foreground">kw</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </>
+      )}
     </div>
   );
 }
