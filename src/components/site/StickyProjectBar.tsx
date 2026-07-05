@@ -34,7 +34,7 @@ export function StickyProjectBar() {
       <div className="container-luxe py-2 md:py-2.5 flex items-center justify-between gap-2">
         <div className="flex items-center gap-3 md:gap-6 min-w-0 flex-1">
           <div className="min-w-0">
-            <div className="text-[8px] md:text-[10px] uppercase tracking-wider text-foreground/50 font-medium leading-tight">
+            <div className="text-[8px] md:text-[10px] uppercase tracking-wider text-foreground/70 font-medium leading-tight">
               Location
             </div>
             <div className="text-[10.5px] md:text-sm font-semibold text-foreground leading-tight mt-0.5 truncate">
@@ -43,7 +43,7 @@ export function StickyProjectBar() {
           </div>
           <div className="w-px h-7 md:h-8 bg-border shrink-0" />
           <div className="min-w-0">
-            <div className="text-[8px] md:text-[10px] uppercase tracking-wider text-foreground/50 font-medium leading-tight">
+            <div className="text-[8px] md:text-[10px] uppercase tracking-wider text-foreground/70 font-medium leading-tight">
               Property
             </div>
             <div className="text-[10.5px] md:text-sm font-semibold text-foreground leading-tight mt-0.5 truncate">

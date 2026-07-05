@@ -22,9 +22,9 @@ import showreel from "@/assets/showreel.mp4.asset.json";
 export const defaultContent = {
   seo: {
     siteUrl: "https://venusuniverse.in",
-    title: "4 BHK Luxury Apartments in Nehrunagar | 5 BHK Premium Flats Ahmedabad — Venus Universe",
+    title: "Venus Universe — Luxury 4 & 5 BHK Apartments, Nehrunagar",
     description:
-      "4 BHK Luxury Apartments in Nehrunagar & 5 BHK Premium Flats in Nehrunagar Ahmedabad by Venus Universe. Ultra Luxury Apartments Near Nehrunagar — luxury apartments Nehrunagar with pre-booking open. Site office welcoming visitors. Book your Venus Universe Nehrunagar site visit today.",
+      "Luxury 4 & 5 BHK apartments in Nehrunagar, Ahmedabad by Venus Universe. 70% open landscape, world-class design. Pre-booking open — book a site visit.",
     keywords:
       "4 BHK Luxury Apartments in Nehrunagar, 5 BHK Premium Flats in Nehrunagar Ahmedabad, Ultra Luxury Apartments Near Nehrunagar, luxury apartments Nehrunagar, luxury apartments nahrunagar, 4 BHK apartments Nehrunagar Ahmedabad, 5 BHK apartments Nehrunagar Ahmedabad, premium 4 BHK flats Nehrunagar, premium 5 BHK flats Nehrunagar, ultra luxury flats Nehrunagar, ultra luxury 4 BHK Ahmedabad, ultra luxury 5 BHK Ahmedabad, luxury 4 and 5 BHK in Nehrunagar Ahmedabad, luxury 4 BHK in Nehrunagar Ahmedabad, luxury 5 BHK in Nehrunagar Ahmedabad, 4 BHK in Nehrunagar Ahmedabad, 5 BHK in Nehrunagar Ahmedabad, Venus Universe, Venus Nehrunagar, Venus Universe Nehrunagar, Venus Universe Ahmedabad, Venus Universe Nehrunagar Ahmedabad, Venus Nehrunagar Ahmedabad, Venus Universe by Venus Group, 4 BHK flats Nehrunagar, 5 BHK flats Nehrunagar, luxury apartments near Nehrunagar, premium flats Nehrunagar Ahmedabad, Venus Grounds Nehrunagar, new project Nehrunagar Ahmedabad, under construction Nehrunagar, pre booking Venus Universe Nehrunagar, Hafeez Contractor Ahmedabad, flats near CG Road, flats near Ashram Road, flats near IIM Ahmedabad",
     ogImage: "https://storage.googleapis.com/gpt-engineer-file-uploads/Nlau0aIfcNZ994VHhH1ZCQI5FFn1/social-images/social-1776592390810-vectorstock_45301125.webp",

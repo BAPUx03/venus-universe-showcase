@@ -148,8 +148,9 @@ function EoiPage() {
                 <Input label="Email *" type="email" value={form.email} onChange={(v) => setForm({ ...form, email: v })} />
                 <Input label="Phone *" type="tel" value={form.phone} onChange={(v) => setForm({ ...form, phone: v })} />
                 <div>
-                  <label className="block text-[11px] uppercase tracking-[0.18em] text-foreground/60 font-semibold mb-1.5">Configuration</label>
+                  <label htmlFor="eoi-configuration" className="block text-[11px] uppercase tracking-[0.18em] text-foreground/60 font-semibold mb-1.5">Configuration</label>
                   <select
+                    id="eoi-configuration"
                     value={form.requirement}
                     onChange={(e) => setForm({ ...form, requirement: e.target.value })}
                     className="w-full px-3.5 py-3 rounded-md border border-[oklch(0.9_0.02_25)] text-sm text-foreground bg-white focus:outline-none focus:border-[var(--accent-red)] transition"
@@ -172,7 +173,7 @@ function EoiPage() {
                   {submitting ? <Loader2 size={16} className="animate-spin" /> : <Lock size={14} />}
                   {submitting ? "Securing your spot…" : `Pay ${eoi.amountLabel} EOI`}
                 </button>
-                <p className="text-[11px] text-center text-foreground/50">
+                <p className="text-[11px] text-center text-foreground/70">
                   By proceeding you agree to our terms. Payment is 100% refundable.
                 </p>
               </form>
@@ -276,10 +277,12 @@ function EoiPage() {
 }
 
 function Input({ label, value, onChange, type = "text" }: { label: string; value: string; onChange: (v: string) => void; type?: string }) {
+  const id = `eoi-${label.replace(/[^a-z0-9]+/gi, "-").toLowerCase()}`;
   return (
     <div>
-      <label className="block text-[11px] uppercase tracking-[0.18em] text-foreground/60 font-semibold mb-1.5">{label}</label>
+      <label htmlFor={id} className="block text-[11px] uppercase tracking-[0.18em] text-foreground/60 font-semibold mb-1.5">{label}</label>
       <input
+        id={id}
         type={type}
         value={value}
         onChange={(e) => onChange(e.target.value)}
