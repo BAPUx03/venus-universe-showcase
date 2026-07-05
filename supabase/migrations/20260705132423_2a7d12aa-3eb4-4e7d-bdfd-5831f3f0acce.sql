@@ -1,0 +1,1 @@
+UPDATE public.site_content SET value='{"mode":"site"}'::jsonb WHERE key='siteMode';
