@@ -148,8 +148,9 @@ function EoiPage() {
                 <Input label="Email *" type="email" value={form.email} onChange={(v) => setForm({ ...form, email: v })} />
                 <Input label="Phone *" type="tel" value={form.phone} onChange={(v) => setForm({ ...form, phone: v })} />
                 <div>
-                  <label className="block text-[11px] uppercase tracking-[0.18em] text-foreground/60 font-semibold mb-1.5">Configuration</label>
+                  <label htmlFor="eoi-configuration" className="block text-[11px] uppercase tracking-[0.18em] text-foreground/60 font-semibold mb-1.5">Configuration</label>
                   <select
+                    id="eoi-configuration"
                     value={form.requirement}
                     onChange={(e) => setForm({ ...form, requirement: e.target.value })}
                     className="w-full px-3.5 py-3 rounded-md border border-[oklch(0.9_0.02_25)] text-sm text-foreground bg-white focus:outline-none focus:border-[var(--accent-red)] transition"
