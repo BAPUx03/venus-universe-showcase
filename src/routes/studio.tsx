@@ -1020,6 +1020,7 @@ function SeoTab() {
   const [data, setData] = useState<SeoDashboardData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [drawerDomain, setDrawerDomain] = useState<string | null>(null);
 
   const load = async () => {
     setLoading(true); setError(null);
