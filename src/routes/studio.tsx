@@ -3,7 +3,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { supabase } from "@/integrations/supabase/client";
 import { defaultContent, type SiteContent } from "@/content/defaultContent";
 import { saveSiteContentKey, useSiteContent } from "@/hooks/useSiteContent";
-import { Upload, Save, ArrowLeft, Loader2, Plus, Trash2, LogOut, Image as ImageIcon } from "lucide-react";
+import { Upload, Save, ArrowLeft, Loader2, Plus, Trash2, LogOut, Image as ImageIcon, TrendingUp, RefreshCw } from "lucide-react";
+import { getSeoDashboard, type SeoDashboardData } from "@/lib/seo/seo-dashboard.functions";
 
 const ADMIN_EMAIL = "pruthviraj.admin@example.com";
 const ADMIN_PASSWORD = "Pruthvi!01";
