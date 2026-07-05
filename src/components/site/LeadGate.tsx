@@ -97,16 +97,10 @@ export function LeadGate({ mode = "site" }: { mode?: "site" | "coming_soon" }) {
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-    if (isComingSoon) {
-      // Always force open in coming-soon mode (unless already submitted this session)
-      if (window.sessionStorage.getItem(STORAGE_KEY)) {
-        setSubmitted(true);
-      } else {
-        setOpen(true);
-      }
+    if (window.sessionStorage.getItem(STORAGE_KEY)) {
+      setOpen(false);
       return;
     }
-    if (window.sessionStorage.getItem(STORAGE_KEY)) return;
     setOpen(true);
   }, [isComingSoon]);
 
