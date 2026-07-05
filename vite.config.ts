@@ -12,11 +12,9 @@ const isNetlify = process.env.DEPLOY_TARGET === "netlify";
 export default defineConfig(
   isNetlify
     ? {
-        tanstackStart: {
-          target: "netlify",
-        },
-        vite: { plugins: [mcpPlugin()] },
+        tanstackStart: { target: "netlify" },
+        plugins: [mcpPlugin()],
       }
-    : { vite: { plugins: [mcpPlugin()] } },
+    : { plugins: [mcpPlugin()] },
 );
 
