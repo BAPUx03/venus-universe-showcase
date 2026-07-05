@@ -276,10 +276,12 @@ function EoiPage() {
 }
 
 function Input({ label, value, onChange, type = "text" }: { label: string; value: string; onChange: (v: string) => void; type?: string }) {
+  const id = `eoi-${label.replace(/[^a-z0-9]+/gi, "-").toLowerCase()}`;
   return (
     <div>
-      <label className="block text-[11px] uppercase tracking-[0.18em] text-foreground/60 font-semibold mb-1.5">{label}</label>
+      <label htmlFor={id} className="block text-[11px] uppercase tracking-[0.18em] text-foreground/60 font-semibold mb-1.5">{label}</label>
       <input
+        id={id}
         type={type}
         value={value}
         onChange={(e) => onChange(e.target.value)}
