@@ -115,7 +115,7 @@ export function EoiPopup({ eoi }: { eoi: SiteContent["eoi"] }) {
               >
                 {eoi.ctaPrimary} <ArrowRight size={15} />
               </Link>
-              <button onClick={close} className="mt-2.5 w-full text-center text-[11.5px] text-foreground/50 hover:text-foreground/80 transition">
+              <button onClick={close} className="mt-2.5 w-full text-center text-[11.5px] text-foreground/70 hover:text-foreground/80 transition">
                 Maybe later
               </button>
             </div>

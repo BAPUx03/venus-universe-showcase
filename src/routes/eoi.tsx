@@ -173,7 +173,7 @@ function EoiPage() {
                   {submitting ? <Loader2 size={16} className="animate-spin" /> : <Lock size={14} />}
                   {submitting ? "Securing your spot…" : `Pay ${eoi.amountLabel} EOI`}
                 </button>
-                <p className="text-[11px] text-center text-foreground/50">
+                <p className="text-[11px] text-center text-foreground/70">
                   By proceeding you agree to our terms. Payment is 100% refundable.
                 </p>
               </form>
