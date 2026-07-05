@@ -1163,6 +1163,10 @@ function SeoTab() {
       )}
 
       <AutoSeoAgentPanel />
+
+      {drawerDomain && (
+        <CompetitorDrawer domain={drawerDomain} onClose={() => setDrawerDomain(null)} />
+      )}
     </div>
   );
 }
