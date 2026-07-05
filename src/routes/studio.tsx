@@ -1112,9 +1112,14 @@ function SeoTab() {
                   </thead>
                   <tbody>
                     {data?.competitors.map((c) => (
-                      <tr key={c.domain} className="border-b border-border/50 text-ivory/85">
+                      <tr
+                        key={c.domain}
+                        onClick={() => setDrawerDomain(c.domain)}
+                        className="border-b border-border/50 text-ivory/85 cursor-pointer hover:bg-charcoal-deep/40 transition"
+                      >
                         <td className="py-3 pr-3">
-                          <a href={`https://${c.domain}`} target="_blank" rel="noreferrer" className="hover:text-gold">{c.domain}</a>
+                          <span className="text-ivory hover:text-gold">{c.domain}</span>
+                          <span className="ml-2 text-[10px] uppercase tracking-[0.22em] text-gold/70">View shared →</span>
                         </td>
                         <td className="py-3 pr-3 text-right">{c.commonKeywords.toLocaleString()}</td>
                         <td className="py-3 pr-3 text-right">{c.totalKeywords.toLocaleString()}</td>
