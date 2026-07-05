@@ -35,6 +35,7 @@ export const Route = createRootRoute({
       { name: "geo.placename", content: "Nehrunagar, Ahmedabad" },
       { name: "geo.position", content: "23.0307;72.5497" },
       { name: "ICBM", content: "23.0307, 72.5497" },
+      { name: "google-site-verification", content: "EsiEUaZCt4V6r35C8aHJ_9CWa_2q9xwuLWriwS-vPzY" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
