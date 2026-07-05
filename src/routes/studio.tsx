@@ -3,7 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { supabase } from "@/integrations/supabase/client";
 import { defaultContent, type SiteContent } from "@/content/defaultContent";
 import { saveSiteContentKey, useSiteContent } from "@/hooks/useSiteContent";
-import { Upload, Save, ArrowLeft, Loader2, Plus, Trash2, LogOut, Image as ImageIcon, TrendingUp, RefreshCw, Sparkles, Check } from "lucide-react";
+import { Upload, Save, ArrowLeft, Loader2, Plus, Trash2, LogOut, Image as ImageIcon, TrendingUp, RefreshCw, Sparkles, Check, X, ExternalLink } from "lucide-react";
 import { getSeoDashboard, type SeoDashboardData } from "@/lib/seo/seo-dashboard.functions";
 import { runAutoSeoAgent, type AutoSeoSuggestion } from "@/lib/seo/auto-seo-agent.functions";
 import { getCompetitorDetail, type CompetitorDetail } from "@/lib/seo/competitor-detail.functions";
