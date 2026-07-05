@@ -5,6 +5,7 @@
 // produces `.output/public` (static) and `.netlify/functions-internal/server`
 // (SSR + API handler).
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
+import { mcpPlugin } from "@lovable.dev/mcp-js/stacks/tanstack/vite";
 
 const isNetlify = process.env.DEPLOY_TARGET === "netlify";
 
@@ -14,6 +15,8 @@ export default defineConfig(
         tanstackStart: {
           target: "netlify",
         },
+        vite: { plugins: [mcpPlugin()] },
       }
-    : undefined,
+    : { vite: { plugins: [mcpPlugin()] } },
 );
+
