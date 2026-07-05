@@ -1,0 +1,1 @@
+DROP POLICY IF EXISTS "venus-media public read" ON storage.objects;
