@@ -135,3 +135,107 @@ export const LANDING_SLUGS = Object.keys(LANDING_PAGES);
 export function landingUrl(slug: string): string {
   return `${BASE}/${slug}`;
 }
+
+const OG_IMAGE = "https://storage.googleapis.com/gpt-engineer-file-uploads/Nlau0aIfcNZ994VHhH1ZCQI5FFn1/social-images/social-1776592390810-vectorstock_45301125.webp";
+
+export function buildLandingHead(slug: string) {
+  const c = LANDING_PAGES[slug];
+  if (!c) return { meta: [], links: [], scripts: [] };
+  const url = landingUrl(slug);
+
+  const meta: Array<Record<string, string>> = [
+    { title: c.title },
+    { name: "description", content: c.description },
+    { name: "keywords", content: c.keywords },
+    { name: "author", content: "Venus Universe" },
+    { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1" },
+    // Geo signals
+    { name: "geo.region", content: "IN-GJ" },
+    { name: "geo.placename", content: "Nehrunagar, Ahmedabad" },
+    { name: "geo.position", content: "23.0307;72.5497" },
+    { name: "ICBM", content: "23.0307, 72.5497" },
+    // Open Graph
+    { property: "og:title", content: c.title },
+    { property: "og:description", content: c.description },
+    { property: "og:url", content: url },
+    { property: "og:type", content: "website" },
+    { property: "og:site_name", content: "Venus Universe Nehrunagar" },
+    { property: "og:image", content: OG_IMAGE },
+    { property: "og:locale", content: "en_IN" },
+    // Twitter
+    { name: "twitter:card", content: "summary_large_image" },
+    { name: "twitter:title", content: c.title },
+    { name: "twitter:description", content: c.description },
+    { name: "twitter:image", content: OG_IMAGE },
+  ];
+
+  const residenceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Residence",
+    name: c.h1,
+    url,
+    image: OG_IMAGE,
+    description: c.description,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Nehrunagar",
+      addressLocality: "Ahmedabad",
+      addressRegion: "Gujarat",
+      postalCode: "380015",
+      addressCountry: "IN",
+    },
+    geo: { "@type": "GeoCoordinates", latitude: 23.0307, longitude: 72.5497 },
+    numberOfRooms: "4 BHK, 5 BHK, Penthouse",
+    amenityFeature: [
+      "Clubhouse", "Gym", "Swimming Pool", "Landscaped Gardens",
+      "24x7 Security", "Multi-level Parking", "Sky Lounge", "Concierge",
+    ].map((n) => ({ "@type": "LocationFeatureSpecification", name: n, value: true })),
+  };
+
+  const orgSchema = {
+    "@context": "https://schema.org",
+    "@type": "RealEstateAgent",
+    "@id": "https://venusuniverse.in/#organization",
+    name: "Venus Universe Nehrunagar",
+    url: "https://venusuniverse.in",
+    logo: OG_IMAGE,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Nehrunagar",
+      addressLocality: "Ahmedabad",
+      addressRegion: "Gujarat",
+      postalCode: "380015",
+      addressCountry: "IN",
+    },
+  };
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: c.faq.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://venusuniverse.in" },
+      { "@type": "ListItem", position: 2, name: c.breadcrumbLabel, item: url },
+    ],
+  };
+
+  return {
+    meta,
+    links: [{ rel: "canonical", href: url }],
+    scripts: [
+      { type: "application/ld+json", children: JSON.stringify(residenceSchema) },
+      { type: "application/ld+json", children: JSON.stringify(orgSchema) },
+      { type: "application/ld+json", children: JSON.stringify(faqSchema) },
+      { type: "application/ld+json", children: JSON.stringify(breadcrumbSchema) },
+    ],
+  };
+}
