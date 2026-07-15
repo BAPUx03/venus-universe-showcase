@@ -24,6 +24,7 @@ import { EoiPopup } from "@/components/site/EoiPopup";
 import { LeadGate } from "@/components/site/LeadGate";
 import { FAQ } from "@/components/site/FAQ";
 import { Showcase3D } from "@/components/site/Showcase3D";
+import { LayoutRequest } from "@/components/site/LayoutRequest";
 
 export const Route = createFileRoute("/")({
   loader: async () => {
@@ -224,6 +225,7 @@ function Index() {
         <Brochure data={content.brochure} />
         <Trust data={content.trust} />
         <FAQ />
+        <LayoutRequest whatsapp={content.contact.whatsapp} />
         <Contact contact={content.contact} />
       </main>
       <Footer brand={content.brand.name} contact={content.contact} rera={content.brand.rera} />
