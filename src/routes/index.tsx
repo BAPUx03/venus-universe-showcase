@@ -216,6 +216,7 @@ function Index() {
         <Highlights items={content.highlights} />
         <EoiSection eoi={content.eoi} />
         <MasterPlan data={content.masterPlan} />
+        <Showcase3D />
         <Residences items={content.residences} />
         <Amenities items={content.amenities} />
         <Location data={content.location} mapEmbed={content.contact.mapEmbed} />
