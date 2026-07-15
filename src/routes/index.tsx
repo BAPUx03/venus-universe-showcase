@@ -225,6 +225,7 @@ function Index() {
         <Brochure data={content.brochure} />
         <Trust data={content.trust} />
         <FAQ />
+        <LayoutRequest whatsapp={content.contact.whatsapp} />
         <Contact contact={content.contact} />
       </main>
       <Footer brand={content.brand.name} contact={content.contact} rera={content.brand.rera} />
