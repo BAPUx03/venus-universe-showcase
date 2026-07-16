@@ -78,7 +78,7 @@ export const defaultContent = {
     { title: "Landscape by SWA, California", desc: "World-renowned landscape architects shaping every garden." },
     { title: "Interiors by HBA Singapore", desc: "Singapore's largest hospitality interior design firm." },
     { title: "Lighting by LET, Dubai", desc: "Signature façade and landscape lighting design." },
-    { title: "F&B by Stratum @ Venus Grounds", desc: "Activatrium, Active8, Rungg & Café Ray on the doorstep." },
+    { title: "F&B by Stratum @ Venus Universe", desc: "Activatrium, Active8, Rungg & Café Ray on the doorstep." },
     
   ],
   masterPlan: {
