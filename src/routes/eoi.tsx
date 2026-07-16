@@ -138,8 +138,8 @@ function EoiPage() {
               </div>
             ) : (
               <form onSubmit={onSubmit} className="space-y-4">
-                <h2 className="font-display text-xl font-bold text-foreground">Reserve Your Spot</h2>
-                <p className="text-[13px] text-foreground/60 -mt-2">Fill your details — we'll guide you through the secure EOI payment.</p>
+                <h2 className="font-display text-xl font-bold text-foreground">Book Your Unit</h2>
+                <p className="text-[13px] text-foreground/60 -mt-2">Fill your details — we'll guide you through the secure Token Price payment.</p>
 
                 <div className="grid grid-cols-2 gap-3">
                   <Input label="First Name *" value={form.first_name} onChange={(v) => setForm({ ...form, first_name: v })} />
