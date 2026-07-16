@@ -24,7 +24,7 @@ import { EoiPopup } from "@/components/site/EoiPopup";
 import { LeadGate } from "@/components/site/LeadGate";
 import { FAQ } from "@/components/site/FAQ";
 import { Showcase3D } from "@/components/site/Showcase3D";
-import { LayoutRequest } from "@/components/site/LayoutRequest";
+
 
 export const Route = createFileRoute("/")({
   loader: async () => {
