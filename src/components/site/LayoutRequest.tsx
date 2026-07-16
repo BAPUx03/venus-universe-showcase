@@ -12,7 +12,7 @@ const PLANS = [
   { src: planC.url, label: "4 BHK · Block B · Type 2", area: "1,546 sq ft carpet" },
 ] as const;
 
-const WHATSAPP = "919800000000";
+const WHATSAPP = "919904969298";
 const WA_MSG = encodeURIComponent(
   "Hello Venus Universe — I'd like the full 4 BHK & 5 BHK unit plans, master plan and price sheet for Venus Universe Nehrunagar. Please share on WhatsApp."
 );
