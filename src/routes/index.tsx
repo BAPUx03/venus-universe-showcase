@@ -216,7 +216,7 @@ function Index() {
         <About about={content.about} />
         <Highlights items={content.highlights} />
         <EoiSection eoi={content.eoi} />
-        <MasterPlan data={content.masterPlan} />
+        <MasterPlan data={content.masterPlan} whatsapp={content.contact.whatsapp} />
         <Showcase3D />
         <Residences items={content.residences} />
         <Amenities items={content.amenities} />
@@ -225,7 +225,6 @@ function Index() {
         <Brochure data={content.brochure} />
         <Trust data={content.trust} />
         <FAQ />
-        <LayoutRequest whatsapp={content.contact.whatsapp} />
         <Contact contact={content.contact} />
       </main>
       <Footer brand={content.brand.name} contact={content.contact} rera={content.brand.rera} />
