@@ -62,7 +62,7 @@ export const defaultContent = {
     eyebrow: "The Project",
     title: "Where everything aligns perfectly.",
     body:
-      "Venus Grounds 2 is a landmark 4 & 5 BHK development in Nehrunagar — Ahmedabad's most established premium micro-market. Sprawling across 7 acres with 70% open area and a 2.2 acre serene podium, the project is designed by Hafeez Contractor with landscaping by SWA (California), interiors by HBA Singapore and lighting by LET Dubai.",
+      "Venus Universe Nehrunagar is a landmark 4 & 5 BHK development in Nehrunagar — Ahmedabad's most established premium micro-market. Sprawling across 7 acres with 70% open area and a 2.2 acre serene podium, the project is designed by Hafeez Contractor with landscaping by SWA (California), interiors by HBA Singapore and lighting by LET Dubai.",
     stats: [
       { label: "Acres", value: "7" },
       { label: "Open Area", value: "70%" },
