@@ -171,7 +171,7 @@ function EoiPage() {
                   style={{ background: "linear-gradient(135deg, var(--accent-red), var(--accent-red-deep))" }}
                 >
                   {submitting ? <Loader2 size={16} className="animate-spin" /> : <Lock size={14} />}
-                  {submitting ? "Securing your spot…" : `Pay ${eoi.amountLabel} EOI`}
+                  {submitting ? "Booking your unit…" : `Pay ${eoi.amountLabel} Token`}
                 </button>
                 <p className="text-[11px] text-center text-foreground/70">
                   By proceeding you agree to our terms. Payment is 100% refundable.
