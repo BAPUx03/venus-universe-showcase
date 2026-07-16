@@ -10,16 +10,16 @@ import { OtpModal } from "@/components/site/OtpModal";
 export const Route = createFileRoute("/eoi")({
   head: () => ({
     meta: [
-      { title: "EOI — Pre-Book Luxury 4 & 5 BHK Venus Universe Nehrunagar" },
-      { name: "description", content: "Pay a fully refundable ₹5,00,000 EOI to lock priority allotment & pre-launch pricing at Venus Universe Nehrunagar Ahmedabad. Limited slots." },
-      { name: "keywords", content: "venus universe eoi, pre booking nehrunagar, 4 bhk pre launch ahmedabad, 5 bhk pre booking, refundable eoi ahmedabad" },
+      { title: "Book Your Unit — Luxury 4 & 5 BHK Venus Universe Nehrunagar" },
+      { name: "description", content: "Pay a fully refundable ₹5,00,000 Token Price to book your 4 or 5 BHK residence at Venus Universe Nehrunagar Ahmedabad. Priority allotment & pre-launch pricing. Limited slots." },
+      { name: "keywords", content: "venus universe booking, token booking nehrunagar, 4 bhk pre launch ahmedabad, 5 bhk pre booking, refundable token ahmedabad" },
       { name: "robots", content: "index, follow, max-image-preview:large" },
-      { property: "og:title", content: "Pre-Book Venus Universe Nehrunagar — ₹5L Refundable EOI" },
+      { property: "og:title", content: "Book Your Unit — Venus Universe Nehrunagar · ₹5L Refundable Token" },
       { property: "og:description", content: "Lock priority allotment & pre-launch pricing on luxury 4 & 5 BHK apartments in Nehrunagar, Ahmedabad." },
       { property: "og:url", content: "https://venusuniverse.in/eoi" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Pre-Book Venus Universe Nehrunagar — ₹5L Refundable EOI" },
+      { name: "twitter:title", content: "Book Your Unit — Venus Universe Nehrunagar · ₹5L Refundable Token" },
       { name: "twitter:description", content: "Lock priority allotment & pre-launch pricing on luxury 4 & 5 BHK apartments in Nehrunagar, Ahmedabad." },
     ],
     links: [{ rel: "canonical", href: "https://venusuniverse.in/eoi" }],
@@ -38,7 +38,7 @@ function EoiPage() {
   const { content } = useSiteContent();
   const eoi = content.eoi;
   const brand = content.brand;
-  const [form, setForm] = useState({ first_name: "", last_name: "", email: "", phone: "", requirement: "4 BHK", budget: "EOI Booking" });
+  const [form, setForm] = useState({ first_name: "", last_name: "", email: "", phone: "", requirement: "4 BHK", budget: "Unit Booking" });
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
   const [err, setErr] = useState("");
@@ -73,7 +73,7 @@ function EoiPage() {
         email: form.email.trim(),
         phone: normalizedPhone(form.phone),
         requirement: form.requirement,
-        budget: `EOI ${eoi.amountLabel}`,
+        budget: `Token ${eoi.amountLabel}`,
         source: "eoi_form",
       };
       const { error } = await supabase.from("leads").insert(payload);
@@ -127,7 +127,7 @@ function EoiPage() {
                 </div>
                 <h2 className="font-display text-2xl font-bold mt-5 text-foreground">Thank you!</h2>
                 <p className="mt-2 text-foreground/65 text-sm">
-                  Our advisor will call you shortly to complete the EOI payment of <strong>{eoi.amountLabel}</strong> and confirm your priority allotment.
+                  Our advisor will call you shortly to complete the Token Price payment of <strong>{eoi.amountLabel}</strong> and confirm your priority allotment.
                 </p>
                 <div className="mt-6 p-4 rounded-lg bg-[oklch(0.97_0.02_25)] border border-[oklch(0.9_0.04_25)] text-[12.5px] text-foreground/70">
                   Online payment gateway will be enabled shortly. For now, our team will guide you through the secure payment process over a call.
@@ -138,8 +138,8 @@ function EoiPage() {
               </div>
             ) : (
               <form onSubmit={onSubmit} className="space-y-4">
-                <h2 className="font-display text-xl font-bold text-foreground">Reserve Your Spot</h2>
-                <p className="text-[13px] text-foreground/60 -mt-2">Fill your details — we'll guide you through the secure EOI payment.</p>
+                <h2 className="font-display text-xl font-bold text-foreground">Book Your Unit</h2>
+                <p className="text-[13px] text-foreground/60 -mt-2">Fill your details — we'll guide you through the secure Token Price payment.</p>
 
                 <div className="grid grid-cols-2 gap-3">
                   <Input label="First Name *" value={form.first_name} onChange={(v) => setForm({ ...form, first_name: v })} />
@@ -171,7 +171,7 @@ function EoiPage() {
                   style={{ background: "linear-gradient(135deg, var(--accent-red), var(--accent-red-deep))" }}
                 >
                   {submitting ? <Loader2 size={16} className="animate-spin" /> : <Lock size={14} />}
-                  {submitting ? "Securing your spot…" : `Pay ${eoi.amountLabel} EOI`}
+                  {submitting ? "Booking your unit…" : `Pay ${eoi.amountLabel} Token`}
                 </button>
                 <p className="text-[11px] text-center text-foreground/70">
                   By proceeding you agree to our terms. Payment is 100% refundable.
@@ -188,7 +188,7 @@ function EoiPage() {
             className="space-y-4"
           >
             <div className="bg-gradient-to-br from-[oklch(0.99_0.01_25)] to-white rounded-2xl border border-[oklch(0.92_0.02_25)] p-7">
-              <div className="text-[11px] uppercase tracking-[0.18em] text-foreground/55 font-semibold">EOI Amount</div>
+              <div className="text-[11px] uppercase tracking-[0.18em] text-foreground/55 font-semibold">Token Price</div>
               <div className="font-display text-4xl font-bold mt-1" style={{ color: "var(--accent-red-deep)" }}>{eoi.amountLabel}</div>
               <div className="mt-2 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-semibold bg-green-50 text-green-700 border border-green-200">
                 <ShieldCheck size={12} /> {eoi.refundNote}
@@ -248,7 +248,7 @@ function EoiPage() {
             <div className="bg-white rounded-2xl border border-[oklch(0.92_0.02_25)] p-5 flex items-start gap-3">
               <Lock size={16} className="shrink-0 mt-0.5 text-foreground/60" />
               <div className="text-[12px] text-foreground/65 leading-relaxed">
-                Your information is encrypted and secure. Payment will be processed via certified payment gateway. EOI is fully refundable as per terms.
+                Your information is encrypted and secure. Payment will be processed via certified payment gateway. Token Price is fully refundable as per terms.
               </div>
             </div>
           </motion.div>

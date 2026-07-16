@@ -56,7 +56,7 @@ export function StickyProjectBar() {
           className="shrink-0 px-3 md:px-6 py-1.5 md:py-2.5 text-[10.5px] md:text-[13px] font-semibold rounded-md text-white shadow-gold hover:brightness-110 transition whitespace-nowrap"
           style={{ background: "var(--accent-red)" }}
         >
-          Secure Your Spot · ₹5L
+          Book Your Unit · ₹5L Token
         </Link>
       </div>
     </div>

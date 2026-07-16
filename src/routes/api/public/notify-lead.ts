@@ -15,7 +15,7 @@ type Lead = z.infer<typeof LeadSchema>;
 
 const SHEETS_GATEWAY = "https://connector-gateway.lovable.dev/google_sheets/v4";
 const BREVO_URL = "https://api.brevo.com/v3/smtp/email";
-const BRAND = "Venus Grounds 2";
+const BRAND = "Venus Universe Nehrunagar";
 const ACCENT = "#b4281e";
 const ACCENT_DEEP = "#7a1a13";
 

@@ -54,7 +54,7 @@ export function EoiSection({ eoi }: { eoi: SiteContent["eoi"] }) {
           <div className="grid md:grid-cols-[1.1fr_1fr]">
             <div className="p-8 md:p-10">
               <div className="flex items-baseline gap-2">
-                <span className="text-[12px] uppercase tracking-[0.2em] text-foreground/60 font-semibold">EOI Amount</span>
+                <span className="text-[12px] uppercase tracking-[0.2em] text-foreground/60 font-semibold">Token Price</span>
               </div>
               <div className="mt-2 flex items-end gap-3 flex-wrap">
                 <span className="font-display font-bold text-[clamp(2.4rem,5vw,3.6rem)] leading-none" style={{ color: "var(--accent-red-deep)" }}>

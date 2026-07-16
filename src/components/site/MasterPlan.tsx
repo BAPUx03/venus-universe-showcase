@@ -3,8 +3,9 @@ import { motion } from "framer-motion";
 import { ZoomIn, X } from "lucide-react";
 import { Section } from "./Section";
 import type { SiteContent } from "@/content/defaultContent";
+import { LayoutRequest } from "./LayoutRequest";
 
-export function MasterPlan({ data }: { data: SiteContent["masterPlan"] }) {
+export function MasterPlan({ data, whatsapp }: { data: SiteContent["masterPlan"]; whatsapp?: string }) {
   const [zoom, setZoom] = useState(false);
   return (
     <Section
@@ -32,6 +33,19 @@ export function MasterPlan({ data }: { data: SiteContent["masterPlan"] }) {
           <ZoomIn size={14} /> Click to Zoom
         </div>
       </motion.div>
+
+      {/* Unit plans — merged into the master-plan section */}
+      <div className="mt-16 md:mt-20 pt-12 md:pt-16 border-t border-gold/15">
+        <div className="text-center max-w-2xl mx-auto mb-10">
+          <span className="inline-block text-[10.5px] uppercase tracking-[0.3em] text-gold mb-4">
+            Unit Plans · On Request
+          </span>
+          <h3 className="font-display text-[clamp(1.6rem,3vw,2.4rem)] leading-tight text-ivory">
+            Request the full <span className="text-gradient-gold italic">floor plans.</span>
+          </h3>
+        </div>
+        <LayoutRequest whatsapp={whatsapp} bare />
+      </div>
 
       {zoom && (
         <div

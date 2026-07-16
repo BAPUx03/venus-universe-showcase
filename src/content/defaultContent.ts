@@ -44,10 +44,10 @@ export const defaultContent = {
     rera: "RERA Registered — Details on Request",
   },
   contact: {
-    phone: "+91 98000 00000",
-    whatsapp: "919800000000",
-    email: "sales@venusgrounds.in",
-    address: "Venus Grounds 2 Sales Gallery, Nehrunagar, Ahmedabad",
+    phone: "+91 99049 69298",
+    whatsapp: "919904969298",
+    email: "sales@venusuniverse.in",
+    address: "Venus Universe Nehrunagar Sales Gallery, Nehrunagar, Ahmedabad",
     mapEmbed:
       "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3672.0!2d72.5497!3d23.0307!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sNehrunagar+Ahmedabad!5e0!3m2!1sen!2sin!4v1700000000000",
   },
@@ -62,7 +62,7 @@ export const defaultContent = {
     eyebrow: "The Project",
     title: "Where everything aligns perfectly.",
     body:
-      "Venus Grounds 2 is a landmark 4 & 5 BHK development in Nehrunagar — Ahmedabad's most established premium micro-market. Sprawling across 7 acres with 70% open area and a 2.2 acre serene podium, the project is designed by Hafeez Contractor with landscaping by SWA (California), interiors by HBA Singapore and lighting by LET Dubai.",
+      "Venus Universe Nehrunagar is a landmark 4 & 5 BHK development in Nehrunagar — Ahmedabad's most established premium micro-market. Sprawling across 7 acres with 70% open area and a 2.2 acre serene podium, the project is designed by Hafeez Contractor with landscaping by SWA (California), interiors by HBA Singapore and lighting by LET Dubai.",
     stats: [
       { label: "Acres", value: "7" },
       { label: "Open Area", value: "70%" },
@@ -78,7 +78,7 @@ export const defaultContent = {
     { title: "Landscape by SWA, California", desc: "World-renowned landscape architects shaping every garden." },
     { title: "Interiors by HBA Singapore", desc: "Singapore's largest hospitality interior design firm." },
     { title: "Lighting by LET, Dubai", desc: "Signature façade and landscape lighting design." },
-    { title: "F&B by Stratum @ Venus Grounds", desc: "Activatrium, Active8, Rungg & Café Ray on the doorstep." },
+    { title: "F&B by Stratum @ Venus Universe", desc: "Activatrium, Active8, Rungg & Café Ray on the doorstep." },
     
   ],
   masterPlan: {
@@ -188,7 +188,7 @@ export const defaultContent = {
   ],
   brochure: {
     url: "#",
-    title: "The Venus Grounds 2 Brochure",
+    title: "The Venus Universe Nehrunagar Brochure",
     subtitle: "A detailed preview of the 7-acre development, residences, amenities and design partners.",
   },
   trust: {
@@ -214,42 +214,42 @@ export const defaultContent = {
     awards: ["7 Acre Development", "70% Open Area", "2.2 Acre Podium", "World-Class Design Partners"],
   },
   eoi: {
-    eyebrow: "Expression of Interest",
-    title: "Secure Your Spot at Venus Grounds 2",
+    eyebrow: "Book Your Unit",
+    title: "Book Your Unit at Venus Universe Nehrunagar",
     subtitle:
-      "Pay a fully refundable EOI of ₹5,00,000 and lock-in priority allotment, pre-launch pricing and your preferred unit before public launch.",
+      "Pay a fully refundable Token Price of ₹5,00,000 and lock-in priority allotment, pre-launch pricing and your preferred 4 or 5 BHK residence before public launch.",
     amount: 500000,
     amountLabel: "₹ 5,00,000",
     refundable: true,
     refundNote: "100% Refundable · No questions asked",
-    ctaPrimary: "Secure Your Spot Now",
-    ctaSecondary: "What is EOI?",
-    videoUrl: "", // YouTube URL — admin paste karega
-    videoTitle: "What is EOI? — Watch 2 min explainer",
+    ctaPrimary: "Book Your Unit Now",
+    ctaSecondary: "What is Token Booking?",
+    videoUrl: "",
+    videoTitle: "What is Token Booking? — Watch 2 min explainer",
     videoEnabled: true,
     videoEyebrow: "Watch & Understand",
-    videoHeading: "What is EOI?",
-    videoDescription: "A short 2-minute explainer covering how the Expression of Interest works, why it's 100% refundable, and the priority benefits you unlock by reserving your spot today.",
-    videoCtaText: "▶ Play Video — What is EOI?",
+    videoHeading: "What is Token Booking?",
+    videoDescription: "A short 2-minute explainer covering how the refundable Token Price works, why it's 100% refundable, and the priority benefits you unlock by booking your unit today.",
+    videoCtaText: "▶ Play Video — What is Token Booking?",
     benefits: [
       { title: "Priority Allotment", desc: "First right to choose your unit, floor and view before public launch." },
-      { title: "Pre-Launch Pricing", desc: "Lock-in special EOI pricing — protected against future price hikes." },
+      { title: "Pre-Launch Pricing", desc: "Lock-in special token pricing — protected against future price hikes." },
       { title: "100% Refundable", desc: "Full refund anytime if you choose not to proceed. Zero risk." },
       { title: "Exclusive Site Visit", desc: "Private sales gallery walkthrough with our senior advisor." },
       { title: "Dedicated Relationship Manager", desc: "Personal point of contact through the entire journey." },
-      { title: "Adjustable in Booking", desc: "EOI amount fully adjustable in your final booking value." },
+      { title: "Adjustable in Booking", desc: "Token amount fully adjustable in your final booking value." },
     ],
     steps: [
-      { step: "01", title: "Pay ₹5,00,000 EOI", desc: "Secure payment with our advisor — instant confirmation." },
+      { step: "01", title: "Pay ₹5,00,000 Token", desc: "Secure payment with our advisor — instant confirmation." },
       { step: "02", title: "Get Priority Access", desc: "Receive your priority number and exclusive pricing details." },
       { step: "03", title: "Choose Your Residence", desc: "Pick your preferred unit before public launch opens." },
     ],
     spotsLeft: 47,
     spotsTotal: 100,
-    urgencyText: "Limited slots — only a few EOI spots remain",
+    urgencyText: "Limited slots — only a few token spots remain",
     popupEnabled: true,
-    popupTitle: "Don't Miss Out — Secure Your Spot",
-    popupSubtitle: "Pay ₹5,00,000 fully refundable EOI to unlock priority allotment & pre-launch pricing.",
+    popupTitle: "Don't Miss Out — Book Your Unit",
+    popupSubtitle: "Pay ₹5,00,000 fully refundable Token Price to unlock priority allotment & pre-launch pricing.",
   },
 };
 
