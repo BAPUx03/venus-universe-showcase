@@ -10,16 +10,16 @@ import { OtpModal } from "@/components/site/OtpModal";
 export const Route = createFileRoute("/eoi")({
   head: () => ({
     meta: [
-      { title: "EOI — Pre-Book Luxury 4 & 5 BHK Venus Universe Nehrunagar" },
-      { name: "description", content: "Pay a fully refundable ₹5,00,000 EOI to lock priority allotment & pre-launch pricing at Venus Universe Nehrunagar Ahmedabad. Limited slots." },
-      { name: "keywords", content: "venus universe eoi, pre booking nehrunagar, 4 bhk pre launch ahmedabad, 5 bhk pre booking, refundable eoi ahmedabad" },
+      { title: "Book Your Unit — Luxury 4 & 5 BHK Venus Universe Nehrunagar" },
+      { name: "description", content: "Pay a fully refundable ₹5,00,000 Token Price to book your 4 or 5 BHK residence at Venus Universe Nehrunagar Ahmedabad. Priority allotment & pre-launch pricing. Limited slots." },
+      { name: "keywords", content: "venus universe booking, token booking nehrunagar, 4 bhk pre launch ahmedabad, 5 bhk pre booking, refundable token ahmedabad" },
       { name: "robots", content: "index, follow, max-image-preview:large" },
-      { property: "og:title", content: "Pre-Book Venus Universe Nehrunagar — ₹5L Refundable EOI" },
+      { property: "og:title", content: "Book Your Unit — Venus Universe Nehrunagar · ₹5L Refundable Token" },
       { property: "og:description", content: "Lock priority allotment & pre-launch pricing on luxury 4 & 5 BHK apartments in Nehrunagar, Ahmedabad." },
       { property: "og:url", content: "https://venusuniverse.in/eoi" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Pre-Book Venus Universe Nehrunagar — ₹5L Refundable EOI" },
+      { name: "twitter:title", content: "Book Your Unit — Venus Universe Nehrunagar · ₹5L Refundable Token" },
       { name: "twitter:description", content: "Lock priority allotment & pre-launch pricing on luxury 4 & 5 BHK apartments in Nehrunagar, Ahmedabad." },
     ],
     links: [{ rel: "canonical", href: "https://venusuniverse.in/eoi" }],
