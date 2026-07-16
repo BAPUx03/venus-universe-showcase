@@ -3,8 +3,9 @@ import { motion } from "framer-motion";
 import { ZoomIn, X } from "lucide-react";
 import { Section } from "./Section";
 import type { SiteContent } from "@/content/defaultContent";
+import { LayoutRequest } from "./LayoutRequest";
 
-export function MasterPlan({ data }: { data: SiteContent["masterPlan"] }) {
+export function MasterPlan({ data, whatsapp }: { data: SiteContent["masterPlan"]; whatsapp?: string }) {
   const [zoom, setZoom] = useState(false);
   return (
     <Section
