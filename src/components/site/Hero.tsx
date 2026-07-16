@@ -62,7 +62,7 @@ export function Hero({ hero }: { hero: SiteContent["hero"] }) {
               to="/eoi"
               className="px-7 py-3.5 rounded-md bg-white/10 backdrop-blur-md border border-white/30 text-white font-medium text-[13px] hover:bg-white/20 transition"
             >
-              Pre-Book Now · ₹5L Refundable EOI
+              Book Your Unit · ₹5L Token Price
             </Link>
           </div>
         </motion.div>
