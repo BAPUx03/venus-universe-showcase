@@ -17,7 +17,7 @@ const WA_MSG = encodeURIComponent(
   "Hello Venus Universe — I'd like the full 4 BHK & 5 BHK unit plans, master plan and price sheet for Venus Universe Nehrunagar. Please share on WhatsApp."
 );
 
-export function LayoutRequest({ whatsapp = WHATSAPP }: { whatsapp?: string }) {
+export function LayoutRequest({ whatsapp = WHATSAPP, bare = false }: { whatsapp?: string; bare?: boolean }) {
   const [active, setActive] = useState(0);
   const [open, setOpen] = useState(false);
 
@@ -30,13 +30,8 @@ export function LayoutRequest({ whatsapp = WHATSAPP }: { whatsapp?: string }) {
   const plan = PLANS[active];
   const waLink = `https://wa.me/${whatsapp}?text=${WA_MSG}`;
 
-  return (
-    <Section
-      id="unit-plans"
-      eyebrow="Unit Plans · On Request"
-      title={<>Request the full <span className="text-gradient-gold italic">floor plans.</span></>}
-      className="bg-charcoal-deep"
-    >
+  const body = (
+    <>
       <div className="grid lg:grid-cols-5 gap-6 lg:gap-10 items-center">
         {/* Blurred stack */}
         <div className="lg:col-span-3">
@@ -61,11 +56,9 @@ export function LayoutRequest({ whatsapp = WHATSAPP }: { whatsapp?: string }) {
               />
             </AnimatePresence>
 
-            {/* Grain / vignette */}
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_35%,rgba(0,0,0,0.55)_100%)]" />
             <div className="absolute inset-0 bg-gradient-to-t from-charcoal-deep/85 via-charcoal-deep/20 to-transparent" />
 
-            {/* Centre CTA */}
             <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6">
               <motion.div
                 initial={{ y: 8, opacity: 0 }}
@@ -88,7 +81,6 @@ export function LayoutRequest({ whatsapp = WHATSAPP }: { whatsapp?: string }) {
               </span>
             </div>
 
-            {/* Bottom label + dots */}
             <div className="absolute bottom-0 inset-x-0 px-5 py-4 flex items-center justify-between">
               <div className="text-left">
                 <div className="text-[10px] uppercase tracking-[0.25em] text-gold/90">Preview {active + 1} / {PLANS.length}</div>
@@ -135,7 +127,6 @@ export function LayoutRequest({ whatsapp = WHATSAPP }: { whatsapp?: string }) {
         </div>
       </div>
 
-      {/* Popup */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -193,6 +184,19 @@ export function LayoutRequest({ whatsapp = WHATSAPP }: { whatsapp?: string }) {
           </motion.div>
         )}
       </AnimatePresence>
+    </>
+  );
+
+  if (bare) return body;
+
+  return (
+    <Section
+      id="unit-plans"
+      eyebrow="Unit Plans · On Request"
+      title={<>Request the full <span className="text-gradient-gold italic">floor plans.</span></>}
+      className="bg-charcoal-deep"
+    >
+      {body}
     </Section>
   );
 }
