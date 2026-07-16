@@ -38,7 +38,7 @@ function EoiPage() {
   const { content } = useSiteContent();
   const eoi = content.eoi;
   const brand = content.brand;
-  const [form, setForm] = useState({ first_name: "", last_name: "", email: "", phone: "", requirement: "4 BHK", budget: "EOI Booking" });
+  const [form, setForm] = useState({ first_name: "", last_name: "", email: "", phone: "", requirement: "4 BHK", budget: "Unit Booking" });
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
   const [err, setErr] = useState("");
