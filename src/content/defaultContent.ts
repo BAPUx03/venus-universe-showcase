@@ -44,10 +44,10 @@ export const defaultContent = {
     rera: "RERA Registered — Details on Request",
   },
   contact: {
-    phone: "+91 98000 00000",
-    whatsapp: "919800000000",
-    email: "sales@venusgrounds.in",
-    address: "Venus Grounds 2 Sales Gallery, Nehrunagar, Ahmedabad",
+    phone: "+91 99049 69298",
+    whatsapp: "919904969298",
+    email: "sales@venusuniverse.in",
+    address: "Venus Universe Nehrunagar Sales Gallery, Nehrunagar, Ahmedabad",
     mapEmbed:
       "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3672.0!2d72.5497!3d23.0307!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sNehrunagar+Ahmedabad!5e0!3m2!1sen!2sin!4v1700000000000",
   },
