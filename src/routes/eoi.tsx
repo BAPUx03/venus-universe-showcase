@@ -127,7 +127,7 @@ function EoiPage() {
                 </div>
                 <h2 className="font-display text-2xl font-bold mt-5 text-foreground">Thank you!</h2>
                 <p className="mt-2 text-foreground/65 text-sm">
-                  Our advisor will call you shortly to complete the EOI payment of <strong>{eoi.amountLabel}</strong> and confirm your priority allotment.
+                  Our advisor will call you shortly to complete the Token Price payment of <strong>{eoi.amountLabel}</strong> and confirm your priority allotment.
                 </p>
                 <div className="mt-6 p-4 rounded-lg bg-[oklch(0.97_0.02_25)] border border-[oklch(0.9_0.04_25)] text-[12.5px] text-foreground/70">
                   Online payment gateway will be enabled shortly. For now, our team will guide you through the secure payment process over a call.
