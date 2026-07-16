@@ -188,7 +188,7 @@ function EoiPage() {
             className="space-y-4"
           >
             <div className="bg-gradient-to-br from-[oklch(0.99_0.01_25)] to-white rounded-2xl border border-[oklch(0.92_0.02_25)] p-7">
-              <div className="text-[11px] uppercase tracking-[0.18em] text-foreground/55 font-semibold">EOI Amount</div>
+              <div className="text-[11px] uppercase tracking-[0.18em] text-foreground/55 font-semibold">Token Price</div>
               <div className="font-display text-4xl font-bold mt-1" style={{ color: "var(--accent-red-deep)" }}>{eoi.amountLabel}</div>
               <div className="mt-2 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-semibold bg-green-50 text-green-700 border border-green-200">
                 <ShieldCheck size={12} /> {eoi.refundNote}
