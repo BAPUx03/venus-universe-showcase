@@ -248,7 +248,7 @@ function EoiPage() {
             <div className="bg-white rounded-2xl border border-[oklch(0.92_0.02_25)] p-5 flex items-start gap-3">
               <Lock size={16} className="shrink-0 mt-0.5 text-foreground/60" />
               <div className="text-[12px] text-foreground/65 leading-relaxed">
-                Your information is encrypted and secure. Payment will be processed via certified payment gateway. EOI is fully refundable as per terms.
+                Your information is encrypted and secure. Payment will be processed via certified payment gateway. Token Price is fully refundable as per terms.
               </div>
             </div>
           </motion.div>
