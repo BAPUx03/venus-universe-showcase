@@ -73,7 +73,7 @@ function EoiPage() {
         email: form.email.trim(),
         phone: normalizedPhone(form.phone),
         requirement: form.requirement,
-        budget: `EOI ${eoi.amountLabel}`,
+        budget: `Token ${eoi.amountLabel}`,
         source: "eoi_form",
       };
       const { error } = await supabase.from("leads").insert(payload);
