@@ -34,6 +34,19 @@ export function MasterPlan({ data, whatsapp }: { data: SiteContent["masterPlan"]
         </div>
       </motion.div>
 
+      {/* Unit plans — merged into the master-plan section */}
+      <div className="mt-16 md:mt-20 pt-12 md:pt-16 border-t border-gold/15">
+        <div className="text-center max-w-2xl mx-auto mb-10">
+          <span className="inline-block text-[10.5px] uppercase tracking-[0.3em] text-gold mb-4">
+            Unit Plans · On Request
+          </span>
+          <h3 className="font-display text-[clamp(1.6rem,3vw,2.4rem)] leading-tight text-ivory">
+            Request the full <span className="text-gradient-gold italic">floor plans.</span>
+          </h3>
+        </div>
+        <LayoutRequest whatsapp={whatsapp} bare />
+      </div>
+
       {zoom && (
         <div
           className="fixed inset-0 z-[90] bg-charcoal-deep/95 backdrop-blur-md p-4 md:p-10 flex items-center justify-center"
