@@ -188,7 +188,7 @@ export const defaultContent = {
   ],
   brochure: {
     url: "#",
-    title: "The Venus Grounds 2 Brochure",
+    title: "The Venus Universe Nehrunagar Brochure",
     subtitle: "A detailed preview of the 7-acre development, residences, amenities and design partners.",
   },
   trust: {
