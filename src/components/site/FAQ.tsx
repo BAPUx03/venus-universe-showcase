@@ -40,8 +40,8 @@ const faqs = [
     a: "Yes — our site office in Nehrunagar Ahmedabad is open and welcoming visitors. Call or WhatsApp us to schedule a private site visit with our senior advisor.",
   },
   {
-    q: "What is the EOI amount and is it refundable?",
-    a: "The Expression of Interest amount is ₹5,00,000 and is 100% refundable, no questions asked. It locks in priority allotment and pre-launch pricing on your preferred 4 or 5 BHK unit.",
+    q: "What is the Token Price and is it refundable?",
+    a: "The Token Price to book your unit is ₹5,00,000 and is 100% refundable, no questions asked. It locks in priority allotment and pre-launch pricing on your preferred 4 or 5 BHK unit.",
   },
   {
     q: "Who is the architect of Venus Universe?",
