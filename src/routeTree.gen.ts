@@ -9,7 +9,9 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as VenusUniverseNehrunagarRouteImport } from './routes/venus-universe-nehrunagar'
 import { Route as VenusUniverseAhmedabadRouteImport } from './routes/venus-universe-ahmedabad'
+import { Route as UltraLuxuryApartmentsAhmedabadRouteImport } from './routes/ultra-luxury-apartments-ahmedabad'
 import { Route as StudioRouteImport } from './routes/studio'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
@@ -17,9 +19,17 @@ import { Route as PropertyInNehrunagarAhmedabadRouteImport } from './routes/prop
 import { Route as PenthouseAhmedabadRouteImport } from './routes/penthouse-ahmedabad'
 import { Route as NriInvestmentAhmedabadRouteImport } from './routes/nri-investment-ahmedabad'
 import { Route as McpRouteImport } from './routes/mcp'
+import { Route as LuxuryApartmentsCgRoadAhmedabadRouteImport } from './routes/luxury-apartments-cg-road-ahmedabad'
+import { Route as LuxuryApartmentsAshramRoadAhmedabadRouteImport } from './routes/luxury-apartments-ashram-road-ahmedabad'
 import { Route as Luxury5bhkAhmedabadRouteImport } from './routes/luxury-5bhk-ahmedabad'
 import { Route as Luxury4bhkAhmedabadRouteImport } from './routes/luxury-4bhk-ahmedabad'
+import { Route as HafeezContractorProjectAhmedabadRouteImport } from './routes/hafeez-contractor-project-ahmedabad'
+import { Route as GatedCommunityAhmedabadRouteImport } from './routes/gated-community-ahmedabad'
+import { Route as FlatsNearIimAhmedabadRouteImport } from './routes/flats-near-iim-ahmedabad'
 import { Route as EoiRouteImport } from './routes/eoi'
+import { Route as BestLuxuryProjectAhmedabadRouteImport } from './routes/best-luxury-project-ahmedabad'
+import { Route as R5bhkNehrunagarAhmedabadRouteImport } from './routes/5bhk-nehrunagar-ahmedabad'
+import { Route as R4bhkNehrunagarAhmedabadRouteImport } from './routes/4bhk-nehrunagar-ahmedabad'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as Char91DotwellKnownChar93OauthProtectedResourceRouteImport } from './routes/[.well-known]/oauth-protected-resource'
 import { Route as Char91DotmcpChar93ListToolsRouteImport } from './routes/[.mcp]/list-tools'
@@ -27,11 +37,22 @@ import { Route as ApiPublicOtpRouteImport } from './routes/api/public/otp'
 import { Route as ApiPublicNotifyLeadRouteImport } from './routes/api/public/notify-lead'
 import { Route as Char91DotmcpChar93InvokeToolToolRouteImport } from './routes/[.mcp]/invoke-tool/$tool'
 
+const VenusUniverseNehrunagarRoute = VenusUniverseNehrunagarRouteImport.update({
+  id: '/venus-universe-nehrunagar',
+  path: '/venus-universe-nehrunagar',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const VenusUniverseAhmedabadRoute = VenusUniverseAhmedabadRouteImport.update({
   id: '/venus-universe-ahmedabad',
   path: '/venus-universe-ahmedabad',
   getParentRoute: () => rootRouteImport,
 } as any)
+const UltraLuxuryApartmentsAhmedabadRoute =
+  UltraLuxuryApartmentsAhmedabadRouteImport.update({
+    id: '/ultra-luxury-apartments-ahmedabad',
+    path: '/ultra-luxury-apartments-ahmedabad',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const StudioRoute = StudioRouteImport.update({
   id: '/studio',
   path: '/studio',
@@ -68,6 +89,18 @@ const McpRoute = McpRouteImport.update({
   path: '/mcp',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LuxuryApartmentsCgRoadAhmedabadRoute =
+  LuxuryApartmentsCgRoadAhmedabadRouteImport.update({
+    id: '/luxury-apartments-cg-road-ahmedabad',
+    path: '/luxury-apartments-cg-road-ahmedabad',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const LuxuryApartmentsAshramRoadAhmedabadRoute =
+  LuxuryApartmentsAshramRoadAhmedabadRouteImport.update({
+    id: '/luxury-apartments-ashram-road-ahmedabad',
+    path: '/luxury-apartments-ashram-road-ahmedabad',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const Luxury5bhkAhmedabadRoute = Luxury5bhkAhmedabadRouteImport.update({
   id: '/luxury-5bhk-ahmedabad',
   path: '/luxury-5bhk-ahmedabad',
@@ -78,11 +111,45 @@ const Luxury4bhkAhmedabadRoute = Luxury4bhkAhmedabadRouteImport.update({
   path: '/luxury-4bhk-ahmedabad',
   getParentRoute: () => rootRouteImport,
 } as any)
+const HafeezContractorProjectAhmedabadRoute =
+  HafeezContractorProjectAhmedabadRouteImport.update({
+    id: '/hafeez-contractor-project-ahmedabad',
+    path: '/hafeez-contractor-project-ahmedabad',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const GatedCommunityAhmedabadRoute = GatedCommunityAhmedabadRouteImport.update({
+  id: '/gated-community-ahmedabad',
+  path: '/gated-community-ahmedabad',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FlatsNearIimAhmedabadRoute = FlatsNearIimAhmedabadRouteImport.update({
+  id: '/flats-near-iim-ahmedabad',
+  path: '/flats-near-iim-ahmedabad',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EoiRoute = EoiRouteImport.update({
   id: '/eoi',
   path: '/eoi',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BestLuxuryProjectAhmedabadRoute =
+  BestLuxuryProjectAhmedabadRouteImport.update({
+    id: '/best-luxury-project-ahmedabad',
+    path: '/best-luxury-project-ahmedabad',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const R5bhkNehrunagarAhmedabadRoute =
+  R5bhkNehrunagarAhmedabadRouteImport.update({
+    id: '/5bhk-nehrunagar-ahmedabad',
+    path: '/5bhk-nehrunagar-ahmedabad',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const R4bhkNehrunagarAhmedabadRoute =
+  R4bhkNehrunagarAhmedabadRouteImport.update({
+    id: '/4bhk-nehrunagar-ahmedabad',
+    path: '/4bhk-nehrunagar-ahmedabad',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -119,9 +186,17 @@ const Char91DotmcpChar93InvokeToolToolRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/4bhk-nehrunagar-ahmedabad': typeof R4bhkNehrunagarAhmedabadRoute
+  '/5bhk-nehrunagar-ahmedabad': typeof R5bhkNehrunagarAhmedabadRoute
+  '/best-luxury-project-ahmedabad': typeof BestLuxuryProjectAhmedabadRoute
   '/eoi': typeof EoiRoute
+  '/flats-near-iim-ahmedabad': typeof FlatsNearIimAhmedabadRoute
+  '/gated-community-ahmedabad': typeof GatedCommunityAhmedabadRoute
+  '/hafeez-contractor-project-ahmedabad': typeof HafeezContractorProjectAhmedabadRoute
   '/luxury-4bhk-ahmedabad': typeof Luxury4bhkAhmedabadRoute
   '/luxury-5bhk-ahmedabad': typeof Luxury5bhkAhmedabadRoute
+  '/luxury-apartments-ashram-road-ahmedabad': typeof LuxuryApartmentsAshramRoadAhmedabadRoute
+  '/luxury-apartments-cg-road-ahmedabad': typeof LuxuryApartmentsCgRoadAhmedabadRoute
   '/mcp': typeof McpRoute
   '/nri-investment-ahmedabad': typeof NriInvestmentAhmedabadRoute
   '/penthouse-ahmedabad': typeof PenthouseAhmedabadRoute
@@ -129,7 +204,9 @@ export interface FileRoutesByFullPath {
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/studio': typeof StudioRoute
+  '/ultra-luxury-apartments-ahmedabad': typeof UltraLuxuryApartmentsAhmedabadRoute
   '/venus-universe-ahmedabad': typeof VenusUniverseAhmedabadRoute
+  '/venus-universe-nehrunagar': typeof VenusUniverseNehrunagarRoute
   '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
   '/.mcp/invoke-tool/$tool': typeof Char91DotmcpChar93InvokeToolToolRoute
@@ -138,9 +215,17 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/4bhk-nehrunagar-ahmedabad': typeof R4bhkNehrunagarAhmedabadRoute
+  '/5bhk-nehrunagar-ahmedabad': typeof R5bhkNehrunagarAhmedabadRoute
+  '/best-luxury-project-ahmedabad': typeof BestLuxuryProjectAhmedabadRoute
   '/eoi': typeof EoiRoute
+  '/flats-near-iim-ahmedabad': typeof FlatsNearIimAhmedabadRoute
+  '/gated-community-ahmedabad': typeof GatedCommunityAhmedabadRoute
+  '/hafeez-contractor-project-ahmedabad': typeof HafeezContractorProjectAhmedabadRoute
   '/luxury-4bhk-ahmedabad': typeof Luxury4bhkAhmedabadRoute
   '/luxury-5bhk-ahmedabad': typeof Luxury5bhkAhmedabadRoute
+  '/luxury-apartments-ashram-road-ahmedabad': typeof LuxuryApartmentsAshramRoadAhmedabadRoute
+  '/luxury-apartments-cg-road-ahmedabad': typeof LuxuryApartmentsCgRoadAhmedabadRoute
   '/mcp': typeof McpRoute
   '/nri-investment-ahmedabad': typeof NriInvestmentAhmedabadRoute
   '/penthouse-ahmedabad': typeof PenthouseAhmedabadRoute
@@ -148,7 +233,9 @@ export interface FileRoutesByTo {
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/studio': typeof StudioRoute
+  '/ultra-luxury-apartments-ahmedabad': typeof UltraLuxuryApartmentsAhmedabadRoute
   '/venus-universe-ahmedabad': typeof VenusUniverseAhmedabadRoute
+  '/venus-universe-nehrunagar': typeof VenusUniverseNehrunagarRoute
   '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
   '/.mcp/invoke-tool/$tool': typeof Char91DotmcpChar93InvokeToolToolRoute
@@ -158,9 +245,17 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/4bhk-nehrunagar-ahmedabad': typeof R4bhkNehrunagarAhmedabadRoute
+  '/5bhk-nehrunagar-ahmedabad': typeof R5bhkNehrunagarAhmedabadRoute
+  '/best-luxury-project-ahmedabad': typeof BestLuxuryProjectAhmedabadRoute
   '/eoi': typeof EoiRoute
+  '/flats-near-iim-ahmedabad': typeof FlatsNearIimAhmedabadRoute
+  '/gated-community-ahmedabad': typeof GatedCommunityAhmedabadRoute
+  '/hafeez-contractor-project-ahmedabad': typeof HafeezContractorProjectAhmedabadRoute
   '/luxury-4bhk-ahmedabad': typeof Luxury4bhkAhmedabadRoute
   '/luxury-5bhk-ahmedabad': typeof Luxury5bhkAhmedabadRoute
+  '/luxury-apartments-ashram-road-ahmedabad': typeof LuxuryApartmentsAshramRoadAhmedabadRoute
+  '/luxury-apartments-cg-road-ahmedabad': typeof LuxuryApartmentsCgRoadAhmedabadRoute
   '/mcp': typeof McpRoute
   '/nri-investment-ahmedabad': typeof NriInvestmentAhmedabadRoute
   '/penthouse-ahmedabad': typeof PenthouseAhmedabadRoute
@@ -168,7 +263,9 @@ export interface FileRoutesById {
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/studio': typeof StudioRoute
+  '/ultra-luxury-apartments-ahmedabad': typeof UltraLuxuryApartmentsAhmedabadRoute
   '/venus-universe-ahmedabad': typeof VenusUniverseAhmedabadRoute
+  '/venus-universe-nehrunagar': typeof VenusUniverseNehrunagarRoute
   '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
   '/.mcp/invoke-tool/$tool': typeof Char91DotmcpChar93InvokeToolToolRoute
@@ -179,9 +276,17 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/4bhk-nehrunagar-ahmedabad'
+    | '/5bhk-nehrunagar-ahmedabad'
+    | '/best-luxury-project-ahmedabad'
     | '/eoi'
+    | '/flats-near-iim-ahmedabad'
+    | '/gated-community-ahmedabad'
+    | '/hafeez-contractor-project-ahmedabad'
     | '/luxury-4bhk-ahmedabad'
     | '/luxury-5bhk-ahmedabad'
+    | '/luxury-apartments-ashram-road-ahmedabad'
+    | '/luxury-apartments-cg-road-ahmedabad'
     | '/mcp'
     | '/nri-investment-ahmedabad'
     | '/penthouse-ahmedabad'
@@ -189,7 +294,9 @@ export interface FileRouteTypes {
     | '/robots.txt'
     | '/sitemap.xml'
     | '/studio'
+    | '/ultra-luxury-apartments-ahmedabad'
     | '/venus-universe-ahmedabad'
+    | '/venus-universe-nehrunagar'
     | '/.mcp/list-tools'
     | '/.well-known/oauth-protected-resource'
     | '/.mcp/invoke-tool/$tool'
@@ -198,9 +305,17 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/4bhk-nehrunagar-ahmedabad'
+    | '/5bhk-nehrunagar-ahmedabad'
+    | '/best-luxury-project-ahmedabad'
     | '/eoi'
+    | '/flats-near-iim-ahmedabad'
+    | '/gated-community-ahmedabad'
+    | '/hafeez-contractor-project-ahmedabad'
     | '/luxury-4bhk-ahmedabad'
     | '/luxury-5bhk-ahmedabad'
+    | '/luxury-apartments-ashram-road-ahmedabad'
+    | '/luxury-apartments-cg-road-ahmedabad'
     | '/mcp'
     | '/nri-investment-ahmedabad'
     | '/penthouse-ahmedabad'
@@ -208,7 +323,9 @@ export interface FileRouteTypes {
     | '/robots.txt'
     | '/sitemap.xml'
     | '/studio'
+    | '/ultra-luxury-apartments-ahmedabad'
     | '/venus-universe-ahmedabad'
+    | '/venus-universe-nehrunagar'
     | '/.mcp/list-tools'
     | '/.well-known/oauth-protected-resource'
     | '/.mcp/invoke-tool/$tool'
@@ -217,9 +334,17 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/4bhk-nehrunagar-ahmedabad'
+    | '/5bhk-nehrunagar-ahmedabad'
+    | '/best-luxury-project-ahmedabad'
     | '/eoi'
+    | '/flats-near-iim-ahmedabad'
+    | '/gated-community-ahmedabad'
+    | '/hafeez-contractor-project-ahmedabad'
     | '/luxury-4bhk-ahmedabad'
     | '/luxury-5bhk-ahmedabad'
+    | '/luxury-apartments-ashram-road-ahmedabad'
+    | '/luxury-apartments-cg-road-ahmedabad'
     | '/mcp'
     | '/nri-investment-ahmedabad'
     | '/penthouse-ahmedabad'
@@ -227,7 +352,9 @@ export interface FileRouteTypes {
     | '/robots.txt'
     | '/sitemap.xml'
     | '/studio'
+    | '/ultra-luxury-apartments-ahmedabad'
     | '/venus-universe-ahmedabad'
+    | '/venus-universe-nehrunagar'
     | '/.mcp/list-tools'
     | '/.well-known/oauth-protected-resource'
     | '/.mcp/invoke-tool/$tool'
@@ -237,9 +364,17 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  R4bhkNehrunagarAhmedabadRoute: typeof R4bhkNehrunagarAhmedabadRoute
+  R5bhkNehrunagarAhmedabadRoute: typeof R5bhkNehrunagarAhmedabadRoute
+  BestLuxuryProjectAhmedabadRoute: typeof BestLuxuryProjectAhmedabadRoute
   EoiRoute: typeof EoiRoute
+  FlatsNearIimAhmedabadRoute: typeof FlatsNearIimAhmedabadRoute
+  GatedCommunityAhmedabadRoute: typeof GatedCommunityAhmedabadRoute
+  HafeezContractorProjectAhmedabadRoute: typeof HafeezContractorProjectAhmedabadRoute
   Luxury4bhkAhmedabadRoute: typeof Luxury4bhkAhmedabadRoute
   Luxury5bhkAhmedabadRoute: typeof Luxury5bhkAhmedabadRoute
+  LuxuryApartmentsAshramRoadAhmedabadRoute: typeof LuxuryApartmentsAshramRoadAhmedabadRoute
+  LuxuryApartmentsCgRoadAhmedabadRoute: typeof LuxuryApartmentsCgRoadAhmedabadRoute
   McpRoute: typeof McpRoute
   NriInvestmentAhmedabadRoute: typeof NriInvestmentAhmedabadRoute
   PenthouseAhmedabadRoute: typeof PenthouseAhmedabadRoute
@@ -247,7 +382,9 @@ export interface RootRouteChildren {
   RobotsDottxtRoute: typeof RobotsDottxtRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   StudioRoute: typeof StudioRoute
+  UltraLuxuryApartmentsAhmedabadRoute: typeof UltraLuxuryApartmentsAhmedabadRoute
   VenusUniverseAhmedabadRoute: typeof VenusUniverseAhmedabadRoute
+  VenusUniverseNehrunagarRoute: typeof VenusUniverseNehrunagarRoute
   Char91DotmcpChar93ListToolsRoute: typeof Char91DotmcpChar93ListToolsRoute
   Char91DotwellKnownChar93OauthProtectedResourceRoute: typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
   Char91DotmcpChar93InvokeToolToolRoute: typeof Char91DotmcpChar93InvokeToolToolRoute
@@ -257,11 +394,25 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/venus-universe-nehrunagar': {
+      id: '/venus-universe-nehrunagar'
+      path: '/venus-universe-nehrunagar'
+      fullPath: '/venus-universe-nehrunagar'
+      preLoaderRoute: typeof VenusUniverseNehrunagarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/venus-universe-ahmedabad': {
       id: '/venus-universe-ahmedabad'
       path: '/venus-universe-ahmedabad'
       fullPath: '/venus-universe-ahmedabad'
       preLoaderRoute: typeof VenusUniverseAhmedabadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ultra-luxury-apartments-ahmedabad': {
+      id: '/ultra-luxury-apartments-ahmedabad'
+      path: '/ultra-luxury-apartments-ahmedabad'
+      fullPath: '/ultra-luxury-apartments-ahmedabad'
+      preLoaderRoute: typeof UltraLuxuryApartmentsAhmedabadRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/studio': {
@@ -313,6 +464,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof McpRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/luxury-apartments-cg-road-ahmedabad': {
+      id: '/luxury-apartments-cg-road-ahmedabad'
+      path: '/luxury-apartments-cg-road-ahmedabad'
+      fullPath: '/luxury-apartments-cg-road-ahmedabad'
+      preLoaderRoute: typeof LuxuryApartmentsCgRoadAhmedabadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/luxury-apartments-ashram-road-ahmedabad': {
+      id: '/luxury-apartments-ashram-road-ahmedabad'
+      path: '/luxury-apartments-ashram-road-ahmedabad'
+      fullPath: '/luxury-apartments-ashram-road-ahmedabad'
+      preLoaderRoute: typeof LuxuryApartmentsAshramRoadAhmedabadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/luxury-5bhk-ahmedabad': {
       id: '/luxury-5bhk-ahmedabad'
       path: '/luxury-5bhk-ahmedabad'
@@ -327,11 +492,53 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Luxury4bhkAhmedabadRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/hafeez-contractor-project-ahmedabad': {
+      id: '/hafeez-contractor-project-ahmedabad'
+      path: '/hafeez-contractor-project-ahmedabad'
+      fullPath: '/hafeez-contractor-project-ahmedabad'
+      preLoaderRoute: typeof HafeezContractorProjectAhmedabadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gated-community-ahmedabad': {
+      id: '/gated-community-ahmedabad'
+      path: '/gated-community-ahmedabad'
+      fullPath: '/gated-community-ahmedabad'
+      preLoaderRoute: typeof GatedCommunityAhmedabadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/flats-near-iim-ahmedabad': {
+      id: '/flats-near-iim-ahmedabad'
+      path: '/flats-near-iim-ahmedabad'
+      fullPath: '/flats-near-iim-ahmedabad'
+      preLoaderRoute: typeof FlatsNearIimAhmedabadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/eoi': {
       id: '/eoi'
       path: '/eoi'
       fullPath: '/eoi'
       preLoaderRoute: typeof EoiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/best-luxury-project-ahmedabad': {
+      id: '/best-luxury-project-ahmedabad'
+      path: '/best-luxury-project-ahmedabad'
+      fullPath: '/best-luxury-project-ahmedabad'
+      preLoaderRoute: typeof BestLuxuryProjectAhmedabadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/5bhk-nehrunagar-ahmedabad': {
+      id: '/5bhk-nehrunagar-ahmedabad'
+      path: '/5bhk-nehrunagar-ahmedabad'
+      fullPath: '/5bhk-nehrunagar-ahmedabad'
+      preLoaderRoute: typeof R5bhkNehrunagarAhmedabadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/4bhk-nehrunagar-ahmedabad': {
+      id: '/4bhk-nehrunagar-ahmedabad'
+      path: '/4bhk-nehrunagar-ahmedabad'
+      fullPath: '/4bhk-nehrunagar-ahmedabad'
+      preLoaderRoute: typeof R4bhkNehrunagarAhmedabadRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -381,9 +588,18 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  R4bhkNehrunagarAhmedabadRoute: R4bhkNehrunagarAhmedabadRoute,
+  R5bhkNehrunagarAhmedabadRoute: R5bhkNehrunagarAhmedabadRoute,
+  BestLuxuryProjectAhmedabadRoute: BestLuxuryProjectAhmedabadRoute,
   EoiRoute: EoiRoute,
+  FlatsNearIimAhmedabadRoute: FlatsNearIimAhmedabadRoute,
+  GatedCommunityAhmedabadRoute: GatedCommunityAhmedabadRoute,
+  HafeezContractorProjectAhmedabadRoute: HafeezContractorProjectAhmedabadRoute,
   Luxury4bhkAhmedabadRoute: Luxury4bhkAhmedabadRoute,
   Luxury5bhkAhmedabadRoute: Luxury5bhkAhmedabadRoute,
+  LuxuryApartmentsAshramRoadAhmedabadRoute:
+    LuxuryApartmentsAshramRoadAhmedabadRoute,
+  LuxuryApartmentsCgRoadAhmedabadRoute: LuxuryApartmentsCgRoadAhmedabadRoute,
   McpRoute: McpRoute,
   NriInvestmentAhmedabadRoute: NriInvestmentAhmedabadRoute,
   PenthouseAhmedabadRoute: PenthouseAhmedabadRoute,
@@ -391,7 +607,9 @@ const rootRouteChildren: RootRouteChildren = {
   RobotsDottxtRoute: RobotsDottxtRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   StudioRoute: StudioRoute,
+  UltraLuxuryApartmentsAhmedabadRoute: UltraLuxuryApartmentsAhmedabadRoute,
   VenusUniverseAhmedabadRoute: VenusUniverseAhmedabadRoute,
+  VenusUniverseNehrunagarRoute: VenusUniverseNehrunagarRoute,
   Char91DotmcpChar93ListToolsRoute: Char91DotmcpChar93ListToolsRoute,
   Char91DotwellKnownChar93OauthProtectedResourceRoute:
     Char91DotwellKnownChar93OauthProtectedResourceRoute,
