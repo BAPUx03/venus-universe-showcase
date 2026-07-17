@@ -5,7 +5,7 @@ export default defineTool({
   name: "get_project_overview",
   title: "Get project overview",
   description:
-    "Return an overview of the Venus Grounds 2 luxury residential project: location, developer, residence types, and enquiry channel.",
+    "Return an overview of the Venus Universe Nehrunagar luxury residential project: location, developer, residence types, and enquiry channel.",
   inputSchema: {},
   annotations: { readOnlyHint: true, idempotentHint: true, openWorldHint: false },
   handler: () => ({
@@ -14,8 +14,8 @@ export default defineTool({
         type: "text",
         text: JSON.stringify(
           {
-            name: "Venus Grounds 2",
-            developer: "Venus Universe",
+            name: "Venus Universe Nehrunagar",
+            developer: "Venus Group",
             location: "Nehrunagar, Ahmedabad, Gujarat, India",
             residence_types: [
               "4 BHK",
