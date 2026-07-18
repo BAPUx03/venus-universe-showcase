@@ -13,6 +13,7 @@ import { Contact } from "@/components/site/Contact";
 import { Footer } from "@/components/site/Footer";
 import { WhatsAppButton } from "@/components/site/WhatsAppButton";
 import { FAQ } from "@/components/site/FAQ";
+import { LeadGate } from "@/components/site/LeadGate";
 import type { LandingConfig } from "@/lib/seo/landingPages";
 import { LANDING_PAGES } from "@/lib/seo/landingPages";
 
@@ -107,6 +108,7 @@ export function LandingPage({ config }: { config: LandingConfig }) {
       </main>
       <Footer brand={content.brand.name} contact={content.contact} rera={content.brand.rera} />
       <WhatsAppButton phone={content.contact.whatsapp} />
+      <LeadGate />
     </div>
   );
 }
