@@ -97,14 +97,11 @@ export function LeadGate({ mode = "site" }: { mode?: "site" | "coming_soon" }) {
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-    if (window.sessionStorage.getItem(STORAGE_KEY)) {
-      setOpen(false);
-      return;
-    }
     if (isComingSoon) {
       setOpen(true);
       return;
     }
+    setOpen(false);
     const timer = setTimeout(() => setOpen(true), 7_000);
     return () => clearTimeout(timer);
   }, [isComingSoon]);
@@ -155,7 +152,6 @@ export function LeadGate({ mode = "site" }: { mode?: "site" | "coming_soon" }) {
     } catch {
       /* ignore */
     } finally {
-      window.sessionStorage.setItem(STORAGE_KEY, "1");
       setSubmitting(false);
       setOpen(false);
       setSubmitted(false);
