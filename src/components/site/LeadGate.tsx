@@ -101,7 +101,11 @@ export function LeadGate({ mode = "site" }: { mode?: "site" | "coming_soon" }) {
       setOpen(false);
       return;
     }
-    const timer = setTimeout(() => setOpen(true), 7_500);
+    if (isComingSoon) {
+      setOpen(true);
+      return;
+    }
+    const timer = setTimeout(() => setOpen(true), 7_000);
     return () => clearTimeout(timer);
   }, [isComingSoon]);
 
