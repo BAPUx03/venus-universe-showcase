@@ -101,7 +101,8 @@ export const Route = createFileRoute("/api/public/otp")({
           if (parsed.data.action === "send") {
             const phone = parsed.data.phone.replace(/^\+/, "");
             const otp = Math.floor(10 ** (OTP_LENGTH - 1) + Math.random() * 9 * 10 ** (OTP_LENGTH - 1)).toString();
-            const sendUrl = `https://2factor.in/API/V1/${apiKey}/SMS/${encodeURIComponent(phone)}/${encodeURIComponent(otp)}`;
+            const templateName = process.env.TWOFACTOR_TEMPLATE_NAME || "gentam";
+            const sendUrl = `https://2factor.in/API/V1/${apiKey}/SMS/${encodeURIComponent(phone)}/${encodeURIComponent(otp)}/${encodeURIComponent(templateName)}`;
             const r = await fetch(sendUrl, { method: "POST" });
             const text = await r.text();
             const data = parseGatewayResponse(text);
