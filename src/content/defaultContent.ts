@@ -22,11 +22,11 @@ import showreel from "@/assets/showreel.mp4.asset.json";
 export const defaultContent = {
   seo: {
     siteUrl: "https://venusuniverse.in",
-    title: "Venus Nehrunagar — Luxury 4 & 5 BHK by Venus Universe",
+    title: "Venus Universe | Luxury 4 & 5 BHK in Nehrunagar, Ahmedabad",
     description:
-      "Venus Nehrunagar by Venus Universe — luxury 4 & 5 BHK apartments in Nehrunagar, Ahmedabad. 70% open landscape, world-class design. Pre-booking open.",
+      "Discover Venus Universe, a landmark 7-acre luxury community in Nehrunagar, Ahmedabad with premium 4 & 5 BHK residences, 70% open landscape and world-class design.",
     keywords:
-      "4 BHK Luxury Apartments in Nehrunagar, 5 BHK Premium Flats in Nehrunagar Ahmedabad, Ultra Luxury Apartments Near Nehrunagar, luxury apartments Nehrunagar, luxury apartments nahrunagar, 4 BHK apartments Nehrunagar Ahmedabad, 5 BHK apartments Nehrunagar Ahmedabad, premium 4 BHK flats Nehrunagar, premium 5 BHK flats Nehrunagar, ultra luxury flats Nehrunagar, ultra luxury 4 BHK Ahmedabad, ultra luxury 5 BHK Ahmedabad, luxury 4 and 5 BHK in Nehrunagar Ahmedabad, luxury 4 BHK in Nehrunagar Ahmedabad, luxury 5 BHK in Nehrunagar Ahmedabad, 4 BHK in Nehrunagar Ahmedabad, 5 BHK in Nehrunagar Ahmedabad, Venus Universe, Venus Nehrunagar, Venus Universe Nehrunagar, Venus Universe Ahmedabad, Venus Universe Nehrunagar Ahmedabad, Venus Nehrunagar Ahmedabad, Venus Universe by Venus Group, 4 BHK flats Nehrunagar, 5 BHK flats Nehrunagar, luxury apartments near Nehrunagar, premium flats Nehrunagar Ahmedabad, Venus Universe Nehrunagar, new project Nehrunagar Ahmedabad, under construction Nehrunagar, pre booking Venus Universe Nehrunagar, Hafeez Contractor Ahmedabad, flats near CG Road, flats near Ashram Road, flats near IIM Ahmedabad",
+      "Venus Universe, luxury apartments Nehrunagar, 4 BHK Nehrunagar Ahmedabad, 5 BHK Nehrunagar Ahmedabad, luxury apartments Ahmedabad, premium flats Nehrunagar, Hafeez Contractor Ahmedabad, flats near CG Road, flats near IIM Ahmedabad",
     ogImage: "https://storage.googleapis.com/gpt-engineer-file-uploads/Nlau0aIfcNZ994VHhH1ZCQI5FFn1/social-images/social-1776592390810-vectorstock_45301125.webp",
     twitterHandle: "@venusuniverse",
     author: "Venus Universe",
@@ -39,22 +39,22 @@ export const defaultContent = {
     facebookPixelId: "1277476574551380",
   },
   brand: {
-    name: "Venus Universe Nehrunagar",
-    tagline: "4 BHK Luxury Apartments in Nehrunagar & 5 BHK Premium Flats Ahmedabad — Ultra Luxury Apartments Near Nehrunagar",
+    name: "Venus Universe",
+    tagline: "Luxury 4 & 5 BHK Apartments in Nehrunagar, Ahmedabad",
     rera: "RERA Registered — Details on Request",
   },
   contact: {
     phone: "+91 99049 69298",
     whatsapp: "919904969298",
     email: "sales@venusuniverse.in",
-    address: "Venus Universe Nehrunagar Sales Gallery, Nehrunagar, Ahmedabad",
+    address: "Venus Universe Sales Gallery, Nehrunagar, Ahmedabad",
     mapEmbed:
       "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3672.0!2d72.5497!3d23.0307!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sNehrunagar+Ahmedabad!5e0!3m2!1sen!2sin!4v1700000000000",
   },
   hero: {
-    title: "4 BHK Luxury Apartments in Nehrunagar & 5 BHK Premium Flats in Nehrunagar Ahmedabad — Venus Universe",
+    title: "Luxury 4 & 5 BHK Apartments in Nehrunagar, Ahmedabad",
     subtitle:
-      "Venus Universe Nehrunagar — Ultra Luxury Apartments Near Nehrunagar offering 4 BHK Luxury Apartments in Nehrunagar and 5 BHK Premium Flats in Nehrunagar Ahmedabad. Under-construction luxury apartments Nehrunagar minutes from CG Road, Ashram Road, Paldi & IIM-A. Pre-booking now open · Site office welcoming visitors.",
+      "Welcome to Venus Universe, a landmark 7-acre luxury community in the heart of Nehrunagar, Ahmedabad. Just minutes from CG Road, Ashram Road, IIM Ahmedabad and the city's premier destinations, the project offers thoughtfully designed 4 & 5 BHK residences surrounded by 70% open landscape. Crafted by Hafeez Contractor, SWA California and HBA Singapore, Venus Universe combines timeless architecture with world-class living. Pre-booking is now open, and our site office welcomes visitors every day.",
     image: heroTower,
     videoUrl: "",
   },
@@ -62,7 +62,7 @@ export const defaultContent = {
     eyebrow: "The Project",
     title: "Where everything aligns perfectly.",
     body:
-      "Venus Universe Nehrunagar is a landmark 4 & 5 BHK development in Nehrunagar — Ahmedabad's most established premium micro-market. Sprawling across 7 acres with 70% open area and a 2.2 acre serene podium, the project is designed by Hafeez Contractor with landscaping by SWA (California), interiors by HBA Singapore and lighting by LET Dubai.",
+      "Venus Universe is a landmark 4 & 5 BHK development in Nehrunagar, Ahmedabad — the city's most established premium micro-market. Sprawling across 7 acres with 70% open area and a 2.2 acre serene podium, the project is designed by Hafeez Contractor with landscaping by SWA (California), interiors by HBA Singapore and lighting by LET Dubai.",
     stats: [
       { label: "Acres", value: "7" },
       { label: "Open Area", value: "70%" },
@@ -188,7 +188,7 @@ export const defaultContent = {
   ],
   brochure: {
     url: "#",
-    title: "The Venus Universe Nehrunagar Brochure",
+    title: "The Venus Universe Brochure",
     subtitle: "A detailed preview of the 7-acre development, residences, amenities and design partners.",
   },
   trust: {
@@ -215,7 +215,7 @@ export const defaultContent = {
   },
   eoi: {
     eyebrow: "Book Your Unit",
-    title: "Book Your Unit at Venus Universe Nehrunagar",
+    title: "Book Your Unit at Venus Universe",
     subtitle:
       "Pay a fully refundable Token Price of ₹5,00,000 and lock-in priority allotment, pre-launch pricing and your preferred 4 or 5 BHK residence before public launch.",
     amount: 500000,
