@@ -14,8 +14,9 @@ import { Footer } from "@/components/site/Footer";
 import { WhatsAppButton } from "@/components/site/WhatsAppButton";
 import { FAQ } from "@/components/site/FAQ";
 import { LeadGate } from "@/components/site/LeadGate";
+import { DesignTeam } from "@/components/site/DesignTeam";
 import type { LandingConfig } from "@/lib/seo/landingPages";
-import { LANDING_PAGES } from "@/lib/seo/landingPages";
+import { LANDING_PAGES, LANDING_BODIES } from "@/lib/seo/landingPages";
 
 /**
  * Shared landing template used by all programmatic SEO routes.
@@ -25,6 +26,7 @@ import { LANDING_PAGES } from "@/lib/seo/landingPages";
 export function LandingPage({ config }: { config: LandingConfig }) {
   const { content } = useSiteContent();
   const otherSlugs = Object.values(LANDING_PAGES).filter((c) => c.slug !== config.slug);
+  const bodyParas = LANDING_BODIES[config.slug] ?? [];
 
   return (
     <div className="bg-background text-foreground overflow-x-hidden">
@@ -51,6 +53,11 @@ export function LandingPage({ config }: { config: LandingConfig }) {
               <p className="mt-5 text-base md:text-lg text-muted-foreground leading-relaxed max-w-3xl">
                 {config.intro}
               </p>
+              {bodyParas.map((para, i) => (
+                <p key={i} className="mt-4 text-[15px] text-muted-foreground/90 leading-relaxed max-w-3xl">
+                  {para}
+                </p>
+              ))}
               <div className="mt-7 flex flex-wrap gap-3">
                 <Link
                   to="/eoi"
@@ -70,14 +77,19 @@ export function LandingPage({ config }: { config: LandingConfig }) {
           </div>
         </section>
 
-        <Hero hero={content.hero} />
+        <Hero hero={content.hero} headingLevel="h2" />
         <About about={content.about} />
         <Highlights items={content.highlights} />
         <Residences items={content.residences} />
         <Amenities items={content.amenities} />
         <Location data={content.location} mapEmbed={content.contact.mapEmbed} />
         <Gallery items={content.gallery} />
-        <FAQ />
+        <DesignTeam />
+        <FAQ
+          items={config.faq}
+          title={<>{config.breadcrumbLabel} — Frequently Asked Questions</>}
+          intro={`Common questions about ${config.breadcrumbLabel} at Venus Universe Nehrunagar, Ahmedabad.`}
+        />
         <Contact contact={content.contact} />
 
         {/* Internal linking hub for sibling programmatic pages */}

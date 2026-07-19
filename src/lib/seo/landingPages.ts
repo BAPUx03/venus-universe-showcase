@@ -312,6 +312,75 @@ export const LANDING_PAGES: Record<string, LandingConfig> = {
 
 export const LANDING_SLUGS = Object.keys(LANDING_PAGES);
 
+/** Unique long-form body copy per landing page — reduces duplicate content and
+ *  gives each programmatic page its own indexable, intent-specific prose. */
+export const LANDING_BODIES: Record<string, string[]> = {
+  "venus-universe-ahmedabad": [
+    "Venus Universe brings a globally benchmarked lifestyle to the centre of Ahmedabad. Planned as a landmark community of ten towers in Nehrunagar, it pairs a fully established neighbourhood with the ambition of a new-generation gated development — architecture by Hafeez Contractor, landscape by SWA and interiors by HBA.",
+    "Homes are arranged around a green amenity podium, with grade-level retail and a resort-scale club at the heart of the scheme. For buyers upgrading within the city or returning from abroad, it is a rare opportunity to own brand-new construction of this calibre in an address that is otherwise entirely built out.",
+  ],
+  "luxury-4bhk-ahmedabad": [
+    "A luxury 4 BHK in Ahmedabad should offer more than four bedrooms — it should give you room to live, work and host without compromise. At Venus Universe, 4 BHK residences begin around 1,546 sq ft of RERA carpet area and scale to expansive layouts with servant rooms, utilities, pooja spaces and wide balconies over the podium.",
+    "Set in central Nehrunagar and delivered by a world-class design team, these homes are minutes from CG Road, Ashram Road and IIM-A. For families seeking a genuinely large, well-planned 4 BHK in the heart of the city, the mix of location, layout and pedigree is hard to match.",
+  ],
+  "luxury-5bhk-ahmedabad": [
+    "For those who need more than a standard four-bedroom home, Venus Universe offers large-format 5 BHK living in the form of jodi apartments, duplexes and penthouses — the biggest layouts in the development, with RERA carpet areas up to around 2,507 sq ft.",
+    "These residences add dedicated servant quarters, dressing rooms, powder rooms and generous balconies, planned by HBA for how larger families actually live. In central Ahmedabad, homes of this scale and specification rarely come to market as new construction.",
+  ],
+  "penthouse-ahmedabad": [
+    "A penthouse should feel like the top of the city, and at Venus Universe it does. Crowning the towers of a ten-block Nehrunagar landmark, the largest configurations rise close to 2,507 sq ft of RERA carpet area, with expansive decks and uninterrupted skyline views.",
+    "Designed by Hafeez Contractor with interiors by HBA and lighting by LET Dubai, these are signature homes for buyers who want privacy, volume and a truly central address — with no one living above them.",
+  ],
+  "property-in-nehrunagar-ahmedabad": [
+    "New property in Nehrunagar is scarce by nature — the neighbourhood is one of central Ahmedabad's most established addresses, and large parcels for a landmark community almost never come free. Venus Universe is the exception: a ten-tower gated development on a prime plot with a green podium and grade-level retail.",
+    "For buyers who want to stay central — close to CG Road, Ashram Road, Paldi and IIM-A — rather than move to the periphery, it is a rare chance to buy new. Pre-booking is open with a fully refundable Expression of Interest.",
+  ],
+  "nri-investment-ahmedabad": [
+    "For NRIs, Ahmedabad combines a fast-growing economy with the reassurance of a home city, and Venus Universe is built for exactly this buyer. A central, appreciating Nehrunagar address, a globally recognised design team and RERA registration (No. MAA17082/080726/311232) make diligence from abroad straightforward.",
+    "The sales team supports the full journey remotely — video walkthroughs, digital documentation and registration by Power of Attorney — while a fully refundable Expression of Interest lets you secure priority and pricing before you travel.",
+  ],
+  "venus-universe-nehrunagar": [
+    "Venus Universe Nehrunagar is the flagship new address in one of Ahmedabad's most sought-after micro-markets. Ten towers rise around a landscaped podium, with 4 BHK homes, jodi apartments, duplexes and penthouses ranging from about 1,546 to 2,507 sq ft of RERA carpet area.",
+    "Architecture is by Hafeez Contractor, with landscape by SWA California, interiors by HBA Singapore and lighting by LET Dubai — a roster rarely assembled for a single Ahmedabad project, in an address minutes from CG Road, Ashram Road and IIM-A.",
+  ],
+  "luxury-apartments-cg-road-ahmedabad": [
+    "Very little new luxury inventory comes up this close to CG Road — the corridor is central Ahmedabad's most established commercial and lifestyle stretch, and it is largely built out. Venus Universe, in adjacent Nehrunagar, is one of the few new gated communities within an easy drive.",
+    "Residents are minutes from CG Road's retail, dining and offices, as well as Ashram Road and Law Garden, while returning home to a green podium, a resort-scale club and residences designed by Hafeez Contractor.",
+  ],
+  "luxury-apartments-ashram-road-ahmedabad": [
+    "The Ashram Road and Ellisbridge belt is one of Ahmedabad's most enduring premium corridors, anchored by the Sabarmati Riverfront and decades of civic and commercial life. New luxury supply here is rare — Venus Universe in nearby Nehrunagar is among the few landmark launches within minutes.",
+    "The development pairs that central connectivity with a genuinely resort-style life inside the gates: a landscaped podium, a two-level wellness club and 4 & 5 BHK residences by a world-class design team.",
+  ],
+  "flats-near-iim-ahmedabad": [
+    "The IIM-A neighbourhood is one of Ahmedabad's most desirable and academically anchored pockets, close to CEPT, Ahmedabad University and NID. Homes of real scale near here are hard to find — Venus Universe in Nehrunagar sits a short drive away.",
+    "For faculty, professionals and families who value proximity to the city's best institutions and hospitals, it offers large 4 & 5 BHK residences, a green podium and a full amenity deck, with pre-booking open on a refundable EOI.",
+  ],
+  "hafeez-contractor-project-ahmedabad": [
+    "Venus Universe is a Hafeez Contractor project in the truest sense — India's most decorated residential practice has shaped its ten towers, elevations and light-filled layouts. But the pedigree runs deeper: landscape by SWA California, interiors by HBA Singapore and lighting by LET Dubai.",
+    "That level of global collaboration is unusual for a single Ahmedabad address, and it shows in the details — from the podium gardens to the double-height arrival lobbies. For buyers who value architecture, it is a rare chance to own a home by this calibre of team in central Nehrunagar.",
+  ],
+  "gated-community-ahmedabad": [
+    "As a gated community, Venus Universe is planned for security, calm and everyday convenience across its ten towers. A single controlled address brings together a landscaped podium, a two-level wellness club, a swimming pool, sports courts, children's zones and grade-level retail.",
+    "Circulation separates vehicles from the green podium, and amenities run from box cricket and pickleball to a garden theatre, café and co-working spaces — a self-contained way of life in the middle of Ahmedabad rather than on its edge.",
+  ],
+  "ultra-luxury-apartments-ahmedabad": [
+    "Ultra-luxury is defined by scale, low density and the calibre of who designs it — and Venus Universe delivers on all three. Large 4 & 5 BHK residences, jodi apartments, duplexes and penthouses are set across a ten-tower landmark with a green podium in central Nehrunagar.",
+    "With architecture by Hafeez Contractor, interiors by HBA and lighting by LET Dubai, the specification is globally benchmarked. For HNI families, business owners and NRIs, it is one of the few genuinely ultra-luxury addresses in the heart of Ahmedabad.",
+  ],
+  "best-luxury-project-ahmedabad": [
+    "Comparing the best luxury projects in Ahmedabad usually comes down to a few things: location, plot scale, the design team and open space. Venus Universe leads on each — a rare landmark plot in central Nehrunagar, ten towers around a green podium, and a design roster led by Hafeez Contractor.",
+    "Add SWA landscape, HBA interiors, LET lighting and RERA-registered 4 & 5 BHK homes, and the case is straightforward: very few Ahmedabad projects offer this combination of address and pedigree in one place.",
+  ],
+  "4bhk-nehrunagar-ahmedabad": [
+    "A 4 BHK in Nehrunagar puts you at the centre of Ahmedabad without stepping down in space. At Venus Universe, 4 BHK homes start around 1,546 sq ft of RERA carpet area and scale up with servant rooms, utilities and wide podium-facing balconies.",
+    "The location is the point: minutes from CG Road, Ashram Road, Paldi and IIM-A, in a gated community with a resort-scale amenity deck. For families who refuse to trade centrality for size, it is a rare fit — and pre-booking is open on a refundable EOI.",
+  ],
+  "5bhk-nehrunagar-ahmedabad": [
+    "A 5 BHK in Nehrunagar is a genuinely scarce proposition — and Venus Universe answers it with large-format jodi apartments, duplexes and penthouses reaching close to 2,507 sq ft of RERA carpet area, the biggest homes in the development.",
+    "Planned by HBA with servant quarters, dressing rooms and generous balconies, these residences suit larger and multi-generational families who want space without leaving central Ahmedabad. Architecture is by Hafeez Contractor, in a ten-tower gated landmark minutes from CG Road and IIM-A.",
+  ],
+};
+
 export function landingUrl(slug: string): string {
   return `${BASE}/${slug}`;
 }
