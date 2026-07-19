@@ -157,12 +157,13 @@ export const Route = createFileRoute("/")({
       "@type": "BreadcrumbList",
       itemListElement: [
         { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
-        { "@type": "ListItem", position: 2, name: "Venus Universe Nehrunagar", item: siteUrl },
+        { "@type": "ListItem", position: 2, name: "Venus Universe", item: siteUrl },
       ],
     };
 
     const scripts: Array<Record<string, string>> = [
       { type: "application/ld+json", children: JSON.stringify(realEstateSchema) },
+      { type: "application/ld+json", children: JSON.stringify(localBusinessSchema) },
       { type: "application/ld+json", children: JSON.stringify(residenceSchema) },
       { type: "application/ld+json", children: JSON.stringify(faqSchema) },
       { type: "application/ld+json", children: JSON.stringify(breadcrumbSchema) },
