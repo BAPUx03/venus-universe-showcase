@@ -48,9 +48,6 @@ export function Footer({ brand, contact, rera }: { brand: string; contact: SiteC
                   <a href={`#${l.toLowerCase()}`} className="hover:text-gold transition">{l}</a>
                 </li>
               ))}
-              <li>
-                <Link to="/insights" className="hover:text-gold transition">Insights</Link>
-              </li>
             </ul>
           </div>
 

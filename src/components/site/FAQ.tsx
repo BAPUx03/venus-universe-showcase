@@ -1,4 +1,3 @@
-import type { ReactNode } from "react";
 import { Section } from "./Section";
 import {
   Accordion,
@@ -30,26 +29,25 @@ const faqs = [
   },
   {
     q: "What is the RERA number?",
-    a: "Venus Universe is RERA-registered under registration number MAA17082/080726/311232. Full RERA details are shared with prospective buyers on request.",
+    a: "[RERA NUMBER] — full RERA details will be shared with prospective buyers on request.",
   },
   {
     q: "What is the starting price?",
-    a: "Pricing is shared on request. Submit the fully refundable ₹5,00,000 Expression of Interest, or connect with our sales team for the current price list and pre-launch offers.",
+    a: "₹X Cr Onwards — please connect with our sales team for the current price list and pre-launch offers.",
   },
 ];
 
-export function FAQ({ items, title, intro }: { items?: { q: string; a: string }[]; title?: ReactNode; intro?: string } = {}) {
-  const list = items && items.length ? items : faqs;
+export function FAQ() {
   return (
     <Section
       id="faq"
       eyebrow="Frequently Asked"
-      title={title ?? <>Venus Universe — Frequently Asked Questions</>}
-      intro={intro ?? "Everything you need to know about Venus Universe — luxury 4 & 5 BHK residences in Nehrunagar, Ahmedabad."}
+      title={<>Venus Universe — Frequently Asked Questions</>}
+      intro="Everything you need to know about Venus Universe — luxury 4 & 5 BHK residences in Nehrunagar, Ahmedabad."
     >
       <div className="mt-8 max-w-3xl mx-auto">
         <Accordion type="single" collapsible className="w-full">
-          {list.map((f, i) => (
+          {faqs.map((f, i) => (
             <AccordionItem key={i} value={`item-${i}`}>
               <AccordionTrigger className="text-left text-base md:text-lg font-medium">
                 {f.q}

@@ -24,9 +24,6 @@ import { EoiPopup } from "@/components/site/EoiPopup";
 import { LeadGate } from "@/components/site/LeadGate";
 import { FAQ } from "@/components/site/FAQ";
 import { Showcase3D } from "@/components/site/Showcase3D";
-import { DesignTeam } from "@/components/site/DesignTeam";
-import showreel from "@/assets/showreel.mp4.asset.json";
-import heroTower from "@/assets/hero-tower.webp";
 
 
 export const Route = createFileRoute("/")({
@@ -150,8 +147,8 @@ export const Route = createFileRoute("/")({
         { "@type": "Question", name: "Is booking open?", acceptedAnswer: { "@type": "Answer", text: "Yes. Pre-booking at Venus Universe is officially open and the site office in Nehrunagar welcomes visitors every day." } },
         { "@type": "Question", name: "Who designed Venus Universe?", acceptedAnswer: { "@type": "Answer", text: "Venus Universe is designed by Hafeez Contractor, with landscape by SWA California and interiors by HBA Singapore." } },
         { "@type": "Question", name: "What amenities are available?", acceptedAnswer: { "@type": "Answer", text: "A 2.2 acre landscaped podium, grand clubhouse, swimming pool, gymnasium, kids' play area, gardens, sports courts, wellness lounge and guest suite across the 7-acre development." } },
-        { "@type": "Question", name: "What is the RERA number?", acceptedAnswer: { "@type": "Answer", text: "Venus Universe is RERA-registered under registration number MAA17082/080726/311232. Full RERA details are shared with prospective buyers on request." } },
-        { "@type": "Question", name: "What is the starting price?", acceptedAnswer: { "@type": "Answer", text: "Pricing is shared on request. Submit the fully refundable ₹5,00,000 Expression of Interest, or connect with our sales team for the current price list and pre-launch offers." } },
+        { "@type": "Question", name: "What is the RERA number?", acceptedAnswer: { "@type": "Answer", text: "[RERA NUMBER] — full RERA details will be shared with prospective buyers on request." } },
+        { "@type": "Question", name: "What is the starting price?", acceptedAnswer: { "@type": "Answer", text: "₹X Cr Onwards — connect with our sales team for the current price list and pre-launch offers." } },
       ],
     };
 
@@ -164,26 +161,12 @@ export const Route = createFileRoute("/")({
       ],
     };
 
-    const videoSchema = {
-      "@context": "https://schema.org",
-      "@type": "VideoObject",
-      name: "Venus Universe Nehrunagar — Cinematic Showreel",
-      description:
-        "A cinematic tour of Venus Universe — luxury 4 & 5 BHK residences, jodi apartments, duplexes and penthouses in Nehrunagar, Ahmedabad, designed by Hafeez Contractor.",
-      thumbnailUrl: [seo.ogImage],
-      uploadDate: "2026-01-15",
-      contentUrl: showreel.url,
-      embedUrl: siteUrl,
-      publisher: { "@type": "Organization", name: "Venus Universe", logo: { "@type": "ImageObject", url: seo.ogImage } },
-    };
-
     const scripts: Array<Record<string, string>> = [
       { type: "application/ld+json", children: JSON.stringify(realEstateSchema) },
       { type: "application/ld+json", children: JSON.stringify(localBusinessSchema) },
       { type: "application/ld+json", children: JSON.stringify(residenceSchema) },
       { type: "application/ld+json", children: JSON.stringify(faqSchema) },
       { type: "application/ld+json", children: JSON.stringify(breadcrumbSchema) },
-      { type: "application/ld+json", children: JSON.stringify(videoSchema) },
     ];
     if (s.gaId) {
       scripts.push({ src: `https://www.googletagmanager.com/gtag/js?id=${s.gaId}`, async: "" });
@@ -198,10 +181,7 @@ export const Route = createFileRoute("/")({
 
     return {
       meta,
-      links: [
-        { rel: "canonical", href: (seo as { canonical?: string }).canonical || seo.siteUrl },
-        { rel: "preload", as: "image", href: heroTower },
-      ],
+      links: [{ rel: "canonical", href: (seo as { canonical?: string }).canonical || seo.siteUrl }],
       scripts,
     };
   },
@@ -265,7 +245,6 @@ function Index() {
         <Gallery items={content.gallery} />
         <Brochure data={content.brochure} />
         <Trust data={content.trust} />
-        <DesignTeam />
         <FAQ />
         <Contact contact={content.contact} />
       </main>

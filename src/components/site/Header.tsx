@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import logo from "@/assets/venus-logo.png";
 
@@ -54,12 +53,6 @@ export function Header({ brand }: { brand: string }) {
               {n.label}
             </a>
           ))}
-          <Link
-            to="/insights"
-            className="text-[13px] font-medium text-foreground/70 hover:text-[color:var(--accent-red)] transition-colors"
-          >
-            Insights
-          </Link>
         </nav>
 
         <div className="flex items-center gap-2">
@@ -97,13 +90,6 @@ export function Header({ brand }: { brand: string }) {
               {n.label}
             </a>
           ))}
-          <Link
-            to="/insights"
-            onClick={() => setOpen(false)}
-            className="text-sm font-medium text-foreground/80 hover:text-[color:var(--accent-red)]"
-          >
-            Insights
-          </Link>
         </div>
       </div>
     </header>

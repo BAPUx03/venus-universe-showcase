@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
 import { notifyLead } from "@/lib/notifyLead";
-import { ChevronDown, X } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { OtpModal } from "./OtpModal";
 
 const STORAGE_KEY = "venus_lead_submitted_v1";
@@ -168,23 +168,10 @@ export function LeadGate({ mode = "site" }: { mode?: "site" | "coming_soon" }) {
       aria-label="Get exclusive access"
       className={`fixed inset-0 z-[100] flex items-center justify-center p-2 sm:p-4 ${isComingSoon ? "" : "animate-fade-up"}`}
     >
-      {/* Backdrop — opaque white gate in coming-soon; dismissible translucent overlay otherwise (avoids intrusive-interstitial penalties) */}
-      <div
-        className={`absolute inset-0 ${isComingSoon ? "bg-white" : "bg-charcoal-deep/70 backdrop-blur-sm"}`}
-        onClick={isComingSoon ? undefined : () => setOpen(false)}
-      />
+      {/* Backdrop — plain opaque white, hides the site behind */}
+      <div className="absolute inset-0 bg-white" />
 
       <div className="relative w-full max-w-[480px] sm:max-w-[520px] max-h-[95vh] overflow-y-auto bg-white border border-border rounded-xl shadow-luxe">
-        {!isComingSoon && (
-          <button
-            type="button"
-            onClick={() => setOpen(false)}
-            aria-label="Close"
-            className="absolute top-3 right-3 z-10 w-8 h-8 inline-flex items-center justify-center rounded-full text-foreground/50 hover:bg-black/5 hover:text-foreground transition"
-          >
-            <X size={16} />
-          </button>
-        )}
         <div className="px-5 py-5 sm:px-7 sm:py-6">
           <div className="text-center">
             <p className="text-[12px] sm:text-[12.5px] text-muted-foreground">

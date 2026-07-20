@@ -31,8 +31,6 @@ import { Route as BestLuxuryProjectAhmedabadRouteImport } from './routes/best-lu
 import { Route as R5bhkNehrunagarAhmedabadRouteImport } from './routes/5bhk-nehrunagar-ahmedabad'
 import { Route as R4bhkNehrunagarAhmedabadRouteImport } from './routes/4bhk-nehrunagar-ahmedabad'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as InsightsIndexRouteImport } from './routes/insights/index'
-import { Route as InsightsSlugRouteImport } from './routes/insights/$slug'
 import { Route as Char91DotwellKnownChar93OauthProtectedResourceRouteImport } from './routes/[.well-known]/oauth-protected-resource'
 import { Route as Char91DotmcpChar93ListToolsRouteImport } from './routes/[.mcp]/list-tools'
 import { Route as ApiPublicOtpRouteImport } from './routes/api/public/otp'
@@ -157,16 +155,6 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const InsightsIndexRoute = InsightsIndexRouteImport.update({
-  id: '/insights/',
-  path: '/insights/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const InsightsSlugRoute = InsightsSlugRouteImport.update({
-  id: '/insights/$slug',
-  path: '/insights/$slug',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const Char91DotwellKnownChar93OauthProtectedResourceRoute =
   Char91DotwellKnownChar93OauthProtectedResourceRouteImport.update({
     id: '/.well-known/oauth-protected-resource',
@@ -221,8 +209,6 @@ export interface FileRoutesByFullPath {
   '/venus-universe-nehrunagar': typeof VenusUniverseNehrunagarRoute
   '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
-  '/insights/$slug': typeof InsightsSlugRoute
-  '/insights/': typeof InsightsIndexRoute
   '/.mcp/invoke-tool/$tool': typeof Char91DotmcpChar93InvokeToolToolRoute
   '/api/public/notify-lead': typeof ApiPublicNotifyLeadRoute
   '/api/public/otp': typeof ApiPublicOtpRoute
@@ -252,8 +238,6 @@ export interface FileRoutesByTo {
   '/venus-universe-nehrunagar': typeof VenusUniverseNehrunagarRoute
   '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
-  '/insights/$slug': typeof InsightsSlugRoute
-  '/insights': typeof InsightsIndexRoute
   '/.mcp/invoke-tool/$tool': typeof Char91DotmcpChar93InvokeToolToolRoute
   '/api/public/notify-lead': typeof ApiPublicNotifyLeadRoute
   '/api/public/otp': typeof ApiPublicOtpRoute
@@ -284,8 +268,6 @@ export interface FileRoutesById {
   '/venus-universe-nehrunagar': typeof VenusUniverseNehrunagarRoute
   '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
-  '/insights/$slug': typeof InsightsSlugRoute
-  '/insights/': typeof InsightsIndexRoute
   '/.mcp/invoke-tool/$tool': typeof Char91DotmcpChar93InvokeToolToolRoute
   '/api/public/notify-lead': typeof ApiPublicNotifyLeadRoute
   '/api/public/otp': typeof ApiPublicOtpRoute
@@ -317,8 +299,6 @@ export interface FileRouteTypes {
     | '/venus-universe-nehrunagar'
     | '/.mcp/list-tools'
     | '/.well-known/oauth-protected-resource'
-    | '/insights/$slug'
-    | '/insights/'
     | '/.mcp/invoke-tool/$tool'
     | '/api/public/notify-lead'
     | '/api/public/otp'
@@ -348,8 +328,6 @@ export interface FileRouteTypes {
     | '/venus-universe-nehrunagar'
     | '/.mcp/list-tools'
     | '/.well-known/oauth-protected-resource'
-    | '/insights/$slug'
-    | '/insights'
     | '/.mcp/invoke-tool/$tool'
     | '/api/public/notify-lead'
     | '/api/public/otp'
@@ -379,8 +357,6 @@ export interface FileRouteTypes {
     | '/venus-universe-nehrunagar'
     | '/.mcp/list-tools'
     | '/.well-known/oauth-protected-resource'
-    | '/insights/$slug'
-    | '/insights/'
     | '/.mcp/invoke-tool/$tool'
     | '/api/public/notify-lead'
     | '/api/public/otp'
@@ -411,8 +387,6 @@ export interface RootRouteChildren {
   VenusUniverseNehrunagarRoute: typeof VenusUniverseNehrunagarRoute
   Char91DotmcpChar93ListToolsRoute: typeof Char91DotmcpChar93ListToolsRoute
   Char91DotwellKnownChar93OauthProtectedResourceRoute: typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
-  InsightsSlugRoute: typeof InsightsSlugRoute
-  InsightsIndexRoute: typeof InsightsIndexRoute
   Char91DotmcpChar93InvokeToolToolRoute: typeof Char91DotmcpChar93InvokeToolToolRoute
   ApiPublicNotifyLeadRoute: typeof ApiPublicNotifyLeadRoute
   ApiPublicOtpRoute: typeof ApiPublicOtpRoute
@@ -574,20 +548,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/insights/': {
-      id: '/insights/'
-      path: '/insights'
-      fullPath: '/insights/'
-      preLoaderRoute: typeof InsightsIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/insights/$slug': {
-      id: '/insights/$slug'
-      path: '/insights/$slug'
-      fullPath: '/insights/$slug'
-      preLoaderRoute: typeof InsightsSlugRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/.well-known/oauth-protected-resource': {
       id: '/.well-known/oauth-protected-resource'
       path: '/.well-known/oauth-protected-resource'
@@ -653,8 +613,6 @@ const rootRouteChildren: RootRouteChildren = {
   Char91DotmcpChar93ListToolsRoute: Char91DotmcpChar93ListToolsRoute,
   Char91DotwellKnownChar93OauthProtectedResourceRoute:
     Char91DotwellKnownChar93OauthProtectedResourceRoute,
-  InsightsSlugRoute: InsightsSlugRoute,
-  InsightsIndexRoute: InsightsIndexRoute,
   Char91DotmcpChar93InvokeToolToolRoute: Char91DotmcpChar93InvokeToolToolRoute,
   ApiPublicNotifyLeadRoute: ApiPublicNotifyLeadRoute,
   ApiPublicOtpRoute: ApiPublicOtpRoute,
@@ -662,3 +620,12 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { createStart } from '@tanstack/react-start'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+  }
+}

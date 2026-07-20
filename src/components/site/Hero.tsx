@@ -3,9 +3,8 @@ import { motion } from "framer-motion";
 import showreel from "@/assets/showreel.mp4.asset.json";
 import type { SiteContent } from "@/content/defaultContent";
 
-export function Hero({ hero, headingLevel = "h1" }: { hero: SiteContent["hero"]; headingLevel?: "h1" | "h2" }) {
+export function Hero({ hero }: { hero: SiteContent["hero"] }) {
   const videoSrc = hero.videoUrl || showreel.url;
-  const Heading = headingLevel;
   return (
     <section
       id="home"
@@ -16,7 +15,6 @@ export function Hero({ hero, headingLevel = "h1" }: { hero: SiteContent["hero"];
       <div className="absolute inset-0">
         <video
           src={videoSrc}
-          poster={(hero.image as string) || undefined}
           autoPlay
           muted
           loop
@@ -42,9 +40,9 @@ export function Hero({ hero, headingLevel = "h1" }: { hero: SiteContent["hero"];
               Nehrunagar · Ahmedabad
             </span>
           </div>
-          <Heading className="font-display font-bold text-[clamp(1.75rem,4vw,3.5rem)] leading-[1.1] text-white tracking-tight">
+          <h1 className="font-display font-bold text-[clamp(1.75rem,4vw,3.5rem)] leading-[1.1] text-white tracking-tight">
             Luxury <span style={{ color: "oklch(0.78 0.18 25)" }}>4 &amp; 5 BHK Apartments</span> in Nehrunagar, Ahmedabad
-          </Heading>
+          </h1>
           <p className="mt-5 text-[11px] font-semibold tracking-[0.22em] uppercase text-white/75">
             Venus Universe · Nehrunagar, Ahmedabad · Pre-Booking Open
           </p>

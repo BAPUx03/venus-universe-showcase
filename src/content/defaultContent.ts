@@ -1,17 +1,17 @@
-import heroTower from "@/assets/hero-tower.webp";
-import masterPlan from "@/assets/master-plan.webp";
-import g1 from "@/assets/gallery-1.webp";
-import g2 from "@/assets/gallery-2.webp";
-import g3 from "@/assets/gallery-3.webp";
-import g4 from "@/assets/gallery-4.webp";
-import g5 from "@/assets/gallery-5.webp";
-import g6 from "@/assets/gallery-6.webp";
-import g7 from "@/assets/gallery-7.webp";
-import g8 from "@/assets/gallery-8.webp";
-import g9 from "@/assets/gallery-9.webp";
-import g10 from "@/assets/gallery-10.webp";
-import g11 from "@/assets/gallery-11.webp";
-import g12 from "@/assets/gallery-12.webp";
+import heroTower from "@/assets/hero-tower.jpg";
+import masterPlan from "@/assets/master-plan.jpg";
+import g1 from "@/assets/gallery-1.jpg";
+import g2 from "@/assets/gallery-2.jpg";
+import g3 from "@/assets/gallery-3.jpg";
+import g4 from "@/assets/gallery-4.jpg";
+import g5 from "@/assets/gallery-5.jpg";
+import g6 from "@/assets/gallery-6.jpg";
+import g7 from "@/assets/gallery-7.jpg";
+import g8 from "@/assets/gallery-8.jpg";
+import g9 from "@/assets/gallery-9.jpg";
+import g10 from "@/assets/gallery-10.jpg";
+import g11 from "@/assets/gallery-11.jpg";
+import g12 from "@/assets/gallery-12.jpg";
 import showreel from "@/assets/showreel.mp4.asset.json";
 
 /**
@@ -41,7 +41,7 @@ export const defaultContent = {
   brand: {
     name: "Venus Universe",
     tagline: "Luxury 4 & 5 BHK Apartments in Nehrunagar, Ahmedabad",
-    rera: "RERA No. MAA17082/080726/311232",
+    rera: "RERA Registered — Details on Request",
   },
   contact: {
     phone: "+91 99049 69298",
@@ -121,38 +121,28 @@ export const defaultContent = {
     },
   ],
   amenities: [
-    "The Wellness Club (Gym, Strength, Yoga & Crossfit)",
-    "Cardio & Circuit Training Studio",
+    "Wellness Club",
+    "Gymnasium",
     "Swimming Pool",
     "Jacuzzi",
     "Steam & Sauna",
     "Box Cricket",
-    "Pickleball Court",
+    "Pickle Ball Court",
     "Badminton Court",
     "Basketball Court",
     "Multipurpose Lawn",
-    "Outdoor Fitness Zone",
-    "Jogging Track (<1 km)",
-    "Walking Track",
     "Table Tennis",
     "Snooker / Pool Table",
-    "Indoor Games",
+    "Cafe & Banquet",
     "Garden Theatre",
-    "Café Universe",
-    "Banquet & Banquet Garden",
-    "The Lounge",
     "Crystal Garden",
-    "Petal Garden",
-    "Seating & Mound Gardens",
-    "The Grand Stairway",
+    "Teenage Arena",
     "Podcast Pod",
-    "The Studio",
-    "Meeting & Learning Rooms",
-    "Gen-Z Lounge",
-    "Toddler's Den",
-    "Children's Playground",
-    "Guest Rooms",
-    "Society Management Office",
+    "Tuition Room",
+    "Guest Suite",
+    "Indoor Games",
+    "Children's Play Area",
+    "Jogging Track (<1 km)",
     "Water Features",
     "Wheelchair-Friendly Infrastructure",
   ],
