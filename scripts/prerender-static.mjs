@@ -1,53 +1,82 @@
-// Post-build: render the home route ("/") via the SSR server bundle and write
-// the resulting HTML to dist/client/index.html so static hosts (Netlify) can
-// serve a real HTML shell. Client-side routing then takes over for other paths.
-//
-// This runs ONLY when DEPLOY_TARGET=netlify (see netlify.toml). On Cloudflare
-// (Lovable hosting) the SSR server handles every request live, so no static
-// shell is needed.
+// Render every public route to its own HTML file for static Netlify hosting.
+// This preserves the TanStack SSR output that search crawlers receive on the
+// Cloudflare/Lovable deployment and prevents SPA fallback duplicate pages.
 
-import { writeFileSync, existsSync } from "node:fs";
-import { resolve } from "node:path";
+import { existsSync, mkdirSync, writeFileSync } from "node:fs";
+import { dirname, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 
-const isNetlify = process.env.DEPLOY_TARGET === "netlify";
-if (!isNetlify) {
-  console.log("[prerender] Skipping — DEPLOY_TARGET is not 'netlify'.");
+if (process.env.DEPLOY_TARGET !== "netlify") {
+  console.log("[prerender] Skipping because DEPLOY_TARGET is not netlify.");
   process.exit(0);
 }
 
-const serverBundle = resolve("dist/server/server.js");
-if (!existsSync(serverBundle)) {
-  console.error(`[prerender] Server bundle not found at ${serverBundle}`);
+const serverBundle = [resolve(".output/server/index.mjs"), resolve("dist/server/server.js")].find(existsSync);
+if (!serverBundle) {
+  console.error("[prerender] Server bundle not found.");
   process.exit(1);
 }
 
-const baseUrl = process.env.URL || "http://localhost";
-const targetUrl = `${baseUrl.replace(/\/$/, "")}/`;
-
-console.log(`[prerender] Importing server bundle…`);
 const mod = await import(pathToFileURL(serverBundle).href);
 const handler = mod.default ?? mod.server;
 if (!handler || typeof handler.fetch !== "function") {
-  console.error("[prerender] Server bundle does not expose a fetch() handler.");
+  console.error("[prerender] Server bundle does not expose a fetch handler.");
   process.exit(1);
 }
 
-console.log(`[prerender] Rendering ${targetUrl}…`);
-const req = new Request(targetUrl, { method: "GET", headers: { "user-agent": "lovable-prerender" } });
+const publicOrigin = (process.env.URL || "https://venusuniverse.in").replace(/\/$/, "");
 
-let html;
-try {
-  const res = await handler.fetch(req);
-  html = await res.text();
-  if (!res.ok) {
-    console.warn(`[prerender] SSR returned ${res.status}. Writing response body anyway.`);
+async function request(pathname) {
+  return handler.fetch(
+    new Request(`${publicOrigin}${pathname}`, {
+      headers: { "user-agent": "venus-static-prerender" },
+    }),
+    { ASSETS: { fetch: () => new Response(null, { status: 404 }) } },
+    { waitUntil: () => undefined },
+  );
+}
+
+function writePublic(relativePath, body) {
+  const output = resolve(".output/public", relativePath);
+  mkdirSync(dirname(output), { recursive: true });
+  writeFileSync(output, body, "utf8");
+  console.log(`[prerender] Wrote ${relativePath}`);
+}
+
+const sitemapResponse = await request("/sitemap.xml");
+if (!sitemapResponse.ok) {
+  throw new Error(`Sitemap render failed with ${sitemapResponse.status}`);
+}
+const sitemap = await sitemapResponse.text();
+writePublic("sitemap.xml", sitemap);
+
+const robotsResponse = await request("/robots.txt");
+if (!robotsResponse.ok) {
+  throw new Error(`Robots render failed with ${robotsResponse.status}`);
+}
+writePublic("robots.txt", await robotsResponse.text());
+
+const sitemapPaths = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map((match) => {
+  const url = new URL(match[1]);
+  return url.pathname;
+});
+
+// Conversion and admin routes are deliberately absent from the sitemap but
+// still need real route HTML on a static deployment.
+const htmlPaths = [...new Set([...sitemapPaths, "/eoi", "/studio"])];
+
+for (const pathname of htmlPaths) {
+  const response = await request(pathname);
+  if (!response.ok) {
+    throw new Error(`${pathname} render failed with ${response.status}`);
   }
-} catch (e) {
-  console.error("[prerender] SSR rendering failed:", e);
-  process.exit(1);
+  const html = await response.text();
+  const relativePath = pathname === "/" ? "index.html" : `${pathname.replace(/^\//, "")}/index.html`;
+  writePublic(relativePath, html);
 }
 
-const out = resolve("dist/client/index.html");
-writeFileSync(out, html, "utf8");
-console.log(`[prerender] Wrote ${out} (${html.length} bytes).`);
+const notFoundResponse = await request("/__seo_not_found__");
+if (notFoundResponse.status !== 404) {
+  throw new Error(`Expected a 404 response, received ${notFoundResponse.status}`);
+}
+writePublic("404.html", await notFoundResponse.text());

@@ -8,7 +8,7 @@ export function Residences({ items }: { items: SiteContent["residences"] }) {
       id="residences"
       eyebrow="The Residences"
       title={<>Two homes. <span className="text-gradient-gold italic">One philosophy.</span></>}
-      intro="Every Venus Universe residence is a corner home, with private elevator lobbies and views that turn the city into wallpaper."
+      intro="Explore brochure-backed 4 BHK plans across Blocks A–J, with exact RERA carpet ranges and block-specific layouts."
     >
       <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
         {items.map((r, i) => (

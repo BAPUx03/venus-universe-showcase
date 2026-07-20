@@ -1,6 +1,9 @@
 import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
+import heroTower from "@/assets/hero-tower.webp";
+
+const ROOT_SOCIAL_IMAGE = new URL(heroTower, "https://venusuniverse.in").href;
 
 function NotFoundComponent() {
   return (
@@ -36,14 +39,14 @@ export const Route = createRootRoute({
       { name: "geo.position", content: "23.0307;72.5497" },
       { name: "ICBM", content: "23.0307, 72.5497" },
       { name: "google-site-verification", content: "EsiEUaZCt4V6r35C8aHJ_9CWa_2q9xwuLWriwS-vPzY" },
-      { title: "Venus Universe Nehrunagar" },
-      { property: "og:title", content: "Venus Universe Nehrunagar" },
-      { name: "twitter:title", content: "Venus Universe Nehrunagar" },
-      { name: "description", content: "Venus Universe is a luxury real estate platform with advanced EOI, lead management, and integrated SEO tools." },
-      { property: "og:description", content: "Venus Universe is a luxury real estate platform with advanced EOI, lead management, and integrated SEO tools." },
-      { name: "twitter:description", content: "Venus Universe is a luxury real estate platform with advanced EOI, lead management, and integrated SEO tools." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/0f8b61e5-8bdb-4a06-90ec-149d1f474955/id-preview-f0a8d03d--06061fcf-9626-45a1-b3af-0692a3aac4c3.lovable.app-1784182925615.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/0f8b61e5-8bdb-4a06-90ec-149d1f474955/id-preview-f0a8d03d--06061fcf-9626-45a1-b3af-0692a3aac4c3.lovable.app-1784182925615.png" },
+      { title: "The Universe by Venus | Premium 4 BHK Nehrunagar" },
+      { property: "og:title", content: "The Universe by Venus | Premium 4 BHK Nehrunagar" },
+      { name: "twitter:title", content: "The Universe by Venus | Premium 4 BHK Nehrunagar" },
+      { name: "description", content: "Explore The Universe by Venus, a 10-block premium 4 BHK residential development in Nehrunagar, Ahmedabad." },
+      { property: "og:description", content: "Explore The Universe by Venus, a 10-block premium 4 BHK residential development in Nehrunagar, Ahmedabad." },
+      { name: "twitter:description", content: "Explore The Universe by Venus, a 10-block premium 4 BHK residential development in Nehrunagar, Ahmedabad." },
+      { property: "og:image", content: ROOT_SOCIAL_IMAGE },
+      { name: "twitter:image", content: ROOT_SOCIAL_IMAGE },
       { name: "twitter:card", content: "summary_large_image" },
       { property: "og:type", content: "website" },
     ],

@@ -2,17 +2,16 @@ import { useEffect, useState } from "react";
 import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
 import { notifyLead } from "@/lib/notifyLead";
-import { ChevronDown, X } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { OtpModal } from "./OtpModal";
 
 const STORAGE_KEY = "venus_lead_submitted_v1";
+const POPUP_DELAY_MS = 10_000;
 
 const REQUIREMENTS = [
   "4 BHK",
-  "5 BHK",
-  "Penthouse",
-  "Duplex",
-  "Jodi Apartments",
+  "Larger-format residence",
+  "Jodi / Duplex / Penthouse — if available",
   "Investment",
   "Site Visit",
 ];
@@ -80,6 +79,7 @@ export function LeadGate({ mode = "site" }: { mode?: "site" | "coming_soon" }) {
   // Open immediately on first render in coming-soon mode so there is no flash.
   const [open, setOpen] = useState(isComingSoon);
   const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>({});
   const [otpOpen, setOtpOpen] = useState(false);
@@ -97,12 +97,16 @@ export function LeadGate({ mode = "site" }: { mode?: "site" | "coming_soon" }) {
 
   useEffect(() => {
     if (typeof window === "undefined") return;
+    if (localStorage.getItem(STORAGE_KEY) === "1") {
+      setOpen(false);
+      return;
+    }
     if (isComingSoon) {
       setOpen(true);
       return;
     }
     setOpen(false);
-    const timer = setTimeout(() => setOpen(true), 7_000);
+    const timer = setTimeout(() => setOpen(true), POPUP_DELAY_MS);
     return () => clearTimeout(timer);
   }, [isComingSoon]);
 
@@ -122,6 +126,7 @@ export function LeadGate({ mode = "site" }: { mode?: "site" | "coming_soon" }) {
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
+    setSubmitError("");
     const parsed = schema.safeParse(form);
     if (!parsed.success) {
       const fieldErrors: Partial<Record<keyof FormState, string>> = {};
@@ -147,15 +152,17 @@ export function LeadGate({ mode = "site" }: { mode?: "site" | "coming_soon" }) {
     setOtpOpen(false);
     setSubmitting(true);
     try {
-      await supabase.from("leads").insert(pendingLead);
+      const { error } = await supabase.from("leads").insert(pendingLead);
+      if (error) throw error;
       void notifyLead(pendingLead);
-    } catch {
-      /* ignore */
-    } finally {
-      setSubmitting(false);
+      localStorage.setItem(STORAGE_KEY, "1");
       setOpen(false);
       setSubmitted(false);
       setPendingLead(null);
+    } catch {
+      setSubmitError("We couldn't save your details. Please try again.");
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -168,23 +175,12 @@ export function LeadGate({ mode = "site" }: { mode?: "site" | "coming_soon" }) {
       aria-label="Get exclusive access"
       className={`fixed inset-0 z-[100] flex items-center justify-center p-2 sm:p-4 ${isComingSoon ? "" : "animate-fade-up"}`}
     >
-      {/* Backdrop — opaque white gate in coming-soon; dismissible translucent overlay otherwise (avoids intrusive-interstitial penalties) */}
+      {/* This backdrop is intentionally non-dismissible; completion is the only exit. */}
       <div
         className={`absolute inset-0 ${isComingSoon ? "bg-white" : "bg-charcoal-deep/70 backdrop-blur-sm"}`}
-        onClick={isComingSoon ? undefined : () => setOpen(false)}
       />
 
       <div className="relative w-full max-w-[480px] sm:max-w-[520px] max-h-[95vh] overflow-y-auto bg-white border border-border rounded-xl shadow-luxe">
-        {!isComingSoon && (
-          <button
-            type="button"
-            onClick={() => setOpen(false)}
-            aria-label="Close"
-            className="absolute top-3 right-3 z-10 w-8 h-8 inline-flex items-center justify-center rounded-full text-foreground/50 hover:bg-black/5 hover:text-foreground transition"
-          >
-            <X size={16} />
-          </button>
-        )}
         <div className="px-5 py-5 sm:px-7 sm:py-6">
           <div className="text-center">
             <p className="text-[12px] sm:text-[12.5px] text-muted-foreground">
@@ -206,7 +202,7 @@ export function LeadGate({ mode = "site" }: { mode?: "site" | "coming_soon" }) {
             </div>
           </div>
 
-          <form onSubmit={submit} className="mt-4 grid grid-cols-2 gap-x-3 gap-y-2.5">
+          <form onSubmit={submit} className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-x-3 gap-y-2.5">
             <Select
               label="Requirement"
               placeholder="Select Requirement"
@@ -254,7 +250,7 @@ export function LeadGate({ mode = "site" }: { mode?: "site" | "coming_soon" }) {
               error={errors.phone}
             />
 
-            <ul className="col-span-2 mt-1 flex flex-wrap items-center justify-center gap-x-3 gap-y-0.5 text-[9.5px] uppercase tracking-[0.14em] text-muted-foreground">
+            <ul className="sm:col-span-2 mt-1 flex flex-wrap items-center justify-center gap-x-3 gap-y-0.5 text-[9.5px] uppercase tracking-[0.14em] text-muted-foreground">
               <li className="flex items-center gap-1"><span style={{ color: "var(--accent-red)" }}>✦</span> Instant Call Back</li>
               <li className="flex items-center gap-1"><span style={{ color: "var(--accent-red)" }}>✦</span> Floor Plans</li>
               <li className="flex items-center gap-1"><span style={{ color: "var(--accent-red)" }}>✦</span> Priority Visit</li>
@@ -263,13 +259,19 @@ export function LeadGate({ mode = "site" }: { mode?: "site" | "coming_soon" }) {
             <button
               type="submit"
               disabled={submitting}
-              className="col-span-2 mt-1 py-3 rounded-md text-white font-semibold tracking-[0.1em] uppercase text-[12.5px] shadow-gold hover:brightness-110 disabled:opacity-60 transition"
+              className="sm:col-span-2 mt-1 min-h-12 py-3 rounded-md text-white font-semibold tracking-[0.1em] uppercase text-[12.5px] shadow-gold hover:brightness-110 disabled:opacity-60 transition"
               style={{ background: "var(--accent-red)" }}
             >
               {submitting ? "Submitting…" : "Get Exclusive Access"}
             </button>
 
-            <p className="col-span-2 text-[10px] text-muted-foreground/80 text-center leading-snug">
+            {submitError && (
+              <p role="alert" className="sm:col-span-2 text-[11px] text-destructive text-center">
+                {submitError}
+              </p>
+            )}
+
+            <p className="sm:col-span-2 text-[10px] text-muted-foreground/80 text-center leading-snug">
               By submitting, you agree to receive property updates via call, SMS &amp; email.
             </p>
           </form>
@@ -307,7 +309,6 @@ export function LeadGate({ mode = "site" }: { mode?: "site" | "coming_soon" }) {
       <OtpModal
         open={otpOpen}
         phone={pendingLead?.phone ?? ""}
-        onClose={() => setOtpOpen(false)}
         onVerified={onVerified}
       />
     </>
@@ -355,7 +356,7 @@ function PhoneField(props: {
   error?: string;
 }) {
   return (
-    <label className="block col-span-2 sm:col-span-1">
+    <label className="block">
       <span className="block text-[10px] font-medium uppercase tracking-[0.18em] text-muted-foreground mb-1">{props.label}</span>
       <div
         className={`flex items-stretch w-full bg-input border rounded-md overflow-hidden ${

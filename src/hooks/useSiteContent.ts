@@ -31,7 +31,39 @@ function merge(defaults: SiteContent, overrides: Record<string, unknown>): SiteC
     const dv = (defaults as Record<string, unknown>)[k];
     out[k] = dv !== undefined ? deepMerge(dv, overrides[k]) : overrides[k];
   }
-  return out as SiteContent;
+  const merged = out as SiteContent;
+
+  // Product facts verified against the approved brochure are code-owned.
+  // Operational fields remain CMS-editable, while stale database copy cannot
+  // reintroduce retired inventory or rounded-area claims.
+  return {
+    ...merged,
+    seo: {
+      ...merged.seo,
+      title: defaults.seo.title,
+      description: defaults.seo.description,
+      keywords: defaults.seo.keywords,
+      author: defaults.seo.author,
+    },
+    brand: {
+      ...merged.brand,
+      name: defaults.brand.name,
+      tagline: defaults.brand.tagline,
+    },
+    hero: defaults.hero,
+    about: defaults.about,
+    highlights: defaults.highlights,
+    residences: defaults.residences,
+    amenities: defaults.amenities,
+    gallery: defaults.gallery,
+    brochure: defaults.brochure,
+    trust: defaults.trust,
+    eoi: {
+      ...merged.eoi,
+      title: defaults.eoi.title,
+      subtitle: defaults.eoi.subtitle,
+    },
+  };
 }
 
 export function useSiteContent() {

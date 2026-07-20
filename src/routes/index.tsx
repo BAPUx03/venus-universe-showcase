@@ -20,11 +20,11 @@ import { Footer } from "@/components/site/Footer";
 
 import { StickyProjectBar } from "@/components/site/StickyProjectBar";
 import { EoiSection } from "@/components/site/EoiSection";
-import { EoiPopup } from "@/components/site/EoiPopup";
 import { LeadGate } from "@/components/site/LeadGate";
 import { FAQ } from "@/components/site/FAQ";
 import { Showcase3D } from "@/components/site/Showcase3D";
 import { DesignTeam } from "@/components/site/DesignTeam";
+import { NriSection } from "@/components/site/NriSection";
 import showreel from "@/assets/showreel.mp4.asset.json";
 import heroTower from "@/assets/hero-tower.webp";
 
@@ -35,8 +35,20 @@ export const Route = createFileRoute("/")({
       const { data } = await supabase.from("site_content").select("key, value").in("key", ["seo", "brand", "siteMode"]);
       const map: Record<string, unknown> = {};
       for (const r of data ?? []) map[r.key] = r.value;
-      const seo = { ...defaultContent.seo, ...((map.seo as object) ?? {}) };
-      const brand = { ...defaultContent.brand, ...((map.brand as object) ?? {}) };
+      const savedSeo = { ...defaultContent.seo, ...((map.seo as object) ?? {}) };
+      const seo = {
+        ...savedSeo,
+        title: defaultContent.seo.title,
+        description: defaultContent.seo.description,
+        keywords: defaultContent.seo.keywords,
+        author: defaultContent.seo.author,
+      };
+      const brand = {
+        ...defaultContent.brand,
+        ...((map.brand as object) ?? {}),
+        name: defaultContent.brand.name,
+        tagline: defaultContent.brand.tagline,
+      };
       const siteMode = ((map.siteMode as { mode?: string })?.mode === "coming_soon") ? "coming_soon" : "site";
       return { seo, brand, siteMode };
     } catch {
@@ -77,14 +89,13 @@ export const Route = createFileRoute("/")({
       "@context": "https://schema.org",
       "@type": "RealEstateAgent",
       "@id": `${siteUrl}/#organization`,
-      name: "Venus Universe",
-      alternateName: ["Venus Universe Ahmedabad", "Venus Universe Nehrunagar"],
+      name: "Venus",
+      alternateName: ["Venus Group", "Venus Infrastructure"],
       url: siteUrl,
       image: seo.ogImage,
       logo: seo.ogImage,
-      description: "Venus Universe — a landmark 7-acre luxury community in Nehrunagar, Ahmedabad with premium 4 & 5 BHK residences. Pre-booking open.",
+      description: "Developer of The Universe by Venus, a landmark 10-block premium 4 BHK community in Nehrunagar, Ahmedabad.",
       telephone: defaultContent.contact.phone,
-      email: defaultContent.contact.email,
       priceRange: "₹₹₹₹",
       address: {
         "@type": "PostalAddress",
@@ -102,7 +113,7 @@ export const Route = createFileRoute("/")({
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
       "@id": `${siteUrl}/#localbusiness`,
-      name: "Venus Universe Sales Gallery",
+      name: "The Universe by Venus Sales Gallery",
       image: seo.ogImage,
       url: siteUrl,
       telephone: defaultContent.contact.phone,
@@ -122,10 +133,14 @@ export const Route = createFileRoute("/")({
     const residenceSchema = {
       "@context": "https://schema.org",
       "@type": "ApartmentComplex",
-      name: "Venus Universe — Luxury 4 & 5 BHK Apartments in Nehrunagar, Ahmedabad",
+      name: "The Universe by Venus — Premium 4 BHK Residences in Nehrunagar, Ahmedabad",
       url: siteUrl,
       image: seo.ogImage,
-      description: "Venus Universe — a landmark 7-acre luxury community in Nehrunagar, Ahmedabad featuring premium 4 & 5 BHK residences with 70% open landscape.",
+      description: "The Universe by Venus is a 7-acre, 10-block residential development in Nehrunagar with premium 4 BHK residences across brochure-listed RERA carpet ranges.",
+      audience: [
+        { "@type": "Audience", audienceType: "Resident Indian home buyers" },
+        { "@type": "Audience", audienceType: "NRI and OCI home buyers" },
+      ],
       address: {
         "@type": "PostalAddress",
         streetAddress: "Nehrunagar",
@@ -145,10 +160,11 @@ export const Route = createFileRoute("/")({
       "@context": "https://schema.org",
       "@type": "FAQPage",
       mainEntity: [
-        { "@type": "Question", name: "What configurations are available at Venus Universe?", acceptedAnswer: { "@type": "Answer", text: "Venus Universe offers 4 BHK and 5 BHK residences with carpet sizes from 1,550 sq ft up to 2,475 sq ft, including duplex penthouses and jodi-house options." } },
-        { "@type": "Question", name: "Where is Venus Universe located?", acceptedAnswer: { "@type": "Answer", text: "Venus Universe is located in Nehrunagar, Ahmedabad — minutes from CG Road, Ashram Road, Paldi, IIM Ahmedabad and the city's top schools and hospitals." } },
+        { "@type": "Question", name: "What configurations are available at The Universe by Venus?", acceptedAnswer: { "@type": "Answer", text: "The approved brochure presents premium 4 BHK residences across Blocks A–J, with RERA carpet areas from approximately 1,546 to 2,459 sq ft. Larger formats are subject to official availability." } },
+        { "@type": "Question", name: "Where is The Universe by Venus located?", acceptedAnswer: { "@type": "Answer", text: "The Universe by Venus is located in Nehrunagar, Ahmedabad, with access to CG Road, Ashram Road, Paldi and IIM Ahmedabad." } },
         { "@type": "Question", name: "Is booking open?", acceptedAnswer: { "@type": "Answer", text: "Yes. Pre-booking at Venus Universe is officially open and the site office in Nehrunagar welcomes visitors every day." } },
-        { "@type": "Question", name: "Who designed Venus Universe?", acceptedAnswer: { "@type": "Answer", text: "Venus Universe is designed by Hafeez Contractor, with landscape by SWA California and interiors by HBA Singapore." } },
+        { "@type": "Question", name: "Who designed The Universe by Venus?", acceptedAnswer: { "@type": "Answer", text: "Architecture is by Hafeez Contractor, principal landscape design by SWA Group, interiors by Hirsch Bedner Associates and lighting by LET Design, Dubai." } },
+        { "@type": "Question", name: "Can NRI buyers explore The Universe by Venus remotely?", acceptedAnswer: { "@type": "Answer", text: "NRI and OCI buyers can request a video walkthrough and an international callback. Legal, tax, FEMA and Power of Attorney decisions should be confirmed with independent advisors." } },
         { "@type": "Question", name: "What amenities are available?", acceptedAnswer: { "@type": "Answer", text: "A 2.2 acre landscaped podium, grand clubhouse, swimming pool, gymnasium, kids' play area, gardens, sports courts, wellness lounge and guest suite across the 7-acre development." } },
         { "@type": "Question", name: "What is the RERA number?", acceptedAnswer: { "@type": "Answer", text: "Venus Universe is RERA-registered under registration number MAA17082/080726/311232. Full RERA details are shared with prospective buyers on request." } },
         { "@type": "Question", name: "What is the starting price?", acceptedAnswer: { "@type": "Answer", text: "Pricing is shared on request. Submit the fully refundable ₹5,00,000 Expression of Interest, or connect with our sales team for the current price list and pre-launch offers." } },
@@ -160,21 +176,21 @@ export const Route = createFileRoute("/")({
       "@type": "BreadcrumbList",
       itemListElement: [
         { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
-        { "@type": "ListItem", position: 2, name: "Venus Universe", item: siteUrl },
+        { "@type": "ListItem", position: 2, name: "The Universe by Venus", item: siteUrl },
       ],
     };
 
     const videoSchema = {
       "@context": "https://schema.org",
       "@type": "VideoObject",
-      name: "Venus Universe Nehrunagar — Cinematic Showreel",
+      name: "The Universe by Venus — Cinematic Showreel",
       description:
-        "A cinematic tour of Venus Universe — luxury 4 & 5 BHK residences, jodi apartments, duplexes and penthouses in Nehrunagar, Ahmedabad, designed by Hafeez Contractor.",
+        "A cinematic tour of The Universe by Venus, a premium 4 BHK residential development across Blocks A–J in Nehrunagar, Ahmedabad.",
       thumbnailUrl: [seo.ogImage],
       uploadDate: "2026-01-15",
       contentUrl: showreel.url,
       embedUrl: siteUrl,
-      publisher: { "@type": "Organization", name: "Venus Universe", logo: { "@type": "ImageObject", url: seo.ogImage } },
+      publisher: { "@type": "Organization", name: "Venus", logo: { "@type": "ImageObject", url: seo.ogImage } },
     };
 
     const scripts: Array<Record<string, string>> = [
@@ -266,13 +282,13 @@ function Index() {
         <Brochure data={content.brochure} />
         <Trust data={content.trust} />
         <DesignTeam />
+        <NriSection />
         <FAQ />
         <Contact contact={content.contact} />
       </main>
       <Footer brand={content.brand.name} contact={content.contact} rera={content.brand.rera} />
       <WhatsAppButton phone={content.contact.whatsapp} />
       <StickyProjectBar />
-      <EoiPopup eoi={content.eoi} />
       <LeadGate />
     </div>
   );

@@ -5,6 +5,8 @@
  * src/routes/insights/index.tsx (hub) and src/routes/insights/$slug.tsx (post).
  */
 
+import heroTower from "@/assets/hero-tower.webp";
+
 export interface InsightBlock {
   type: "h2" | "p" | "ul";
   text?: string;
@@ -27,8 +29,7 @@ export interface InsightPost {
 }
 
 const BASE = "https://venusuniverse.in";
-const OG_IMAGE =
-  "https://storage.googleapis.com/gpt-engineer-file-uploads/Nlau0aIfcNZ994VHhH1ZCQI5FFn1/social-images/social-1776592390810-vectorstock_45301125.webp";
+const OG_IMAGE = new URL(heroTower, BASE).href;
 
 export const INSIGHTS: Record<string, InsightPost> = {
   "is-nehrunagar-good-investment-ahmedabad": {
@@ -56,11 +57,11 @@ export const INSIGHTS: Record<string, InsightPost> = {
       { type: "h2", text: "Who Nehrunagar suits" },
       { type: "p", text: "End-users upgrading within west Ahmedabad, business owners and professionals who value a central base, and NRIs seeking a low-maintenance, appreciating asset in a proven location all gravitate here. For each, the appeal is the same: a central address that is unlikely to be replicated." },
       { type: "h2", text: "Where Venus Universe fits" },
-      { type: "p", text: "Venus Universe is one of the few new landmark developments in Nehrunagar — a gated community of 4 BHK residences, jodi apartments, duplexes and penthouses designed by Hafeez Contractor, with landscape by SWA and interiors by HBA. It is a rare chance to buy new construction of this scale in an address that is otherwise fully established. Pre-booking is open with a fully refundable Expression of Interest." },
+      { type: "p", text: "The Universe by Venus is a 10-block development in Nehrunagar with brochure-confirmed 4 BHK plans, architecture by Hafeez Contractor, principal landscape design by SWA Group and interiors by HBA. Larger formats must be confirmed against current official availability." },
     ],
     faq: [
       { q: "Is Nehrunagar a good area to invest in Ahmedabad?", a: "Yes — Nehrunagar is one of central Ahmedabad's most established premium micro-markets, close to CG Road, Ashram Road and IIM-A, with very limited new luxury supply, which supports long-term value." },
-      { q: "What new luxury projects are launching in Nehrunagar?", a: "Venus Universe is a landmark new gated community in Nehrunagar offering 4 BHK, jodi, duplex and penthouse residences, with pre-booking open." },
+      { q: "What new luxury projects are launching in Nehrunagar?", a: "The Universe by Venus is a 10-block gated community with brochure-confirmed premium 4 BHK plans and pre-booking open." },
     ],
   },
 
@@ -86,7 +87,7 @@ export const INSIGHTS: Record<string, InsightPost> = {
       { type: "h2", text: "The duplex" },
       { type: "p", text: "A duplex spans two connected floors, typically with living, dining and kitchen below and private bedrooms above. The vertical separation gives clear zoning between social and private life, and the internal staircase becomes an architectural feature. Duplexes suit buyers who love the feel of a villa but want it in the sky." },
       { type: "h2", text: "The penthouse" },
-      { type: "p", text: "The crown of the development — the largest, highest and most private residences, often with expansive decks and the best views. At Venus Universe the top configurations carry RERA carpet areas up to around 2,507 sq ft. Penthouses are for buyers who want a signature home with no one above them." },
+      { type: "p", text: "Penthouses are generally top-floor residences and may include additional privacy or outdoor space. At The Universe by Venus, any penthouse or duplex availability must be confirmed against the current approved inventory; the supplied brochure primarily documents 4 BHK plans." },
       { type: "h2", text: "How to choose" },
       { type: "ul", items: ["Count real bedrooms you'll use, then add one for a study or guest room", "Decide if you want everything on one level (4 BHK / jodi) or zoned across floors (duplex / penthouse)", "Factor in staff and utility needs — larger units add servant rooms and multiple washes", "Always read the RERA carpet area, not the marketing \"super built-up\" figure"] },
       { type: "h2", text: "See the layouts in person" },
@@ -95,7 +96,7 @@ export const INSIGHTS: Record<string, InsightPost> = {
     faq: [
       { q: "What is a jodi apartment?", a: "A jodi apartment is two adjacent flats combined into a single larger home on one level, giving a bungalow-sized footprint with apartment security and convenience." },
       { q: "What is the difference between a duplex and a penthouse?", a: "A duplex is a home spread across two connected floors; a penthouse is a top-floor luxury residence, usually the largest and most private, often with large private decks." },
-      { q: "What carpet sizes does Venus Universe offer?", a: "Venus Universe offers RERA carpet areas from about 1,546 sq ft for 4 BHK homes up to around 2,507 sq ft for the largest jodi, duplex and penthouse configurations." },
+      { q: "What carpet sizes does The Universe by Venus offer?", a: "The supplied brochure lists 4 BHK RERA carpet areas from approximately 1,546 to 2,459 sq ft, depending on block and plan." },
     ],
   },
 

@@ -22,14 +22,14 @@ import showreel from "@/assets/showreel.mp4.asset.json";
 export const defaultContent = {
   seo: {
     siteUrl: "https://venusuniverse.in",
-    title: "Venus Universe | Luxury 4 & 5 BHK in Nehrunagar, Ahmedabad",
+    title: "The Universe by Venus | Premium 4 BHK Nehrunagar",
     description:
-      "Discover Venus Universe, a landmark 7-acre luxury community in Nehrunagar, Ahmedabad with premium 4 & 5 BHK residences, 70% open landscape and world-class design.",
+      "Discover The Universe by Venus, a 7-acre, 10-block luxury community in Nehrunagar with premium 4 BHK residences and RERA carpet areas from 1,546 sq ft.",
     keywords:
-      "Venus Universe, luxury apartments Nehrunagar, 4 BHK Nehrunagar Ahmedabad, 5 BHK Nehrunagar Ahmedabad, luxury apartments Ahmedabad, premium flats Nehrunagar, Hafeez Contractor Ahmedabad, flats near CG Road, flats near IIM Ahmedabad",
-    ogImage: "https://storage.googleapis.com/gpt-engineer-file-uploads/Nlau0aIfcNZ994VHhH1ZCQI5FFn1/social-images/social-1776592390810-vectorstock_45301125.webp",
+      "The Universe by Venus, Venus Universe, luxury apartments Nehrunagar, 4 BHK Nehrunagar Ahmedabad, luxury apartments Ahmedabad, premium flats Nehrunagar, Hafeez Contractor Ahmedabad, flats near CG Road, flats near IIM Ahmedabad",
+    ogImage: new URL(heroTower, "https://venusuniverse.in").href,
     twitterHandle: "@venusuniverse",
-    author: "Venus Universe",
+    author: "Venus",
     canonical: "https://venusuniverse.in",
     allowIndexing: true,
     gaId: "",
@@ -39,22 +39,22 @@ export const defaultContent = {
     facebookPixelId: "1277476574551380",
   },
   brand: {
-    name: "Venus Universe",
-    tagline: "Luxury 4 & 5 BHK Apartments in Nehrunagar, Ahmedabad",
+    name: "The Universe by Venus",
+    tagline: "Premium 4 BHK Residences in Nehrunagar, Ahmedabad",
     rera: "RERA No. MAA17082/080726/311232",
   },
   contact: {
     phone: "+91 99049 69298",
     whatsapp: "919904969298",
-    email: "sales@venusuniverse.in",
-    address: "Venus Universe Sales Gallery, Nehrunagar, Ahmedabad",
+    email: "",
+    address: "The Universe by Venus Sales Gallery, Nehrunagar, Ahmedabad",
     mapEmbed:
       "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3672.0!2d72.5497!3d23.0307!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sNehrunagar+Ahmedabad!5e0!3m2!1sen!2sin!4v1700000000000",
   },
   hero: {
-    title: "Luxury 4 & 5 BHK Apartments in Nehrunagar, Ahmedabad",
+    title: "Premium 4 BHK Residences in Nehrunagar, Ahmedabad",
     subtitle:
-      "Welcome to Venus Universe, a landmark 7-acre luxury community in the heart of Nehrunagar, Ahmedabad. Just minutes from CG Road, Ashram Road, IIM Ahmedabad and the city's premier destinations, the project offers thoughtfully designed 4 & 5 BHK residences surrounded by 70% open landscape. Crafted by Hafeez Contractor, SWA California and HBA Singapore, Venus Universe combines timeless architecture with world-class living. Pre-booking is now open, and our site office welcomes visitors every day.",
+      "A landmark 7-acre community of premium 4 BHK residences in Nehrunagar, designed by a globally acclaimed team.",
     image: heroTower,
     videoUrl: "",
   },
@@ -62,12 +62,12 @@ export const defaultContent = {
     eyebrow: "The Project",
     title: "Where everything aligns perfectly.",
     body:
-      "Venus Universe is a landmark 4 & 5 BHK development in Nehrunagar, Ahmedabad — the city's most established premium micro-market. Sprawling across 7 acres with 70% open area and a 2.2 acre serene podium, the project is designed by Hafeez Contractor with landscaping by SWA (California), interiors by HBA Singapore and lighting by LET Dubai.",
+      "The Universe by Venus is a landmark 10-block residential development across 7 acres in Nehrunagar, Ahmedabad. Its premium 4 BHK residences are planned around a landscaped podium, with architecture by Hafeez Contractor, principal landscape design by SWA Group, interiors by Hirsch Bedner Associates and lighting by LET Design, Dubai.",
     stats: [
       { label: "Acres", value: "7" },
       { label: "Open Area", value: "70%" },
       { label: "Podium", value: "2.2 Acres" },
-      { label: "Configuration", value: "4 & 5 BHK" },
+      { label: "Residential Blocks", value: "10" },
     ],
   },
   highlights: [
@@ -76,7 +76,7 @@ export const defaultContent = {
     { title: "2.2 Acre Serene Podium", desc: "Elevated landscape deck designed for calm and community." },
     { title: "Architecture by Hafeez Contractor", desc: "India's most awarded residential architecture practice." },
     { title: "Landscape by SWA, California", desc: "World-renowned landscape architects shaping every garden." },
-    { title: "Interiors by HBA Singapore", desc: "Singapore's largest hospitality interior design firm." },
+    { title: "Interiors by HBA", desc: "Interior design by Hirsch Bedner Associates." },
     { title: "Lighting by LET, Dubai", desc: "Signature façade and landscape lighting design." },
     { title: "F&B by Stratum @ Venus Universe", desc: "Activatrium, Active8, Rungg & Café Ray on the doorstep." },
     
@@ -88,36 +88,36 @@ export const defaultContent = {
   },
   residences: [
     {
-      type: "4 & 5 BHK",
-      title: "Compact 4 & 5 BHK",
-      carpet: "1,550 sq ft",
-      saleable: "RERA Carpet (indicative)",
+      type: "Premium 4 BHK",
+      title: "Blocks A & B",
+      carpet: "1,546–1,547 sq ft",
+      saleable: "RERA Carpet as per brochure",
       price: "₹ On Request",
-      features: ["Smart-sized 4 & 5 BHK layout", "Premium specifications", "Podium-facing options", "Reserved parking"],
+      features: ["Four-bedroom planning", "Utility area", "Balcony and wash areas", "Four homes per typical floor"],
     },
     {
-      type: "4 & 5 BHK",
-      title: "Classic 4 & 5 BHK",
-      carpet: "1,775 sq ft",
-      saleable: "RERA Carpet (indicative)",
+      type: "Premium 4 BHK",
+      title: "Blocks C & D",
+      carpet: "1,755–2,082 sq ft",
+      saleable: "RERA Carpet as per brochure",
       price: "₹ On Request",
       features: ["Spacious living + dining", "Master suite with walk-in", "Utility + servant room", "Reserved parking"],
     },
     {
-      type: "4 & 5 BHK",
-      title: "Grand 4 & 5 BHK",
-      carpet: "2,100 sq ft",
-      saleable: "RERA Carpet (indicative)",
+      type: "Premium 4 BHK",
+      title: "Blocks E & F",
+      carpet: "2,234–2,459 sq ft",
+      saleable: "RERA Carpet as per brochure",
       price: "₹ On Request",
       features: ["Wide-frontage living", "Two master suites", "Family lounge", "Two reserved parkings"],
     },
     {
-      type: "4 & 5 BHK",
-      title: "Signature 4 & 5 BHK",
-      carpet: "2,475 sq ft",
-      saleable: "RERA Carpet (indicative)",
+      type: "Premium 4 BHK",
+      title: "Blocks G, H, I & J",
+      carpet: "1,773–2,083 sq ft",
+      saleable: "RERA Carpet as per brochure",
       price: "₹ On Request",
-      features: ["Terrace Apartment / Duplex Penthouse / Jodi-House options", "Private deck", "Double-height volumes (select)", "Two reserved parkings"],
+      features: ["Multiple block-specific plans", "Balcony and utility areas", "Premium specifications", "Larger formats subject to official availability"],
     },
   ],
   amenities: [
@@ -160,7 +160,7 @@ export const defaultContent = {
     eyebrow: "The Address",
     title: "Nehrunagar — where everything aligns perfectly.",
     body:
-      "Nehrunagar is the heart of Ahmedabad — a premium micro-market seeing 2x demand growth in premium home sales and 6% YoY commercial rental yield growth. Top schools, hospitals, retail and IIM-A are all within minutes.",
+      "Nehrunagar is an established central Ahmedabad neighbourhood with convenient access to schools, hospitals, retail, business corridors and IIM Ahmedabad. Travel times are indicative and should be verified for the time and route of travel.",
     nearby: [
       { name: "Nehrunagar BRTS Bus Stand", time: "2 min" },
       { name: "IIM Ahmedabad", time: "5 min" },
@@ -180,7 +180,7 @@ export const defaultContent = {
     ],
   },
   gallery: [
-    { src: showreel.url, caption: "Twin towers — cinematic showreel", type: "video", poster: heroTower },
+    { src: showreel.url, caption: "The Universe by Venus — cinematic showreel", type: "video", poster: heroTower },
     { src: g1, caption: "Penthouse living room" },
     { src: g9, caption: "Rooftop infinity pool" },
     { src: g2, caption: "Infinity sky pool" },
@@ -193,12 +193,12 @@ export const defaultContent = {
     { src: g6, caption: "Penthouse terrace" },
     { src: g7, caption: "Arrival lobby" },
     { src: g8, caption: "Private cinema" },
-    { src: heroTower, caption: "Twin towers at dusk" },
+    { src: heroTower, caption: "The Universe by Venus at dusk" },
     { src: masterPlan, caption: "Master plan" },
   ],
   brochure: {
     url: "#",
-    title: "The Venus Universe Brochure",
+    title: "The Universe by Venus Brochure",
     subtitle: "A detailed preview of the 7-acre development, residences, amenities and design partners.",
   },
   trust: {
@@ -213,7 +213,7 @@ export const defaultContent = {
         author: "Landscape Designer",
       },
       {
-        quote: "Interiors by HBA Singapore — Asia's largest hospitality interior design firm.",
+        quote: "Interior design by Hirsch Bedner Associates (HBA).",
         author: "Interior Designer",
       },
       {
@@ -225,9 +225,9 @@ export const defaultContent = {
   },
   eoi: {
     eyebrow: "Book Your Unit",
-    title: "Book Your Unit at Venus Universe",
+    title: "Book Your Unit at The Universe by Venus",
     subtitle:
-      "Pay a fully refundable Token Price of ₹5,00,000 and lock-in priority allotment, pre-launch pricing and your preferred 4 or 5 BHK residence before public launch.",
+      "Pay a fully refundable Token Price of ₹5,00,000 and lock in priority allotment, pre-launch pricing and your preferred premium 4 BHK residence before public launch.",
     amount: 500000,
     amountLabel: "₹ 5,00,000",
     refundable: true,

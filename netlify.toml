@@ -1,6 +1,6 @@
 [build]
-  command = "npm run build && node scripts/prerender-static.mjs"
-  publish = "dist/client"
+  command = "npm run build && npm run validate:seo && node scripts/prerender-static.mjs"
+  publish = ".output/public"
 
 [build.environment]
   NODE_VERSION = "20"
@@ -18,8 +18,30 @@
 #   VITE_SUPABASE_PUBLISHABLE_KEY = (anon key from .env)
 #   VITE_SUPABASE_PROJECT_ID   = yszfvicefomtrwbzemct
 #
-# SPA fallback so client-side routes (e.g. /eoi, /studio) work on refresh.
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+  from = "https://www.venusuniverse.in/*"
+  to = "https://venusuniverse.in/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/luxury-5bhk-ahmedabad"
+  to = "/luxury-4bhk-ahmedabad"
+  status = 301
+
+[[redirects]]
+  from = "/5bhk-nehrunagar-ahmedabad"
+  to = "/4bhk-nehrunagar-ahmedabad"
+  status = 301
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Content-Type-Options = "nosniff"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

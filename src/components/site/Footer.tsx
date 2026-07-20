@@ -22,8 +22,8 @@ export function Footer({ brand, contact, rera }: { brand: string; contact: SiteC
               </span>
             </div>
             <p className="mt-4 text-sm text-muted-foreground max-w-md leading-relaxed">
-              An invitation to live above the ordinary. A limited collection of 4 &amp; 5 BHK sky residences,
-              for those who measure life in moments.
+              Premium 4 BHK residences, with larger-format, jodi, duplex or penthouse configurations
+              where officially applicable.
             </p>
             <div className="mt-5 flex items-center gap-3">
               {SOCIALS.map(({ label, icon: Icon }) => (
@@ -61,9 +61,6 @@ export function Footer({ brand, contact, rera }: { brand: string; contact: SiteC
               <a href={`tel:${contact.phone.replace(/\s/g, "")}`} className="hover:text-gold transition">
                 {contact.phone}
               </a>
-            </p>
-            <p className="text-sm text-ivory/80">
-              <a href={`mailto:${contact.email}`} className="hover:text-gold transition">{contact.email}</a>
             </p>
           </div>
         </div>

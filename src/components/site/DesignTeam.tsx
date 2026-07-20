@@ -26,7 +26,7 @@ export function DesignTeam() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "ApartmentComplex",
-    name: "Venus Universe Nehrunagar",
+    name: "The Universe by Venus",
     url: "https://venusuniverse.in",
     contributor: TEAM.map((t) => ({
       "@type": "Organization",
@@ -47,7 +47,7 @@ export function DesignTeam() {
             Designed by a <span className="text-gradient-gold italic">world-class</span> team.
           </>
         }
-        intro="Venus Universe brings together globally celebrated architects, landscape architects and interior designers — a roster rarely assembled for a single Ahmedabad address."
+        intro="The Universe by Venus brings together the brochure-credited architecture, landscape, interiors, lighting, engineering, wayfinding, legal, vertical-transportation and sustainability teams behind the development."
         className="bg-charcoal noise-overlay"
       >
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">

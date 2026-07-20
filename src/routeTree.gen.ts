@@ -15,14 +15,20 @@ import { Route as UltraLuxuryApartmentsAhmedabadRouteImport } from './routes/ult
 import { Route as StudioRouteImport } from './routes/studio'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
+import { Route as ReraRegisteredProjectAhmedabadRouteImport } from './routes/rera-registered-project-ahmedabad'
 import { Route as PropertyInNehrunagarAhmedabadRouteImport } from './routes/property-in-nehrunagar-ahmedabad'
 import { Route as PenthouseAhmedabadRouteImport } from './routes/penthouse-ahmedabad'
 import { Route as NriInvestmentAhmedabadRouteImport } from './routes/nri-investment-ahmedabad'
+import { Route as NriBuyPropertyAhmedabadRouteImport } from './routes/nri-buy-property-ahmedabad'
+import { Route as NewLuxuryProjectAhmedabadRouteImport } from './routes/new-luxury-project-ahmedabad'
 import { Route as McpRouteImport } from './routes/mcp'
+import { Route as LuxuryApartmentsShivranjaniAhmedabadRouteImport } from './routes/luxury-apartments-shivranjani-ahmedabad'
 import { Route as LuxuryApartmentsCgRoadAhmedabadRouteImport } from './routes/luxury-apartments-cg-road-ahmedabad'
+import { Route as LuxuryApartmentsCentralAhmedabadRouteImport } from './routes/luxury-apartments-central-ahmedabad'
 import { Route as LuxuryApartmentsAshramRoadAhmedabadRouteImport } from './routes/luxury-apartments-ashram-road-ahmedabad'
 import { Route as Luxury5bhkAhmedabadRouteImport } from './routes/luxury-5bhk-ahmedabad'
 import { Route as Luxury4bhkAhmedabadRouteImport } from './routes/luxury-4bhk-ahmedabad'
+import { Route as LargeCarpetAreaFlatsAhmedabadRouteImport } from './routes/large-carpet-area-flats-ahmedabad'
 import { Route as HafeezContractorProjectAhmedabadRouteImport } from './routes/hafeez-contractor-project-ahmedabad'
 import { Route as GatedCommunityAhmedabadRouteImport } from './routes/gated-community-ahmedabad'
 import { Route as FlatsNearIimAhmedabadRouteImport } from './routes/flats-near-iim-ahmedabad'
@@ -70,6 +76,12 @@ const RobotsDottxtRoute = RobotsDottxtRouteImport.update({
   path: '/robots.txt',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ReraRegisteredProjectAhmedabadRoute =
+  ReraRegisteredProjectAhmedabadRouteImport.update({
+    id: '/rera-registered-project-ahmedabad',
+    path: '/rera-registered-project-ahmedabad',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const PropertyInNehrunagarAhmedabadRoute =
   PropertyInNehrunagarAhmedabadRouteImport.update({
     id: '/property-in-nehrunagar-ahmedabad',
@@ -86,15 +98,38 @@ const NriInvestmentAhmedabadRoute = NriInvestmentAhmedabadRouteImport.update({
   path: '/nri-investment-ahmedabad',
   getParentRoute: () => rootRouteImport,
 } as any)
+const NriBuyPropertyAhmedabadRoute = NriBuyPropertyAhmedabadRouteImport.update({
+  id: '/nri-buy-property-ahmedabad',
+  path: '/nri-buy-property-ahmedabad',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NewLuxuryProjectAhmedabadRoute =
+  NewLuxuryProjectAhmedabadRouteImport.update({
+    id: '/new-luxury-project-ahmedabad',
+    path: '/new-luxury-project-ahmedabad',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const McpRoute = McpRouteImport.update({
   id: '/mcp',
   path: '/mcp',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LuxuryApartmentsShivranjaniAhmedabadRoute =
+  LuxuryApartmentsShivranjaniAhmedabadRouteImport.update({
+    id: '/luxury-apartments-shivranjani-ahmedabad',
+    path: '/luxury-apartments-shivranjani-ahmedabad',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const LuxuryApartmentsCgRoadAhmedabadRoute =
   LuxuryApartmentsCgRoadAhmedabadRouteImport.update({
     id: '/luxury-apartments-cg-road-ahmedabad',
     path: '/luxury-apartments-cg-road-ahmedabad',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const LuxuryApartmentsCentralAhmedabadRoute =
+  LuxuryApartmentsCentralAhmedabadRouteImport.update({
+    id: '/luxury-apartments-central-ahmedabad',
+    path: '/luxury-apartments-central-ahmedabad',
     getParentRoute: () => rootRouteImport,
   } as any)
 const LuxuryApartmentsAshramRoadAhmedabadRoute =
@@ -113,6 +148,12 @@ const Luxury4bhkAhmedabadRoute = Luxury4bhkAhmedabadRouteImport.update({
   path: '/luxury-4bhk-ahmedabad',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LargeCarpetAreaFlatsAhmedabadRoute =
+  LargeCarpetAreaFlatsAhmedabadRouteImport.update({
+    id: '/large-carpet-area-flats-ahmedabad',
+    path: '/large-carpet-area-flats-ahmedabad',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const HafeezContractorProjectAhmedabadRoute =
   HafeezContractorProjectAhmedabadRouteImport.update({
     id: '/hafeez-contractor-project-ahmedabad',
@@ -205,14 +246,20 @@ export interface FileRoutesByFullPath {
   '/flats-near-iim-ahmedabad': typeof FlatsNearIimAhmedabadRoute
   '/gated-community-ahmedabad': typeof GatedCommunityAhmedabadRoute
   '/hafeez-contractor-project-ahmedabad': typeof HafeezContractorProjectAhmedabadRoute
+  '/large-carpet-area-flats-ahmedabad': typeof LargeCarpetAreaFlatsAhmedabadRoute
   '/luxury-4bhk-ahmedabad': typeof Luxury4bhkAhmedabadRoute
   '/luxury-5bhk-ahmedabad': typeof Luxury5bhkAhmedabadRoute
   '/luxury-apartments-ashram-road-ahmedabad': typeof LuxuryApartmentsAshramRoadAhmedabadRoute
+  '/luxury-apartments-central-ahmedabad': typeof LuxuryApartmentsCentralAhmedabadRoute
   '/luxury-apartments-cg-road-ahmedabad': typeof LuxuryApartmentsCgRoadAhmedabadRoute
+  '/luxury-apartments-shivranjani-ahmedabad': typeof LuxuryApartmentsShivranjaniAhmedabadRoute
   '/mcp': typeof McpRoute
+  '/new-luxury-project-ahmedabad': typeof NewLuxuryProjectAhmedabadRoute
+  '/nri-buy-property-ahmedabad': typeof NriBuyPropertyAhmedabadRoute
   '/nri-investment-ahmedabad': typeof NriInvestmentAhmedabadRoute
   '/penthouse-ahmedabad': typeof PenthouseAhmedabadRoute
   '/property-in-nehrunagar-ahmedabad': typeof PropertyInNehrunagarAhmedabadRoute
+  '/rera-registered-project-ahmedabad': typeof ReraRegisteredProjectAhmedabadRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/studio': typeof StudioRoute
@@ -236,14 +283,20 @@ export interface FileRoutesByTo {
   '/flats-near-iim-ahmedabad': typeof FlatsNearIimAhmedabadRoute
   '/gated-community-ahmedabad': typeof GatedCommunityAhmedabadRoute
   '/hafeez-contractor-project-ahmedabad': typeof HafeezContractorProjectAhmedabadRoute
+  '/large-carpet-area-flats-ahmedabad': typeof LargeCarpetAreaFlatsAhmedabadRoute
   '/luxury-4bhk-ahmedabad': typeof Luxury4bhkAhmedabadRoute
   '/luxury-5bhk-ahmedabad': typeof Luxury5bhkAhmedabadRoute
   '/luxury-apartments-ashram-road-ahmedabad': typeof LuxuryApartmentsAshramRoadAhmedabadRoute
+  '/luxury-apartments-central-ahmedabad': typeof LuxuryApartmentsCentralAhmedabadRoute
   '/luxury-apartments-cg-road-ahmedabad': typeof LuxuryApartmentsCgRoadAhmedabadRoute
+  '/luxury-apartments-shivranjani-ahmedabad': typeof LuxuryApartmentsShivranjaniAhmedabadRoute
   '/mcp': typeof McpRoute
+  '/new-luxury-project-ahmedabad': typeof NewLuxuryProjectAhmedabadRoute
+  '/nri-buy-property-ahmedabad': typeof NriBuyPropertyAhmedabadRoute
   '/nri-investment-ahmedabad': typeof NriInvestmentAhmedabadRoute
   '/penthouse-ahmedabad': typeof PenthouseAhmedabadRoute
   '/property-in-nehrunagar-ahmedabad': typeof PropertyInNehrunagarAhmedabadRoute
+  '/rera-registered-project-ahmedabad': typeof ReraRegisteredProjectAhmedabadRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/studio': typeof StudioRoute
@@ -268,14 +321,20 @@ export interface FileRoutesById {
   '/flats-near-iim-ahmedabad': typeof FlatsNearIimAhmedabadRoute
   '/gated-community-ahmedabad': typeof GatedCommunityAhmedabadRoute
   '/hafeez-contractor-project-ahmedabad': typeof HafeezContractorProjectAhmedabadRoute
+  '/large-carpet-area-flats-ahmedabad': typeof LargeCarpetAreaFlatsAhmedabadRoute
   '/luxury-4bhk-ahmedabad': typeof Luxury4bhkAhmedabadRoute
   '/luxury-5bhk-ahmedabad': typeof Luxury5bhkAhmedabadRoute
   '/luxury-apartments-ashram-road-ahmedabad': typeof LuxuryApartmentsAshramRoadAhmedabadRoute
+  '/luxury-apartments-central-ahmedabad': typeof LuxuryApartmentsCentralAhmedabadRoute
   '/luxury-apartments-cg-road-ahmedabad': typeof LuxuryApartmentsCgRoadAhmedabadRoute
+  '/luxury-apartments-shivranjani-ahmedabad': typeof LuxuryApartmentsShivranjaniAhmedabadRoute
   '/mcp': typeof McpRoute
+  '/new-luxury-project-ahmedabad': typeof NewLuxuryProjectAhmedabadRoute
+  '/nri-buy-property-ahmedabad': typeof NriBuyPropertyAhmedabadRoute
   '/nri-investment-ahmedabad': typeof NriInvestmentAhmedabadRoute
   '/penthouse-ahmedabad': typeof PenthouseAhmedabadRoute
   '/property-in-nehrunagar-ahmedabad': typeof PropertyInNehrunagarAhmedabadRoute
+  '/rera-registered-project-ahmedabad': typeof ReraRegisteredProjectAhmedabadRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/studio': typeof StudioRoute
@@ -301,14 +360,20 @@ export interface FileRouteTypes {
     | '/flats-near-iim-ahmedabad'
     | '/gated-community-ahmedabad'
     | '/hafeez-contractor-project-ahmedabad'
+    | '/large-carpet-area-flats-ahmedabad'
     | '/luxury-4bhk-ahmedabad'
     | '/luxury-5bhk-ahmedabad'
     | '/luxury-apartments-ashram-road-ahmedabad'
+    | '/luxury-apartments-central-ahmedabad'
     | '/luxury-apartments-cg-road-ahmedabad'
+    | '/luxury-apartments-shivranjani-ahmedabad'
     | '/mcp'
+    | '/new-luxury-project-ahmedabad'
+    | '/nri-buy-property-ahmedabad'
     | '/nri-investment-ahmedabad'
     | '/penthouse-ahmedabad'
     | '/property-in-nehrunagar-ahmedabad'
+    | '/rera-registered-project-ahmedabad'
     | '/robots.txt'
     | '/sitemap.xml'
     | '/studio'
@@ -332,14 +397,20 @@ export interface FileRouteTypes {
     | '/flats-near-iim-ahmedabad'
     | '/gated-community-ahmedabad'
     | '/hafeez-contractor-project-ahmedabad'
+    | '/large-carpet-area-flats-ahmedabad'
     | '/luxury-4bhk-ahmedabad'
     | '/luxury-5bhk-ahmedabad'
     | '/luxury-apartments-ashram-road-ahmedabad'
+    | '/luxury-apartments-central-ahmedabad'
     | '/luxury-apartments-cg-road-ahmedabad'
+    | '/luxury-apartments-shivranjani-ahmedabad'
     | '/mcp'
+    | '/new-luxury-project-ahmedabad'
+    | '/nri-buy-property-ahmedabad'
     | '/nri-investment-ahmedabad'
     | '/penthouse-ahmedabad'
     | '/property-in-nehrunagar-ahmedabad'
+    | '/rera-registered-project-ahmedabad'
     | '/robots.txt'
     | '/sitemap.xml'
     | '/studio'
@@ -363,14 +434,20 @@ export interface FileRouteTypes {
     | '/flats-near-iim-ahmedabad'
     | '/gated-community-ahmedabad'
     | '/hafeez-contractor-project-ahmedabad'
+    | '/large-carpet-area-flats-ahmedabad'
     | '/luxury-4bhk-ahmedabad'
     | '/luxury-5bhk-ahmedabad'
     | '/luxury-apartments-ashram-road-ahmedabad'
+    | '/luxury-apartments-central-ahmedabad'
     | '/luxury-apartments-cg-road-ahmedabad'
+    | '/luxury-apartments-shivranjani-ahmedabad'
     | '/mcp'
+    | '/new-luxury-project-ahmedabad'
+    | '/nri-buy-property-ahmedabad'
     | '/nri-investment-ahmedabad'
     | '/penthouse-ahmedabad'
     | '/property-in-nehrunagar-ahmedabad'
+    | '/rera-registered-project-ahmedabad'
     | '/robots.txt'
     | '/sitemap.xml'
     | '/studio'
@@ -395,14 +472,20 @@ export interface RootRouteChildren {
   FlatsNearIimAhmedabadRoute: typeof FlatsNearIimAhmedabadRoute
   GatedCommunityAhmedabadRoute: typeof GatedCommunityAhmedabadRoute
   HafeezContractorProjectAhmedabadRoute: typeof HafeezContractorProjectAhmedabadRoute
+  LargeCarpetAreaFlatsAhmedabadRoute: typeof LargeCarpetAreaFlatsAhmedabadRoute
   Luxury4bhkAhmedabadRoute: typeof Luxury4bhkAhmedabadRoute
   Luxury5bhkAhmedabadRoute: typeof Luxury5bhkAhmedabadRoute
   LuxuryApartmentsAshramRoadAhmedabadRoute: typeof LuxuryApartmentsAshramRoadAhmedabadRoute
+  LuxuryApartmentsCentralAhmedabadRoute: typeof LuxuryApartmentsCentralAhmedabadRoute
   LuxuryApartmentsCgRoadAhmedabadRoute: typeof LuxuryApartmentsCgRoadAhmedabadRoute
+  LuxuryApartmentsShivranjaniAhmedabadRoute: typeof LuxuryApartmentsShivranjaniAhmedabadRoute
   McpRoute: typeof McpRoute
+  NewLuxuryProjectAhmedabadRoute: typeof NewLuxuryProjectAhmedabadRoute
+  NriBuyPropertyAhmedabadRoute: typeof NriBuyPropertyAhmedabadRoute
   NriInvestmentAhmedabadRoute: typeof NriInvestmentAhmedabadRoute
   PenthouseAhmedabadRoute: typeof PenthouseAhmedabadRoute
   PropertyInNehrunagarAhmedabadRoute: typeof PropertyInNehrunagarAhmedabadRoute
+  ReraRegisteredProjectAhmedabadRoute: typeof ReraRegisteredProjectAhmedabadRoute
   RobotsDottxtRoute: typeof RobotsDottxtRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   StudioRoute: typeof StudioRoute
@@ -462,6 +545,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RobotsDottxtRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/rera-registered-project-ahmedabad': {
+      id: '/rera-registered-project-ahmedabad'
+      path: '/rera-registered-project-ahmedabad'
+      fullPath: '/rera-registered-project-ahmedabad'
+      preLoaderRoute: typeof ReraRegisteredProjectAhmedabadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/property-in-nehrunagar-ahmedabad': {
       id: '/property-in-nehrunagar-ahmedabad'
       path: '/property-in-nehrunagar-ahmedabad'
@@ -483,6 +573,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof NriInvestmentAhmedabadRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/nri-buy-property-ahmedabad': {
+      id: '/nri-buy-property-ahmedabad'
+      path: '/nri-buy-property-ahmedabad'
+      fullPath: '/nri-buy-property-ahmedabad'
+      preLoaderRoute: typeof NriBuyPropertyAhmedabadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/new-luxury-project-ahmedabad': {
+      id: '/new-luxury-project-ahmedabad'
+      path: '/new-luxury-project-ahmedabad'
+      fullPath: '/new-luxury-project-ahmedabad'
+      preLoaderRoute: typeof NewLuxuryProjectAhmedabadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/mcp': {
       id: '/mcp'
       path: '/mcp'
@@ -490,11 +594,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof McpRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/luxury-apartments-shivranjani-ahmedabad': {
+      id: '/luxury-apartments-shivranjani-ahmedabad'
+      path: '/luxury-apartments-shivranjani-ahmedabad'
+      fullPath: '/luxury-apartments-shivranjani-ahmedabad'
+      preLoaderRoute: typeof LuxuryApartmentsShivranjaniAhmedabadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/luxury-apartments-cg-road-ahmedabad': {
       id: '/luxury-apartments-cg-road-ahmedabad'
       path: '/luxury-apartments-cg-road-ahmedabad'
       fullPath: '/luxury-apartments-cg-road-ahmedabad'
       preLoaderRoute: typeof LuxuryApartmentsCgRoadAhmedabadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/luxury-apartments-central-ahmedabad': {
+      id: '/luxury-apartments-central-ahmedabad'
+      path: '/luxury-apartments-central-ahmedabad'
+      fullPath: '/luxury-apartments-central-ahmedabad'
+      preLoaderRoute: typeof LuxuryApartmentsCentralAhmedabadRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/luxury-apartments-ashram-road-ahmedabad': {
@@ -516,6 +634,13 @@ declare module '@tanstack/react-router' {
       path: '/luxury-4bhk-ahmedabad'
       fullPath: '/luxury-4bhk-ahmedabad'
       preLoaderRoute: typeof Luxury4bhkAhmedabadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/large-carpet-area-flats-ahmedabad': {
+      id: '/large-carpet-area-flats-ahmedabad'
+      path: '/large-carpet-area-flats-ahmedabad'
+      fullPath: '/large-carpet-area-flats-ahmedabad'
+      preLoaderRoute: typeof LargeCarpetAreaFlatsAhmedabadRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/hafeez-contractor-project-ahmedabad': {
@@ -635,15 +760,22 @@ const rootRouteChildren: RootRouteChildren = {
   FlatsNearIimAhmedabadRoute: FlatsNearIimAhmedabadRoute,
   GatedCommunityAhmedabadRoute: GatedCommunityAhmedabadRoute,
   HafeezContractorProjectAhmedabadRoute: HafeezContractorProjectAhmedabadRoute,
+  LargeCarpetAreaFlatsAhmedabadRoute: LargeCarpetAreaFlatsAhmedabadRoute,
   Luxury4bhkAhmedabadRoute: Luxury4bhkAhmedabadRoute,
   Luxury5bhkAhmedabadRoute: Luxury5bhkAhmedabadRoute,
   LuxuryApartmentsAshramRoadAhmedabadRoute:
     LuxuryApartmentsAshramRoadAhmedabadRoute,
+  LuxuryApartmentsCentralAhmedabadRoute: LuxuryApartmentsCentralAhmedabadRoute,
   LuxuryApartmentsCgRoadAhmedabadRoute: LuxuryApartmentsCgRoadAhmedabadRoute,
+  LuxuryApartmentsShivranjaniAhmedabadRoute:
+    LuxuryApartmentsShivranjaniAhmedabadRoute,
   McpRoute: McpRoute,
+  NewLuxuryProjectAhmedabadRoute: NewLuxuryProjectAhmedabadRoute,
+  NriBuyPropertyAhmedabadRoute: NriBuyPropertyAhmedabadRoute,
   NriInvestmentAhmedabadRoute: NriInvestmentAhmedabadRoute,
   PenthouseAhmedabadRoute: PenthouseAhmedabadRoute,
   PropertyInNehrunagarAhmedabadRoute: PropertyInNehrunagarAhmedabadRoute,
+  ReraRegisteredProjectAhmedabadRoute: ReraRegisteredProjectAhmedabadRoute,
   RobotsDottxtRoute: RobotsDottxtRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   StudioRoute: StudioRoute,
@@ -662,3 +794,12 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { createStart } from '@tanstack/react-start'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+  }
+}

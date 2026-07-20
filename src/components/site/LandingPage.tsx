@@ -15,8 +15,9 @@ import { WhatsAppButton } from "@/components/site/WhatsAppButton";
 import { FAQ } from "@/components/site/FAQ";
 import { LeadGate } from "@/components/site/LeadGate";
 import { DesignTeam } from "@/components/site/DesignTeam";
+import { NriSection } from "@/components/site/NriSection";
 import type { LandingConfig } from "@/lib/seo/landingPages";
-import { LANDING_PAGES, LANDING_BODIES } from "@/lib/seo/landingPages";
+import { LANDING_PAGES, LANDING_BODIES, LANDING_SLUGS } from "@/lib/seo/landingPages";
 
 /**
  * Shared landing template used by all programmatic SEO routes.
@@ -25,7 +26,7 @@ import { LANDING_PAGES, LANDING_BODIES } from "@/lib/seo/landingPages";
  */
 export function LandingPage({ config }: { config: LandingConfig }) {
   const { content } = useSiteContent();
-  const otherSlugs = Object.values(LANDING_PAGES).filter((c) => c.slug !== config.slug);
+  const otherSlugs = LANDING_SLUGS.map((slug) => LANDING_PAGES[slug]).filter((c) => c.slug !== config.slug);
   const bodyParas = LANDING_BODIES[config.slug] ?? [];
 
   return (
@@ -85,10 +86,11 @@ export function LandingPage({ config }: { config: LandingConfig }) {
         <Location data={content.location} mapEmbed={content.contact.mapEmbed} />
         <Gallery items={content.gallery} />
         <DesignTeam />
+        <NriSection />
         <FAQ
           items={config.faq}
           title={<>{config.breadcrumbLabel} — Frequently Asked Questions</>}
-          intro={`Common questions about ${config.breadcrumbLabel} at Venus Universe Nehrunagar, Ahmedabad.`}
+          intro={`Verified project information about ${config.breadcrumbLabel} at The Universe by Venus in Nehrunagar.`}
         />
         <Contact contact={content.contact} />
 
@@ -103,7 +105,7 @@ export function LandingPage({ config }: { config: LandingConfig }) {
                 to="/"
                 className="px-4 py-2 rounded-md border border-white/15 text-ivory text-sm hover:bg-white/5 transition"
               >
-                Venus Universe Nehrunagar
+                The Universe by Venus
               </Link>
               {otherSlugs.map((c) => (
                 <Link

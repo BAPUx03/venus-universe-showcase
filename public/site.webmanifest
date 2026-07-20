@@ -1,6 +1,6 @@
 {
-  "name": "Venus Universe Nehrunagar",
-  "short_name": "Venus Universe",
+  "name": "The Universe by Venus",
+  "short_name": "The Universe",
   "icons": [
     { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
     { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" }

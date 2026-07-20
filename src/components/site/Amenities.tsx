@@ -69,11 +69,11 @@ export function Amenities({ items }: { items: SiteContent["amenities"] }) {
     <Section
       id="amenities"
       eyebrow="The Amenities"
-      title={<>A 60,000 sqft <span className="text-gradient-gold italic">private resort.</span></>}
-      intro="Curated experiences across three sky-clubs, designed to feel less like amenities and more like a way of life."
+      title={<>Amenities across <span className="text-gradient-gold italic">multiple levels.</span></>}
+      intro="Brochure-listed podium, covered and outdoor amenities for wellness, sport, learning, leisure and community life."
       className="bg-charcoal noise-overlay"
     >
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
+      <div className="grid grid-cols-1 min-[380px]:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
         {items.map((a, i) => {
           const Icon = ICONS[a] ?? Waves;
           return (

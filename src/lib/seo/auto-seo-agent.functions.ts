@@ -8,9 +8,9 @@ const DATABASE = "in";
 const TARGET_KEYWORDS = [
   "venus nehrunagar",
   "venus universe nehrunagar",
+  "the universe by venus",
   "luxury apartments nehrunagar",
   "4 bhk nehrunagar ahmedabad",
-  "5 bhk nehrunagar ahmedabad",
 ];
 
 const INTERNAL_PATHS = [
@@ -114,7 +114,7 @@ export const runAutoSeoAgent = createServerFn({ method: "POST" })
       const lovableKey = process.env.LOVABLE_API_KEY;
       if (!lovableKey) throw new Error("LOVABLE_API_KEY not configured");
 
-      const prompt = `You are an on-page SEO agent for a luxury real estate landing page (Venus Universe / Venus Nehrunagar, 4 & 5 BHK apartments in Nehrunagar, Ahmedabad, India).
+      const prompt = `You are an on-page SEO agent for The Universe by Venus, a premium 4 BHK residential development across Blocks A-J in Nehrunagar, Ahmedabad, India.
 
 Use these Semrush insights to rewrite on-page copy so it ranks better for the target keywords while staying premium and human.
 
@@ -139,7 +139,9 @@ ${INTERNAL_PATHS.map((p) => `- ${p.path} (${p.label})`).join("\n")}
 
 RULES:
 - SEO title ≤ 60 chars, must contain "Venus Nehrunagar" or "Nehrunagar".
-- SEO description ≤ 155 chars, action-oriented, mention 4 & 5 BHK.
+- SEO description ≤ 155 chars, action-oriented, mention premium 4 BHK.
+- Never claim 5 BHK inventory. Describe jodi, duplex or penthouse configurations only as subject to official availability.
+- Use brochure-listed RERA carpet areas of approximately 1,546 to 2,459 sq ft; do not invent or round areas.
 - Hero title ≤ 90 chars, keep brand voice (ultra-luxury, calm, confident).
 - Hero subtitle 140-220 chars, natural, embed 2-3 top target/related keywords.
 - Rewrite the ${data.currentHighlights.length} highlights preserving order and meaning; only tighten copy and weave in relevant keywords naturally. Do not invent facts.

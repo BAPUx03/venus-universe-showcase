@@ -5,7 +5,7 @@ import { apiUrl } from "@/lib/apiBase";
 type Props = {
   open: boolean;
   phone: string; // full international e.g. +919876543210
-  onClose: () => void;
+  onClose?: () => void;
   onVerified: () => void;
 };
 
@@ -119,13 +119,15 @@ export function OtpModal({ open, phone, onClose, onVerified }: Props) {
     <div role="dialog" aria-modal="true" className="fixed inset-0 z-[200] flex items-center justify-center p-3 sm:p-4">
       <div className="absolute inset-0 bg-white" onClick={onClose} />
       <div className="relative w-full max-w-[440px] bg-white rounded-2xl shadow-2xl overflow-hidden border border-[oklch(0.92_0.02_25)]">
-        <button
-          onClick={onClose}
-          className="absolute top-3 right-3 w-8 h-8 inline-flex items-center justify-center rounded-full hover:bg-black/5 text-foreground/60"
-          aria-label="Close"
-        >
-          <X size={16} />
-        </button>
+        {onClose && (
+          <button
+            onClick={onClose}
+            className="absolute top-3 right-3 w-8 h-8 inline-flex items-center justify-center rounded-full hover:bg-black/5 text-foreground/60"
+            aria-label="Close"
+          >
+            <X size={16} />
+          </button>
+        )}
 
         <div className="px-7 pt-8 pb-7 text-center">
           <div

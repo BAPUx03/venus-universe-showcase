@@ -5,7 +5,7 @@ export default defineTool({
   name: "get_project_overview",
   title: "Get project overview",
   description:
-    "Return an overview of the Venus Universe Nehrunagar luxury residential project: location, developer, residence types, and enquiry channel.",
+    "Return a brochure-aligned overview of The Universe by Venus: location, developer, verified residence type, blocks, area range, and enquiry channel.",
   inputSchema: {},
   annotations: { readOnlyHint: true, idempotentHint: true, openWorldHint: false },
   handler: () => ({
@@ -14,16 +14,13 @@ export default defineTool({
         type: "text",
         text: JSON.stringify(
           {
-            name: "Venus Universe Nehrunagar",
-            developer: "Venus Group",
+            name: "The Universe by Venus",
+            developer: "Venus",
             location: "Nehrunagar, Ahmedabad, Gujarat, India",
-            residence_types: [
-              "4 BHK",
-              "5 BHK",
-              "Penthouse",
-              "Duplex",
-              "Jodi Apartments",
-            ],
+            residence_types: ["Premium 4 BHK"],
+            residential_blocks: "A–J (10 blocks)",
+            rera_carpet_area: "Approximately 1,546–2,459 sq ft, depending on block and plan",
+            larger_format_note: "Jodi, duplex or penthouse configurations are subject to current official availability and approved plans.",
             website: "https://venusuniverse.in",
             enquiry: {
               form: "https://venusuniverse.in",

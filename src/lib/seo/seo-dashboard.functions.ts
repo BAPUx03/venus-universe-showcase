@@ -7,9 +7,9 @@ const TARGET_KEYWORDS = [
   "venus nehrunagar",
   "venus universe nehrunagar",
   "venus universe",
+  "the universe by venus",
   "luxury apartments nehrunagar",
   "4 bhk nehrunagar ahmedabad",
-  "5 bhk nehrunagar ahmedabad",
 ];
 
 type Row = Record<string, string>;

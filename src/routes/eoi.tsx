@@ -10,17 +10,17 @@ import { OtpModal } from "@/components/site/OtpModal";
 export const Route = createFileRoute("/eoi")({
   head: () => ({
     meta: [
-      { title: "Book Your Unit — Luxury 4 & 5 BHK Venus Universe Nehrunagar" },
-      { name: "description", content: "Pay a fully refundable ₹5,00,000 Token Price to book your 4 or 5 BHK residence at Venus Universe Nehrunagar Ahmedabad. Priority allotment & pre-launch pricing. Limited slots." },
-      { name: "keywords", content: "venus universe booking, token booking nehrunagar, 4 bhk pre launch ahmedabad, 5 bhk pre booking, refundable token ahmedabad" },
-      { name: "robots", content: "index, follow, max-image-preview:large" },
-      { property: "og:title", content: "Book Your Unit — Venus Universe Nehrunagar · ₹5L Refundable Token" },
-      { property: "og:description", content: "Lock priority allotment & pre-launch pricing on luxury 4 & 5 BHK apartments in Nehrunagar, Ahmedabad." },
+      { title: "Book a Premium 4 BHK | The Universe by Venus" },
+      { name: "description", content: "Pay a fully refundable ₹5,00,000 token to secure priority allotment for a premium 4 BHK at The Universe by Venus, Nehrunagar." },
+      { name: "keywords", content: "The Universe by Venus booking, token booking Nehrunagar, 4 BHK pre launch Ahmedabad, refundable token Ahmedabad" },
+      { name: "robots", content: "noindex, follow" },
+      { property: "og:title", content: "Book Your Unit — The Universe by Venus · ₹5L Refundable Token" },
+      { property: "og:description", content: "Lock priority allotment and pre-launch pricing on a premium 4 BHK residence in Nehrunagar, Ahmedabad." },
       { property: "og:url", content: "https://venusuniverse.in/eoi" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Book Your Unit — Venus Universe Nehrunagar · ₹5L Refundable Token" },
-      { name: "twitter:description", content: "Lock priority allotment & pre-launch pricing on luxury 4 & 5 BHK apartments in Nehrunagar, Ahmedabad." },
+      { name: "twitter:title", content: "Book Your Unit — The Universe by Venus · ₹5L Refundable Token" },
+      { name: "twitter:description", content: "Lock priority allotment and pre-launch pricing on a premium 4 BHK residence in Nehrunagar, Ahmedabad." },
     ],
     links: [{ rel: "canonical", href: "https://venusuniverse.in/eoi" }],
   }),
@@ -156,9 +156,8 @@ function EoiPage() {
                     className="w-full px-3.5 py-3 rounded-md border border-[oklch(0.9_0.02_25)] text-sm text-foreground bg-white focus:outline-none focus:border-[var(--accent-red)] transition"
                   >
                     <option>4 BHK</option>
-                    <option>5 BHK</option>
-                    <option>4 & 5 BHK — Either</option>
-                    <option>Penthouse</option>
+                    <option>Larger-format residence</option>
+                    <option>Jodi / Duplex / Penthouse — if available</option>
                   </select>
                 </div>
 

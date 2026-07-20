@@ -3,14 +3,14 @@ import { motion } from "framer-motion";
 import { X, ChevronLeft, ChevronRight, Expand } from "lucide-react";
 import { Section } from "./Section";
 
-import hero from "@/assets/impact3d/venus-universe-exterior-twilight-nehrunagar-ahmedabad.webp.asset.json";
-import facade from "@/assets/impact3d/venus-universe-tower-facade-luxury-4bhk-nehrunagar.webp.asset.json";
-import podium from "@/assets/impact3d/venus-universe-podium-entrance-luxury-apartments-ahmedabad.webp.asset.json";
-import skyDeck from "@/assets/impact3d/venus-universe-sky-deck-amenities-nehrunagar.webp.asset.json";
-import clubhouse from "@/assets/impact3d/venus-universe-clubhouse-lobby-4-5bhk-ahmedabad.webp.asset.json";
-import pool from "@/assets/impact3d/venus-universe-swimming-pool-luxury-residences-nehrunagar.webp.asset.json";
-import gardens from "@/assets/impact3d/venus-universe-landscaped-gardens-ultra-luxury-ahmedabad.webp.asset.json";
-import night from "@/assets/impact3d/venus-universe-night-view-penthouse-ahmedabad.webp.asset.json";
+import hero from "@/assets/hero-tower.webp";
+import facade from "@/assets/gallery-1.webp";
+import podium from "@/assets/gallery-7.webp";
+import skyDeck from "@/assets/gallery-6.webp";
+import clubhouse from "@/assets/gallery-3.webp";
+import pool from "@/assets/gallery-2.webp";
+import gardens from "@/assets/gallery-9.webp";
+import night from "@/assets/gallery-8.webp";
 
 type Shot = {
   src: string;
@@ -21,14 +21,14 @@ type Shot = {
 };
 
 const SHOTS: Shot[] = [
-  { src: hero.url, alt: "Venus Universe twin-tower luxury 4 & 5 BHK exterior at twilight in Nehrunagar, Ahmedabad", caption: "The Twin Towers · Twilight", eyebrow: "Facade", span: "big" },
-  { src: facade.url, alt: "Venus Universe tower facade — ultra luxury 4 BHK apartments in Nehrunagar, Ahmedabad", caption: "Architectural Facade", eyebrow: "Elevation" },
-  { src: night.url, alt: "Venus Universe night view — luxury penthouse apartments in Ahmedabad", caption: "After Dark", eyebrow: "Night View", span: "tall" },
-  { src: podium.url, alt: "Venus Universe grand podium entrance — luxury apartments Nehrunagar Ahmedabad", caption: "Arrival Podium", eyebrow: "Entrance" },
-  { src: skyDeck.url, alt: "Venus Universe sky deck amenities — 4 and 5 BHK luxury residences Nehrunagar", caption: "The Sky Deck", eyebrow: "Amenities", span: "wide" },
-  { src: clubhouse.url, alt: "Venus Universe clubhouse lobby — 4 & 5 BHK premium residences Ahmedabad", caption: "The Clubhouse Lobby", eyebrow: "Interiors" },
-  { src: pool.url, alt: "Venus Universe swimming pool — luxury residences Nehrunagar Ahmedabad", caption: "The Signature Pool", eyebrow: "Leisure" },
-  { src: gardens.url, alt: "Venus Universe landscaped gardens — ultra luxury apartments Ahmedabad", caption: "Landscaped Gardens", eyebrow: "Open Spaces" },
+  { src: hero, alt: "The Universe by Venus premium residential development at twilight in Nehrunagar, Ahmedabad", caption: "The Landmark · Twilight", eyebrow: "Facade", span: "big" },
+  { src: facade, alt: "Premium residence interior at The Universe by Venus in Nehrunagar", caption: "Contemporary Living", eyebrow: "Residence" },
+  { src: night, alt: "Evening amenity view at The Universe by Venus", caption: "After Dark", eyebrow: "Night View", span: "tall" },
+  { src: podium, alt: "Arrival and common-area experience at The Universe by Venus", caption: "Arrival Experience", eyebrow: "Entrance" },
+  { src: skyDeck, alt: "Outdoor amenity deck for premium 4 BHK residences at The Universe by Venus", caption: "The Amenity Deck", eyebrow: "Amenities", span: "wide" },
+  { src: clubhouse, alt: "Clubhouse lobby at The Universe by Venus in Ahmedabad", caption: "The Clubhouse Lobby", eyebrow: "Interiors" },
+  { src: pool, alt: "Swimming pool amenity at The Universe by Venus in Nehrunagar", caption: "The Signature Pool", eyebrow: "Leisure" },
+  { src: gardens, alt: "Outdoor landscaped amenity setting at The Universe by Venus", caption: "Landscaped Open Spaces", eyebrow: "Open Spaces" },
 ];
 
 function spanClass(s?: Shot["span"]) {
@@ -47,9 +47,9 @@ export function Showcase3D() {
   const imageGallerySchema = {
     "@context": "https://schema.org",
     "@type": "ImageGallery",
-    name: "Venus Universe Nehrunagar — 3D Renders & Architectural Visualisation",
+    name: "The Universe by Venus — 3D Renders & Architectural Visualisation",
     description:
-      "Impact 3D visualisations of Venus Universe Nehrunagar — luxury 4 and 5 BHK apartments and penthouses in Ahmedabad. Exterior, sky deck, clubhouse, pool and landscape renders.",
+      "Architectural visualisations of The Universe by Venus, a 10-block premium 4 BHK development in Nehrunagar, Ahmedabad.",
     image: SHOTS.map((s) => ({
       "@type": "ImageObject",
       contentUrl: s.src,
@@ -69,14 +69,14 @@ export function Showcase3D() {
         eyebrow="The Landmark · Impact 3D"
         title={
           <>
-            A twin-tower <span className="text-gradient-gold italic">landmark</span> —
+            A 10-block <span className="text-gradient-gold italic">landmark</span> —
             frame by frame.
           </>
         }
-        intro="Architectural 3D visualisations of Venus Universe Nehrunagar — the ultra-luxury 4 & 5 BHK residences rising in central Ahmedabad. Facades, sky decks, clubhouse, pool and landscape — as they will be lived."
+        intro="Architectural visualisations of The Universe by Venus — premium 4 BHK residences across Blocks A–J in central Ahmedabad, with podium landscapes, clubhouse, pool and amenity spaces."
         className="bg-charcoal-deep noise-overlay"
       >
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-3 auto-rows-[200px] md:auto-rows-[220px]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 md:gap-3 auto-rows-[240px] sm:auto-rows-[200px] md:auto-rows-[220px]">
           {SHOTS.map((s, i) => (
             <motion.button
               key={s.src}

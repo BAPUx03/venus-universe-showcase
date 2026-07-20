@@ -11,6 +11,7 @@ const NAV = [
   { label: "Amenities", href: "#amenities" },
   { label: "Location", href: "#location" },
   { label: "Gallery", href: "#gallery" },
+  { label: "NRI", href: "#nri" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -65,7 +66,7 @@ export function Header({ brand }: { brand: string }) {
         <div className="flex items-center gap-2">
           <a
             href="#contact"
-            className="px-4 md:px-5 py-2 md:py-2.5 text-[12px] md:text-[13px] font-medium rounded-md text-white hover:brightness-110 transition"
+            className="inline-flex min-h-11 items-center px-3 sm:px-4 md:px-5 py-2 md:py-2.5 text-[11px] sm:text-[12px] md:text-[13px] font-medium rounded-md text-white hover:brightness-110 transition"
             style={{ background: "var(--accent-red)" }}
           >
             Inquire Now
@@ -73,7 +74,7 @@ export function Header({ brand }: { brand: string }) {
           <button
             aria-label="Open menu"
             onClick={() => setOpen((v) => !v)}
-            className="xl:hidden text-foreground p-1.5"
+            className="xl:hidden inline-flex h-11 w-11 items-center justify-center text-foreground"
           >
             {open ? <X size={22} /> : <Menu size={22} />}
           </button>
@@ -86,13 +87,13 @@ export function Header({ brand }: { brand: string }) {
           open ? "max-h-[80vh] opacity-100" : "max-h-0 opacity-0"
         } bg-white border-t border-border`}
       >
-        <div className="container-luxe py-6 grid gap-3">
+        <div className="container-luxe max-h-[calc(100svh-4.5rem)] overflow-y-auto py-3 grid gap-1">
           {NAV.map((n) => (
             <a
               key={n.href}
               href={n.href}
               onClick={() => setOpen(false)}
-              className="text-sm font-medium text-foreground/80 hover:text-[color:var(--accent-red)]"
+              className="flex min-h-11 items-center rounded-md px-2 text-sm font-medium text-foreground/80 hover:bg-muted hover:text-[color:var(--accent-red)]"
             >
               {n.label}
             </a>
@@ -100,7 +101,7 @@ export function Header({ brand }: { brand: string }) {
           <Link
             to="/insights"
             onClick={() => setOpen(false)}
-            className="text-sm font-medium text-foreground/80 hover:text-[color:var(--accent-red)]"
+            className="flex min-h-11 items-center rounded-md px-2 text-sm font-medium text-foreground/80 hover:bg-muted hover:text-[color:var(--accent-red)]"
           >
             Insights
           </Link>

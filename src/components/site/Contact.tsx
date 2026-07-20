@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { z } from "zod";
-import { Phone, Mail, MapPin, Send } from "lucide-react";
+import { Phone, MapPin, Send } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { notifyLead } from "@/lib/notifyLead";
 import { Section } from "./Section";
@@ -11,7 +11,7 @@ const schema = z.object({
   first_name: z.string().trim().min(1).max(60),
   last_name: z.string().trim().min(1).max(60),
   email: z.string().trim().email().max(120),
-  phone: z.string().trim().regex(/^[0-9]{10}$/, "10-digit number"),
+  phone: z.string().trim().regex(/^\+?[0-9]{6,15}$/, "Enter a valid number with country code"),
   message: z.string().trim().max(800).optional(),
 });
 
@@ -37,7 +37,11 @@ export function Contact({ contact }: { contact: SiteContent["contact"] }) {
       first_name: parsed.data.first_name,
       last_name: parsed.data.last_name,
       email: parsed.data.email,
-      phone: `+91${parsed.data.phone}`,
+      phone: parsed.data.phone.startsWith("+")
+        ? parsed.data.phone
+        : parsed.data.phone.length === 10
+          ? `+91${parsed.data.phone}`
+          : `+${parsed.data.phone}`,
       source: "contact_form",
     };
     setPendingLead(lead);
@@ -70,7 +74,6 @@ export function Contact({ contact }: { contact: SiteContent["contact"] }) {
       <div className="grid lg:grid-cols-5 gap-6 lg:gap-8">
         <div className="lg:col-span-2 space-y-5">
           <ContactRow icon={<Phone size={16} />} label="Phone" value={contact.phone} href={`tel:${contact.phone.replace(/\s/g, "")}`} />
-          <ContactRow icon={<Mail size={16} />} label="Email" value={contact.email} href={`mailto:${contact.email}`} />
           <ContactRow icon={<MapPin size={16} />} label="Sales Gallery" value={contact.address} />
           <div className="luxe-border bg-card/60 p-5">
             <p className="text-[11px] uppercase tracking-[0.25em] text-gold mb-2">Visit Hours</p>
@@ -93,7 +96,7 @@ export function Contact({ contact }: { contact: SiteContent["contact"] }) {
           <Input label="First Name" value={form.first_name} onChange={(v) => setForm({ ...form, first_name: v })} />
           <Input label="Last Name" value={form.last_name} onChange={(v) => setForm({ ...form, last_name: v })} />
           <Input label="Email" type="email" value={form.email} onChange={(v) => setForm({ ...form, email: v })} />
-          <Input label="Phone (10-digit)" value={form.phone} onChange={(v) => setForm({ ...form, phone: v.replace(/\D/g, "").slice(0, 10) })} />
+          <Input label="Phone with country code" value={form.phone} onChange={(v) => setForm({ ...form, phone: v.replace(/[^+\d]/g, "").slice(0, 16) })} />
           <label className="sm:col-span-2 block">
             <span className="block text-[10.5px] uppercase tracking-[0.22em] text-ivory/60 mb-1.5">Message</span>
             <textarea

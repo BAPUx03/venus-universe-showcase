@@ -9,7 +9,7 @@ export function Hero({ hero, headingLevel = "h1" }: { hero: SiteContent["hero"];
   return (
     <section
       id="home"
-      className="relative min-h-[640px] md:min-h-[92svh] md:h-auto flex items-center overflow-hidden"
+      className="relative min-h-[680px] min-h-[92svh] md:min-h-[92svh] md:h-auto flex items-center overflow-hidden"
       style={{ background: "oklch(0.18 0.02 25)" }}
     >
       {/* Background */}
@@ -29,7 +29,7 @@ export function Hero({ hero, headingLevel = "h1" }: { hero: SiteContent["hero"];
       </div>
 
       {/* Content */}
-      <div className="relative container-luxe pb-16 md:pb-24 pt-28 md:pt-36 z-10">
+      <div className="relative container-luxe pb-16 pt-24 sm:pt-28 md:pb-24 md:pt-36 z-10">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
@@ -43,26 +43,26 @@ export function Hero({ hero, headingLevel = "h1" }: { hero: SiteContent["hero"];
             </span>
           </div>
           <Heading className="font-display font-bold text-[clamp(1.75rem,4vw,3.5rem)] leading-[1.1] text-white tracking-tight">
-            Luxury <span style={{ color: "oklch(0.78 0.18 25)" }}>4 &amp; 5 BHK Apartments</span> in Nehrunagar, Ahmedabad
+            Premium <span style={{ color: "oklch(0.78 0.18 25)" }}>4 BHK Residences</span> in Nehrunagar, Ahmedabad
           </Heading>
           <p className="mt-5 text-[11px] font-semibold tracking-[0.22em] uppercase text-white/75">
-            Venus Universe · Nehrunagar, Ahmedabad · Pre-Booking Open
+            The Universe by Venus · Nehrunagar, Ahmedabad · Pre-Booking Open
           </p>
           <p className="mt-5 max-w-xl text-base md:text-lg text-white/85 leading-relaxed font-light">
             {hero.subtitle}
           </p>
 
-          <div className="mt-8 flex flex-wrap gap-3">
+          <div className="mt-7 grid w-full gap-3 sm:flex sm:flex-wrap">
             <a
               href="#contact"
-              className="px-7 py-3.5 rounded-md text-white font-semibold text-[13px] shadow-gold hover:brightness-110 hover:-translate-y-0.5 transition-all"
+              className="inline-flex min-h-12 items-center justify-center px-5 sm:px-7 py-3.5 rounded-md text-center text-white font-semibold text-[13px] shadow-gold hover:brightness-110 hover:-translate-y-0.5 transition-all"
               style={{ background: "var(--accent-red)" }}
             >
               Book Site Visit · Site Office Open
             </a>
             <Link
               to="/eoi"
-              className="px-7 py-3.5 rounded-md bg-white/10 backdrop-blur-md border border-white/30 text-white font-medium text-[13px] hover:bg-white/20 transition"
+              className="inline-flex min-h-12 items-center justify-center px-5 sm:px-7 py-3.5 rounded-md bg-white/10 backdrop-blur-md border border-white/30 text-center text-white font-medium text-[13px] hover:bg-white/20 transition"
             >
               Book Your Unit · ₹5L Token Price
             </Link>

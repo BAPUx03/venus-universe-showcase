@@ -19,7 +19,7 @@ export function Section({
   align?: "center" | "left";
 }) {
   return (
-    <section id={id} className={`relative py-20 md:py-28 ${className}`}>
+    <section id={id} className={`relative py-14 sm:py-16 md:py-28 ${className}`}>
       <div className="container-luxe">
         {(eyebrow || title || intro) && (
           <motion.div
@@ -27,7 +27,7 @@ export function Section({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.8, ease: [0.2, 0.7, 0.2, 1] }}
-            className={`max-w-3xl mb-12 md:mb-16 ${align === "center" ? "mx-auto text-center" : ""}`}
+            className={`max-w-3xl mb-8 sm:mb-10 md:mb-16 ${align === "center" ? "mx-auto text-center" : ""}`}
           >
             {eyebrow && (
               <div className={`flex items-center gap-3 mb-5 ${align === "center" ? "justify-center" : ""}`}>
@@ -37,7 +37,7 @@ export function Section({
               </div>
             )}
             {title && (
-              <h2 className="font-display text-3xl md:text-5xl leading-[1.05] text-ivory">
+              <h2 className="font-display text-[clamp(1.75rem,8vw,3rem)] md:text-5xl leading-[1.08] text-ivory">
                 {title}
               </h2>
             )}

@@ -14,7 +14,7 @@ const PLANS = [
 
 const WHATSAPP = "919904969298";
 const WA_MSG = encodeURIComponent(
-  "Hello Venus Universe — I'd like the full 4 BHK & 5 BHK unit plans, master plan and price sheet for Venus Universe Nehrunagar. Please share on WhatsApp."
+  "Hello, I'd like the full 4 BHK unit plans, block plans, master plan and price sheet for The Universe by Venus in Nehrunagar. Please share them on WhatsApp."
 );
 
 export function LayoutRequest({ whatsapp = WHATSAPP, bare = false }: { whatsapp?: string; bare?: boolean }) {
@@ -45,7 +45,7 @@ export function LayoutRequest({ whatsapp = WHATSAPP, bare = false }: { whatsapp?
               <motion.img
                 key={active}
                 src={plan.src}
-                alt={`${plan.label} — Venus Universe Nehrunagar Ahmedabad (blurred preview)`}
+                alt={`${plan.label} — The Universe by Venus Nehrunagar (watermarked preview)`}
                 initial={{ opacity: 0, scale: 1.05 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.98 }}
@@ -102,11 +102,11 @@ export function LayoutRequest({ whatsapp = WHATSAPP, bare = false }: { whatsapp?
         {/* Right column */}
         <div className="lg:col-span-2 space-y-5">
           <p className="text-ivory/80 leading-relaxed">
-            Unit plans, carpet-area sheets and pricing at Venus Universe Nehrunagar are shared privately with serious enquiries. Request access and our sales team will send the complete package on WhatsApp within minutes.
+            Watermarked previews remain public for discovery. Detailed unit plans, carpet-area sheets and pricing for The Universe by Venus are shared privately with genuine enquiries on WhatsApp.
           </p>
           <ul className="space-y-3">
             {[
-              { icon: <FileText size={14} />, t: "All 4 BHK & 5 BHK unit plans (Block A & B)" },
+              { icon: <FileText size={14} />, t: "4 BHK unit plans across Blocks A–J" },
               { icon: <FileText size={14} />, t: "Master plan, floor plate & tower elevation" },
               { icon: <ShieldCheck size={14} />, t: "Latest price sheet & payment schedule" },
               { icon: <MessageCircle size={14} />, t: "Personal walkthrough by senior sales lead" },

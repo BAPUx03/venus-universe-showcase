@@ -31,7 +31,7 @@ export function StickyProjectBar() {
         show ? "translate-y-0 opacity-100" : "translate-y-full opacity-0 pointer-events-none"
       }`}
     >
-      <div className="container-luxe py-2 md:py-2.5 flex items-center justify-between gap-2">
+      <div className="container-luxe py-2 md:py-2.5 flex items-center justify-between gap-2 pb-[max(0.5rem,env(safe-area-inset-bottom))]">
         <div className="flex items-center gap-3 md:gap-6 min-w-0 flex-1">
           <div className="min-w-0">
             <div className="text-[8px] md:text-[10px] uppercase tracking-wider text-foreground/70 font-medium leading-tight">
@@ -47,7 +47,7 @@ export function StickyProjectBar() {
               Property
             </div>
             <div className="text-[10.5px] md:text-sm font-semibold text-foreground leading-tight mt-0.5 truncate">
-              Luxury 4 & 5 BHK
+              Premium 4 BHK
             </div>
           </div>
         </div>

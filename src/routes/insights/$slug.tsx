@@ -94,7 +94,7 @@ function InsightPostPage() {
           <div className="mt-14 max-w-3xl bg-card luxe-border p-6 md:p-8 text-center">
             <h2 className="font-display text-2xl text-ivory">Discover Venus Universe</h2>
             <p className="mt-2 text-[14px] text-muted-foreground">
-              Luxury 4 &amp; 5 BHK residences, jodi apartments, duplexes and penthouses in Nehrunagar, Ahmedabad. Pre-booking open.
+              Premium 4 BHK residences at The Universe by Venus in Nehrunagar, with larger formats subject to official availability.
             </p>
             <div className="mt-5 flex flex-wrap gap-3 justify-center">
               <Link

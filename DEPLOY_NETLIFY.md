@@ -30,8 +30,8 @@ In Lovable: **Connectors → GitHub → Connect project**.
 1. https://app.netlify.com → **Add new site → Import an existing project**
 2. Pick **GitHub** and select your repo
 3. Build settings auto-detect from `netlify.toml`:
-   - **Build command:** `npm run build && node scripts/prerender-static.mjs`
-   - **Publish directory:** `dist/client`
+   - **Build command:** `npm run build && npm run validate:seo && node scripts/prerender-static.mjs`
+   - **Publish directory:** `.output/public`
 4. Click **Deploy site** (first deploy will likely fail until env vars are set).
 
 ## 4. Add environment variables (CRITICAL)
@@ -69,10 +69,10 @@ stays the same — only the frontend domain changes.
 
 - `vite.config.ts` disables the Cloudflare plugin when `DEPLOY_TARGET=netlify`
   (so the build doesn't produce a Cloudflare Worker).
-- `scripts/prerender-static.mjs` runs the SSR server bundle once, renders `/`,
-  and writes `dist/client/index.html` so Netlify has a real HTML entry point.
-- `[[redirects]]` in `netlify.toml` makes every unknown path serve `index.html`
-  (SPA fallback for `/eoi`, `/studio`, etc.).
+- `scripts/prerender-static.mjs` renders every sitemap URL plus `/eoi` and
+  `/studio` into `.output/public`, and creates static robots, sitemap and 404 files.
+- Unknown paths use the generated `404.html`; there is no SEO-damaging SPA
+  fallback that serves homepage HTML with status 200.
 - `src/lib/apiBase.ts` prepends `VITE_API_BASE_URL` to every backend fetch.
 
 If anything fails, check Netlify → **Deploys → Deploy log** and the browser

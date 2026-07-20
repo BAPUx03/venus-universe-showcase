@@ -186,6 +186,7 @@ html {
     margin-inline: auto;
     padding-inline: 1.25rem;
   }
+  @media (max-width: 420px) { .container-luxe { padding-inline: 1rem; } }
   @media (min-width: 768px) { .container-luxe { padding-inline: 2.5rem; } }
 
   /* Animations */
@@ -224,4 +225,11 @@ html {
     -webkit-background-clip: text; background-clip: text; color: transparent;
     animation: shimmer 4s linear infinite;
   }
+}
+
+@media (max-width: 767px) {
+  body { padding-bottom: env(safe-area-inset-bottom); }
+  section[id] { scroll-margin-top: 4.75rem; }
+  button, a, input, select, textarea { -webkit-tap-highlight-color: transparent; }
+  input, select, textarea { font-size: 16px; }
 }
