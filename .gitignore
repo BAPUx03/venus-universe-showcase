@@ -20,7 +20,7 @@ dist-ssr
 .wrangler/
 .dev.vars
 
-# Local environment variables (keep out of version control)
+# Local environment variables (keep secrets out of source control)
 .env
 .env.*
 !.env.example

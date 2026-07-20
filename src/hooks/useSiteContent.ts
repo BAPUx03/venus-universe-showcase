@@ -90,9 +90,12 @@ export function useSiteContent() {
   return { content, loading };
 }
 
+import { adminSaveContent } from "@/lib/admin/content.functions";
+
+const ADMIN_TOKEN_KEY = "venus_admin_token_v1";
+
 export async function saveSiteContentKey(key: string, value: unknown) {
-  const { error } = await supabase
-    .from("site_content")
-    .upsert({ key, value: value as never }, { onConflict: "key" });
-  if (error) throw error;
+  const token = typeof window !== "undefined" ? sessionStorage.getItem(ADMIN_TOKEN_KEY) : null;
+  if (!token) throw new Error("Not signed in as admin.");
+  await adminSaveContent({ data: { token, key, value } });
 }
