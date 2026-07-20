@@ -38,7 +38,7 @@ A landmark 7-acre luxury residential development in the heart of Nehrunagar, Ahm
 
 <img align="right" src="https://media.giphy.com/media/3o7abKhOpu0NwenH3O/giphy.gif" width="280" alt="Skyline" />
 
-**Venus Grounds 2** is one of Nehrunagar's largest premium gated communities — sprawling across **7 acres with 70% open landscape** and a **2.2 acre serene podium** designed for calm and community.
+**Venus Universe** is one of Nehrunagar's largest premium gated communities — sprawling across **7 acres with 70% open landscape** and a **2.2 acre serene podium** designed for calm and community.
 
 - 🏙️ **4 & 5 BHK ultra-luxury apartments**
 - 🌳 **70% open landscape** with tree-lined sit-outs and water features
@@ -246,7 +246,7 @@ src/
 
 <br /><br />
 
-**Venus Grounds 2 Sales Gallery**
+**Venus Universe Sales Gallery**
 Nehrunagar, Ahmedabad, Gujarat, India
 
 </div>

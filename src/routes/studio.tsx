@@ -8,9 +8,9 @@ import { getSeoDashboard, type SeoDashboardData } from "@/lib/seo/seo-dashboard.
 import { runAutoSeoAgent, type AutoSeoSuggestion } from "@/lib/seo/auto-seo-agent.functions";
 import { getCompetitorDetail, type CompetitorDetail } from "@/lib/seo/competitor-detail.functions";
 
-const ADMIN_EMAIL = "pruthviraj.admin@example.com";
-const ADMIN_PASSWORD = "Pruthvi!01";
-const AUTH_KEY = "venus_admin_auth_v1";
+import { adminLogin } from "@/lib/admin/auth.functions";
+
+const AUTH_KEY = "venus_admin_token_v1";
 
 export const Route = createFileRoute("/studio")({
   head: () => ({
@@ -27,9 +27,10 @@ function Studio() {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const [err, setErr] = useState("");
+  const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
-    if (sessionStorage.getItem(AUTH_KEY) === "1") setAuthed(true);
+    if (typeof window !== "undefined" && sessionStorage.getItem(AUTH_KEY)) setAuthed(true);
   }, []);
 
   if (!authed) {
@@ -38,17 +39,18 @@ function Studio() {
         <form
           method="post"
           action=""
-          onSubmit={(e) => {
+          onSubmit={async (e) => {
             e.preventDefault();
-            const fd = new FormData(e.currentTarget);
-            const emailVal = String(fd.get("email") ?? "").trim().toLowerCase();
-            const passVal = String(fd.get("password") ?? "");
-            if (emailVal === ADMIN_EMAIL && passVal === ADMIN_PASSWORD) {
-              sessionStorage.setItem(AUTH_KEY, "1");
-              setErr("");
+            setErr("");
+            setSubmitting(true);
+            try {
+              const res = await adminLogin({ data: { email, password: pass } });
+              sessionStorage.setItem(AUTH_KEY, res.token);
               setAuthed(true);
-            } else {
-              setErr("Invalid email or password.");
+            } catch (ex) {
+              setErr(ex instanceof Error ? ex.message : "Sign-in failed.");
+            } finally {
+              setSubmitting(false);
             }
           }}
           className="w-full max-w-sm bg-card luxe-border p-8"
@@ -77,8 +79,12 @@ function Studio() {
             className="mt-3 w-full bg-input/60 border border-border px-3.5 py-3 text-sm text-ivory focus:outline-none focus:border-gold"
           />
           {err && <div className="mt-2 text-[12px] text-destructive">{err}</div>}
-          <button type="submit" className="mt-4 w-full py-3 bg-gradient-gold text-charcoal-deep font-semibold uppercase tracking-[0.22em] text-[12px] shadow-gold cursor-pointer">
-            Sign In
+          <button
+            type="submit"
+            disabled={submitting}
+            className="mt-4 w-full py-3 bg-gradient-gold text-charcoal-deep font-semibold uppercase tracking-[0.22em] text-[12px] shadow-gold cursor-pointer disabled:opacity-60"
+          >
+            {submitting ? "Signing in…" : "Sign In"}
           </button>
         </form>
       </div>
@@ -87,6 +93,7 @@ function Studio() {
 
   return <AdminPanel onLogout={() => { sessionStorage.removeItem(AUTH_KEY); setAuthed(false); }} />;
 }
+
 
 const SECTIONS = [
   { key: "seo", label: "SEO & Robots" },
