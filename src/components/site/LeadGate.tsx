@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { z } from "zod";
-import { supabase } from "@/integrations/supabase/client";
 import { notifyLead } from "@/lib/notifyLead";
 import { ChevronDown } from "lucide-react";
 import { OtpModal } from "./OtpModal";
@@ -152,9 +151,7 @@ export function LeadGate({ mode = "site" }: { mode?: "site" | "coming_soon" }) {
     setOtpOpen(false);
     setSubmitting(true);
     try {
-      const { error } = await supabase.from("leads").insert(pendingLead);
-      if (error) throw error;
-      void notifyLead(pendingLead);
+      await notifyLead(pendingLead);
       localStorage.setItem(STORAGE_KEY, "1");
       setOpen(false);
       setSubmitted(false);

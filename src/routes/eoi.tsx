@@ -3,7 +3,6 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowLeft, ShieldCheck, Lock, CheckCircle2, Loader2, PlayCircle, X } from "lucide-react";
 import { useSiteContent } from "@/hooks/useSiteContent";
-import { supabase } from "@/integrations/supabase/client";
 import { notifyLead } from "@/lib/notifyLead";
 import { OtpModal } from "@/components/site/OtpModal";
 
@@ -76,9 +75,7 @@ function EoiPage() {
         budget: `Token ${eoi.amountLabel}`,
         source: "eoi_form",
       };
-      const { error } = await supabase.from("leads").insert(payload);
-      if (error) throw error;
-      void notifyLead(payload);
+      await notifyLead(payload);
       setDone(true);
     } catch (e2) {
       setErr((e2 as Error).message);

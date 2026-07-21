@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { z } from "zod";
 import { Phone, MapPin, Send } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
 import { notifyLead } from "@/lib/notifyLead";
 import { Section } from "./Section";
 import { OtpModal } from "./OtpModal";
@@ -52,13 +51,13 @@ export function Contact({ contact }: { contact: SiteContent["contact"] }) {
     if (!pendingLead) return;
     setOtpOpen(false);
     setStatus("sending");
-    const { error } = await supabase.from("leads").insert(pendingLead);
-    if (error) {
+    try {
+      await notifyLead(pendingLead);
+    } catch {
       setStatus("error");
       setErr("Something went wrong. Please call us directly.");
       return;
     }
-    void notifyLead(pendingLead);
     setStatus("sent");
     setForm({ first_name: "", last_name: "", email: "", phone: "", message: "" });
     setPendingLead(null);

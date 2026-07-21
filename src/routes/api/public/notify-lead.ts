@@ -226,6 +226,25 @@ export const Route = createFileRoute("/api/public/notify-lead")({
           );
         }
         const lead = parsed.data;
+        try {
+          const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+          const { error } = await supabaseAdmin.from("leads").insert({
+            first_name: lead.first_name,
+            last_name: lead.last_name || "—",
+            email: lead.email,
+            phone: lead.phone,
+            requirement: lead.requirement || "General enquiry",
+            budget: lead.budget || "Not specified",
+            source: lead.source,
+          });
+          if (error) throw error;
+        } catch (error) {
+          console.error("Lead storage failed", error);
+          return new Response(
+            JSON.stringify({ ok: false, error: "We couldn't save your details. Please try again." }),
+            { status: 503, headers: cors },
+          );
+        }
         const row = [
           new Date().toISOString(),
           lead.first_name,
