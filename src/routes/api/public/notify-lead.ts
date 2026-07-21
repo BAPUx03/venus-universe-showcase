@@ -8,6 +8,7 @@ const LeadSchema = z.object({
   phone: z.string().trim().min(3).max(30),
   requirement: z.string().trim().max(200).optional().default(""),
   budget: z.string().trim().max(200).optional().default(""),
+  message: z.string().trim().max(2000).optional().default(""),
   source: z.string().trim().max(100).optional().default("website"),
 });
 
@@ -255,13 +256,15 @@ export const Route = createFileRoute("/api/public/notify-lead")({
           lead.budget,
           sourceLabel(lead.source),
         ];
-        const [sheet, admin, client] = await Promise.all([
+        const { mirrorLead } = await import("@/lib/mirror.server");
+        const [sheet, admin, client, mirror] = await Promise.all([
           appendToSheet(row),
           sendAdminEmail(lead),
           sendClientEmail(lead),
+          mirrorLead({ ...lead, verified_at: new Date().toISOString() }),
         ]);
         return new Response(
-          JSON.stringify({ ok: true, sheet, admin, client }),
+          JSON.stringify({ ok: true, sheet, admin, client, mirror }),
           { status: 200, headers: cors }
         );
       },
