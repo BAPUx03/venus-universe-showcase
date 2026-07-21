@@ -15,7 +15,7 @@
       {
         "name": "get_project_overview",
         "title": "Get project overview",
-        "description": "Return an overview of the Venus Universe Nehrunagar luxury residential project: location, developer, residence types, and enquiry channel.",
+        "description": "Return a brochure-aligned overview of The Universe by Venus: location, developer, verified residence type, blocks, area range, and enquiry channel.",
         "annotations": {
           "readOnlyHint": true,
           "idempotentHint": true,
