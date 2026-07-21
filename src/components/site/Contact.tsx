@@ -52,15 +52,9 @@ export function Contact({ contact }: { contact: SiteContent["contact"] }) {
     if (!pendingLead) return;
     setOtpOpen(false);
     setStatus("sending");
-<<<<<<< HEAD
     try {
       await notifyLead(pendingLead);
     } catch {
-=======
-    const { message: _msg, ...leadForDb } = pendingLead;
-    const { error } = await supabase.from("leads").insert(leadForDb);
-    if (error) {
->>>>>>> 5db744efefce03a20712ae229bb7958deb9f475b
       setStatus("error");
       setErr("Something went wrong. Please call us directly.");
       return;
