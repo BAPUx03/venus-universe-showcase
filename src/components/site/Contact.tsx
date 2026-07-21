@@ -53,7 +53,8 @@ export function Contact({ contact }: { contact: SiteContent["contact"] }) {
     if (!pendingLead) return;
     setOtpOpen(false);
     setStatus("sending");
-    const { error } = await supabase.from("leads").insert(pendingLead);
+    const { message: _msg, ...leadForDb } = pendingLead;
+    const { error } = await supabase.from("leads").insert(leadForDb);
     if (error) {
       setStatus("error");
       setErr("Something went wrong. Please call us directly.");
