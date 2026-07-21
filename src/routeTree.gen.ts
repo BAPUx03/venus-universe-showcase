@@ -44,6 +44,7 @@ import { Route as Char91DotmcpChar93ListToolsRouteImport } from './routes/[.mcp]
 import { Route as ApiPublicOtpRouteImport } from './routes/api/public/otp'
 import { Route as ApiPublicNotifyLeadRouteImport } from './routes/api/public/notify-lead'
 import { Route as Char91DotmcpChar93InvokeToolToolRouteImport } from './routes/[.mcp]/invoke-tool/$tool'
+import { Route as ApiPublicHooksReconcileLeadsRouteImport } from './routes/api/public/hooks/reconcile-leads'
 
 const VenusUniverseNehrunagarRoute = VenusUniverseNehrunagarRouteImport.update({
   id: '/venus-universe-nehrunagar',
@@ -236,6 +237,12 @@ const Char91DotmcpChar93InvokeToolToolRoute =
     path: '/.mcp/invoke-tool/$tool',
     getParentRoute: () => rootRouteImport,
   } as any)
+const ApiPublicHooksReconcileLeadsRoute =
+  ApiPublicHooksReconcileLeadsRouteImport.update({
+    id: '/api/public/hooks/reconcile-leads',
+    path: '/api/public/hooks/reconcile-leads',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -273,6 +280,7 @@ export interface FileRoutesByFullPath {
   '/.mcp/invoke-tool/$tool': typeof Char91DotmcpChar93InvokeToolToolRoute
   '/api/public/notify-lead': typeof ApiPublicNotifyLeadRoute
   '/api/public/otp': typeof ApiPublicOtpRoute
+  '/api/public/hooks/reconcile-leads': typeof ApiPublicHooksReconcileLeadsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -310,6 +318,7 @@ export interface FileRoutesByTo {
   '/.mcp/invoke-tool/$tool': typeof Char91DotmcpChar93InvokeToolToolRoute
   '/api/public/notify-lead': typeof ApiPublicNotifyLeadRoute
   '/api/public/otp': typeof ApiPublicOtpRoute
+  '/api/public/hooks/reconcile-leads': typeof ApiPublicHooksReconcileLeadsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -348,6 +357,7 @@ export interface FileRoutesById {
   '/.mcp/invoke-tool/$tool': typeof Char91DotmcpChar93InvokeToolToolRoute
   '/api/public/notify-lead': typeof ApiPublicNotifyLeadRoute
   '/api/public/otp': typeof ApiPublicOtpRoute
+  '/api/public/hooks/reconcile-leads': typeof ApiPublicHooksReconcileLeadsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -387,6 +397,7 @@ export interface FileRouteTypes {
     | '/.mcp/invoke-tool/$tool'
     | '/api/public/notify-lead'
     | '/api/public/otp'
+    | '/api/public/hooks/reconcile-leads'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -424,6 +435,7 @@ export interface FileRouteTypes {
     | '/.mcp/invoke-tool/$tool'
     | '/api/public/notify-lead'
     | '/api/public/otp'
+    | '/api/public/hooks/reconcile-leads'
   id:
     | '__root__'
     | '/'
@@ -461,6 +473,7 @@ export interface FileRouteTypes {
     | '/.mcp/invoke-tool/$tool'
     | '/api/public/notify-lead'
     | '/api/public/otp'
+    | '/api/public/hooks/reconcile-leads'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -499,6 +512,7 @@ export interface RootRouteChildren {
   Char91DotmcpChar93InvokeToolToolRoute: typeof Char91DotmcpChar93InvokeToolToolRoute
   ApiPublicNotifyLeadRoute: typeof ApiPublicNotifyLeadRoute
   ApiPublicOtpRoute: typeof ApiPublicOtpRoute
+  ApiPublicHooksReconcileLeadsRoute: typeof ApiPublicHooksReconcileLeadsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -748,6 +762,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Char91DotmcpChar93InvokeToolToolRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/hooks/reconcile-leads': {
+      id: '/api/public/hooks/reconcile-leads'
+      path: '/api/public/hooks/reconcile-leads'
+      fullPath: '/api/public/hooks/reconcile-leads'
+      preLoaderRoute: typeof ApiPublicHooksReconcileLeadsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -790,6 +811,7 @@ const rootRouteChildren: RootRouteChildren = {
   Char91DotmcpChar93InvokeToolToolRoute: Char91DotmcpChar93InvokeToolToolRoute,
   ApiPublicNotifyLeadRoute: ApiPublicNotifyLeadRoute,
   ApiPublicOtpRoute: ApiPublicOtpRoute,
+  ApiPublicHooksReconcileLeadsRoute: ApiPublicHooksReconcileLeadsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
