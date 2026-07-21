@@ -5,6 +5,7 @@ export interface LeadPayload {
   phone: string;
   requirement?: string;
   budget?: string;
+  message?: string;
   source?: string;
 }
 

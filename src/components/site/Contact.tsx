@@ -20,7 +20,7 @@ export function Contact({ contact }: { contact: SiteContent["contact"] }) {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [err, setErr] = useState("");
   const [otpOpen, setOtpOpen] = useState(false);
-  type Lead = { first_name: string; last_name: string; email: string; phone: string; requirement: string; budget: string; source: string };
+  type Lead = { first_name: string; last_name: string; email: string; phone: string; requirement: string; budget: string; message?: string; source: string };
   const [pendingLead, setPendingLead] = useState<Lead | null>(null);
 
   const submit = (e: React.FormEvent) => {
@@ -42,6 +42,7 @@ export function Contact({ contact }: { contact: SiteContent["contact"] }) {
         : parsed.data.phone.length === 10
           ? `+91${parsed.data.phone}`
           : `+${parsed.data.phone}`,
+      message: parsed.data.message?.trim() || undefined,
       source: "contact_form",
     };
     setPendingLead(lead);
