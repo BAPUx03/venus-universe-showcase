@@ -25,7 +25,7 @@ import { FAQ } from "@/components/site/FAQ";
 import { Showcase3D } from "@/components/site/Showcase3D";
 import { DesignTeam } from "@/components/site/DesignTeam";
 import { NriSection } from "@/components/site/NriSection";
-import showreel from "@/assets/showreel.mp4.asset.json";
+import { HERO_VIDEO_URL } from "@/lib/media";
 import heroTower from "@/assets/hero-tower.webp";
 
 
@@ -188,7 +188,7 @@ export const Route = createFileRoute("/")({
         "A cinematic tour of The Universe by Venus, a premium 4 BHK residential development across Blocks A–J in Nehrunagar, Ahmedabad.",
       thumbnailUrl: [seo.ogImage],
       uploadDate: "2026-01-15",
-      contentUrl: showreel.url,
+      contentUrl: `${siteUrl}${HERO_VIDEO_URL}`,
       embedUrl: siteUrl,
       publisher: { "@type": "Organization", name: "Venus", logo: { "@type": "ImageObject", url: seo.ogImage } },
     };

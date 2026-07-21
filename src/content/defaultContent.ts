@@ -12,7 +12,7 @@ import g9 from "@/assets/gallery-9.webp";
 import g10 from "@/assets/gallery-10.webp";
 import g11 from "@/assets/gallery-11.webp";
 import g12 from "@/assets/gallery-12.webp";
-import showreel from "@/assets/showreel.mp4.asset.json";
+import { HERO_VIDEO_URL } from "@/lib/media";
 
 /**
  * Default site content. The admin panel (/studio) overrides any of these
@@ -180,7 +180,7 @@ export const defaultContent = {
     ],
   },
   gallery: [
-    { src: showreel.url, caption: "The Universe by Venus — cinematic showreel", type: "video", poster: heroTower },
+    { src: HERO_VIDEO_URL, caption: "The Universe by Venus — cinematic showreel", type: "video", poster: heroTower },
     { src: g1, caption: "Penthouse living room" },
     { src: g9, caption: "Rooftop infinity pool" },
     { src: g2, caption: "Infinity sky pool" },

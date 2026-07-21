@@ -1,10 +1,10 @@
 import { Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import showreel from "@/assets/showreel.mp4.asset.json";
+import { HERO_VIDEO_URL } from "@/lib/media";
 import type { SiteContent } from "@/content/defaultContent";
 
 export function Hero({ hero, headingLevel = "h1" }: { hero: SiteContent["hero"]; headingLevel?: "h1" | "h2" }) {
-  const videoSrc = hero.videoUrl || showreel.url;
+  const videoSrc = hero.videoUrl || HERO_VIDEO_URL;
   const Heading = headingLevel;
   return (
     <section
@@ -21,6 +21,7 @@ export function Hero({ hero, headingLevel = "h1" }: { hero: SiteContent["hero"];
           muted
           loop
           playsInline
+          preload="metadata"
           className="w-full h-full object-cover"
         />
         {/* Gradient overlays — softer for clean editorial look */}
