@@ -9,7 +9,7 @@ export function Hero({ hero, headingLevel = "h1" }: { hero: SiteContent["hero"];
   return (
     <section
       id="home"
-      className="relative min-h-[680px] min-h-[92svh] md:min-h-[92svh] md:h-auto flex items-center overflow-hidden"
+      className="relative min-h-[92svh] flex items-center overflow-hidden"
       style={{ background: "oklch(0.18 0.02 25)" }}
     >
       {/* Background */}
@@ -21,7 +21,7 @@ export function Hero({ hero, headingLevel = "h1" }: { hero: SiteContent["hero"];
           muted
           loop
           playsInline
-          preload="metadata"
+          preload="auto"
           className="w-full h-full object-cover"
         />
         {/* Gradient overlays — softer for clean editorial look */}
@@ -32,10 +32,10 @@ export function Hero({ hero, headingLevel = "h1" }: { hero: SiteContent["hero"];
       {/* Content */}
       <div className="relative container-luxe pb-16 pt-24 sm:pt-28 md:pb-24 md:pt-36 z-10">
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.35, ease: [0.2, 0.7, 0.2, 1] }}
-          className="max-w-3xl"
+          transition={{ duration: 0.5, ease: [0.22, 0.61, 0.36, 1] }}
+          className="max-w-3xl will-change-transform"
         >
           <div className="flex items-center gap-3 mb-5">
             <span className="gold-rule" />
