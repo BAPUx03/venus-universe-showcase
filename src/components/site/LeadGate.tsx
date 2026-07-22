@@ -5,7 +5,7 @@ import { ChevronDown } from "lucide-react";
 import { OtpModal } from "./OtpModal";
 
 const STORAGE_KEY = "venus_lead_submitted_v1";
-const POPUP_DELAY_MS = 10_000;
+const POPUP_DELAY_MS = 7_000;
 
 const REQUIREMENTS = [
   "4 BHK",
