@@ -96,10 +96,6 @@ export function LeadGate({ mode = "site" }: { mode?: "site" | "coming_soon" }) {
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-    if (localStorage.getItem(STORAGE_KEY) === "1") {
-      setOpen(false);
-      return;
-    }
     if (isComingSoon) {
       setOpen(true);
       return;
