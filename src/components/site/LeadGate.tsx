@@ -5,7 +5,7 @@ import { ChevronDown } from "lucide-react";
 import { OtpModal } from "./OtpModal";
 
 const STORAGE_KEY = "venus_lead_submitted_v1";
-const POPUP_DELAY_MS = 10_000;
+const POPUP_DELAY_MS = 7_000;
 
 const REQUIREMENTS = [
   "4 BHK",
@@ -96,10 +96,6 @@ export function LeadGate({ mode = "site" }: { mode?: "site" | "coming_soon" }) {
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-    if (localStorage.getItem(STORAGE_KEY) === "1") {
-      setOpen(false);
-      return;
-    }
     if (isComingSoon) {
       setOpen(true);
       return;
