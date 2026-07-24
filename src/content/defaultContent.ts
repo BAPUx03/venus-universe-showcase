@@ -197,9 +197,13 @@ export const defaultContent = {
     { src: masterPlan, caption: "Master plan" },
   ],
   brochure: {
-    url: "#",
-    title: "The Universe by Venus Brochure",
-    subtitle: "A detailed preview of the 7-acre development, residences, amenities and design partners.",
+    url: "https://drive.google.com/file/d/1DdVEsOXl0NwRf0levG_keP_c_EKaBnkN/view?usp=drivesdk",
+    planBookUrl: "https://drive.google.com/file/d/1YzFke7-zccT3oysa5fiGFZkFRvwOngR5/view?usp=drivesdk",
+    locationVideoUrl: "https://drive.google.com/file/d/1GGxyJpYCKI2YBe0MDh-jawDsbebelIwh/view?usp=drive_link",
+    rendersFolderUrl: "https://drive.google.com/drive/folders/1jMrd3W-XvLY9Ltx7A7qwxR3LtfU1hBLI?usp=sharing",
+    amenitiesFolderUrl: "https://drive.google.com/drive/folders/1dKF3KJlWsgDcU_8kWrSDgccuHIEmhIPD?usp=sharing",
+    title: "The Universe by Venus Brochure & Plan Book",
+    subtitle: "A detailed 64-page preview of the 7-acre development, unit plan book, amenities, and design partners.",
   },
   trust: {
     quotes: [
