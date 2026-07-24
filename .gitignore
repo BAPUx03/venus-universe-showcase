@@ -35,3 +35,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Local SEO research scratch (not part of the build)
+scripts/extract_pikorua.py
+pikorua_extracted_ahmedabad.json

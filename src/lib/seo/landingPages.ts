@@ -364,6 +364,66 @@ export const LANDING_PAGES: Record<string, LandingConfig> = {
       { q: "Does RERA carpet area differ from saleable area?", a: "Yes. Buyers should use the applicable RERA carpet-area definition and compare it with separately stated balcony, wash, utility and other areas in the unit documents." },
     ],
   },
+  "property-in-ahmedabad-5-to-7-crore": {
+    slug: "property-in-ahmedabad-5-to-7-crore",
+    title: "Property in Ahmedabad 5 to 7 Crore | Venus Universe",
+    description: "Explore luxury 4 BHK property options in Ahmedabad priced in the ₹5 to ₹7 Crore budget range at The Universe by Venus in Nehrunagar.",
+    h1: "Luxury Property in Ahmedabad — ₹5 Crore to ₹7 Crore Band",
+    eyebrow: "₹5Cr – ₹7Cr Budget Band · Nehrunagar",
+    intro: "Looking for luxury property in Ahmedabad in the ₹5 to ₹7 Crore price range? The Universe by Venus in Nehrunagar offers brochure-backed 4 BHK residences with RERA carpet areas starting from 1,546 sq ft, global architect credentials and 70% open green space.",
+    keywords: "property in Ahmedabad 5 to 7 crore, 5 crore flat Ahmedabad, luxury property Ahmedabad 5 Cr, 4 BHK 5 crore Ahmedabad",
+    breadcrumbLabel: "Property 5 to 7 Crore",
+    faq: [
+      { q: "What property can you buy in Ahmedabad for ₹5 to ₹7 Crore?", a: "In the ₹5 to ₹7 Crore price band, buyers can acquire premium 4 BHK luxury residences at landmark central developments like The Universe by Venus in Nehrunagar." },
+      { q: "What carpet size is available in the ₹5 to ₹7 Crore range?", a: "At The Universe by Venus, brochure-listed RERA carpet areas start from approximately 1,546 sq ft with separate balcony and wash areas." },
+      { q: "Is Nehrunagar a prime location for ₹5–7 Cr homes?", a: "Yes — Nehrunagar is central Ahmedabad's established residential hub, minutes from CG Road, Ashram Road, and IIM Ahmedabad." },
+    ],
+  },
+  "property-in-ahmedabad-7-to-10-crore": {
+    slug: "property-in-ahmedabad-7-to-10-crore",
+    title: "Property in Ahmedabad 7 to 10 Crore | Venus Universe",
+    description: "Explore premium large-format 4 BHK residences in central Ahmedabad priced between ₹7 to ₹10 Crore at The Universe by Venus.",
+    h1: "Luxury Property in Ahmedabad — ₹7 Crore to ₹10 Crore Band",
+    eyebrow: "₹7Cr – ₹10Cr Budget Band · Nehrunagar",
+    intro: "Discover premium luxury residences in the ₹7 to ₹10 Crore ticket size at The Universe by Venus, Nehrunagar. Featuring larger 4 BHK unit plans, servant rooms, private elevator lobbies, and landscape design by SWA California.",
+    keywords: "property in Ahmedabad 7 to 10 crore, 7 crore flat Ahmedabad, 10 crore property Ahmedabad, luxury 4 BHK 7 to 10 crore",
+    breadcrumbLabel: "Property 7 to 10 Crore",
+    faq: [
+      { q: "What configuration is available in the ₹7 to ₹10 Crore band at Venus Universe?", a: "The ₹7 to ₹10 Crore budget band features expansive 4 BHK configurations with larger RERA carpet areas, servant quarters, and premium tower positions." },
+      { q: "Who are the architects behind this project?", a: "Architecture is by Hafeez Contractor, landscape design by SWA Group California, and interior design by Hirsch Bedner Associates (HBA)." },
+      { q: "How to lock pre-launch pricing in the ₹7–10 Cr range?", a: "Pre-booking is open with a fully refundable ₹5,00,000 Expression of Interest (EOI)." },
+    ],
+  },
+  "property-in-ahmedabad-10-to-15-crore": {
+    slug: "property-in-ahmedabad-10-to-15-crore",
+    title: "Property in Ahmedabad 10 to 15 Crore | Venus Universe",
+    description: "Ultra-luxury 4 BHK residences and sky villas in central Ahmedabad priced ₹10 to ₹15 Crore at The Universe by Venus Nehrunagar.",
+    h1: "Ultra Luxury Property in Ahmedabad — ₹10 Crore to ₹15 Crore",
+    eyebrow: "₹10Cr – ₹15Cr Budget Band · Nehrunagar",
+    intro: "For UHNI buyers seeking ultra-luxury residences in central Ahmedabad in the ₹10 to ₹15 Crore range, The Universe by Venus offers top-floor 4 BHK layouts, sky villas, and jodi/duplex options subject to official availability.",
+    keywords: "property in Ahmedabad 10 to 15 crore, 10 crore luxury flat Ahmedabad, ultra luxury property Ahmedabad 15 crore, UHNI homes Ahmedabad",
+    breadcrumbLabel: "Property 10 to 15 Crore",
+    faq: [
+      { q: "What ultra-luxury residences are offered in the ₹10 to ₹15 Crore range?", a: "This band features top-tier sky residences, large carpet 4 BHKs, and custom jodi/duplex options subject to official inventory confirmation." },
+      { q: "What amenities cater to UHNI buyers?", a: "Private elevator access, 2.2-acre central podium, multi-level security, concierge services, sky lounge, and 70% open green space." },
+      { q: "Can NRIs invest in ₹10+ Cr properties at Venus Universe?", a: "Yes — full remote assistance, digital documentation, and Power of Attorney registration support are provided for NRI buyers globally." },
+    ],
+  },
+  "luxury-real-estate-ahmedabad": {
+    slug: "luxury-real-estate-ahmedabad",
+    title: "Luxury Real Estate Ahmedabad | Venus Universe Nehrunagar",
+    description: "The Universe by Venus is a flagship luxury real estate development in Nehrunagar, central Ahmedabad. 7-acre landmark with 4 BHK residences.",
+    h1: "Luxury Real Estate in Ahmedabad — The Universe by Venus",
+    eyebrow: "Luxury Real Estate · Ahmedabad",
+    intro: "The Universe by Venus sets a benchmark for luxury real estate in Ahmedabad. Spanning a 7-acre site in central Nehrunagar, it features 10 residential blocks designed by Hafeez Contractor, SWA landscape, HBA interiors, and LET Dubai lighting.",
+    keywords: "luxury real estate Ahmedabad, luxury real estate developers Ahmedabad, premium real estate Ahmedabad, luxury homes Ahmedabad",
+    breadcrumbLabel: "Luxury Real Estate Ahmedabad",
+    faq: [
+      { q: "What makes Venus Universe a benchmark for luxury real estate in Ahmedabad?", a: "A rare 7-acre central plot in Nehrunagar with 70% open green space, a global design team (Hafeez Contractor, SWA, HBA), and RERA registration." },
+      { q: "Where is the project located?", a: "In Nehrunagar, central Ahmedabad, within minutes of CG Road, Ashram Road, Paldi, and IIM Ahmedabad." },
+      { q: "How to request official brochure and price sheet?", a: "Submit an enquiry or book a visit at the sales gallery on-site in Nehrunagar." },
+    ],
+  },
 };
 
 const RETIRED_LANDING_SLUGS = new Set(["luxury-5bhk-ahmedabad", "5bhk-nehrunagar-ahmedabad"]);
@@ -451,6 +511,22 @@ export const LANDING_BODIES: Record<string, string[]> = {
   "rera-registered-project-ahmedabad": [
     "RERA-led research is a diligence step, not just a keyword. Prospective buyers should match the project name and registration number with the official authority record, then examine plans, carpet-area disclosures, promoter information and filed updates.",
     "The Universe by Venus brochure lists block-specific 4 BHK RERA carpet areas from approximately 1,546 to 2,459 sq ft. The exact unit documents and current official record should govern every purchase decision.",
+  ],
+  "property-in-ahmedabad-5-to-7-crore": [
+    "In the ₹5 to ₹7 Crore budget segment, luxury buyers in Ahmedabad expect central connectivity, low-density living, and verified space credentials. The Universe by Venus in Nehrunagar meets these demands on a 7-acre plot with 70% open green landscape.",
+    "Brochure-documented 4 BHK layouts start from 1,546 sq ft RERA carpet area, with architecture designed by Hafeez Contractor and interiors by HBA Singapore.",
+  ],
+  "property-in-ahmedabad-7-to-10-crore": [
+    "The ₹7 to ₹10 Crore price band represents premium large-format luxury living in Ahmedabad. At The Universe by Venus, residences in this bracket feature expanded carpet areas, dedicated staff quarters, and multi-tier security.",
+    "Set in central Nehrunagar, residents enjoy immediate access to CG Road, Ashram Road, and IIM Ahmedabad while coming home to a 2.2-acre central amenity podium.",
+  ],
+  "property-in-ahmedabad-10-to-15-crore": [
+    "For ultra-high-net-worth individuals (UHNIs), business leaders, and top executives, properties in the ₹10 to ₹15 Crore bracket at Venus Universe offer upper-level sky residences, custom floor options, and private elevator lobbies.",
+    "Subject to official availability, jodi, duplex, and penthouse options allow for bespoke living spaces framed by international design partners.",
+  ],
+  "luxury-real-estate-ahmedabad": [
+    "Luxury real estate in Ahmedabad is defined by land scale, architect pedigree, and micro-market permanence. The Universe by Venus stands out as a 7-acre landmark in central Nehrunagar.",
+    "Combining architecture by Hafeez Contractor, principal landscape design by SWA California, and interior design by HBA Singapore, it provides a benchmark for luxury living in central Gujarat.",
   ],
 };
 

@@ -136,6 +136,34 @@ export const INSIGHTS: Record<string, InsightPost> = {
       { q: "Can an NRI book Venus Universe from abroad?", a: "Yes. Venus Universe supports remote bookings with video walkthroughs, digital documentation and a fully refundable Expression of Interest; registration can be completed via Power of Attorney." },
     ],
   },
+
+  "stamp-duty-tds-nri-tax-guide-ahmedabad-property": {
+    slug: "stamp-duty-tds-nri-tax-guide-ahmedabad-property",
+    title: "Stamp Duty, TDS & Tax Guide for Ahmedabad Property (2026)",
+    h1: "Stamp Duty, TDS & Tax Guide for Property Buyers in Ahmedabad",
+    description: "Essential tax guide for luxury property buyers and NRIs in Ahmedabad — Stamp Duty (4.9%), Section 195 TDS (20%), capital gains, and FEMA rules.",
+    keywords: "stamp duty Ahmedabad 2026, TDS rate property purchase NRI India, Section 195 TDS NRI property, property tax Ahmedabad, NRI property tax Gujarat",
+    category: "Tax & Legal",
+    date: "2026-07-22",
+    readMins: 7,
+    excerpt: "Navigating stamp duty, registration charges, Section 195 TDS for NRIs, and GST on under-construction property in Gujarat. Here is your complete 2026 tax handbook.",
+    body: [
+      { type: "p", text: "Purchasing a high-value residence in central Ahmedabad involves specific statutory taxes and compliance requirements. Whether you are a resident buying in Nehrunagar or an NRI investing from abroad, here is a breakdown of stamp duty, TDS, and registration charges in 2026." },
+      { type: "h2", text: "1. Stamp Duty & Registration Charges in Gujarat" },
+      { type: "p", text: "In Gujarat, stamp duty for residential property transactions is 4.9% of the agreement value (or Jantara rate, whichever is higher). A 1% concession applies for female buyers, bringing stamp duty down to 3.9%. In addition, a 1% registration fee is payable to the Sub-Registrar of Assurances." },
+      { type: "h2", text: "2. Section 195 TDS for NRI Sellers & Buyers" },
+      { type: "p", text: "When buying property from an NRI, the resident buyer is required to deduct Tax Deducted at Source (TDS) under Section 195 of the Income Tax Act. For long-term capital gains, the base TDS rate is 20% plus applicable surcharge and health/education cess. Buyers must obtain a TAN (Tax Deduction Account Number) and deposit the withheld tax within statutory timelines." },
+      { type: "h2", text: "3. GST on Under-Construction Luxury Property" },
+      { type: "p", text: "For under-construction residential properties outside the affordable category, GST is levied at an effective rate of 5% without Input Tax Credit (ITC). Completed properties with an issued Occupancy Certificate (OC) are exempt from GST." },
+      { type: "h2", text: "4. FEMA Compliance & Repatriation for NRIs" },
+      { type: "p", text: "NRIs and OCI cardholders buying residential apartments in Ahmedabad can freely fund transactions via NRE or NRO banking channels. Repatriation of sale proceeds is permitted up to USD 1 million per financial year under RBI guidelines, subject to tax compliance." },
+    ],
+    faq: [
+      { q: "What is the stamp duty on a ₹10 Crore property in Ahmedabad?", a: "Stamp duty in Gujarat is 4.9% (₹49 Lakhs) plus 1% registration fee (₹10 Lakhs). For female sole buyers, a 1% stamp duty concession applies." },
+      { q: "What is the TDS rate when buying property from an NRI in India?", a: "TDS under Section 195 is 20% plus applicable surcharge and 4% cess on long-term capital gains, unless a lower deduction certificate is obtained from the Income Tax department." },
+      { q: "Is GST applicable on Venus Universe apartments?", a: "As an under-construction luxury residential development, applicable GST is 5% effective rate on unit agreement value." },
+    ],
+  },
 };
 
 export const INSIGHT_SLUGS = Object.keys(INSIGHTS);
