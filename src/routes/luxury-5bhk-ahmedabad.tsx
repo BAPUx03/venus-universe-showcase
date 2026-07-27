@@ -1,7 +1,10 @@
-import { createFileRoute, redirect } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
+import { LandingPage } from "@/components/site/LandingPage";
+import { LANDING_PAGES, buildLandingHead } from "@/lib/seo/landingPages";
+
+const SLUG = "luxury-5bhk-ahmedabad";
 
 export const Route = createFileRoute("/luxury-5bhk-ahmedabad")({
-  beforeLoad: () => {
-    throw redirect({ to: "/luxury-4bhk-ahmedabad", statusCode: 301 });
-  },
+  head: () => buildLandingHead(SLUG),
+  component: () => <LandingPage config={LANDING_PAGES[SLUG]} />,
 });
