@@ -566,6 +566,14 @@ export const LANDING_BODIES: Record<string, string[]> = {
     "Luxury real estate in Ahmedabad is defined by land scale, architect pedigree, and micro-market permanence. The Universe by Venus stands out as a 7-acre landmark in central Nehrunagar.",
     "Combining architecture by Hafeez Contractor, principal landscape design by SWA California, and interior design by HBA Singapore, it provides a benchmark for luxury living in central Gujarat.",
   ],
+  "luxury-5bhk-ahmedabad": [
+    "A genuine luxury 5 BHK in Ahmedabad is rare — the city's largest floorplates typically top out at 4 BHK, so buyers seeking a fifth bedroom usually combine two adjacent 4 BHK layouts into a jodi or duplex. At The Universe by Venus, this is possible on brochure-documented Blocks A–J plans, subject to current official inventory.",
+    "The advantage is scale without compromising on the address: combined 5 BHK layouts sit in central Nehrunagar, minutes from CG Road, Ashram Road and IIM Ahmedabad, inside a 7-acre gated community with a 2.2-acre podium and 70% open landscape. Confirm the exact carpet area, approved plan and price with the sales team.",
+  ],
+  "5bhk-nehrunagar-ahmedabad": [
+    "5 BHK inventory in Nehrunagar is almost entirely resale — new construction of this scale seldom comes to market in central Ahmedabad. Venus Universe is the exception: buyers can pair adjacent 4 BHK homes across Blocks A–J into a 5 BHK jodi or combined layout, subject to current official availability.",
+    "This route preserves the ultra-central Nehrunagar address — close to CG Road, IIM-A, CEPT, Ahmedabad University and leading hospitals — while offering the extended family space of a 5 BHK. Request the specific combined-unit plan, RERA carpet-area statement and current inventory before booking.",
+  ],
 };
 
 export function landingUrl(slug: string): string {
