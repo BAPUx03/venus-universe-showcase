@@ -424,10 +424,48 @@ export const LANDING_PAGES: Record<string, LandingConfig> = {
       { q: "How to request official brochure and price sheet?", a: "Submit an enquiry or book a visit at the sales gallery on-site in Nehrunagar." },
     ],
   },
+  "luxury-5bhk-ahmedabad": {
+    slug: "luxury-5bhk-ahmedabad",
+    title: "Luxury 5 BHK Apartments Ahmedabad | Venus Universe",
+    description:
+      "Explore ultra-luxury 5 BHK apartment options in central Ahmedabad at The Universe by Venus, Nehrunagar — jodi, duplex and combined-unit configurations subject to availability.",
+    h1: "Luxury 5 BHK Apartments in Ahmedabad — Venus Universe Nehrunagar",
+    eyebrow: "5 BHK · Ahmedabad",
+    intro:
+      "Buyers seeking a luxury 5 BHK apartment in Ahmedabad typically consider jodi, duplex or combined-unit configurations at large-format projects. At The Universe by Venus in Nehrunagar, 5 BHK-style layouts are offered subject to official availability, built on brochure-documented premium 4 BHK plans across Blocks A–J.",
+    keywords:
+      "luxury 5 BHK Ahmedabad, 5 BHK apartments Ahmedabad, 5 BHK flats Ahmedabad, 5 BHK Nehrunagar, jodi apartment Ahmedabad, combined unit 5 BHK Ahmedabad, Venus Universe 5 BHK",
+    breadcrumbLabel: "Luxury 5 BHK Ahmedabad",
+    faq: [
+      { q: "Are 5 BHK apartments available at Venus Universe Ahmedabad?", a: "5 BHK-style residences are offered as jodi, duplex or combined-unit configurations built on the approved 4 BHK plans, and are subject to current official inventory. Please confirm availability with the sales team." },
+      { q: "How large is a luxury 5 BHK in Ahmedabad at Venus Universe?", a: "Combined-unit 5 BHK configurations start from approximately 3,100 sq ft of aggregate RERA carpet area, based on the block and plan pairing selected. Exact figures are provided on the specific approved plan." },
+      { q: "What is the price band for a 5 BHK luxury apartment in Ahmedabad?", a: "5 BHK combined-unit pricing generally sits in the ₹7 Crore to ₹15 Crore band at Venus Universe, depending on the block, floor and view. Current pricing must be confirmed with the sales team." },
+      { q: "Which locality is best for a 5 BHK in central Ahmedabad?", a: "Nehrunagar is one of the most sought-after central Ahmedabad addresses for 5 BHK luxury living — minutes from CG Road, Ashram Road, IIM Ahmedabad and leading hospitals." },
+      { q: "Can NRIs book a 5 BHK apartment at Venus Universe?", a: "Yes — NRI buyers can review 5 BHK options remotely with video walkthroughs, digital documentation and international callback support, and lock priority with the refundable ₹5,00,000 token." },
+    ],
+  },
+  "5bhk-nehrunagar-ahmedabad": {
+    slug: "5bhk-nehrunagar-ahmedabad",
+    title: "5 BHK in Nehrunagar Ahmedabad | Venus Universe",
+    description:
+      "Discover 5 BHK residence options in Nehrunagar, central Ahmedabad at The Universe by Venus — combined 4 BHK layouts and jodi configurations subject to availability.",
+    h1: "5 BHK Apartments in Nehrunagar, Ahmedabad — Venus Universe",
+    eyebrow: "5 BHK · Nehrunagar",
+    intro:
+      "A 5 BHK in Nehrunagar is a rare find. At The Universe by Venus, buyers seeking a fifth bedroom can explore jodi and combined-unit options built on the brochure-documented 4 BHK plans across Blocks A–J, subject to current official availability and approved plans.",
+    keywords:
+      "5 BHK Nehrunagar Ahmedabad, 5 BHK Nehru Nagar Ahmedabad, buy 5 BHK Nehrunagar, luxury 5 BHK Nehrunagar, 5 BHK apartments in Nehrunagar",
+    breadcrumbLabel: "5 BHK Nehrunagar",
+    faq: [
+      { q: "Is a 5 BHK available in Nehrunagar Ahmedabad?", a: "5 BHK residences in Nehrunagar are limited. At Venus Universe, they are offered as jodi or combined-unit configurations built on brochure-listed 4 BHK plans, subject to current official availability." },
+      { q: "What is the size of a 5 BHK apartment in Nehrunagar at Venus Universe?", a: "Combined-unit 5 BHK carpet areas start from approximately 3,100 sq ft depending on the pairing chosen from Blocks A–J. Confirm the exact figure on the approved plan for the specific unit." },
+      { q: "Why choose Nehrunagar for a 5 BHK home?", a: "Nehrunagar is a low-density, established central Ahmedabad neighbourhood — close to CG Road, Ashram Road, IIM-A, CEPT and leading hospitals — where new 5 BHK-scale supply almost never comes free." },
+      { q: "How to book a 5 BHK at Venus Universe Nehrunagar?", a: "Submit the fully refundable ₹5,00,000 token to lock priority allotment and pre-launch pricing, then request the combined-unit plan and price sheet for your preferred blocks." },
+    ],
+  },
 };
 
-const RETIRED_LANDING_SLUGS = new Set(["luxury-5bhk-ahmedabad", "5bhk-nehrunagar-ahmedabad"]);
-export const LANDING_SLUGS = Object.keys(LANDING_PAGES).filter((slug) => !RETIRED_LANDING_SLUGS.has(slug));
+export const LANDING_SLUGS = Object.keys(LANDING_PAGES);
 
 /** Unique long-form body copy per landing page — reduces duplicate content and
  *  gives each programmatic page its own indexable, intent-specific prose. */
