@@ -5,7 +5,7 @@
  * separate ranking pages targeting different intents.
  */
 
-import heroTower from "@/assets/hero-tower.webp";
+import { PRIMARY_SOCIAL_IMAGE } from "@/lib/seo/socialImages";
 
 export interface LandingConfig {
   slug: string;
@@ -580,7 +580,7 @@ export function landingUrl(slug: string): string {
   return `${BASE}/${slug}`;
 }
 
-const OG_IMAGE = new URL(heroTower, BASE).href;
+const OG_IMAGE = PRIMARY_SOCIAL_IMAGE;
 
 export function buildLandingHead(slug: string) {
   const c = LANDING_PAGES[slug];
