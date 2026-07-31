@@ -5,7 +5,7 @@
  * separate ranking pages targeting different intents.
  */
 
-import heroTower from "@/assets/hero-tower.webp";
+import { PRIMARY_SOCIAL_IMAGE } from "@/lib/seo/socialImages";
 
 export interface LandingConfig {
   slug: string;
