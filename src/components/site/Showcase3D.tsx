@@ -4,6 +4,10 @@ import { X, ChevronLeft, ChevronRight, Expand } from "lucide-react";
 import { Section } from "./Section";
 
 import hero from "@/assets/hero-tower.webp";
+import impact1 from "@/assets/impact3d/venus-universe-impact3d-1.jpg.asset.json";
+import impact2 from "@/assets/impact3d/venus-universe-impact3d-2.jpg.asset.json";
+import impact3 from "@/assets/impact3d/venus-universe-impact3d-3.jpg.asset.json";
+import impact4 from "@/assets/impact3d/venus-universe-impact3d-4.jpg.asset.json";
 import facade from "@/assets/gallery-1.webp";
 import podium from "@/assets/gallery-7.webp";
 import skyDeck from "@/assets/gallery-6.webp";
