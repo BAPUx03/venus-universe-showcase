@@ -27,6 +27,7 @@ import { DesignTeam } from "@/components/site/DesignTeam";
 import { NriSection } from "@/components/site/NriSection";
 import { HERO_VIDEO_URL } from "@/lib/media";
 import heroTower from "@/assets/hero-tower.webp";
+import { SOCIAL_IMAGES, PRIMARY_SOCIAL_IMAGE } from "@/lib/seo/socialImages";
 
 
 export const Route = createFileRoute("/")({
@@ -68,14 +69,17 @@ export const Route = createFileRoute("/")({
       { name: "bingbot", content: robots },
       { property: "og:title", content: seo.title },
       { property: "og:description", content: seo.description },
-      { property: "og:image", content: seo.ogImage },
+      { property: "og:image", content: PRIMARY_SOCIAL_IMAGE },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "800" },
+      { property: "og:image:alt", content: "Venus Universe — luxury residences in Nehrunagar, Ahmedabad" },
       { property: "og:url", content: (seo as { canonical?: string }).canonical || seo.siteUrl },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: loaderData?.brand?.name ?? defaultContent.brand.name },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: seo.title },
       { name: "twitter:description", content: seo.description },
-      { name: "twitter:image", content: seo.ogImage },
+      { name: "twitter:image", content: PRIMARY_SOCIAL_IMAGE },
       { name: "twitter:site", content: seo.twitterHandle },
     ];
     const s = seo as Record<string, string | boolean | undefined>;
@@ -92,8 +96,8 @@ export const Route = createFileRoute("/")({
       name: "Venus",
       alternateName: ["Venus Group", "Venus Infrastructure"],
       url: siteUrl,
-      image: seo.ogImage,
-      logo: seo.ogImage,
+      image: SOCIAL_IMAGES,
+      logo: PRIMARY_SOCIAL_IMAGE,
       description: "Developer of The Universe by Venus, a landmark 10-block premium 4 BHK community in Nehrunagar, Ahmedabad.",
       telephone: defaultContent.contact.phone,
       priceRange: "₹₹₹₹",
@@ -114,7 +118,7 @@ export const Route = createFileRoute("/")({
       "@type": "LocalBusiness",
       "@id": `${siteUrl}/#localbusiness`,
       name: "The Universe by Venus Sales Gallery",
-      image: seo.ogImage,
+      image: SOCIAL_IMAGES,
       url: siteUrl,
       telephone: defaultContent.contact.phone,
       priceRange: "₹₹₹₹",
@@ -135,7 +139,7 @@ export const Route = createFileRoute("/")({
       "@type": "ApartmentComplex",
       name: "The Universe by Venus — Premium 4 BHK Residences in Nehrunagar, Ahmedabad",
       url: siteUrl,
-      image: seo.ogImage,
+      image: SOCIAL_IMAGES,
       description: "The Universe by Venus is a 7-acre, 10-block residential development in Nehrunagar with premium 4 BHK residences across brochure-listed RERA carpet ranges.",
       audience: [
         { "@type": "Audience", audienceType: "Resident Indian home buyers" },
@@ -186,11 +190,11 @@ export const Route = createFileRoute("/")({
       name: "The Universe by Venus — Cinematic Showreel",
       description:
         "A cinematic tour of The Universe by Venus, a premium 4 BHK residential development across Blocks A–J in Nehrunagar, Ahmedabad.",
-      thumbnailUrl: [seo.ogImage],
+      thumbnailUrl: SOCIAL_IMAGES,
       uploadDate: "2026-01-15",
       contentUrl: `${siteUrl}${HERO_VIDEO_URL}`,
       embedUrl: siteUrl,
-      publisher: { "@type": "Organization", name: "Venus", logo: { "@type": "ImageObject", url: seo.ogImage } },
+      publisher: { "@type": "Organization", name: "Venus", logo: { "@type": "ImageObject", url: PRIMARY_SOCIAL_IMAGE } },
     };
 
     const scripts: Array<Record<string, string>> = [
