@@ -1,7 +1,6 @@
 import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
-import heroTower from "@/assets/hero-tower.webp";
 import { PRIMARY_SOCIAL_IMAGE } from "@/lib/seo/socialImages";
 
 const ROOT_SOCIAL_IMAGE = PRIMARY_SOCIAL_IMAGE;
