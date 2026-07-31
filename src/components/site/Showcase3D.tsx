@@ -25,7 +25,12 @@ type Shot = {
 };
 
 const SHOTS: Shot[] = [
-  { src: hero, alt: "The Universe by Venus premium residential development at twilight in Nehrunagar, Ahmedabad", caption: "The Landmark · Twilight", eyebrow: "Facade", span: "big" },
+  { src: impact2.url, alt: "Venus Universe twin towers at dusk with illuminated retail podium, Nehrunagar Ahmedabad", caption: "The Twin Towers · Dusk", eyebrow: "Facade", span: "big" },
+  { src: impact1.url, alt: "Venus Universe tower elevation with retail arcade along the main road, Nehrunagar Ahmedabad", caption: "Street Elevation", eyebrow: "Architecture" },
+  { src: impact4.url, alt: "Venus Universe daylight tower facade with landscaped podium, Ahmedabad", caption: "Daylight Facade", eyebrow: "Elevation", span: "tall" },
+  { src: impact3.url, alt: "Venus Universe retail arcade and landscaped podium entrance, Nehrunagar Ahmedabad", caption: "The Retail Arcade", eyebrow: "Podium", span: "wide" },
+  { src: hero, alt: "The Universe by Venus premium residential development at twilight in Nehrunagar, Ahmedabad", caption: "The Landmark · Twilight", eyebrow: "Landmark" },
+
   { src: facade, alt: "Premium residence interior at The Universe by Venus in Nehrunagar", caption: "Contemporary Living", eyebrow: "Residence" },
   { src: night, alt: "Evening amenity view at The Universe by Venus", caption: "After Dark", eyebrow: "Night View", span: "tall" },
   { src: podium, alt: "Arrival and common-area experience at The Universe by Venus", caption: "Arrival Experience", eyebrow: "Entrance" },
