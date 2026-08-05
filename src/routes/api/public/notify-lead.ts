@@ -15,7 +15,7 @@ const LeadSchema = z.object({
 type Lead = z.infer<typeof LeadSchema>;
 
 const SHEETS_GATEWAY = "https://connector-gateway.lovable.dev/google_sheets/v4";
-const BREVO_URL = "https://api.brevo.com/v3/smtp/email";
+const BREVO_GATEWAY = "https://connector-gateway.lovable.dev/brevo";
 const BRAND = "Venus Universe Nehrunagar";
 const ACCENT = "#b4281e";
 const ACCENT_DEEP = "#7a1a13";
@@ -70,14 +70,17 @@ async function appendToSheet(row: string[]) {
   }
 }
 
-async function sendBrevo(payload: Record<string, unknown>) {
-  const apiKey = process.env.BREVO_API_KEY;
-  if (!apiKey) return { ok: false, error: "brevo_key_missing" };
+async function callBrevo(path: string, payload: Record<string, unknown>) {
+  const lovableKey = process.env.LOVABLE_API_KEY;
+  const connectionKey = process.env.BREVO_API_KEY;
+  if (!lovableKey || !connectionKey) return { ok: false, error: "brevo_env_missing" };
   try {
-    const res = await fetch(BREVO_URL, {
+    const res = await fetch(`${BREVO_GATEWAY}/${path}`,
+    {
       method: "POST",
       headers: {
-        "api-key": apiKey,
+        Authorization: `Bearer ${lovableKey}`,
+        "X-Connection-Api-Key": connectionKey,
         "Content-Type": "application/json",
         accept: "application/json",
       },
@@ -93,6 +96,18 @@ async function sendBrevo(payload: Record<string, unknown>) {
     console.error("[notify-lead] Brevo exception:", e);
     return { ok: false, error: "brevo_exception" };
   }
+}
+
+async function saveBrevoContact(lead: Lead) {
+  return callBrevo("contacts", {
+    email: lead.email,
+    attributes: {
+      FIRSTNAME: lead.first_name,
+      LASTNAME: lead.last_name,
+      SMS: lead.phone,
+    },
+    updateEnabled: true,
+  });
 }
 
 function adminHtml(lead: Lead) {
@@ -174,7 +189,7 @@ async function sendAdminEmail(lead: Lead) {
   const to = process.env.NOTIFICATION_EMAIL;
   const sender = process.env.BREVO_SENDER_EMAIL;
   if (!to || !sender) return { ok: false, error: "admin_env_missing" };
-  return sendBrevo({
+  return callBrevo("smtp/email", {
     sender: { name: `${BRAND} Leads`, email: sender },
     to: [{ email: to }],
     replyTo: { email: lead.email, name: `${lead.first_name} ${lead.last_name}`.trim() },
@@ -187,7 +202,7 @@ async function sendClientEmail(lead: Lead) {
   const sender = process.env.BREVO_SENDER_EMAIL;
   const replyTo = process.env.NOTIFICATION_EMAIL;
   if (!sender) return { ok: false, error: "client_env_missing" };
-  return sendBrevo({
+  return callBrevo("smtp/email", {
     sender: { name: BRAND, email: sender },
     to: [{ email: lead.email, name: `${lead.first_name} ${lead.last_name}`.trim() }],
     replyTo: replyTo ? { email: replyTo, name: `${BRAND} Team` } : undefined,
@@ -227,6 +242,7 @@ export const Route = createFileRoute("/api/public/notify-lead")({
           );
         }
         const lead = parsed.data;
+        let primary: { ok: boolean; error?: string } = { ok: false };
         try {
           const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
           const { error } = await supabaseAdmin.from("leads").insert({
@@ -239,12 +255,10 @@ export const Route = createFileRoute("/api/public/notify-lead")({
             source: lead.source,
           });
           if (error) throw error;
+          primary = { ok: true };
         } catch (error) {
           console.error("Lead storage failed", error);
-          return new Response(
-            JSON.stringify({ ok: false, error: "We couldn't save your details. Please try again." }),
-            { status: 503, headers: cors },
-          );
+          primary = { ok: false, error: "primary_unavailable" };
         }
         const row = [
           new Date().toISOString(),
@@ -257,14 +271,37 @@ export const Route = createFileRoute("/api/public/notify-lead")({
           sourceLabel(lead.source),
         ];
         const { mirrorLead } = await import("@/lib/mirror.server");
-        const [sheet, admin, client, mirror] = await Promise.all([
+        const [sheet, admin, client, mirror, brevoContact] = await Promise.all([
           appendToSheet(row),
           sendAdminEmail(lead),
           sendClientEmail(lead),
           mirrorLead({ ...lead, verified_at: new Date().toISOString() }),
+          saveBrevoContact(lead),
         ]);
+        const stored = primary.ok || brevoContact.ok || mirror.ok || sheet.ok;
+        if (!stored) {
+          console.error("[notify-lead] All lead storage destinations failed", {
+            primary: primary.error,
+            brevo: brevoContact.error,
+            mirror: mirror.error,
+            sheet: sheet.error,
+          });
+          return new Response(
+            JSON.stringify({ ok: false, error: "We couldn't save your details. Please try again." }),
+            { status: 503, headers: cors },
+          );
+        }
         return new Response(
-          JSON.stringify({ ok: true, sheet, admin, client, mirror }),
+          JSON.stringify({
+            ok: true,
+            saved: {
+              primary: primary.ok,
+              brevo: brevoContact.ok,
+              mirror: mirror.ok,
+              sheet: sheet.ok,
+            },
+            notifications: { admin: admin.ok, client: client.ok },
+          }),
           { status: 200, headers: cors }
         );
       },
