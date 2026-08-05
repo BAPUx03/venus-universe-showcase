@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { z } from "zod";
 import { notifyLead } from "@/lib/notifyLead";
 import { ChevronDown } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { OtpModal } from "./OtpModal";
 
 const STORAGE_KEY = "venus_lead_submitted_v1";
@@ -152,8 +153,8 @@ export function LeadGate({ mode = "site" }: { mode?: "site" | "coming_soon" }) {
       setOpen(false);
       setSubmitted(false);
       setPendingLead(null);
-    } catch {
-      setSubmitError("We couldn't save your details. Please try again.");
+    } catch (error) {
+      setSubmitError(error instanceof Error ? error.message : "We couldn't save your details. Please try again.");
     } finally {
       setSubmitting(false);
     }
@@ -173,9 +174,12 @@ export function LeadGate({ mode = "site" }: { mode?: "site" | "coming_soon" }) {
         className={`absolute inset-0 ${isComingSoon ? "bg-white" : "bg-charcoal-deep/70 backdrop-blur-sm"}`}
       />
 
-      <div className="relative w-full max-w-[480px] sm:max-w-[520px] max-h-[95vh] overflow-y-auto bg-white border border-border rounded-xl shadow-luxe">
+      <div className="relative w-full max-w-[480px] sm:max-w-[520px] max-h-[95vh] overflow-y-auto bg-background border border-border rounded-lg shadow-luxe">
+        <div className="h-1 w-full bg-primary" aria-hidden="true" />
         <div className="px-5 py-5 sm:px-7 sm:py-6">
           <div className="text-center">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-primary">Private residence enquiry</p>
+            <h2 className="mt-1.5 font-display text-xl sm:text-2xl font-semibold text-foreground">Request Priority Access</h2>
             <p className="text-[12px] sm:text-[12.5px] text-muted-foreground">
               Share your requirements &amp; get exclusive listings.
             </p>
@@ -249,17 +253,16 @@ export function LeadGate({ mode = "site" }: { mode?: "site" | "coming_soon" }) {
               <li className="flex items-center gap-1"><span style={{ color: "var(--accent-red)" }}>✦</span> Priority Visit</li>
             </ul>
 
-            <button
+            <Button
               type="submit"
               disabled={submitting}
-              className="sm:col-span-2 mt-1 min-h-12 py-3 rounded-md text-white font-semibold tracking-[0.1em] uppercase text-[12.5px] shadow-gold hover:brightness-110 disabled:opacity-60 transition"
-              style={{ background: "var(--accent-red)" }}
+              className="sm:col-span-2 mt-1 min-h-12 py-3 font-semibold tracking-[0.1em] uppercase text-[12.5px] shadow-gold"
             >
-              {submitting ? "Submitting…" : "Get Exclusive Access"}
-            </button>
+              {submitting ? "Securing your request…" : "Get Exclusive Access"}
+            </Button>
 
             {submitError && (
-              <p role="alert" className="sm:col-span-2 text-[11px] text-destructive text-center">
+              <p role="alert" className="sm:col-span-2 rounded-md border border-destructive/30 bg-destructive/5 px-3 py-2 text-[11px] text-destructive text-center">
                 {submitError}
               </p>
             )}
