@@ -116,7 +116,7 @@ export function Footer({ brand, contact, rera }: { brand: string; contact: SiteC
               <li><Link to="/nri-buy-property-ahmedabad" className="hover:text-gold transition">NRI Remote Purchasing</Link></li>
               <li><Link to="/hafeez-contractor-project-ahmedabad" className="hover:text-gold transition">Hafeez Contractor Project</Link></li>
               <li><Link to="/rera-registered-project-ahmedabad" className="hover:text-gold transition">RERA Details & Carpet</Link></li>
-              <li><Link to="/insights/stamp-duty-tds-nri-tax-guide-ahmedabad-property" className="hover:text-gold transition">Stamp Duty & TDS Guide</Link></li>
+              <li><Link to="/insights/$slug" params={{ slug: "stamp-duty-tds-nri-tax-guide-ahmedabad-property" }} className="hover:text-gold transition">Stamp Duty & TDS Guide</Link></li>
             </ul>
           </div>
         </div>
