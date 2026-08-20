@@ -614,6 +614,16 @@ export const LANDING_BODIES: Record<string, string[]> = {
     "5 BHK inventory in Nehrunagar is almost entirely resale — new construction of this scale seldom comes to market in central Ahmedabad. Venus Universe is the exception: buyers can pair adjacent 4 BHK homes across Blocks A–J into a 5 BHK jodi or combined layout, subject to current official availability.",
     "This route preserves the ultra-central Nehrunagar address — close to CG Road, IIM-A, CEPT, Ahmedabad University and leading hospitals — while offering the extended family space of a 5 BHK. Request the specific combined-unit plan, RERA carpet-area statement and current inventory before booking.",
   ],
+  "luxury-4bhk-nehrunagar": [
+    "Nehrunagar is effectively a finished neighbourhood, which is why a brand-new luxury 4 BHK here behaves differently from one on the outer corridors. Instead of waiting for social infrastructure to arrive, buyers move into a catchment that already has the hospitals, schools, offices and retail they use every week.",
+    "At The Universe by Venus, the brochure documents block-specific 4 BHK RERA carpet areas from about 1,546 to 2,459 sq ft, with utility, wash and balcony areas stated separately, so families can compare plans honestly rather than on super-built-up numbers. Homes sit inside a ten-block gated community with a 2.2-acre landscaped podium, resort-scale club and multi-level security.",
+    "For upgraders already living in west Ahmedabad and for NRIs buying a base in the city, the combination is unusual: a central Nehrunagar address, a globally credited design team led by Hafeez Contractor with SWA landscape and HBA interiors, and RERA-registered documentation. Pre-launch allotment is open against a fully refundable ₹5,00,000 token.",
+  ],
+  "luxury-5bhk-nehrunagar": [
+    "There is no standing five-bedroom new-build supply in Nehrunagar, so a luxury 5 BHK here is created rather than bought off a list. At The Universe by Venus that means pairing two adjacent 4 BHK homes into a jodi, or taking a duplex arrangement, always on approved plans and always subject to current official inventory.",
+    "Combined layouts start from roughly 3,100 sq ft of aggregate RERA carpet area and allow genuinely separate zones — a private parents' wing, a formal living and dining spine, a family lounge and staff or utility spaces that do not intrude on the main house. Because merging is planned at design stage, the approved plan, structural clearance and agreement must all reflect the combined unit before booking.",
+    "The payoff is scale without leaving the centre of Ahmedabad: CG Road, Ashram Road, Paldi, IIM Ahmedabad, CEPT and leading hospitals stay minutes away, inside a seven-acre gated development with 70% open landscape. Ask the sales team for the pairing options, price sheet and carpet-area statement for your preferred blocks.",
+  ],
 };
 
 export function landingUrl(slug: string): string {
