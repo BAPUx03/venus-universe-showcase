@@ -463,6 +463,46 @@ export const LANDING_PAGES: Record<string, LandingConfig> = {
       { q: "How to book a 5 BHK at Venus Universe Nehrunagar?", a: "Submit the fully refundable ₹5,00,000 token to lock priority allotment and pre-launch pricing, then request the combined-unit plan and price sheet for your preferred blocks." },
     ],
   },
+  "luxury-4bhk-nehrunagar": {
+    slug: "luxury-4bhk-nehrunagar",
+    title: "Luxury 4 BHK in Nehrunagar | Venus Universe",
+    description:
+      "Luxury 4 BHK flats in Nehrunagar, Ahmedabad at The Universe by Venus — brochure-listed RERA carpet areas from 1,546 to 2,459 sq ft across Blocks A–J.",
+    h1: "Luxury 4 BHK Flats in Nehrunagar, Ahmedabad",
+    eyebrow: "4 BHK · Nehrunagar",
+    intro:
+      "A luxury 4 BHK in Nehrunagar is one of the rarest buys in Ahmedabad — the neighbourhood is fully built out and new towers almost never come free. At The Universe by Venus, brochure-documented 4 BHK plans span approximately 1,546 to 2,459 sq ft of RERA carpet area across Blocks A–J.",
+    keywords:
+      "luxury 4 BHK Nehrunagar, 4 BHK in Nehrunagar Ahmedabad, 4 BHK flats Nehru Nagar, buy 4 BHK Nehrunagar, premium 4 BHK Nehrunagar Ahmedabad",
+    breadcrumbLabel: "Luxury 4 BHK Nehrunagar",
+    faq: [
+      { q: "What is the price of a luxury 4 BHK in Nehrunagar?", a: "Premium 4 BHK residences at The Universe by Venus generally sit in the ₹5 Crore to ₹10 Crore band depending on block, floor, carpet area and view. Current pricing must be confirmed with the sales team." },
+      { q: "How large is a 4 BHK in Nehrunagar at Venus Universe?", a: "Brochure-listed 4 BHK RERA carpet areas range from approximately 1,546 to 2,459 sq ft, with utility, balcony and wash areas documented separately on each approved plan." },
+      { q: "Why is Nehrunagar preferred for a luxury 4 BHK?", a: "Nehrunagar is a low-density, established central address minutes from CG Road, Ashram Road, Paldi, IIM Ahmedabad, CEPT and leading hospitals — with almost no new luxury supply." },
+      { q: "Is the Nehrunagar project RERA registered?", a: "Yes. The Universe by Venus is a RERA-registered development; the registration number is published on the site footer and official brochure." },
+      { q: "How do I book a 4 BHK in Nehrunagar?", a: "Lock priority allotment and pre-launch pricing with the fully refundable ₹5,00,000 token, then request the approved plan and price sheet for your preferred block." },
+    ],
+  },
+  "luxury-5bhk-nehrunagar": {
+    slug: "luxury-5bhk-nehrunagar",
+    title: "Luxury 5 BHK in Nehrunagar | Venus Universe",
+    description:
+      "Luxury 5 BHK options in Nehrunagar, Ahmedabad at The Universe by Venus — jodi, duplex and combined-unit layouts from about 3,100 sq ft, subject to availability.",
+    h1: "Luxury 5 BHK Residences in Nehrunagar, Ahmedabad",
+    eyebrow: "5 BHK · Nehrunagar",
+    intro:
+      "Buyers looking for a luxury 5 BHK in Nehrunagar usually need a combined-unit, jodi or duplex configuration — five-bedroom stock simply does not exist in central Ahmedabad. At The Universe by Venus, such layouts are built on the approved 4 BHK plans across Blocks A–J and are subject to current official availability.",
+    keywords:
+      "luxury 5 BHK Nehrunagar, 5 BHK in Nehrunagar Ahmedabad, jodi flat Nehrunagar, duplex Nehrunagar Ahmedabad, 5 BHK Nehru Nagar luxury apartments",
+    breadcrumbLabel: "Luxury 5 BHK Nehrunagar",
+    faq: [
+      { q: "Is a luxury 5 BHK available in Nehrunagar?", a: "Five-bedroom homes in Nehrunagar are rare. At Venus Universe they are offered as jodi, duplex or combined-unit configurations on brochure-listed 4 BHK plans, subject to current official inventory." },
+      { q: "What carpet area does a 5 BHK in Nehrunagar offer?", a: "Combined-unit 5 BHK layouts start from roughly 3,100 sq ft of aggregate RERA carpet area, depending on the block and plan pairing chosen." },
+      { q: "What is the price of a 5 BHK in Nehrunagar Ahmedabad?", a: "Combined-unit 5 BHK pricing typically falls in the ₹7 Crore to ₹15 Crore band at Venus Universe, subject to block, floor and view. Confirm current pricing with the sales team." },
+      { q: "Can the two units be merged before possession?", a: "Merging is planned at the design stage where officially permitted, so the approved plan, structural clearance and agreement must reflect the combined unit before booking." },
+      { q: "Can NRIs buy a 5 BHK in Nehrunagar remotely?", a: "Yes — video walkthroughs, digital documentation, Power of Attorney support and international callbacks are available, and the refundable ₹5,00,000 token locks priority." },
+    ],
+  },
 };
 
 export const LANDING_SLUGS = Object.keys(LANDING_PAGES);
