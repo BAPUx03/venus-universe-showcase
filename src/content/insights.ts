@@ -164,6 +164,79 @@ export const INSIGHTS: Record<string, InsightPost> = {
       { q: "Is GST applicable on Venus Universe apartments?", a: "As an under-construction luxury residential development, applicable GST is 5% effective rate on unit agreement value." },
     ],
   },
+
+  "4bhk-price-carpet-area-nehrunagar-ahmedabad": {
+    slug: "4bhk-price-carpet-area-nehrunagar-ahmedabad",
+    title: "4 BHK Price & Carpet Area in Nehrunagar, Ahmedabad",
+    h1: "4 BHK Price and Carpet Area in Nehrunagar, Ahmedabad (2026)",
+    description:
+      "What a luxury 4 BHK in Nehrunagar actually costs in 2026 — carpet area vs super built-up, price bands, and the charges buyers forget to budget for.",
+    keywords:
+      "4 BHK price Nehrunagar, luxury 4 BHK Nehrunagar Ahmedabad, 4 BHK carpet area Ahmedabad, 4 BHK flat price Ahmedabad, RERA carpet area Nehrunagar",
+    category: "Buyer Guide",
+    date: "2026-08-18",
+    readMins: 7,
+    excerpt:
+      "Carpet area, price bands and the hidden line items — a practical breakdown of what a luxury 4 BHK in Nehrunagar costs and how to compare two projects fairly.",
+    body: [
+      { type: "p", text: "Nehrunagar is one of the few central Ahmedabad addresses where a brand-new 4 BHK is even possible, and that scarcity shapes pricing. Before comparing two projects, it helps to separate what you are actually buying — RERA carpet area — from the marketing number most brochures still lead with." },
+      { type: "h2", text: "Carpet area is the only number worth comparing" },
+      { type: "p", text: "RERA carpet area is the usable floor area within the walls of your apartment, excluding the shaft, balcony and open terrace. Super built-up area adds a share of lobbies, staircases and amenities, and two developers can load it very differently. A 3,400 sq ft super built-up 4 BHK in one project can be smaller in real terms than a 3,100 sq ft one in another." },
+      { type: "p", text: "At The Universe by Venus, the approved brochure documents block-specific 4 BHK RERA carpet areas from approximately 1,546 to 2,459 sq ft, with utility, wash and balcony areas stated separately. That separation is what lets you compare plans honestly." },
+      { type: "h2", text: "What a luxury 4 BHK in Nehrunagar costs" },
+      { type: "p", text: "Pricing in this micro-market is driven by carpet area, block position, floor level and view rather than a single rate card. Broad bands buyers should expect for genuinely premium 4 BHK stock in central Ahmedabad in 2026:" },
+      { type: "ul", items: ["Entry premium 4 BHK: around ₹5 Crore to ₹7 Crore", "Larger carpet or better-positioned blocks: about ₹7 Crore to ₹10 Crore", "Top-floor and combined-unit formats: ₹10 Crore and above, subject to availability", "Rate premiums of 3–8% are common for higher floors and unobstructed podium or skyline views"] },
+      { type: "p", text: "These are indicative bands for planning, not a quotation. Current pricing at any project must be confirmed on the official price sheet." },
+      { type: "h2", text: "Costs buyers forget to budget" },
+      { type: "p", text: "The agreement value is not the landed cost. Add stamp duty of 4.9% in Gujarat (3.9% for a female sole buyer), 1% registration, 5% GST on under-construction property, plus car parking, club membership, corpus and maintenance deposits. On a ₹7 Crore home these can add well over ₹75 Lakhs." },
+      { type: "h2", text: "A five-point checklist before you pay a token" },
+      { type: "ul", items: ["Ask for the RERA carpet-area statement for the exact unit, not the block average", "Compare price per sq ft on carpet area across shortlisted projects", "Read the payment schedule and check what is construction-linked", "Confirm the RERA registration number and approved plan for that block", "Get the full charge sheet — parking, club, corpus, maintenance, GST — in writing"] },
+      { type: "h2", text: "Where Venus Universe sits" },
+      { type: "p", text: "The Universe by Venus is a ten-block RERA-registered development in Nehrunagar with architecture by Hafeez Contractor, principal landscape design by SWA Group and interiors by HBA. Pre-launch allotment is open against a fully refundable ₹5,00,000 token, and larger formats are subject to official availability." },
+    ],
+    faq: [
+      { q: "What is the price of a 4 BHK in Nehrunagar, Ahmedabad?", a: "Premium new-build 4 BHK homes in Nehrunagar generally fall in the ₹5 Crore to ₹10 Crore band in 2026, depending on carpet area, block, floor and view. Confirm current pricing on the official price sheet." },
+      { q: "How much carpet area does a luxury 4 BHK offer?", a: "At The Universe by Venus, brochure-listed 4 BHK RERA carpet areas range from approximately 1,546 to 2,459 sq ft, with utility, wash and balcony areas stated separately." },
+      { q: "What is the difference between carpet area and super built-up area?", a: "Carpet area is usable area within your apartment walls as defined by RERA. Super built-up adds a loaded share of common areas, and that loading varies by developer — so always compare carpet area." },
+      { q: "What extra charges apply beyond the agreement value?", a: "Budget 4.9% stamp duty, 1% registration, 5% GST on under-construction property, plus parking, club membership, corpus and maintenance deposits." },
+    ],
+  },
+
+  "4bhk-vs-5bhk-nehrunagar-ahmedabad": {
+    slug: "4bhk-vs-5bhk-nehrunagar-ahmedabad",
+    title: "4 BHK vs 5 BHK in Nehrunagar: Which Should You Buy?",
+    h1: "4 BHK vs 5 BHK in Nehrunagar, Ahmedabad — How to Choose",
+    description:
+      "Compare a premium 4 BHK against a combined-unit 5 BHK in Nehrunagar — space, cost, resale depth and who each configuration actually suits.",
+    keywords:
+      "4 BHK vs 5 BHK Ahmedabad, 5 BHK Nehrunagar, jodi flat Ahmedabad, combined unit 5 BHK Nehrunagar, luxury apartment configuration Ahmedabad",
+    category: "Buyer Guide",
+    date: "2026-08-19",
+    readMins: 6,
+    excerpt:
+      "In central Ahmedabad a 5 BHK is usually two 4 BHK homes merged. Here is how the two options compare on cost, layout, resale and family fit.",
+    body: [
+      { type: "p", text: "Central Ahmedabad has almost no standing five-bedroom new-build inventory. So the real choice in Nehrunagar is not between two listings — it is between a well-planned premium 4 BHK and a combined-unit or jodi 5 BHK created from two adjacent homes on approved plans." },
+      { type: "h2", text: "Space and layout" },
+      { type: "p", text: "A premium 4 BHK in this market runs roughly 1,546 to 2,459 sq ft of RERA carpet area — enough for a family of four to five with a study or guest room. A combined 5 BHK starts from about 3,100 sq ft aggregate carpet area and unlocks something a single unit cannot: genuinely separate zones. A private parents' wing, a formal living and dining spine, a family lounge, and utility or staff space that stays out of the main house." },
+      { type: "h2", text: "Cost, honestly" },
+      { type: "p", text: "A combined unit is not one-and-a-quarter of a 4 BHK — it is close to two. Expect the ₹7 Crore to ₹15 Crore band versus ₹5 Crore to ₹10 Crore for a premium 4 BHK, plus higher stamp duty, GST, parking, club and maintenance on the larger aggregate. Merging work is also planned at design stage, so it must be reflected in the approved plan and agreement rather than done later." },
+      { type: "h2", text: "Resale and liquidity" },
+      { type: "p", text: "The 4 BHK is the deepest end-user segment in central Ahmedabad, which means a wider buyer pool at resale. Combined 5 BHK homes are rarer and can command a strong premium, but the buyer pool is narrower and sale timelines are typically longer. If liquidity matters more than absolute space, that trade-off should decide it." },
+      { type: "h2", text: "Who each one suits" },
+      { type: "ul", items: ["Premium 4 BHK: nuclear families, first-time luxury upgraders, NRIs wanting a low-maintenance central base with easy exit", "Combined 5 BHK: multi-generational households, families with live-in help, buyers who entertain formally and want a long-hold trophy home", "Either: buyers who prioritise the Nehrunagar address itself over raw square footage on the periphery"] },
+      { type: "h2", text: "Practical steps before you commit" },
+      { type: "p", text: "Walk both options on plan. Ask for the specific pairing available in your preferred block, the aggregate RERA carpet-area statement, the structural clearance for merging, and the full charge sheet for both configurations. Availability of jodi and duplex layouts changes with inventory, so confirm it in writing before paying a token." },
+      { type: "h2", text: "At The Universe by Venus" },
+      { type: "p", text: "Brochure-documented 4 BHK plans run across Blocks A–J in Nehrunagar. Five-bedroom outcomes are offered as jodi, duplex or combined-unit configurations on those approved plans, subject to current official availability. The refundable ₹5,00,000 token locks priority while you finalise the configuration." },
+    ],
+    faq: [
+      { q: "Is a 5 BHK available in Nehrunagar, Ahmedabad?", a: "Standalone five-bedroom new-build stock is effectively unavailable in Nehrunagar. At The Universe by Venus, 5 BHK outcomes are created as jodi, duplex or combined-unit configurations on approved 4 BHK plans, subject to current inventory." },
+      { q: "How much more does a 5 BHK cost than a 4 BHK?", a: "Because a 5 BHK here is usually two units merged, expect close to double — roughly the ₹7 Crore to ₹15 Crore band versus ₹5 Crore to ₹10 Crore for a premium 4 BHK, plus proportionally higher duties and charges." },
+      { q: "Which resells more easily in Ahmedabad, a 4 BHK or a 5 BHK?", a: "The 4 BHK has the deeper end-user market in central Ahmedabad and typically resells faster. Combined 5 BHK homes can fetch a premium but appeal to a narrower buyer pool." },
+      { q: "Can two apartments be merged after possession?", a: "Merging should be planned at design stage where officially permitted, so that the approved plan, structural clearance and agreement all reflect the combined unit before booking." },
+    ],
+  },
 };
 
 export const INSIGHT_SLUGS = Object.keys(INSIGHTS);
