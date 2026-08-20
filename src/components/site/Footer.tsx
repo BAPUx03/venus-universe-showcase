@@ -85,6 +85,8 @@ export function Footer({ brand, contact, rera }: { brand: string; contact: SiteC
             <p className="font-semibold text-ivory/90 mb-2.5 text-[11px] uppercase tracking-wider text-gold/90">Residences</p>
             <ul className="space-y-1.5 text-muted-foreground">
               <li><Link to="/luxury-4bhk-ahmedabad" className="hover:text-gold transition">Luxury 4 BHK Ahmedabad</Link></li>
+              <li><Link to="/luxury-4bhk-nehrunagar" className="hover:text-gold transition">Luxury 4 BHK Nehrunagar</Link></li>
+              <li><Link to="/luxury-5bhk-nehrunagar" className="hover:text-gold transition">Luxury 5 BHK Nehrunagar</Link></li>
               <li><Link to="/4bhk-nehrunagar-ahmedabad" className="hover:text-gold transition">4 BHK Nehrunagar</Link></li>
               <li><Link to="/penthouse-ahmedabad" className="hover:text-gold transition">Penthouse & Duplex</Link></li>
               <li><Link to="/large-carpet-area-flats-ahmedabad" className="hover:text-gold transition">Large Carpet Area Flats</Link></li>
