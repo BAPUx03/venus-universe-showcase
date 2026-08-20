@@ -85,6 +85,8 @@ export function Footer({ brand, contact, rera }: { brand: string; contact: SiteC
             <p className="font-semibold text-ivory/90 mb-2.5 text-[11px] uppercase tracking-wider text-gold/90">Residences</p>
             <ul className="space-y-1.5 text-muted-foreground">
               <li><Link to="/luxury-4bhk-ahmedabad" className="hover:text-gold transition">Luxury 4 BHK Ahmedabad</Link></li>
+              <li><Link to="/luxury-4bhk-nehrunagar" className="hover:text-gold transition">Luxury 4 BHK Nehrunagar</Link></li>
+              <li><Link to="/luxury-5bhk-nehrunagar" className="hover:text-gold transition">Luxury 5 BHK Nehrunagar</Link></li>
               <li><Link to="/4bhk-nehrunagar-ahmedabad" className="hover:text-gold transition">4 BHK Nehrunagar</Link></li>
               <li><Link to="/penthouse-ahmedabad" className="hover:text-gold transition">Penthouse & Duplex</Link></li>
               <li><Link to="/large-carpet-area-flats-ahmedabad" className="hover:text-gold transition">Large Carpet Area Flats</Link></li>
@@ -116,7 +118,7 @@ export function Footer({ brand, contact, rera }: { brand: string; contact: SiteC
               <li><Link to="/nri-buy-property-ahmedabad" className="hover:text-gold transition">NRI Remote Purchasing</Link></li>
               <li><Link to="/hafeez-contractor-project-ahmedabad" className="hover:text-gold transition">Hafeez Contractor Project</Link></li>
               <li><Link to="/rera-registered-project-ahmedabad" className="hover:text-gold transition">RERA Details & Carpet</Link></li>
-              <li><Link to="/insights/stamp-duty-tds-nri-tax-guide-ahmedabad-property" className="hover:text-gold transition">Stamp Duty & TDS Guide</Link></li>
+              <li><Link to="/insights/$slug" params={{ slug: "stamp-duty-tds-nri-tax-guide-ahmedabad-property" }} className="hover:text-gold transition">Stamp Duty & TDS Guide</Link></li>
             </ul>
           </div>
         </div>

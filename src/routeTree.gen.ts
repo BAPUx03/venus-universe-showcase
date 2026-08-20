@@ -30,7 +30,9 @@ import { Route as LuxuryApartmentsShivranjaniAhmedabadRouteImport } from './rout
 import { Route as LuxuryApartmentsCgRoadAhmedabadRouteImport } from './routes/luxury-apartments-cg-road-ahmedabad'
 import { Route as LuxuryApartmentsCentralAhmedabadRouteImport } from './routes/luxury-apartments-central-ahmedabad'
 import { Route as LuxuryApartmentsAshramRoadAhmedabadRouteImport } from './routes/luxury-apartments-ashram-road-ahmedabad'
+import { Route as Luxury5bhkNehrunagarRouteImport } from './routes/luxury-5bhk-nehrunagar'
 import { Route as Luxury5bhkAhmedabadRouteImport } from './routes/luxury-5bhk-ahmedabad'
+import { Route as Luxury4bhkNehrunagarRouteImport } from './routes/luxury-4bhk-nehrunagar'
 import { Route as Luxury4bhkAhmedabadRouteImport } from './routes/luxury-4bhk-ahmedabad'
 import { Route as LlmsDottxtRouteImport } from './routes/llms[.]txt'
 import { Route as LargeCarpetAreaFlatsAhmedabadRouteImport } from './routes/large-carpet-area-flats-ahmedabad'
@@ -168,9 +170,19 @@ const LuxuryApartmentsAshramRoadAhmedabadRoute =
     path: '/luxury-apartments-ashram-road-ahmedabad',
     getParentRoute: () => rootRouteImport,
   } as any)
+const Luxury5bhkNehrunagarRoute = Luxury5bhkNehrunagarRouteImport.update({
+  id: '/luxury-5bhk-nehrunagar',
+  path: '/luxury-5bhk-nehrunagar',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const Luxury5bhkAhmedabadRoute = Luxury5bhkAhmedabadRouteImport.update({
   id: '/luxury-5bhk-ahmedabad',
   path: '/luxury-5bhk-ahmedabad',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const Luxury4bhkNehrunagarRoute = Luxury4bhkNehrunagarRouteImport.update({
+  id: '/luxury-4bhk-nehrunagar',
+  path: '/luxury-4bhk-nehrunagar',
   getParentRoute: () => rootRouteImport,
 } as any)
 const Luxury4bhkAhmedabadRoute = Luxury4bhkAhmedabadRouteImport.update({
@@ -290,7 +302,9 @@ export interface FileRoutesByFullPath {
   '/large-carpet-area-flats-ahmedabad': typeof LargeCarpetAreaFlatsAhmedabadRoute
   '/llms.txt': typeof LlmsDottxtRoute
   '/luxury-4bhk-ahmedabad': typeof Luxury4bhkAhmedabadRoute
+  '/luxury-4bhk-nehrunagar': typeof Luxury4bhkNehrunagarRoute
   '/luxury-5bhk-ahmedabad': typeof Luxury5bhkAhmedabadRoute
+  '/luxury-5bhk-nehrunagar': typeof Luxury5bhkNehrunagarRoute
   '/luxury-apartments-ashram-road-ahmedabad': typeof LuxuryApartmentsAshramRoadAhmedabadRoute
   '/luxury-apartments-central-ahmedabad': typeof LuxuryApartmentsCentralAhmedabadRoute
   '/luxury-apartments-cg-road-ahmedabad': typeof LuxuryApartmentsCgRoadAhmedabadRoute
@@ -333,7 +347,9 @@ export interface FileRoutesByTo {
   '/large-carpet-area-flats-ahmedabad': typeof LargeCarpetAreaFlatsAhmedabadRoute
   '/llms.txt': typeof LlmsDottxtRoute
   '/luxury-4bhk-ahmedabad': typeof Luxury4bhkAhmedabadRoute
+  '/luxury-4bhk-nehrunagar': typeof Luxury4bhkNehrunagarRoute
   '/luxury-5bhk-ahmedabad': typeof Luxury5bhkAhmedabadRoute
+  '/luxury-5bhk-nehrunagar': typeof Luxury5bhkNehrunagarRoute
   '/luxury-apartments-ashram-road-ahmedabad': typeof LuxuryApartmentsAshramRoadAhmedabadRoute
   '/luxury-apartments-central-ahmedabad': typeof LuxuryApartmentsCentralAhmedabadRoute
   '/luxury-apartments-cg-road-ahmedabad': typeof LuxuryApartmentsCgRoadAhmedabadRoute
@@ -377,7 +393,9 @@ export interface FileRoutesById {
   '/large-carpet-area-flats-ahmedabad': typeof LargeCarpetAreaFlatsAhmedabadRoute
   '/llms.txt': typeof LlmsDottxtRoute
   '/luxury-4bhk-ahmedabad': typeof Luxury4bhkAhmedabadRoute
+  '/luxury-4bhk-nehrunagar': typeof Luxury4bhkNehrunagarRoute
   '/luxury-5bhk-ahmedabad': typeof Luxury5bhkAhmedabadRoute
+  '/luxury-5bhk-nehrunagar': typeof Luxury5bhkNehrunagarRoute
   '/luxury-apartments-ashram-road-ahmedabad': typeof LuxuryApartmentsAshramRoadAhmedabadRoute
   '/luxury-apartments-central-ahmedabad': typeof LuxuryApartmentsCentralAhmedabadRoute
   '/luxury-apartments-cg-road-ahmedabad': typeof LuxuryApartmentsCgRoadAhmedabadRoute
@@ -422,7 +440,9 @@ export interface FileRouteTypes {
     | '/large-carpet-area-flats-ahmedabad'
     | '/llms.txt'
     | '/luxury-4bhk-ahmedabad'
+    | '/luxury-4bhk-nehrunagar'
     | '/luxury-5bhk-ahmedabad'
+    | '/luxury-5bhk-nehrunagar'
     | '/luxury-apartments-ashram-road-ahmedabad'
     | '/luxury-apartments-central-ahmedabad'
     | '/luxury-apartments-cg-road-ahmedabad'
@@ -465,7 +485,9 @@ export interface FileRouteTypes {
     | '/large-carpet-area-flats-ahmedabad'
     | '/llms.txt'
     | '/luxury-4bhk-ahmedabad'
+    | '/luxury-4bhk-nehrunagar'
     | '/luxury-5bhk-ahmedabad'
+    | '/luxury-5bhk-nehrunagar'
     | '/luxury-apartments-ashram-road-ahmedabad'
     | '/luxury-apartments-central-ahmedabad'
     | '/luxury-apartments-cg-road-ahmedabad'
@@ -508,7 +530,9 @@ export interface FileRouteTypes {
     | '/large-carpet-area-flats-ahmedabad'
     | '/llms.txt'
     | '/luxury-4bhk-ahmedabad'
+    | '/luxury-4bhk-nehrunagar'
     | '/luxury-5bhk-ahmedabad'
+    | '/luxury-5bhk-nehrunagar'
     | '/luxury-apartments-ashram-road-ahmedabad'
     | '/luxury-apartments-central-ahmedabad'
     | '/luxury-apartments-cg-road-ahmedabad'
@@ -552,7 +576,9 @@ export interface RootRouteChildren {
   LargeCarpetAreaFlatsAhmedabadRoute: typeof LargeCarpetAreaFlatsAhmedabadRoute
   LlmsDottxtRoute: typeof LlmsDottxtRoute
   Luxury4bhkAhmedabadRoute: typeof Luxury4bhkAhmedabadRoute
+  Luxury4bhkNehrunagarRoute: typeof Luxury4bhkNehrunagarRoute
   Luxury5bhkAhmedabadRoute: typeof Luxury5bhkAhmedabadRoute
+  Luxury5bhkNehrunagarRoute: typeof Luxury5bhkNehrunagarRoute
   LuxuryApartmentsAshramRoadAhmedabadRoute: typeof LuxuryApartmentsAshramRoadAhmedabadRoute
   LuxuryApartmentsCentralAhmedabadRoute: typeof LuxuryApartmentsCentralAhmedabadRoute
   LuxuryApartmentsCgRoadAhmedabadRoute: typeof LuxuryApartmentsCgRoadAhmedabadRoute
@@ -733,11 +759,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LuxuryApartmentsAshramRoadAhmedabadRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/luxury-5bhk-nehrunagar': {
+      id: '/luxury-5bhk-nehrunagar'
+      path: '/luxury-5bhk-nehrunagar'
+      fullPath: '/luxury-5bhk-nehrunagar'
+      preLoaderRoute: typeof Luxury5bhkNehrunagarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/luxury-5bhk-ahmedabad': {
       id: '/luxury-5bhk-ahmedabad'
       path: '/luxury-5bhk-ahmedabad'
       fullPath: '/luxury-5bhk-ahmedabad'
       preLoaderRoute: typeof Luxury5bhkAhmedabadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/luxury-4bhk-nehrunagar': {
+      id: '/luxury-4bhk-nehrunagar'
+      path: '/luxury-4bhk-nehrunagar'
+      fullPath: '/luxury-4bhk-nehrunagar'
+      preLoaderRoute: typeof Luxury4bhkNehrunagarRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/luxury-4bhk-ahmedabad': {
@@ -888,7 +928,9 @@ const rootRouteChildren: RootRouteChildren = {
   LargeCarpetAreaFlatsAhmedabadRoute: LargeCarpetAreaFlatsAhmedabadRoute,
   LlmsDottxtRoute: LlmsDottxtRoute,
   Luxury4bhkAhmedabadRoute: Luxury4bhkAhmedabadRoute,
+  Luxury4bhkNehrunagarRoute: Luxury4bhkNehrunagarRoute,
   Luxury5bhkAhmedabadRoute: Luxury5bhkAhmedabadRoute,
+  Luxury5bhkNehrunagarRoute: Luxury5bhkNehrunagarRoute,
   LuxuryApartmentsAshramRoadAhmedabadRoute:
     LuxuryApartmentsAshramRoadAhmedabadRoute,
   LuxuryApartmentsCentralAhmedabadRoute: LuxuryApartmentsCentralAhmedabadRoute,
