@@ -503,6 +503,122 @@ export const LANDING_PAGES: Record<string, LandingConfig> = {
       { q: "Can NRIs buy a 5 BHK in Nehrunagar remotely?", a: "Yes — video walkthroughs, digital documentation, Power of Attorney support and international callbacks are available, and the refundable ₹5,00,000 token locks priority." },
     ],
   },
+  "luxury-flats-in-ahmedabad": {
+    slug: "luxury-flats-in-ahmedabad",
+    title: "Luxury Flats in Ahmedabad | The Universe by Venus",
+    description:
+      "Luxury flats in Ahmedabad at The Universe by Venus, Nehrunagar — RERA-registered 4 BHK homes with carpet areas from 1,546 to 2,459 sq ft across Blocks A–J.",
+    h1: "Luxury Flats in Ahmedabad — Central, RERA-Registered, Ready to Book",
+    eyebrow: "Luxury Flats · Ahmedabad",
+    intro:
+      "If you are searching for luxury flats in Ahmedabad, the shortlist in the city centre is short. The Universe by Venus is a ten-block RERA-registered development in Nehrunagar with brochure-documented 4 BHK carpet areas from approximately 1,546 to 2,459 sq ft, architecture by Hafeez Contractor and interiors by Hirsch Bedner Associates.",
+    keywords:
+      "luxury flats in Ahmedabad, luxury apartments Ahmedabad, premium flats Ahmedabad, luxury 4 BHK flats Ahmedabad, high end flats Ahmedabad",
+    breadcrumbLabel: "Luxury Flats in Ahmedabad",
+    faq: [
+      { q: "Which are the best luxury flats in Ahmedabad right now?", a: "Central options are limited because Nehrunagar, CG Road and Ashram Road are largely built out. The Universe by Venus is one of the few new RERA-registered luxury developments in that belt, offering premium 4 BHK residences across ten blocks." },
+      { q: "What is the price of luxury flats in Ahmedabad?", a: "Genuinely premium flats in central Ahmedabad generally sit in the ₹5 Crore to ₹15 Crore band depending on carpet area, block, floor and view. Confirm current pricing on the official price sheet." },
+      { q: "How much carpet area do these luxury flats offer?", a: "Brochure-listed RERA carpet areas range from approximately 1,546 to 2,459 sq ft, with utility, wash and balcony areas stated separately on each approved plan." },
+      { q: "Are the flats RERA registered?", a: "Yes. The Universe by Venus is RERA registered and the registration number is published in the site footer and the official brochure." },
+      { q: "How do I book a luxury flat in Ahmedabad?", a: "A fully refundable ₹5,00,000 token locks priority allotment and pre-launch pricing while you review the approved plan and price sheet." },
+    ],
+  },
+  "flats-for-sale-in-ahmedabad": {
+    slug: "flats-for-sale-in-ahmedabad",
+    title: "Flats for Sale in Ahmedabad | Venus Universe Nehrunagar",
+    description:
+      "Flats for sale in central Ahmedabad — new 4 BHK residences at The Universe by Venus, Nehrunagar, with RERA carpet areas, price bands and booking details.",
+    h1: "Flats for Sale in Ahmedabad — New 4 BHK Homes in Nehrunagar",
+    eyebrow: "Flats for Sale · Ahmedabad",
+    intro:
+      "Most flats for sale in Ahmedabad's centre are resale stock in older buildings. The Universe by Venus offers new construction in Nehrunagar: ten blocks, premium 4 BHK plans from about 1,546 to 2,459 sq ft of RERA carpet area, a landscaped podium and a resort-scale club, all within minutes of CG Road and Ashram Road.",
+    keywords:
+      "flats for sale in Ahmedabad, flats in Ahmedabad for sale, 4 BHK flats for sale Ahmedabad, new flats Ahmedabad, buy flat in Ahmedabad",
+    breadcrumbLabel: "Flats for Sale in Ahmedabad",
+    faq: [
+      { q: "What types of flats are for sale at Venus Universe?", a: "The approved brochure documents premium 4 BHK residences across Blocks A–J. Jodi, duplex and combined-unit formats are subject to current official availability." },
+      { q: "Are these new flats or resale?", a: "These are new, under-construction residences sold directly by the developer, not resale inventory." },
+      { q: "What charges apply beyond the flat price?", a: "Budget 4.9% stamp duty in Gujarat, 1% registration, 5% GST on under-construction property, plus parking, club membership, corpus and maintenance deposits." },
+      { q: "Can I visit the site before booking?", a: "Yes. Site visits can be scheduled with the sales team, and international buyers can request a video walkthrough instead." },
+    ],
+  },
+  "under-construction-projects-ahmedabad": {
+    slug: "under-construction-projects-ahmedabad",
+    title: "Under Construction Projects in Ahmedabad | Venus Universe",
+    description:
+      "Under-construction luxury projects in central Ahmedabad — Venus Universe in Nehrunagar, RERA registered, with construction-linked payments and refundable token.",
+    h1: "Under Construction Projects in Ahmedabad — What to Check Before You Book",
+    eyebrow: "Under Construction · Ahmedabad",
+    intro:
+      "Buying an under-construction project in Ahmedabad means buying on documents: RERA registration, approved plans, construction-linked payment schedules and the developer's delivery record. The Universe by Venus is a RERA-registered ten-block development in Nehrunagar where each of those can be verified before you commit.",
+    keywords:
+      "under construction projects in Ahmedabad, under construction flats Ahmedabad, new construction project Ahmedabad, RERA under construction Ahmedabad, upcoming luxury project Ahmedabad",
+    breadcrumbLabel: "Under Construction Ahmedabad",
+    faq: [
+      { q: "Why buy an under-construction project instead of ready possession?", a: "Under-construction inventory usually offers better pricing, wider choice of block and floor, and construction-linked payments — with delivery risk managed through RERA registration and approved plans." },
+      { q: "Is GST payable on under-construction flats?", a: "Yes. GST of 5% applies to under-construction residential property in India, in addition to stamp duty and registration charges." },
+      { q: "How do I verify an under-construction project in Ahmedabad?", a: "Check the RERA registration number, the approved plan and carpet-area statement for your exact unit, the payment schedule, and the developer's completed project record." },
+      { q: "What is the payment structure at Venus Universe?", a: "Booking starts with a fully refundable ₹5,00,000 token; the balance follows a construction-linked schedule set out in the agreement." },
+    ],
+  },
+  "nri-property-investment-ahmedabad": {
+    slug: "nri-property-investment-ahmedabad",
+    title: "NRI Property Investment in Ahmedabad | Venus Universe",
+    description:
+      "NRI property investment in Ahmedabad — FEMA rules, NRE/NRO payments, TDS, Power of Attorney and why central Nehrunagar holds value. Venus Universe guide.",
+    h1: "NRI Property Investment in Ahmedabad — Rules, Payments and What to Buy",
+    eyebrow: "NRI Investment · Ahmedabad",
+    intro:
+      "NRIs and OCI cardholders can buy residential property in India without RBI permission under FEMA, funded through NRE, NRO or FCNR accounts. What decides the return is the address: a central, supply-starved micro-market like Nehrunagar behaves very differently from the city's outer corridors. The Universe by Venus sits in that centre, RERA registered and open for remote booking.",
+    keywords:
+      "NRI property investment Ahmedabad, NRI real estate investment India, NRI buy flat Ahmedabad, FEMA property rules NRI, NRE NRO property payment Ahmedabad",
+    breadcrumbLabel: "NRI Property Investment",
+    faq: [
+      { q: "Can an NRI buy residential property in Ahmedabad?", a: "Yes. NRIs and OCI cardholders may buy residential and commercial property in India under FEMA without RBI approval. Agricultural land, plantations and farmhouses cannot be purchased." },
+      { q: "How should an NRI pay for property in India?", a: "Payments must be made in Indian rupees through normal banking channels — an NRE, NRO or FCNR account, or inward remittance. Foreign currency cannot be paid directly to the developer." },
+      { q: "Can an NRI take a home loan in India?", a: "Yes. Indian banks and housing finance companies offer NRI home loans, disbursed and repaid in rupees through NRE or NRO accounts, subject to their income and documentation norms." },
+      { q: "What tax applies when an NRI sells Indian property?", a: "Capital gains tax applies, with TDS deducted at source by the buyer. Long-term gains may be reinvested under Sections 54 and 54EC. Confirm current rates with a chartered accountant." },
+      { q: "Can the purchase be completed without flying to India?", a: "Yes. Documentation can be executed digitally and registration completed through a registered Power of Attorney, with video walkthroughs offered before booking." },
+    ],
+  },
+  "nri-buy-property-ahmedabad-from-usa": {
+    slug: "nri-buy-property-ahmedabad-from-usa",
+    title: "Buy Property in Ahmedabad from USA | NRI Guide",
+    description:
+      "How NRIs in the USA buy property in Ahmedabad — remittance limits, NRE/NRO payments, Power of Attorney registration and remote booking at Venus Universe.",
+    h1: "Buy Property in Ahmedabad from the USA — A Practical NRI Guide",
+    eyebrow: "NRI · USA",
+    intro:
+      "Buying from the United States is mostly a documentation exercise. Funds move as an inward remittance into an NRE or NRO account, the agreement is executed digitally, and registration is completed in Ahmedabad through a Power of Attorney. At The Universe by Venus in Nehrunagar, US-based buyers can review approved plans, take a video walkthrough and lock priority with a fully refundable ₹5,00,000 token.",
+    keywords:
+      "buy property in Ahmedabad from USA, NRI property purchase from US, buy flat in India from America, NRI Ahmedabad real estate USA, remote property booking Ahmedabad",
+    breadcrumbLabel: "Buy from USA",
+    faq: [
+      { q: "How does an NRI in the USA transfer money to buy a flat in Ahmedabad?", a: "Funds are remitted through normal banking channels into an NRE or NRO account and paid to the developer in rupees. Confirm your US bank's remittance limits and reporting requirements." },
+      { q: "Do I need to travel to India to register the property?", a: "No. Registration can be completed by a trusted representative holding a registered Power of Attorney, executed and attested as required from the USA." },
+      { q: "Are there US tax implications?", a: "US persons generally report worldwide income and may have FBAR or FATCA disclosure obligations. Speak to a cross-border tax adviser before purchase." },
+      { q: "How can I see the project from the USA?", a: "Request a scheduled video walkthrough, the approved plan set, RERA carpet-area statement and price sheet; international callbacks are arranged around US time zones." },
+    ],
+  },
+  "nri-buy-property-ahmedabad-from-dubai": {
+    slug: "nri-buy-property-ahmedabad-from-dubai",
+    title: "Buy Property in Ahmedabad from Dubai | NRI Guide",
+    description:
+      "NRIs in Dubai and the UAE buying property in Ahmedabad — AED remittance, NRE/NRO accounts, Power of Attorney and remote booking at Venus Universe Nehrunagar.",
+    h1: "Buy Property in Ahmedabad from Dubai and the UAE",
+    eyebrow: "NRI · Dubai & UAE",
+    intro:
+      "Gujarati families across Dubai, Sharjah and Abu Dhabi remain among the most active buyers in Ahmedabad, and the process is straightforward: remit AED through banking channels into an NRE or NRO account, pay in rupees, and register through a Power of Attorney. The Universe by Venus offers UAE buyers approved plans, video walkthroughs and a fully refundable ₹5,00,000 token to hold priority.",
+    keywords:
+      "buy property in Ahmedabad from Dubai, NRI property investment UAE, buy flat in India from Dubai, Gujarati NRI Dubai property Ahmedabad, UAE NRI real estate India",
+    breadcrumbLabel: "Buy from Dubai",
+    faq: [
+      { q: "Can a UAE-based NRI buy a flat in Ahmedabad?", a: "Yes. NRIs and OCI cardholders resident in the UAE may buy residential property in India under FEMA, paying in rupees through an NRE, NRO or FCNR account." },
+      { q: "How do I remit AED for a property purchase?", a: "Transfer through your UAE bank or a regulated exchange house into your NRE or NRO account in India, then pay the developer in rupees against the agreed schedule." },
+      { q: "Is a visit to Ahmedabad necessary?", a: "No. Documentation can be handled digitally and registration completed via a registered Power of Attorney, with a site visit optional on your next trip." },
+      { q: "Why do UAE buyers prefer central Ahmedabad?", a: "Central micro-markets such as Nehrunagar have almost no new supply, strong rental demand and established social infrastructure — which supports long-term value better than peripheral corridors." },
+    ],
+  },
 };
 
 export const LANDING_SLUGS = Object.keys(LANDING_PAGES);
