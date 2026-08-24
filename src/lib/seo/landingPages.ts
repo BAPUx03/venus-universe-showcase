@@ -740,6 +740,36 @@ export const LANDING_BODIES: Record<string, string[]> = {
     "Combined layouts start from roughly 3,100 sq ft of aggregate RERA carpet area and allow genuinely separate zones — a private parents' wing, a formal living and dining spine, a family lounge and staff or utility spaces that do not intrude on the main house. Because merging is planned at design stage, the approved plan, structural clearance and agreement must all reflect the combined unit before booking.",
     "The payoff is scale without leaving the centre of Ahmedabad: CG Road, Ashram Road, Paldi, IIM Ahmedabad, CEPT and leading hospitals stay minutes away, inside a seven-acre gated development with 70% open landscape. Ask the sales team for the pairing options, price sheet and carpet-area statement for your preferred blocks.",
   ],
+  "luxury-flats-in-ahmedabad": [
+    "Searching for luxury flats in Ahmedabad usually ends in a trade-off: either a genuinely central address in an ageing building, or a new tower on a corridor where the schools, hospitals and offices are still years away. The Universe by Venus removes that trade-off by placing new RERA-registered residences inside Nehrunagar, a neighbourhood that is already complete.",
+    "The brochure documents block-specific 4 BHK RERA carpet areas from roughly 1,546 to 2,459 sq ft across Blocks A–J, with utility, wash and balcony areas listed separately so plans can be compared honestly instead of on super-built-up numbers. Architecture is by Hafeez Contractor, principal landscape design by SWA California and interiors by Hirsch Bedner Associates.",
+    "For buyers upgrading within west Ahmedabad and for NRIs establishing a base in the city, priority allotment is open against a fully refundable ₹5,00,000 token, which holds pre-launch pricing while you review the approved plan, RERA carpet-area statement and official price sheet.",
+  ],
+  "flats-for-sale-in-ahmedabad": [
+    "Most listings for flats for sale in Ahmedabad are resale stock, where carpet areas are inconsistent, parking is contested and the building's services are a decade or more old. A new RERA-registered project changes the diligence: approved plans, stated carpet areas and a documented payment schedule are all available before you commit.",
+    "At The Universe by Venus in Nehrunagar, ten blocks sit on a seven-acre parcel with a 2.2-acre landscaped podium, roughly 70% open space, a resort-scale club and multi-level security. Premium 4 BHK homes range from about 1,546 to 2,459 sq ft RERA carpet area, with larger jodi, duplex and penthouse configurations where officially applicable.",
+    "Ask for the block-wise price sheet, the RERA registration details and the current inventory list before booking. A fully refundable ₹5,00,000 token secures your position in the allotment queue while that review is completed.",
+  ],
+  "under-construction-projects-ahmedabad": [
+    "Buyers choose under-construction projects in Ahmedabad for two reasons: entry pricing before completion, and the ability to select block, floor and view while inventory is still open. The trade-off is execution risk, which is why the developer's delivery record and the project's RERA registration matter more than the marketing.",
+    "The Universe by Venus is a RERA-registered, under-construction landmark in central Nehrunagar from the Venus Group, with construction progress, approved plans and a stage-linked payment schedule available for review. Design is led by Hafeez Contractor, with SWA California landscape and HBA Singapore interiors.",
+    "Before committing to any under-construction home, verify the RERA number and completion date, the block-specific carpet area, the payment milestones and what is included in the fit-out specification. The sales team shares all four on request, and the ₹5,00,000 token remains fully refundable during that review.",
+  ],
+  "nri-property-investment-ahmedabad": [
+    "For NRIs, property investment in Ahmedabad is straightforward under FEMA: an NRI or OCI may purchase residential property in India without RBI approval, funded through NRE, NRO or FCNR accounts or by inward remittance through normal banking channels. Agricultural land, plantations and farmhouses remain outside that permission.",
+    "Practical execution matters as much as eligibility. Most remote purchases are completed using a registered Power of Attorney held by a trusted family member, with digital sharing of the allotment letter, agreement and payment receipts. Stamp duty and registration are payable in Gujarat at prevailing rates, and TDS obligations apply on resale, so budget them into the total outlay.",
+    "The Universe by Venus supports this workflow with video walkthroughs of the sales gallery and plans, coordinated documentation, and international callbacks scheduled to your time zone. Confirm all tax, FEMA and repatriation questions with your own chartered accountant or legal advisor before transferring funds.",
+  ],
+  "nri-buy-property-ahmedabad-from-usa": [
+    "NRIs buying property in Ahmedabad from the USA generally fund the purchase by remitting from a US bank account into an NRE or NRO account, or directly through normal banking channels. Keep the remittance trail clean — bank advices and FIRCs make repatriation on a future sale far simpler.",
+    "Because a US-based buyer rarely travels for each stage, the standard route is a registered Power of Attorney executed before an Indian consulate in the US or notarised and apostilled, then adjudicated in Gujarat. That single document lets a nominee sign the agreement, complete registration and take possession on your behalf.",
+    "The Venus Universe sales team runs live video walkthroughs across US time zones, shares the approved plan, RERA carpet-area statement and price sheet digitally, and holds priority allotment against a fully refundable ₹5,00,000 token. US tax reporting on Indian assets should be reviewed with your own CPA.",
+  ],
+  "nri-buy-property-ahmedabad-from-dubai": [
+    "Buying property in Ahmedabad from Dubai is one of the most common NRI routes into Gujarat real estate, helped by direct flights, short time-zone difference and a large Gujarati community in the UAE. Funding is normally an AED remittance into an NRE or NRO account, or inward remittance through normal banking channels.",
+    "Many UAE-based buyers complete one short trip for site visit and registration and handle everything else remotely, using a consular or apostilled Power of Attorney for the stages they cannot attend. Retain the remittance advices — they support repatriation of sale proceeds later under FEMA limits.",
+    "At The Universe by Venus, Gulf Standard Time is only 90 minutes behind IST, so live walkthroughs, plan reviews and callbacks are easy to schedule. Priority allotment is held against a fully refundable ₹5,00,000 token while you verify the RERA registration, block-wise carpet areas and price sheet with your advisor.",
+  ],
 };
 
 export function landingUrl(slug: string): string {

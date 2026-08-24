@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as VenusUniverseNehrunagarRouteImport } from './routes/venus-universe-nehrunagar'
 import { Route as VenusUniverseAhmedabadRouteImport } from './routes/venus-universe-ahmedabad'
+import { Route as UnderConstructionProjectsAhmedabadRouteImport } from './routes/under-construction-projects-ahmedabad'
 import { Route as UltraLuxuryApartmentsAhmedabadRouteImport } from './routes/ultra-luxury-apartments-ahmedabad'
 import { Route as StudioRouteImport } from './routes/studio'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
@@ -21,11 +22,15 @@ import { Route as PropertyInAhmedabad7To10CroreRouteImport } from './routes/prop
 import { Route as PropertyInAhmedabad5To7CroreRouteImport } from './routes/property-in-ahmedabad-5-to-7-crore'
 import { Route as PropertyInAhmedabad10To15CroreRouteImport } from './routes/property-in-ahmedabad-10-to-15-crore'
 import { Route as PenthouseAhmedabadRouteImport } from './routes/penthouse-ahmedabad'
+import { Route as NriPropertyInvestmentAhmedabadRouteImport } from './routes/nri-property-investment-ahmedabad'
 import { Route as NriInvestmentAhmedabadRouteImport } from './routes/nri-investment-ahmedabad'
+import { Route as NriBuyPropertyAhmedabadFromUsaRouteImport } from './routes/nri-buy-property-ahmedabad-from-usa'
+import { Route as NriBuyPropertyAhmedabadFromDubaiRouteImport } from './routes/nri-buy-property-ahmedabad-from-dubai'
 import { Route as NriBuyPropertyAhmedabadRouteImport } from './routes/nri-buy-property-ahmedabad'
 import { Route as NewLuxuryProjectAhmedabadRouteImport } from './routes/new-luxury-project-ahmedabad'
 import { Route as McpRouteImport } from './routes/mcp'
 import { Route as LuxuryRealEstateAhmedabadRouteImport } from './routes/luxury-real-estate-ahmedabad'
+import { Route as LuxuryFlatsInAhmedabadRouteImport } from './routes/luxury-flats-in-ahmedabad'
 import { Route as LuxuryApartmentsShivranjaniAhmedabadRouteImport } from './routes/luxury-apartments-shivranjani-ahmedabad'
 import { Route as LuxuryApartmentsCgRoadAhmedabadRouteImport } from './routes/luxury-apartments-cg-road-ahmedabad'
 import { Route as LuxuryApartmentsCentralAhmedabadRouteImport } from './routes/luxury-apartments-central-ahmedabad'
@@ -39,6 +44,7 @@ import { Route as LargeCarpetAreaFlatsAhmedabadRouteImport } from './routes/larg
 import { Route as HafeezContractorProjectAhmedabadRouteImport } from './routes/hafeez-contractor-project-ahmedabad'
 import { Route as GatedCommunityAhmedabadRouteImport } from './routes/gated-community-ahmedabad'
 import { Route as FlatsNearIimAhmedabadRouteImport } from './routes/flats-near-iim-ahmedabad'
+import { Route as FlatsForSaleInAhmedabadRouteImport } from './routes/flats-for-sale-in-ahmedabad'
 import { Route as EoiRouteImport } from './routes/eoi'
 import { Route as BestLuxuryProjectAhmedabadRouteImport } from './routes/best-luxury-project-ahmedabad'
 import { Route as R5bhkNehrunagarAhmedabadRouteImport } from './routes/5bhk-nehrunagar-ahmedabad'
@@ -63,6 +69,12 @@ const VenusUniverseAhmedabadRoute = VenusUniverseAhmedabadRouteImport.update({
   path: '/venus-universe-ahmedabad',
   getParentRoute: () => rootRouteImport,
 } as any)
+const UnderConstructionProjectsAhmedabadRoute =
+  UnderConstructionProjectsAhmedabadRouteImport.update({
+    id: '/under-construction-projects-ahmedabad',
+    path: '/under-construction-projects-ahmedabad',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const UltraLuxuryApartmentsAhmedabadRoute =
   UltraLuxuryApartmentsAhmedabadRouteImport.update({
     id: '/ultra-luxury-apartments-ahmedabad',
@@ -119,11 +131,29 @@ const PenthouseAhmedabadRoute = PenthouseAhmedabadRouteImport.update({
   path: '/penthouse-ahmedabad',
   getParentRoute: () => rootRouteImport,
 } as any)
+const NriPropertyInvestmentAhmedabadRoute =
+  NriPropertyInvestmentAhmedabadRouteImport.update({
+    id: '/nri-property-investment-ahmedabad',
+    path: '/nri-property-investment-ahmedabad',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const NriInvestmentAhmedabadRoute = NriInvestmentAhmedabadRouteImport.update({
   id: '/nri-investment-ahmedabad',
   path: '/nri-investment-ahmedabad',
   getParentRoute: () => rootRouteImport,
 } as any)
+const NriBuyPropertyAhmedabadFromUsaRoute =
+  NriBuyPropertyAhmedabadFromUsaRouteImport.update({
+    id: '/nri-buy-property-ahmedabad-from-usa',
+    path: '/nri-buy-property-ahmedabad-from-usa',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const NriBuyPropertyAhmedabadFromDubaiRoute =
+  NriBuyPropertyAhmedabadFromDubaiRouteImport.update({
+    id: '/nri-buy-property-ahmedabad-from-dubai',
+    path: '/nri-buy-property-ahmedabad-from-dubai',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const NriBuyPropertyAhmedabadRoute = NriBuyPropertyAhmedabadRouteImport.update({
   id: '/nri-buy-property-ahmedabad',
   path: '/nri-buy-property-ahmedabad',
@@ -146,6 +176,11 @@ const LuxuryRealEstateAhmedabadRoute =
     path: '/luxury-real-estate-ahmedabad',
     getParentRoute: () => rootRouteImport,
   } as any)
+const LuxuryFlatsInAhmedabadRoute = LuxuryFlatsInAhmedabadRouteImport.update({
+  id: '/luxury-flats-in-ahmedabad',
+  path: '/luxury-flats-in-ahmedabad',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LuxuryApartmentsShivranjaniAhmedabadRoute =
   LuxuryApartmentsShivranjaniAhmedabadRouteImport.update({
     id: '/luxury-apartments-shivranjani-ahmedabad',
@@ -215,6 +250,11 @@ const GatedCommunityAhmedabadRoute = GatedCommunityAhmedabadRouteImport.update({
 const FlatsNearIimAhmedabadRoute = FlatsNearIimAhmedabadRouteImport.update({
   id: '/flats-near-iim-ahmedabad',
   path: '/flats-near-iim-ahmedabad',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FlatsForSaleInAhmedabadRoute = FlatsForSaleInAhmedabadRouteImport.update({
+  id: '/flats-for-sale-in-ahmedabad',
+  path: '/flats-for-sale-in-ahmedabad',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EoiRoute = EoiRouteImport.update({
@@ -296,6 +336,7 @@ export interface FileRoutesByFullPath {
   '/5bhk-nehrunagar-ahmedabad': typeof R5bhkNehrunagarAhmedabadRoute
   '/best-luxury-project-ahmedabad': typeof BestLuxuryProjectAhmedabadRoute
   '/eoi': typeof EoiRoute
+  '/flats-for-sale-in-ahmedabad': typeof FlatsForSaleInAhmedabadRoute
   '/flats-near-iim-ahmedabad': typeof FlatsNearIimAhmedabadRoute
   '/gated-community-ahmedabad': typeof GatedCommunityAhmedabadRoute
   '/hafeez-contractor-project-ahmedabad': typeof HafeezContractorProjectAhmedabadRoute
@@ -309,11 +350,15 @@ export interface FileRoutesByFullPath {
   '/luxury-apartments-central-ahmedabad': typeof LuxuryApartmentsCentralAhmedabadRoute
   '/luxury-apartments-cg-road-ahmedabad': typeof LuxuryApartmentsCgRoadAhmedabadRoute
   '/luxury-apartments-shivranjani-ahmedabad': typeof LuxuryApartmentsShivranjaniAhmedabadRoute
+  '/luxury-flats-in-ahmedabad': typeof LuxuryFlatsInAhmedabadRoute
   '/luxury-real-estate-ahmedabad': typeof LuxuryRealEstateAhmedabadRoute
   '/mcp': typeof McpRoute
   '/new-luxury-project-ahmedabad': typeof NewLuxuryProjectAhmedabadRoute
   '/nri-buy-property-ahmedabad': typeof NriBuyPropertyAhmedabadRoute
+  '/nri-buy-property-ahmedabad-from-dubai': typeof NriBuyPropertyAhmedabadFromDubaiRoute
+  '/nri-buy-property-ahmedabad-from-usa': typeof NriBuyPropertyAhmedabadFromUsaRoute
   '/nri-investment-ahmedabad': typeof NriInvestmentAhmedabadRoute
+  '/nri-property-investment-ahmedabad': typeof NriPropertyInvestmentAhmedabadRoute
   '/penthouse-ahmedabad': typeof PenthouseAhmedabadRoute
   '/property-in-ahmedabad-10-to-15-crore': typeof PropertyInAhmedabad10To15CroreRoute
   '/property-in-ahmedabad-5-to-7-crore': typeof PropertyInAhmedabad5To7CroreRoute
@@ -324,6 +369,7 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/studio': typeof StudioRoute
   '/ultra-luxury-apartments-ahmedabad': typeof UltraLuxuryApartmentsAhmedabadRoute
+  '/under-construction-projects-ahmedabad': typeof UnderConstructionProjectsAhmedabadRoute
   '/venus-universe-ahmedabad': typeof VenusUniverseAhmedabadRoute
   '/venus-universe-nehrunagar': typeof VenusUniverseNehrunagarRoute
   '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
@@ -341,6 +387,7 @@ export interface FileRoutesByTo {
   '/5bhk-nehrunagar-ahmedabad': typeof R5bhkNehrunagarAhmedabadRoute
   '/best-luxury-project-ahmedabad': typeof BestLuxuryProjectAhmedabadRoute
   '/eoi': typeof EoiRoute
+  '/flats-for-sale-in-ahmedabad': typeof FlatsForSaleInAhmedabadRoute
   '/flats-near-iim-ahmedabad': typeof FlatsNearIimAhmedabadRoute
   '/gated-community-ahmedabad': typeof GatedCommunityAhmedabadRoute
   '/hafeez-contractor-project-ahmedabad': typeof HafeezContractorProjectAhmedabadRoute
@@ -354,11 +401,15 @@ export interface FileRoutesByTo {
   '/luxury-apartments-central-ahmedabad': typeof LuxuryApartmentsCentralAhmedabadRoute
   '/luxury-apartments-cg-road-ahmedabad': typeof LuxuryApartmentsCgRoadAhmedabadRoute
   '/luxury-apartments-shivranjani-ahmedabad': typeof LuxuryApartmentsShivranjaniAhmedabadRoute
+  '/luxury-flats-in-ahmedabad': typeof LuxuryFlatsInAhmedabadRoute
   '/luxury-real-estate-ahmedabad': typeof LuxuryRealEstateAhmedabadRoute
   '/mcp': typeof McpRoute
   '/new-luxury-project-ahmedabad': typeof NewLuxuryProjectAhmedabadRoute
   '/nri-buy-property-ahmedabad': typeof NriBuyPropertyAhmedabadRoute
+  '/nri-buy-property-ahmedabad-from-dubai': typeof NriBuyPropertyAhmedabadFromDubaiRoute
+  '/nri-buy-property-ahmedabad-from-usa': typeof NriBuyPropertyAhmedabadFromUsaRoute
   '/nri-investment-ahmedabad': typeof NriInvestmentAhmedabadRoute
+  '/nri-property-investment-ahmedabad': typeof NriPropertyInvestmentAhmedabadRoute
   '/penthouse-ahmedabad': typeof PenthouseAhmedabadRoute
   '/property-in-ahmedabad-10-to-15-crore': typeof PropertyInAhmedabad10To15CroreRoute
   '/property-in-ahmedabad-5-to-7-crore': typeof PropertyInAhmedabad5To7CroreRoute
@@ -369,6 +420,7 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/studio': typeof StudioRoute
   '/ultra-luxury-apartments-ahmedabad': typeof UltraLuxuryApartmentsAhmedabadRoute
+  '/under-construction-projects-ahmedabad': typeof UnderConstructionProjectsAhmedabadRoute
   '/venus-universe-ahmedabad': typeof VenusUniverseAhmedabadRoute
   '/venus-universe-nehrunagar': typeof VenusUniverseNehrunagarRoute
   '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
@@ -387,6 +439,7 @@ export interface FileRoutesById {
   '/5bhk-nehrunagar-ahmedabad': typeof R5bhkNehrunagarAhmedabadRoute
   '/best-luxury-project-ahmedabad': typeof BestLuxuryProjectAhmedabadRoute
   '/eoi': typeof EoiRoute
+  '/flats-for-sale-in-ahmedabad': typeof FlatsForSaleInAhmedabadRoute
   '/flats-near-iim-ahmedabad': typeof FlatsNearIimAhmedabadRoute
   '/gated-community-ahmedabad': typeof GatedCommunityAhmedabadRoute
   '/hafeez-contractor-project-ahmedabad': typeof HafeezContractorProjectAhmedabadRoute
@@ -400,11 +453,15 @@ export interface FileRoutesById {
   '/luxury-apartments-central-ahmedabad': typeof LuxuryApartmentsCentralAhmedabadRoute
   '/luxury-apartments-cg-road-ahmedabad': typeof LuxuryApartmentsCgRoadAhmedabadRoute
   '/luxury-apartments-shivranjani-ahmedabad': typeof LuxuryApartmentsShivranjaniAhmedabadRoute
+  '/luxury-flats-in-ahmedabad': typeof LuxuryFlatsInAhmedabadRoute
   '/luxury-real-estate-ahmedabad': typeof LuxuryRealEstateAhmedabadRoute
   '/mcp': typeof McpRoute
   '/new-luxury-project-ahmedabad': typeof NewLuxuryProjectAhmedabadRoute
   '/nri-buy-property-ahmedabad': typeof NriBuyPropertyAhmedabadRoute
+  '/nri-buy-property-ahmedabad-from-dubai': typeof NriBuyPropertyAhmedabadFromDubaiRoute
+  '/nri-buy-property-ahmedabad-from-usa': typeof NriBuyPropertyAhmedabadFromUsaRoute
   '/nri-investment-ahmedabad': typeof NriInvestmentAhmedabadRoute
+  '/nri-property-investment-ahmedabad': typeof NriPropertyInvestmentAhmedabadRoute
   '/penthouse-ahmedabad': typeof PenthouseAhmedabadRoute
   '/property-in-ahmedabad-10-to-15-crore': typeof PropertyInAhmedabad10To15CroreRoute
   '/property-in-ahmedabad-5-to-7-crore': typeof PropertyInAhmedabad5To7CroreRoute
@@ -415,6 +472,7 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/studio': typeof StudioRoute
   '/ultra-luxury-apartments-ahmedabad': typeof UltraLuxuryApartmentsAhmedabadRoute
+  '/under-construction-projects-ahmedabad': typeof UnderConstructionProjectsAhmedabadRoute
   '/venus-universe-ahmedabad': typeof VenusUniverseAhmedabadRoute
   '/venus-universe-nehrunagar': typeof VenusUniverseNehrunagarRoute
   '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
@@ -434,6 +492,7 @@ export interface FileRouteTypes {
     | '/5bhk-nehrunagar-ahmedabad'
     | '/best-luxury-project-ahmedabad'
     | '/eoi'
+    | '/flats-for-sale-in-ahmedabad'
     | '/flats-near-iim-ahmedabad'
     | '/gated-community-ahmedabad'
     | '/hafeez-contractor-project-ahmedabad'
@@ -447,11 +506,15 @@ export interface FileRouteTypes {
     | '/luxury-apartments-central-ahmedabad'
     | '/luxury-apartments-cg-road-ahmedabad'
     | '/luxury-apartments-shivranjani-ahmedabad'
+    | '/luxury-flats-in-ahmedabad'
     | '/luxury-real-estate-ahmedabad'
     | '/mcp'
     | '/new-luxury-project-ahmedabad'
     | '/nri-buy-property-ahmedabad'
+    | '/nri-buy-property-ahmedabad-from-dubai'
+    | '/nri-buy-property-ahmedabad-from-usa'
     | '/nri-investment-ahmedabad'
+    | '/nri-property-investment-ahmedabad'
     | '/penthouse-ahmedabad'
     | '/property-in-ahmedabad-10-to-15-crore'
     | '/property-in-ahmedabad-5-to-7-crore'
@@ -462,6 +525,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/studio'
     | '/ultra-luxury-apartments-ahmedabad'
+    | '/under-construction-projects-ahmedabad'
     | '/venus-universe-ahmedabad'
     | '/venus-universe-nehrunagar'
     | '/.mcp/list-tools'
@@ -479,6 +543,7 @@ export interface FileRouteTypes {
     | '/5bhk-nehrunagar-ahmedabad'
     | '/best-luxury-project-ahmedabad'
     | '/eoi'
+    | '/flats-for-sale-in-ahmedabad'
     | '/flats-near-iim-ahmedabad'
     | '/gated-community-ahmedabad'
     | '/hafeez-contractor-project-ahmedabad'
@@ -492,11 +557,15 @@ export interface FileRouteTypes {
     | '/luxury-apartments-central-ahmedabad'
     | '/luxury-apartments-cg-road-ahmedabad'
     | '/luxury-apartments-shivranjani-ahmedabad'
+    | '/luxury-flats-in-ahmedabad'
     | '/luxury-real-estate-ahmedabad'
     | '/mcp'
     | '/new-luxury-project-ahmedabad'
     | '/nri-buy-property-ahmedabad'
+    | '/nri-buy-property-ahmedabad-from-dubai'
+    | '/nri-buy-property-ahmedabad-from-usa'
     | '/nri-investment-ahmedabad'
+    | '/nri-property-investment-ahmedabad'
     | '/penthouse-ahmedabad'
     | '/property-in-ahmedabad-10-to-15-crore'
     | '/property-in-ahmedabad-5-to-7-crore'
@@ -507,6 +576,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/studio'
     | '/ultra-luxury-apartments-ahmedabad'
+    | '/under-construction-projects-ahmedabad'
     | '/venus-universe-ahmedabad'
     | '/venus-universe-nehrunagar'
     | '/.mcp/list-tools'
@@ -524,6 +594,7 @@ export interface FileRouteTypes {
     | '/5bhk-nehrunagar-ahmedabad'
     | '/best-luxury-project-ahmedabad'
     | '/eoi'
+    | '/flats-for-sale-in-ahmedabad'
     | '/flats-near-iim-ahmedabad'
     | '/gated-community-ahmedabad'
     | '/hafeez-contractor-project-ahmedabad'
@@ -537,11 +608,15 @@ export interface FileRouteTypes {
     | '/luxury-apartments-central-ahmedabad'
     | '/luxury-apartments-cg-road-ahmedabad'
     | '/luxury-apartments-shivranjani-ahmedabad'
+    | '/luxury-flats-in-ahmedabad'
     | '/luxury-real-estate-ahmedabad'
     | '/mcp'
     | '/new-luxury-project-ahmedabad'
     | '/nri-buy-property-ahmedabad'
+    | '/nri-buy-property-ahmedabad-from-dubai'
+    | '/nri-buy-property-ahmedabad-from-usa'
     | '/nri-investment-ahmedabad'
+    | '/nri-property-investment-ahmedabad'
     | '/penthouse-ahmedabad'
     | '/property-in-ahmedabad-10-to-15-crore'
     | '/property-in-ahmedabad-5-to-7-crore'
@@ -552,6 +627,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/studio'
     | '/ultra-luxury-apartments-ahmedabad'
+    | '/under-construction-projects-ahmedabad'
     | '/venus-universe-ahmedabad'
     | '/venus-universe-nehrunagar'
     | '/.mcp/list-tools'
@@ -570,6 +646,7 @@ export interface RootRouteChildren {
   R5bhkNehrunagarAhmedabadRoute: typeof R5bhkNehrunagarAhmedabadRoute
   BestLuxuryProjectAhmedabadRoute: typeof BestLuxuryProjectAhmedabadRoute
   EoiRoute: typeof EoiRoute
+  FlatsForSaleInAhmedabadRoute: typeof FlatsForSaleInAhmedabadRoute
   FlatsNearIimAhmedabadRoute: typeof FlatsNearIimAhmedabadRoute
   GatedCommunityAhmedabadRoute: typeof GatedCommunityAhmedabadRoute
   HafeezContractorProjectAhmedabadRoute: typeof HafeezContractorProjectAhmedabadRoute
@@ -583,11 +660,15 @@ export interface RootRouteChildren {
   LuxuryApartmentsCentralAhmedabadRoute: typeof LuxuryApartmentsCentralAhmedabadRoute
   LuxuryApartmentsCgRoadAhmedabadRoute: typeof LuxuryApartmentsCgRoadAhmedabadRoute
   LuxuryApartmentsShivranjaniAhmedabadRoute: typeof LuxuryApartmentsShivranjaniAhmedabadRoute
+  LuxuryFlatsInAhmedabadRoute: typeof LuxuryFlatsInAhmedabadRoute
   LuxuryRealEstateAhmedabadRoute: typeof LuxuryRealEstateAhmedabadRoute
   McpRoute: typeof McpRoute
   NewLuxuryProjectAhmedabadRoute: typeof NewLuxuryProjectAhmedabadRoute
   NriBuyPropertyAhmedabadRoute: typeof NriBuyPropertyAhmedabadRoute
+  NriBuyPropertyAhmedabadFromDubaiRoute: typeof NriBuyPropertyAhmedabadFromDubaiRoute
+  NriBuyPropertyAhmedabadFromUsaRoute: typeof NriBuyPropertyAhmedabadFromUsaRoute
   NriInvestmentAhmedabadRoute: typeof NriInvestmentAhmedabadRoute
+  NriPropertyInvestmentAhmedabadRoute: typeof NriPropertyInvestmentAhmedabadRoute
   PenthouseAhmedabadRoute: typeof PenthouseAhmedabadRoute
   PropertyInAhmedabad10To15CroreRoute: typeof PropertyInAhmedabad10To15CroreRoute
   PropertyInAhmedabad5To7CroreRoute: typeof PropertyInAhmedabad5To7CroreRoute
@@ -598,6 +679,7 @@ export interface RootRouteChildren {
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   StudioRoute: typeof StudioRoute
   UltraLuxuryApartmentsAhmedabadRoute: typeof UltraLuxuryApartmentsAhmedabadRoute
+  UnderConstructionProjectsAhmedabadRoute: typeof UnderConstructionProjectsAhmedabadRoute
   VenusUniverseAhmedabadRoute: typeof VenusUniverseAhmedabadRoute
   VenusUniverseNehrunagarRoute: typeof VenusUniverseNehrunagarRoute
   Char91DotmcpChar93ListToolsRoute: typeof Char91DotmcpChar93ListToolsRoute
@@ -624,6 +706,13 @@ declare module '@tanstack/react-router' {
       path: '/venus-universe-ahmedabad'
       fullPath: '/venus-universe-ahmedabad'
       preLoaderRoute: typeof VenusUniverseAhmedabadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/under-construction-projects-ahmedabad': {
+      id: '/under-construction-projects-ahmedabad'
+      path: '/under-construction-projects-ahmedabad'
+      fullPath: '/under-construction-projects-ahmedabad'
+      preLoaderRoute: typeof UnderConstructionProjectsAhmedabadRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/ultra-luxury-apartments-ahmedabad': {
@@ -696,11 +785,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PenthouseAhmedabadRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/nri-property-investment-ahmedabad': {
+      id: '/nri-property-investment-ahmedabad'
+      path: '/nri-property-investment-ahmedabad'
+      fullPath: '/nri-property-investment-ahmedabad'
+      preLoaderRoute: typeof NriPropertyInvestmentAhmedabadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/nri-investment-ahmedabad': {
       id: '/nri-investment-ahmedabad'
       path: '/nri-investment-ahmedabad'
       fullPath: '/nri-investment-ahmedabad'
       preLoaderRoute: typeof NriInvestmentAhmedabadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/nri-buy-property-ahmedabad-from-usa': {
+      id: '/nri-buy-property-ahmedabad-from-usa'
+      path: '/nri-buy-property-ahmedabad-from-usa'
+      fullPath: '/nri-buy-property-ahmedabad-from-usa'
+      preLoaderRoute: typeof NriBuyPropertyAhmedabadFromUsaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/nri-buy-property-ahmedabad-from-dubai': {
+      id: '/nri-buy-property-ahmedabad-from-dubai'
+      path: '/nri-buy-property-ahmedabad-from-dubai'
+      fullPath: '/nri-buy-property-ahmedabad-from-dubai'
+      preLoaderRoute: typeof NriBuyPropertyAhmedabadFromDubaiRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/nri-buy-property-ahmedabad': {
@@ -729,6 +839,13 @@ declare module '@tanstack/react-router' {
       path: '/luxury-real-estate-ahmedabad'
       fullPath: '/luxury-real-estate-ahmedabad'
       preLoaderRoute: typeof LuxuryRealEstateAhmedabadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/luxury-flats-in-ahmedabad': {
+      id: '/luxury-flats-in-ahmedabad'
+      path: '/luxury-flats-in-ahmedabad'
+      fullPath: '/luxury-flats-in-ahmedabad'
+      preLoaderRoute: typeof LuxuryFlatsInAhmedabadRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/luxury-apartments-shivranjani-ahmedabad': {
@@ -820,6 +937,13 @@ declare module '@tanstack/react-router' {
       path: '/flats-near-iim-ahmedabad'
       fullPath: '/flats-near-iim-ahmedabad'
       preLoaderRoute: typeof FlatsNearIimAhmedabadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/flats-for-sale-in-ahmedabad': {
+      id: '/flats-for-sale-in-ahmedabad'
+      path: '/flats-for-sale-in-ahmedabad'
+      fullPath: '/flats-for-sale-in-ahmedabad'
+      preLoaderRoute: typeof FlatsForSaleInAhmedabadRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/eoi': {
@@ -922,6 +1046,7 @@ const rootRouteChildren: RootRouteChildren = {
   R5bhkNehrunagarAhmedabadRoute: R5bhkNehrunagarAhmedabadRoute,
   BestLuxuryProjectAhmedabadRoute: BestLuxuryProjectAhmedabadRoute,
   EoiRoute: EoiRoute,
+  FlatsForSaleInAhmedabadRoute: FlatsForSaleInAhmedabadRoute,
   FlatsNearIimAhmedabadRoute: FlatsNearIimAhmedabadRoute,
   GatedCommunityAhmedabadRoute: GatedCommunityAhmedabadRoute,
   HafeezContractorProjectAhmedabadRoute: HafeezContractorProjectAhmedabadRoute,
@@ -937,11 +1062,15 @@ const rootRouteChildren: RootRouteChildren = {
   LuxuryApartmentsCgRoadAhmedabadRoute: LuxuryApartmentsCgRoadAhmedabadRoute,
   LuxuryApartmentsShivranjaniAhmedabadRoute:
     LuxuryApartmentsShivranjaniAhmedabadRoute,
+  LuxuryFlatsInAhmedabadRoute: LuxuryFlatsInAhmedabadRoute,
   LuxuryRealEstateAhmedabadRoute: LuxuryRealEstateAhmedabadRoute,
   McpRoute: McpRoute,
   NewLuxuryProjectAhmedabadRoute: NewLuxuryProjectAhmedabadRoute,
   NriBuyPropertyAhmedabadRoute: NriBuyPropertyAhmedabadRoute,
+  NriBuyPropertyAhmedabadFromDubaiRoute: NriBuyPropertyAhmedabadFromDubaiRoute,
+  NriBuyPropertyAhmedabadFromUsaRoute: NriBuyPropertyAhmedabadFromUsaRoute,
   NriInvestmentAhmedabadRoute: NriInvestmentAhmedabadRoute,
+  NriPropertyInvestmentAhmedabadRoute: NriPropertyInvestmentAhmedabadRoute,
   PenthouseAhmedabadRoute: PenthouseAhmedabadRoute,
   PropertyInAhmedabad10To15CroreRoute: PropertyInAhmedabad10To15CroreRoute,
   PropertyInAhmedabad5To7CroreRoute: PropertyInAhmedabad5To7CroreRoute,
@@ -952,6 +1081,8 @@ const rootRouteChildren: RootRouteChildren = {
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   StudioRoute: StudioRoute,
   UltraLuxuryApartmentsAhmedabadRoute: UltraLuxuryApartmentsAhmedabadRoute,
+  UnderConstructionProjectsAhmedabadRoute:
+    UnderConstructionProjectsAhmedabadRoute,
   VenusUniverseAhmedabadRoute: VenusUniverseAhmedabadRoute,
   VenusUniverseNehrunagarRoute: VenusUniverseNehrunagarRoute,
   Char91DotmcpChar93ListToolsRoute: Char91DotmcpChar93ListToolsRoute,
