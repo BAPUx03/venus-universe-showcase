@@ -115,6 +115,12 @@ export function Footer({ brand, contact, rera }: { brand: string; contact: SiteC
             <p className="font-semibold text-ivory/90 mb-2.5 text-[11px] uppercase tracking-wider text-gold/90">NRI & Diligence</p>
             <ul className="space-y-1.5 text-muted-foreground">
               <li><Link to="/nri-investment-ahmedabad" className="hover:text-gold transition">NRI Investment Guide</Link></li>
+              <li><Link to="/nri-property-investment-ahmedabad" className="hover:text-gold transition">NRI Property Investment</Link></li>
+              <li><Link to="/nri-buy-property-ahmedabad-from-usa" className="hover:text-gold transition">Buying from USA</Link></li>
+              <li><Link to="/nri-buy-property-ahmedabad-from-dubai" className="hover:text-gold transition">Buying from Dubai</Link></li>
+              <li><Link to="/luxury-flats-in-ahmedabad" className="hover:text-gold transition">Luxury Flats in Ahmedabad</Link></li>
+              <li><Link to="/flats-for-sale-in-ahmedabad" className="hover:text-gold transition">Flats for Sale in Ahmedabad</Link></li>
+              <li><Link to="/under-construction-projects-ahmedabad" className="hover:text-gold transition">Under-Construction Projects</Link></li>
               <li><Link to="/nri-buy-property-ahmedabad" className="hover:text-gold transition">NRI Remote Purchasing</Link></li>
               <li><Link to="/hafeez-contractor-project-ahmedabad" className="hover:text-gold transition">Hafeez Contractor Project</Link></li>
               <li><Link to="/rera-registered-project-ahmedabad" className="hover:text-gold transition">RERA Details & Carpet</Link></li>
